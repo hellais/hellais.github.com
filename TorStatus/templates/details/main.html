@@ -14,14 +14,14 @@
     <div class="span4">
     <h3>Configuration</h3>
     <dl>
-      <dt><span class="tip" data-content="Nickname that the Tor relay operator chose." data-original-title="Nickname">Nickname</span></dt>
-      <dd><%= relay.get('nickname') %></dd>
+      <dt><span class="tip" data-content="This is the nickname that the Tor relay operator chose." data-original-title="Nickname">Nickname</span></dt>
+      <dd><%= _.escape(relay.get('nickname')) %></dd>
 
       <dt><span class="tip" data-content="Addresses and ports where the relay listens for incoming connections from clients and other relays." data-original-title="Onion-routing addresses">OR Addresses</span></dt>
       <dd><%= relay.get('or_addresses') %></dd>
 
-      <dt><span class="tip" data-content="Contact details of the Tor relay operator" data-original-title="Contact information">Contact</span></dt>
-      <dd><%= relay.get('contact') %></dd>
+      <dt><span class="tip" data-content="These are the contact details of the Tor relay operator" data-original-title="ContactInfo">Contact</span></dt>
+      <dd><%= _.escape(relay.get('contact')) %></dd>
 
       <dt><span class="tip" data-content="Address and port where the relay listens for directory requests." data-original-title="Directory port">Dir Address</span></dt>
       <dd><%= relay.get('dir_address') %></dd>
@@ -65,8 +65,8 @@
     <dt><span class="tip" data-content="Date and time when the relay last published a descriptor to the directory authorities." data-original-title="Descriptor published">Descriptor Published</span></dt>
     <dd><%= relay.get('desc_published') %></dd>
 
-    <dt><span class="tip" data-content="Platform string of this relay containing operating system and Tor version details." data-original-title="Platform">Platform</span></dt>
-    <dd><%= relay.get('platform') %></dd>
+    <dt><span class="tip" data-content="XXX" data-original-title="YYY">Platform</span></dt>
+    <dd><%= _.escape(relay.get('platform')) %></dd>
 
     </dl>
     </div>
