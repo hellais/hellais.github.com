@@ -1,0 +1,21 @@
+{
+  "title": "latenza.js",
+  "author": "~Art. <art@fuffa.org>",
+  "md": [
+    {
+        "id": "about",
+        "title": "about",
+        "href": "md/about.md"
+    },
+    {
+        "id": "contact",
+        "title": "contact",
+        "href": "md/contact.md"
+    },
+    {
+        "id": "social",
+        "title": "social",
+        "href": "md/social.md"
+    }
+  ]
+}
