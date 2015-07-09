@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Events on OONI: Open Observatory of Network Interference</title>
-    <link>hellais.github.com/adina/event/</link>
+    <link>http://arturo.filasto.net/adina/event/</link>
     <description>Recent content in Events on OONI: Open Observatory of Network Interference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 10 Jul 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="hellais.github.com/adina/event/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://arturo.filasto.net/adina/event/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ADINA15: A Dive Into Network Anomalies</title>
-      <link>/hellais.github.com/adina/event/adina15/</link>
+      <link>http://arturo.filasto.net/adina/event/adina15/</link>
       <pubDate>Fri, 10 Jul 2015 00:00:00 +0000</pubDate>
       
-      <guid>/hellais.github.com/adina/event/adina15/</guid>
+      <guid>http://arturo.filasto.net/adina/event/adina15/</guid>
       <description>
 
 &lt;h1 id=&#34;ooni-hackathon:550281d282d64ceb2dd86438c13e2d48&#34;&gt;OONI Hackathon&lt;/h1&gt;
