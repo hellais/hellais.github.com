@@ -1,0 +1,1079 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests manipulation Package &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/>
+        <link rel="up" title="Implemented NetTests" href="modules.html"/>
+        <link rel="next" title="ooni.nettests scanning Package" href="ooni.nettests.scanning.html"/>
+        <link rel="prev" title="ooni.nettests experimental Package" href="ooni.nettests.experimental.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Implemented NetTests</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Implemented NetTests</a> &raquo;</li>
+      
+    <li>ooni.nettests manipulation Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/nettests/ooni.nettests.manipulation.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ooni-nettests-manipulation-package">
+<h1>ooni.nettests manipulation Package<a class="headerlink" href="#ooni-nettests-manipulation-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ooni.nettests.manipulation.captiveportal">
+<span id="ooni-nettests-manipulation-captiveportal-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.captiveportal" title="ooni.nettests.manipulation.captiveportal"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.captiveportal</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.captiveportal" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.captiveportal.</code><code class="descname">CaptivePortal</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a>, <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.dnst.DNSTest" title="ooni.templates.dnst.DNSTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.dnst.DNSTest</span></code></a></p>
+<p>Compares content and status codes of HTTP responses, and attempts
+to determine if content has been altered.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.author">
+<code class="descname">author</code><em class="property"> = 'Isis Lovecruft'</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.check_0x20_to_auth_ns">
+<code class="descname">check_0x20_to_auth_ns</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.check_0x20_to_auth_ns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.check_0x20_to_auth_ns" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve a 0x20 DNS request for hostname over hostname&#8217;s
+authoritative nameserver(s), and check to make sure that
+the capitalization in the 0x20 request matches that of the
+response. Also, check the serial numbers of the SOA (Start
+of Authority) records on the authoritative nameservers to
+make sure that they match.</p>
+<p>If sample_size is given, a random sample equal to that number
+of authoritative nameservers will be queried; default is 5.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.compare_random_hostnames">
+<code class="descname">compare_random_hostnames</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.compare_random_hostnames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.compare_random_hostnames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get hostname_count number of random hostnames with SLD length
+of hostname_length, and then attempt DNS resolution. If no
+arguments are given, default to three hostnames of 32 bytes
+each. These random hostnames <em>should</em> resolve to NXDOMAIN,
+except in the case where a user is presented with a captive
+portal and remains unauthenticated, in which case the captive
+portal may return the address of the authentication page.</p>
+<p>If the cardinality of the intersection of the set of resolved
+random hostnames and the single element control set
+([&#8216;NXDOMAIN&#8217;]) are equal to one, then DNS properly resolved.</p>
+<p>Returns true if only NXDOMAINs were returned, otherwise returns
+False with the relative complement of the control set in the
+response set.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.control">
+<code class="descname">control</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.control" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compares the content and status code of the HTTP response for
+experiment_url with the control_result and control_code
+respectively. If the status codes match, but the experimental
+content and control_result do not match, fuzzy matching is enabled
+to determine if the control_result is at least included somewhere
+in the experimental content. Returns True if matches are found,
+and False if otherwise.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.description">
+<code class="descname">description</code><em class="property"> = 'Captive Portal Test'</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve">
+<code class="descname">dns_resolve</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.dns_resolve"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolves hostname(s) though nameserver to corresponding
+address(es). hostname may be either a single hostname string,
+or a list of strings. If nameserver is not given, use local
+DNS resolver, and if that fails try using 8.8.8.8.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve_match">
+<code class="descname">dns_resolve_match</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.dns_resolve_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resolve experiment_hostname, and check to see that it returns
+an experiment_address which matches the control_address.  If
+they match, returns True and experiment_address; otherwise
+returns False and experiment_address.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.get_auth_nameservers">
+<code class="descname">get_auth_nameservers</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.get_auth_nameservers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_auth_nameservers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Many CPs set a nameserver to be used. Let&#8217;s query that
+nameserver for the authoritative nameservers of hostname.</p>
+<p>The equivalent of:
+$ dig +short NS ooni.nu</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_hostname">
+<code class="descname">get_random_hostname</code><span class="sig-paren">(</span><em>length=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.get_random_hostname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_hostname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a random hostname with SLD of specified length. If
+length is unspecified, length=32 is used.</p>
+<p>These <em>should</em> all resolve to NXDOMAIN. If they actually
+resolve to a box that isn&#8217;t part of a captive portal that
+would be rather interesting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_url_safe_string">
+<code class="descname">get_random_url_safe_string</code><span class="sig-paren">(</span><em>length</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.get_random_url_safe_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_url_safe_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a random url-safe string of specified length, where
+0 &lt; length &lt;= 256. The returned string will always start with
+an alphabetic character.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.google_dns_cp_test">
+<code class="descname">google_dns_cp_test</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.google_dns_cp_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.google_dns_cp_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Google Chrome resolves three 10-byte random hostnames.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.hostname_to_0x20">
+<code class="descname">hostname_to_0x20</code><span class="sig-paren">(</span><em>hostname</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.hostname_to_0x20"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.hostname_to_0x20" title="Permalink to this definition">¶</a></dt>
+<dd><p>MaKEs yOur HOsTnaME lOoK LiKE THis.</p>
+<p>For more information, see:
+D. Dagon, et. al. &#8220;Increased DNS Forgery Resistance
+Through 0x20-Bit Encoding&#8221;. Proc. CSS, 2008.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.http_content_match_fuzzy_opt">
+<code class="descname">http_content_match_fuzzy_opt</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.http_content_match_fuzzy_opt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_content_match_fuzzy_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes an HTTP request on port 80 for experimental_url, then
+compares the response_content of experimental_url with the
+control_result. Optionally, if the fuzzy parameter is set to
+True, the response_content is compared with a regex of the
+control_result. If the response_content from the
+experimental_url and the control_result match, returns True
+with the HTTP status code and headers; False, status code, and
+headers if otherwise.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.http_fetch">
+<code class="descname">http_fetch</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.http_fetch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parses an HTTP url, fetches it, and returns a response
+object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_match">
+<code class="descname">http_status_code_match</code><span class="sig-paren">(</span><em>experiment_code</em>, <em>control_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.http_status_code_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare two HTTP status codes, returns True if they match.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_no_match">
+<code class="descname">http_status_code_no_match</code><span class="sig-paren">(</span><em>experiment_code</em>, <em>control_code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.http_status_code_no_match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_no_match" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compare two HTTP status codes, returns True if they do not match.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.ms_dns_cp_test">
+<code class="descname">ms_dns_cp_test</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.ms_dns_cp_test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.ms_dns_cp_test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Microsoft &#8220;phones home&#8221; to a server which will always resolve
+to the same address.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.name">
+<code class="descname">name</code><em class="property"> = 'captiveportal'</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_dns_tests">
+<code class="descname">run_vendor_dns_tests</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.run_vendor_dns_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_dns_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the vendor DNS tests.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_tests">
+<code class="descname">run_vendor_tests</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.run_vendor_tests"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_tests" title="Permalink to this definition">¶</a></dt>
+<dd><p>These are several vendor tests used to detect the presence of
+a captive portal. Each test compares HTTP status code and
+content to the control results and has its own User-Agent
+string, in order to emulate the test as it would occur on the
+device it was intended for. Vendor tests are defined in the
+format:
+[exp_url, ctrl_result, ctrl_code, ua, test_name]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.test_captive_portal">
+<code class="descname">test_captive_portal</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#CaptivePortal.test_captive_portal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.test_captive_portal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the CaptivePortal(Test).</p>
+<p>CONFIG OPTIONS</p>
+<p>If &#8220;do_captive_portal_vendor_tests&#8221; is set to &#8220;true&#8221;, then vendor
+specific captive portal HTTP-based tests will be run.</p>
+<p>If &#8220;do_captive_portal_dns_tests&#8221; is set to &#8220;true&#8221;, then vendor
+specific captive portal DNS-based tests will be run.</p>
+<p>If &#8220;check_dns_requests&#8221; is set to &#8220;true&#8221;, then Ooni-probe will
+attempt to check that your DNS requests are not being tampered with
+by a captive portal.</p>
+<p>If &#8220;captive_portal&#8221; = &#8220;yourfilename.txt&#8221;, then user-specified tests
+will be run.</p>
+<p>Any combination of the above tests can be run.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.captiveportal.UsageOptions" title="ooni.nettests.manipulation.captiveportal.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.CaptivePortal.version">
+<code class="descname">version</code><em class="property"> = '0.3'</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.CaptivePortal.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.captiveportal.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.captiveportal.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/captiveportal.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.captiveportal.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['asset', 'a', None, 'Asset file'], ['experiment-url', 'e', 'http://google.com/', 'Experiment URL'], ['user-agent', 'u', 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 3 1 2 like Mac OS X; en-us)AppleWebKit/528.18 (KHTML, like Gecko) Mobile/7D11', 'User agent for HTTP requests']]</em><a class="headerlink" href="#ooni.nettests.manipulation.captiveportal.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.manipulation.daphne">
+<span id="ooni-nettests-manipulation-daphne-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.daphne" title="ooni.nettests.manipulation.daphne"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.daphne</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.daphne" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.daphne.</code><code class="descname">Daphn3ClientFactory</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.internet.protocol.ClientFactory</span></code></p>
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.buildProtocol">
+<code class="descname">buildProtocol</code><span class="sig-paren">(</span><em>addr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientFactory.buildProtocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.buildProtocol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionFailed">
+<code class="descname">clientConnectionFailed</code><span class="sig-paren">(</span><em>reason</em>, <em>connector</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientFactory.clientConnectionFailed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionFailed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionLost">
+<code class="descname">clientConnectionLost</code><span class="sig-paren">(</span><em>reason</em>, <em>connector</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientFactory.clientConnectionLost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionLost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.mutation">
+<code class="descname">mutation</code><em class="property"> = [0, 0]</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.mutation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.protocol">
+<code class="descname">protocol</code><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.protocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">Daphn3Protocol</span></code></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.startedConnecting">
+<code class="descname">startedConnecting</code><span class="sig-paren">(</span><em>connector</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientFactory.startedConnecting"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.startedConnecting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientFactory.steps">
+<code class="descname">steps</code><em class="property"> = None</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientProtocol">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.daphne.</code><code class="descname">Daphn3ClientProtocol</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientProtocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientProtocol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">ooni.kit.daphn3.Daphn3Protocol</span></code></p>
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.Daphn3ClientProtocol.nextStep">
+<code class="descname">nextStep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#Daphn3ClientProtocol.nextStep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.Daphn3ClientProtocol.nextStep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Args">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.daphne.</code><code class="descname">daphn3Args</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#daphn3Args"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Args.optFlags">
+<code class="descname">optFlags</code><em class="property"> = [['pcap', 'c', 'Specify that the input file is a pcap file'], ['yaml', 'y', 'Specify that the input file is a YAML file (default)']]</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Args.optFlags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Args.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['host', 'h', '127.0.0.1', 'Target Hostname'], ['port', 'p', 57003, 'Target port number']]</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Args.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.daphne.</code><code class="descname">daphn3Test</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#daphn3Test"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.description">
+<code class="descname">description</code><em class="property"> = 'Bisects the censors fingerprint by mutating the given input packets.'</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'Specify the pcap or YAML file to be used as input to the test']</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.inputProcessor">
+<code class="descname">inputProcessor</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#daphn3Test.inputProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.inputProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>step_idx is the step in the packet exchange
+ex.
+[.X.] are packets sent by a client or a server</p>
+<blockquote>
+<div>client:  [.1.]        [.3.] [.4.]
+server:         [.2.]             [.5.]</div></blockquote>
+<p>mutation_idx: is the sub index of the packet as in the byte of the
+packet at the step_idx that is to be mutated</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.name">
+<code class="descname">name</code><em class="property"> = 'Daphn3'</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.steps">
+<code class="descname">steps</code><em class="property"> = None</em><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.steps" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.test_daphn3">
+<code class="descname">test_daphn3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/daphne.html#daphn3Test.test_daphn3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.test_daphn3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.daphne.daphn3Test.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.daphne.daphn3Test.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.daphne.daphn3Args" title="ooni.nettests.manipulation.daphne.daphn3Args"><code class="xref py py-class docutils literal"><span class="pre">daphn3Args</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ooni-nettests-manipulation-dns-spoof-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.dns_spoof</span></code> Module<a class="headerlink" href="#ooni-nettests-manipulation-dns-spoof-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ooni.nettests.manipulation.http_header_field_manipulation">
+<span id="ooni-nettests-manipulation-http-header-field-manipulation-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.http_header_field_manipulation" title="ooni.nettests.manipulation.http_header_field_manipulation"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.http_header_field_manipulation</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.http_header_field_manipulation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_header_field_manipulation.</code><code class="descname">HTTPHeaderFieldManipulation</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>It performes HTTP requests with request headers that vary capitalization
+towards a backend. If the headers reported by the server differ from
+the ones we sent, then we have detected tampering.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.check_for_tampering">
+<code class="descname">check_for_tampering</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.check_for_tampering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.check_for_tampering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Here we do checks to verify if the request we made has been tampered
+with. We have 3 categories of tampering:</p>
+<ul class="simple">
+<li><strong>total</strong> when the response is not a json object and therefore we were not</li>
+</ul>
+<p>able to reach the ooniprobe test backend</p>
+<ul class="simple">
+<li><strong>request_line_capitalization</strong> when the HTTP Request line (e.x. GET /</li>
+</ul>
+<p>HTTP/1.1) does not match the capitalization we set.</p>
+<ul class="simple">
+<li><strong>header_field_number</strong> when the number of headers we sent does not match</li>
+</ul>
+<p>with the ones the backend received</p>
+<ul class="simple">
+<li><strong>header_name_capitalization</strong> when the header field names do not match</li>
+</ul>
+<p>those that we sent.</p>
+<ul class="simple">
+<li><strong>header_field_value</strong> when the header field value does not match with the</li>
+</ul>
+<p>one we transmitted.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.description">
+<code class="descname">description</code><em class="property"> = 'Checks if the HTTP request the server sees is the same as the one that the client has created.'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.get_headers">
+<code class="descname">get_headers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.get_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.get_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.get_random_caps_headers">
+<code class="descname">get_random_caps_headers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.get_random_caps_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.get_random_caps_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Header Field Manipulation'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.processResponseBody">
+<code class="descname">processResponseBody</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.processResponseBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.processResponseBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.randomizeUA">
+<code class="descname">randomizeUA</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.randomizeUA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['backend']</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiredTestHelpers">
+<code class="descname">requiredTestHelpers</code><em class="property"> = {'backend': 'http-return-json-headers'}</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiredTestHelpers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.test_get_random_capitalization">
+<code class="descname">test_get_random_capitalization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#HTTPHeaderFieldManipulation.test_get_random_capitalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.test_get_random_capitalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions" title="ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.version">
+<code class="descname">version</code><em class="property"> = '0.1.5'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.HTTPHeaderFieldManipulation.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_header_field_manipulation.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', None, 'URL of the backend to use for sending the requests'], ['headers', 'h', None, 'Specify a yaml formatted file from which to read the request headers to send']]</em><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ooni.nettests.manipulation.http_header_field_manipulation.random_capitalization">
+<code class="descclassname">ooni.nettests.manipulation.http_header_field_manipulation.</code><code class="descname">random_capitalization</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_header_field_manipulation.html#random_capitalization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_header_field_manipulation.random_capitalization" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.manipulation.http_host">
+<span id="ooni-nettests-manipulation-http-host-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.http_host" title="ooni.nettests.manipulation.http_host"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.http_host</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.http_host" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_host.</code><code class="descname">HTTPHost</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>This test performs various manipulations of the HTTP Host header field and
+attempts to detect which filter bypassing strategies will work against the
+censor.</p>
+<p>Usually this test should be run with a list of sites that are known to be
+blocked inside of a particular network to assess which filter evasion
+strategies will work.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.check_for_censorship">
+<code class="descname">check_for_censorship</code><span class="sig-paren">(</span><em>body</em>, <em>test_name</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.check_for_censorship"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.check_for_censorship" title="Permalink to this definition">¶</a></dt>
+<dd><p>XXX this is to be filled in with either a domclass based classified or
+with a rule that will allow to detect that the body of the result is
+that of a censored site.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.description">
+<code class="descname">description</code><em class="property"> = 'Tests a variety of different filter bypassing techniques based on the HTTP Host header field.'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'List of hostnames to test for censorship']</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.inputProcessor">
+<code class="descname">inputProcessor</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.inputProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.inputProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>This inputProcessor extracts domain names from urls</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Host'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.randomizeUA">
+<code class="descname">randomizeUA</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.randomizeUA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['backend']</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.requiredTestHelpers">
+<code class="descname">requiredTestHelpers</code><em class="property"> = {'backend': 'http-return-json-headers'}</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.requiredTestHelpers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_add_tab_to_host">
+<code class="descname">test_filtering_add_tab_to_host</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.test_filtering_add_tab_to_host"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_add_tab_to_host" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_of_subdomain">
+<code class="descname">test_filtering_of_subdomain</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.test_filtering_of_subdomain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_of_subdomain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_prepend_newline_to_method">
+<code class="descname">test_filtering_prepend_newline_to_method</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.test_filtering_prepend_newline_to_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_prepend_newline_to_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_via_fuzzy_matching">
+<code class="descname">test_filtering_via_fuzzy_matching</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.test_filtering_via_fuzzy_matching"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.test_filtering_via_fuzzy_matching" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.test_send_host_header">
+<code class="descname">test_send_host_header</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#HTTPHost.test_send_host_header"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.test_send_host_header" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stuffs the HTTP Host header field with the site to be tested for
+censorship and does an HTTP request of this kind to our backend.</p>
+<p>We randomize the HTTP User Agent headers.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.http_host.UsageOptions" title="ooni.nettests.manipulation.http_host.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.HTTPHost.version">
+<code class="descname">version</code><em class="property"> = '0.2.4'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.HTTPHost.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_host.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_host.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_host.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_host.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_host.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', None, 'URL of the test backend to use. Should be                               listening on port 80 and be a                               HTTPReturnJSONHeadersHelper'], ['content', 'c', None, 'The file to read                             from containing the content of a block page']]</em><a class="headerlink" href="#ooni.nettests.manipulation.http_host.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.manipulation.http_invalid_request_line">
+<span id="ooni-nettests-manipulation-http-invalid-request-line-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.http_invalid_request_line" title="ooni.nettests.manipulation.http_invalid_request_line"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.http_invalid_request_line</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.http_invalid_request_line" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_invalid_request_line.</code><code class="descname">HTTPInvalidRequestLine</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.tcpt.TCPTest" title="ooni.templates.tcpt.TCPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.tcpt.TCPTest</span></code></a></p>
+<p>The goal of this test is to do some very basic and not very noisy fuzzing
+on the HTTP request line. We generate a series of requests that are not
+valid HTTP requests.</p>
+<p>Unless elsewhere stated &#8216;Xx&#8217;<a href="#id1"><span class="problematic" id="id2">*</span></a>N refers to N*2 random upper or lowercase
+ascii letters or numbers (&#8216;XxXx&#8217; will be 4).</p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.authors">
+<code class="descname">authors</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.authors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.check_for_manipulation">
+<code class="descname">check_for_manipulation</code><span class="sig-paren">(</span><em>response</em>, <em>payload</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.check_for_manipulation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.check_for_manipulation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.description">
+<code class="descname">description</code><em class="property"> = 'Performs out of spec HTTP requests in the attempt to trigger a proxy error message.'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Invalid Request Line'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['backend']</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiredTestHelpers">
+<code class="descname">requiredTestHelpers</code><em class="property"> = {'backend': 'tcp-echo'}</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiredTestHelpers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_big_request_method">
+<code class="descname">test_random_big_request_method</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.test_random_big_request_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_big_request_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates a request that looks like this:</p>
+<p>Xx*512 / HTTP/1.1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_field_count">
+<code class="descname">test_random_invalid_field_count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.test_random_invalid_field_count"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_field_count" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates a request that looks like this:</p>
+<p>XxXxX XxXxX XxXxX XxXxX</p>
+<p>This may trigger some bugs in the HTTP parsers of transparent HTTP
+proxies.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_method">
+<code class="descname">test_random_invalid_method</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.test_random_invalid_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>We test sending data to a TCP echo server listening on port 80, if what
+we get back is not what we have sent then there is tampering going on.
+This is for example what squid will return when performing such
+request:</p>
+<blockquote>
+<div>HTTP/1.0 400 Bad Request
+Server: squid/2.6.STABLE21
+Date: Sat, 23 Jul 2011 02:22:44 GMT
+Content-Type: text/html
+Content-Length: 1178
+Expires: Sat, 23 Jul 2011 02:22:44 GMT
+X-Squid-Error: ERR_INVALID_REQ 0
+X-Cache: MISS from cache_server
+X-Cache-Lookup: NONE from cache_server:3128
+Via: 1.0 cache_server:3128 (squid/2.6.STABLE21)
+Proxy-Connection: close</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_version_number">
+<code class="descname">test_random_invalid_version_number</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#HTTPInvalidRequestLine.test_random_invalid_version_number"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.test_random_invalid_version_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>This generates a request that looks like this:</p>
+<p>GET / HTTP/XxX</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.http_invalid_request_line.UsageOptions" title="ooni.nettests.manipulation.http_invalid_request_line.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.version">
+<code class="descname">version</code><em class="property"> = '0.2'</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.HTTPInvalidRequestLine.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.http_invalid_request_line.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/http_invalid_request_line.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.http_invalid_request_line.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', None, 'The OONI backend that runs a TCP echo server'], ['backendport', 'p', 80, 'Specify the port that the TCP echo server is running (should only be set for debugging)']]</em><a class="headerlink" href="#ooni.nettests.manipulation.http_invalid_request_line.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.manipulation.traceroute">
+<span id="ooni-nettests-manipulation-traceroute-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.manipulation.traceroute" title="ooni.nettests.manipulation.traceroute"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.manipulation.traceroute</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.manipulation.traceroute" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.traceroute.</code><code class="descname">Traceroute</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.addToReport">
+<code class="descname">addToReport</code><span class="sig-paren">(</span><em>packet</em>, <em>response</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.addToReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.addToReport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.description">
+<code class="descname">description</code><em class="property"> = 'Performs a UDP, TCP, ICMP traceroute with destination port number set to 0, 22, 23, 53, 80, 123, 443, 8080 and 65535'</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.dst_ports">
+<code class="descname">dst_ports</code><em class="property"> = [0, 22, 23, 53, 80, 123, 443, 8080, 65535]</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.dst_ports" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.name">
+<code class="descname">name</code><em class="property"> = 'Traceroute'</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.requiredTestHelpers">
+<code class="descname">requiredTestHelpers</code><em class="property"> = {'backend': 'traceroute'}</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.requiredTestHelpers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = True</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.run_traceroute">
+<code class="descname">run_traceroute</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.run_traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.run_traceroute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.test_icmp_traceroute">
+<code class="descname">test_icmp_traceroute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.test_icmp_traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.test_icmp_traceroute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.test_tcp_traceroute">
+<code class="descname">test_tcp_traceroute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.test_tcp_traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.test_tcp_traceroute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.test_udp_traceroute">
+<code class="descname">test_udp_traceroute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#Traceroute.test_udp_traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.test_udp_traceroute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.manipulation.traceroute.UsageOptions" title="ooni.nettests.manipulation.traceroute.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.Traceroute.version">
+<code class="descname">version</code><em class="property"> = '0.3'</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.Traceroute.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.manipulation.traceroute.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.manipulation.traceroute.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/manipulation/traceroute.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.manipulation.traceroute.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', None, 'Test backend to use'], ['timeout', 't', 5, 'The timeout for the traceroute test'], ['maxttl', 'm', 30, 'The maximum value of ttl to set on packets'], ['dstport', 'd', None, 'Specify a single destination port. May be repeated.'], ['interval', 'i', None, 'Specify the inter-packet delay in seconds'], ['numPackets', 'n', None, 'Specify the number of packets to send per hop']]</em><a class="headerlink" href="#ooni.nettests.manipulation.traceroute.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ooni.nettests.scanning.html" class="btn btn-neutral float-right" title="ooni.nettests scanning Package">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ooni.nettests.experimental.html" class="btn btn-neutral" title="ooni.nettests experimental Package"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

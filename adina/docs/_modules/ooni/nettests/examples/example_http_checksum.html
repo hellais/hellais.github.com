@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests.examples.example_http_checksum &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.nettests.examples.example_http_checksum</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.nettests.examples.example_http_checksum</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c"># :authors: Aaron Gibson</span>
+<span class="c"># :licence: see LICENSE</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">httpt</span>
+<span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha256</span>
+
+<div class="viewcode-block" id="SHA256HTTPBodyTest"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.examples.html#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest">[docs]</a><span class="k">class</span> <span class="nc">SHA256HTTPBodyTest</span><span class="p">(</span><span class="n">httpt</span><span class="o">.</span><span class="n">HTTPTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;ChecksumHTTPBodyTest&quot;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&quot;Aaron Gibson&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> 
+            <span class="s">&#39;List of URLS to perform GET requests to&#39;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SHA256HTTPBodyTest.test_http"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.examples.html#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.test_http">[docs]</a>    <span class="k">def</span> <span class="nf">test_http</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doRequest</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;No input specified&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="SHA256HTTPBodyTest.processResponseBody"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.examples.html#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.processResponseBody">[docs]</a>    <span class="k">def</span> <span class="nf">processResponseBody</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+        <span class="n">body_sha256sum</span> <span class="o">=</span> <span class="n">sha256</span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;checksum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">body_sha256sum</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

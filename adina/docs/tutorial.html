@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="index.html"/>
+        <link rel="next" title="Writing OONI tests" href="writing_tests.html"/>
+        <link rel="prev" title="OONI: Open Observatory of Network Interference" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/tutorial.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="writing-a-tcp-port-scanner">
+<h2>Writing a TCP port scanner<a class="headerlink" href="#writing-a-tcp-port-scanner" title="Permalink to this headline">¶</a></h2>
+<p>Our goal is to write an OONI test that takes as input a list of ip:port
+combinations from a file and attempts to detect which ones are reachable
+and open and which ones are not.</p>
+<p>Following this tutorial requires basic knowledge of event-driven programming
+(specifically &#8216;Twisted&#8217;)</p>
+</div>
+<div class="section" id="creating-test">
+<h2>Creating test<a class="headerlink" href="#creating-test" title="Permalink to this headline">¶</a></h2>
+<p>We base our test on the TCP subclass <a class="reference internal" href="api/ooni.templates.html#ooni.templates.tcpt.TCPTest" title="ooni.templates.tcpt.TCPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.tcpt.TCPTest</span></code></a>,
+since it the most suitable for our requirements. We then create the file
+&#8216;tcp_port_scanner.py&#8217; inside &#8216;ooni/nettests/experimental&#8217;.</p>
+<p>All tests start in the &#8216;experimental&#8217; directory, until they are tested
+and may then be moved to the stable test folders.</p>
+<p>We start by adding our base class into &#8216;tcp_port_scanner.py&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre>class TCPPortScan(tcpt.TCPTest):
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>OONI requires some basic information from all tests before running them.
+To provide this information we add the following to our test:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TCPPortScan</span><span class="p">(</span><span class="n">tcpt</span><span class="o">.</span><span class="n">TCPTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;TCP_port_scan_test&#39;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&#39;OONI Contributor &lt;ooni@torproject.org&gt;&#39;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s">&#39;0.0.1&#39;</span>
+
+    <span class="c"># Some tests may require root access</span>
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">requiresTor</span>  <span class="o">=</span> <span class="bp">False</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<p>We need to provide a file to read the IP addresses from. We can do
+this by adding:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TCPPortScan</span><span class="p">(</span><span class="n">tcpt</span><span class="o">.</span><span class="n">TCPTest</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;Short file description&quot;</span><span class="p">]</span>
+    <span class="n">requiredOptions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">]</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>When the test is run, the file will be opened by
+<a class="reference internal" href="api/ooni.html#ooni.nettest.NetTestCase.inputProcessor" title="ooni.nettest.NetTestCase.inputProcessor"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase.inputProcessor</span></code></a>. By default the
+&#8216;inputProcessor&#8217; will read line-by-line and feed them to the test.
+However, in this test case we may want to skip over the comment lines
+that start with a &#8216;#&#8217;. We override &#8216;inputProcessor&#8217;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TCPPortScan</span><span class="p">(</span><span class="n">tcpt</span><span class="o">.</span><span class="n">TCPTest</span><span class="p">):</span>
+   <span class="o">...</span>
+   <span class="k">def</span> <span class="nf">inputProcessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+       <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+       <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">fp</span><span class="o">.</span><span class="n">xreadlines</span><span class="p">():</span>
+           <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;#&quot;</span><span class="p">):</span>
+               <span class="k">continue</span>
+           <span class="k">yield</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+       <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+   <span class="o">...</span>
+</pre></div>
+</div>
+<p>Once the test is run, the input may be accessed via &#8216;self.input&#8217;.</p>
+</div>
+<div class="section" id="writing-tests">
+<h2>Writing Tests<a class="headerlink" href="#writing-tests" title="Permalink to this headline">¶</a></h2>
+<p>Any functioned prefixed with &#8216;test&#8217; will be run by OONI for each
+input. We implement the TCP connection test by adding:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TCPPortScan</span><span class="p">(</span><span class="n">tcpt</span><span class="o">.</span><span class="n">TCPTest</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">test_tcp_port</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">got_response</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;connection_success&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">print</span> <span class="s">&quot;Connection Successful&quot;</span>
+
+        <span class="k">def</span> <span class="nf">connection_failed</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;connection_success&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">print</span> <span class="s">&quot;Connection Failed&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span>    <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sendPayload</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">connection_failed</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">got_response</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>Note that all test functions <strong>must</strong> return a Deferred object.
+As shown above, information can add to the OONI report using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;something&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="runninng-tests">
+<h2>Runninng Tests<a class="headerlink" href="#runninng-tests" title="Permalink to this headline">¶</a></h2>
+<p>If OONI is installed on your computer, you may run the above test
+by:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe nettests/experimental/tcp_port_scanner.py -f /path/to/ip_list.txt
+</pre></div>
+</div>
+<p>By default, this will cause OONI to connect to tor and upload the results
+of the test. To save time during development, consider using the &#8216;-n&#8217; flag,
+temporarily disabling upload. Additionally, the &#8216;-v&#8217; is also useful,
+as OONI by default doesn&#8217;t print the line if a runtime error occurs:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe -n -v nettests/experimental/tcp_port_scanner.py -f /path/to/ip_list.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="reports">
+<h2>Reports<a class="headerlink" href="#reports" title="Permalink to this headline">¶</a></h2>
+<p>Once &#8216;ooniprobe&#8217; is invoked, a report will be created in the current working
+directory. This report is structed in the YAMLOO format - a format based on
+YAML.</p>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="writing_tests.html" class="btn btn-neutral float-right" title="Writing OONI tests">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="OONI: Open Observatory of Network Interference"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

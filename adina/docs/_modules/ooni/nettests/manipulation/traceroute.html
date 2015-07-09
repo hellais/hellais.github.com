@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests.manipulation.traceroute &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.nettests.manipulation.traceroute</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.nettests.manipulation.traceroute</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">scapyt</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.utils.txscapy</span> <span class="kn">import</span> <span class="n">MPTraceroute</span>
+<span class="kn">from</span> <span class="nn">ooni.settings</span> <span class="kn">import</span> <span class="n">config</span>
+
+
+<div class="viewcode-block" id="UsageOptions"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.UsageOptions">[docs]</a><span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;Test backend to use&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s">&#39;timeout&#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="s">&#39;The timeout for the traceroute test&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s">&#39;maxttl&#39;</span><span class="p">,</span> <span class="s">&#39;m&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
+                     <span class="s">&#39;The maximum value of ttl to set on packets&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s">&#39;dstport&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+                     <span class="s">&#39;Specify a single destination port. May be repeated.&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s">&#39;interval&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+                     <span class="s">&#39;Specify the inter-packet delay in seconds&#39;</span><span class="p">],</span>
+                    <span class="p">[</span><span class="s">&#39;numPackets&#39;</span><span class="p">,</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+                     <span class="s">&#39;Specify the number of packets to send per hop&#39;</span><span class="p">],</span>
+        <span class="p">]</span>
+
+</div>
+<div class="viewcode-block" id="Traceroute"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute">[docs]</a><span class="k">class</span> <span class="nc">Traceroute</span><span class="p">(</span><span class="n">scapyt</span><span class="o">.</span><span class="n">BaseScapyTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Traceroute&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Performs a UDP, TCP, ICMP traceroute with destination port number &quot;</span>\
+                  <span class="s">&quot;set to 0, 22, 23, 53, 80, 123, 443, 8080 and 65535&quot;</span>
+
+    <span class="n">requiredTestHelpers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;backend&#39;</span><span class="p">:</span> <span class="s">&#39;traceroute&#39;</span><span class="p">}</span>
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">requiresTor</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+    <span class="n">dst_ports</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">443</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="mi">65535</span><span class="p">]</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.3&quot;</span>
+
+<div class="viewcode-block" id="Traceroute.setUp"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_tcp_traceroute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">[(</span><span class="s">&#39;hops_</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">d</span><span class="p">,</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dst_ports</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_udp_traceroute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="p">[(</span><span class="s">&#39;hops_</span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">d</span><span class="p">,</span> <span class="p">[])</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">dst_ports</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_icmp_traceroute&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;hops&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="Traceroute.run_traceroute"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.run_traceroute">[docs]</a>    <span class="k">def</span> <span class="nf">run_traceroute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span><span class="p">):</span>
+        <span class="n">st</span> <span class="o">=</span> <span class="n">MPTraceroute</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;maxttl&#39;</span><span class="p">]:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">ttl_max</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;maxttl&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;dstport&#39;</span><span class="p">]:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">dst_ports</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;dstport&#39;</span><span class="p">])]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;interval&#39;</span><span class="p">]:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">interval</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;interval&#39;</span><span class="p">])</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running </span><span class="si">%s</span><span class="s"> traceroute towards </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">protocol</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">]))</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;This will take about </span><span class="si">%s</span><span class="s"> seconds&quot;</span> <span class="o">%</span> <span class="n">st</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">scapyFactory</span><span class="o">.</span><span class="n">registerProtocol</span><span class="p">(</span><span class="n">st</span><span class="p">)</span>
+        <span class="n">traceroute</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">st</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">+</span> <span class="s">&#39;Traceroute&#39;</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">traceroute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">])</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">stopListening</span><span class="p">()</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">matchResponses</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">sent_packets</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;sent_packets&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">matched_packets</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;answered_packets&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">packet</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">ttl</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">ttl_min</span><span class="p">,</span> <span class="n">st</span><span class="o">.</span><span class="n">ttl_max</span><span class="p">):</span>
+            <span class="n">matchedPackets</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">ttl</span> <span class="o">==</span> <span class="n">ttl</span><span class="p">,</span>
+                <span class="n">st</span><span class="o">.</span><span class="n">matched_packets</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">packet</span> <span class="ow">in</span> <span class="n">matchedPackets</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">st</span><span class="o">.</span><span class="n">matched_packets</span><span class="p">[</span><span class="n">packet</span><span class="p">]:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="n">packet</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Traceroute.test_icmp_traceroute"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.test_icmp_traceroute">[docs]</a>    <span class="k">def</span> <span class="nf">test_icmp_traceroute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_traceroute</span><span class="p">(</span><span class="s">&#39;ICMP&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Traceroute.test_tcp_traceroute"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.test_tcp_traceroute">[docs]</a>    <span class="k">def</span> <span class="nf">test_tcp_traceroute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_traceroute</span><span class="p">(</span><span class="s">&#39;TCP&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Traceroute.test_udp_traceroute"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.test_udp_traceroute">[docs]</a>    <span class="k">def</span> <span class="nf">test_udp_traceroute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_traceroute</span><span class="p">(</span><span class="s">&#39;UDP&#39;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Traceroute.addToReport"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.traceroute.Traceroute.addToReport">[docs]</a>    <span class="k">def</span> <span class="nf">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packet</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">packet</span><span class="o">.</span><span class="n">proto</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_icmp_traceroute&#39;</span><span class="p">][</span><span class="s">&#39;hops&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s">&#39;ttl&#39;</span><span class="p">:</span> <span class="n">packet</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="s">&#39;rtt&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="n">packet</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+                 <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">src</span><span class="p">})</span>
+        <span class="k">elif</span> <span class="n">packet</span><span class="o">.</span><span class="n">proto</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_tcp_traceroute&#39;</span><span class="p">][</span>
+                <span class="s">&#39;hops_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">packet</span><span class="o">.</span><span class="n">dport</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s">&#39;ttl&#39;</span><span class="p">:</span> <span class="n">packet</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="s">&#39;rtt&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="n">packet</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+                 <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="s">&#39;sport&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">sport</span><span class="p">})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;test_udp_traceroute&#39;</span><span class="p">][</span>
+                <span class="s">&#39;hops_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">packet</span><span class="o">.</span><span class="n">dport</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s">&#39;ttl&#39;</span><span class="p">:</span> <span class="n">packet</span><span class="o">.</span><span class="n">ttl</span><span class="p">,</span> <span class="s">&#39;rtt&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">time</span> <span class="o">-</span> <span class="n">packet</span><span class="o">.</span><span class="n">time</span><span class="p">,</span>
+                 <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">src</span><span class="p">,</span> <span class="s">&#39;sport&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">sport</span><span class="p">})</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

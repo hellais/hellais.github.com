@@ -1,0 +1,445 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests examples Package &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/>
+        <link rel="up" title="Implemented NetTests" href="modules.html"/>
+        <link rel="next" title="ooni.nettests experimental Package" href="ooni.nettests.experimental.html"/>
+        <link rel="prev" title="ooni.nettests blocking Package" href="ooni.nettests.blocking.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Implemented NetTests</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Implemented NetTests</a> &raquo;</li>
+      
+    <li>ooni.nettests examples Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/nettests/ooni.nettests.examples.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ooni-nettests-examples-package">
+<h1>ooni.nettests examples Package<a class="headerlink" href="#ooni-nettests-examples-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ooni.nettests.examples.example_dnst">
+<span id="ooni-nettests-examples-example-dnst-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_dnst" title="ooni.nettests.examples.example_dnst"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_dnst</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_dnst" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_dnst.ExampleDNSTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_dnst.</code><code class="descname">ExampleDNSTest</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_dnst.html#ExampleDNSTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_dnst.ExampleDNSTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.dnst.DNSTest" title="ooni.templates.dnst.DNSTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.dnst.DNSTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_dnst.ExampleDNSTest.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'foobar']</em><a class="headerlink" href="#ooni.nettests.examples.example_dnst.ExampleDNSTest.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_dnst.ExampleDNSTest.test_a_lookup">
+<code class="descname">test_a_lookup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_dnst.html#ExampleDNSTest.test_a_lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_dnst.ExampleDNSTest.test_a_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_http_checksum">
+<span id="ooni-nettests-examples-example-http-checksum-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_http_checksum" title="ooni.nettests.examples.example_http_checksum"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_http_checksum</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_http_checksum" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_http_checksum.</code><code class="descname">SHA256HTTPBodyTest</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_http_checksum.html#SHA256HTTPBodyTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.author">
+<code class="descname">author</code><em class="property"> = 'Aaron Gibson'</em><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'List of URLS to perform GET requests to']</em><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.name">
+<code class="descname">name</code><em class="property"> = 'ChecksumHTTPBodyTest'</em><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.processResponseBody">
+<code class="descname">processResponseBody</code><span class="sig-paren">(</span><em>body</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_http_checksum.html#SHA256HTTPBodyTest.processResponseBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.processResponseBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.test_http">
+<code class="descname">test_http</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_http_checksum.html#SHA256HTTPBodyTest.test_http"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.test_http" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.version">
+<code class="descname">version</code><em class="property"> = 0.1</em><a class="headerlink" href="#ooni.nettests.examples.example_http_checksum.SHA256HTTPBodyTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_httpt">
+<span id="ooni-nettests-examples-example-httpt-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_httpt" title="ooni.nettests.examples.example_httpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_httpt</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_httpt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_httpt.</code><code class="descname">ExampleHTTP</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_httpt.html#ExampleHTTP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.inputs">
+<code class="descname">inputs</code><em class="property"> = ['http://google.com/', 'http://wikileaks.org/', 'http://torproject.org/']</em><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.name">
+<code class="descname">name</code><em class="property"> = 'Example HTTP Test'</em><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.processResponseBody">
+<code class="descname">processResponseBody</code><span class="sig-paren">(</span><em>body</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_httpt.html#ExampleHTTP.processResponseBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.processResponseBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.processResponseHeaders">
+<code class="descname">processResponseHeaders</code><span class="sig-paren">(</span><em>headers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_httpt.html#ExampleHTTP.processResponseHeaders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.processResponseHeaders" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.test_http">
+<code class="descname">test_http</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_httpt.html#ExampleHTTP.test_http"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.test_http" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_httpt.ExampleHTTP.version">
+<code class="descname">version</code><em class="property"> = 0.1</em><a class="headerlink" href="#ooni.nettests.examples.example_httpt.ExampleHTTP.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_myip">
+<span id="ooni-nettests-examples-example-myip-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_myip" title="ooni.nettests.examples.example_myip"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_myip</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_myip" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_myip.MyIP">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_myip.</code><code class="descname">MyIP</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_myip.html#MyIP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_myip.MyIP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_myip.MyIP.inputs">
+<code class="descname">inputs</code><em class="property"> = ['https://check.torproject.org']</em><a class="headerlink" href="#ooni.nettests.examples.example_myip.MyIP.inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_myip.MyIP.processResponseBody">
+<code class="descname">processResponseBody</code><span class="sig-paren">(</span><em>body</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_myip.html#MyIP.processResponseBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_myip.MyIP.processResponseBody" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_myip.MyIP.test_lookup">
+<code class="descname">test_lookup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_myip.html#MyIP.test_lookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_myip.MyIP.test_lookup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_scapyt">
+<span id="ooni-nettests-examples-example-scapyt-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_scapyt" title="ooni.nettests.examples.example_scapyt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_scapyt</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_scapyt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_scapyt.</code><code class="descname">ExampleICMPPingScapy</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt.html#ExampleICMPPingScapy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.name">
+<code class="descname">name</code><em class="property"> = 'Example ICMP Ping Test'</em><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.test_icmp_ping">
+<code class="descname">test_icmp_ping</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt.html#ExampleICMPPingScapy.test_icmp_ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.test_icmp_ping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.ExampleICMPPingScapy.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.examples.example_scapyt.UsageOptions" title="ooni.nettests.examples.example_scapyt.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.examples.example_scapyt.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_scapyt.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['target', 't', '8.8.8.8', 'Specify the target to ping']]</em><a class="headerlink" href="#ooni.nettests.examples.example_scapyt.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_scapyt_yield">
+<span id="ooni-nettests-examples-example-scapyt-yield-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_scapyt_yield" title="ooni.nettests.examples.example_scapyt_yield"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_scapyt_yield</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_scapyt_yield" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_scapyt_yield.</code><code class="descname">ExampleICMPPingScapyYield</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt_yield.html#ExampleICMPPingScapyYield"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.name">
+<code class="descname">name</code><em class="property"> = 'Example ICMP Ping Test'</em><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.test_icmp_ping">
+<code class="descname">test_icmp_ping</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt_yield.html#ExampleICMPPingScapyYield.test_icmp_ping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.test_icmp_ping" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.ExampleICMPPingScapyYield.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.examples.example_scapyt_yield.UsageOptions" title="ooni.nettests.examples.example_scapyt_yield.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.examples.example_scapyt_yield.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_scapyt_yield.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_scapyt_yield.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.examples.example_scapyt_yield.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['target', 't', None, 'Specify the target to ping']]</em><a class="headerlink" href="#ooni.nettests.examples.example_scapyt_yield.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.examples.example_tcpt">
+<span id="ooni-nettests-examples-example-tcpt-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.examples.example_tcpt" title="ooni.nettests.examples.example_tcpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.examples.example_tcpt</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.examples.example_tcpt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.examples.example_tcpt.ExampleTCPT">
+<em class="property">class </em><code class="descclassname">ooni.nettests.examples.example_tcpt.</code><code class="descname">ExampleTCPT</code><a class="reference internal" href="../_modules/ooni/nettests/examples/example_tcpt.html#ExampleTCPT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_tcpt.ExampleTCPT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.tcpt.TCPTest" title="ooni.templates.tcpt.TCPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.tcpt.TCPTest</span></code></a></p>
+<dl class="method">
+<dt id="ooni.nettests.examples.example_tcpt.ExampleTCPT.test_hello_world">
+<code class="descname">test_hello_world</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/examples/example_tcpt.html#ExampleTCPT.test_hello_world"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.examples.example_tcpt.ExampleTCPT.test_hello_world" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ooni.nettests.experimental.html" class="btn btn-neutral float-right" title="ooni.nettests experimental Package">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ooni.nettests.blocking.html" class="btn btn-neutral" title="ooni.nettests blocking Package"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1207 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>twisted.python.usage &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>twisted.python.usage</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for twisted.python.usage</h1><div class="highlight"><pre>
+<span class="c"># -*- test-case-name: twisted.test.test_usage -*-</span>
+<span class="c"># Copyright (c) Twisted Matrix Laboratories.</span>
+<span class="c"># See LICENSE for details.</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">twisted.python.usage is a module for parsing/handling the</span>
+<span class="sd">command line of your program.</span>
+
+<span class="sd">For information on how to use it, see</span>
+<span class="sd">U{http://twistedmatrix.com/projects/core/documentation/howto/options.html},</span>
+<span class="sd">or doc/core/howto/options.xhtml in your Twisted directory.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span><span class="p">,</span> <span class="n">absolute_import</span>
+
+<span class="c"># System Imports</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">getopt</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+
+<span class="c"># Sibling Imports</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">reflect</span><span class="p">,</span> <span class="n">util</span>
+
+
+<span class="k">class</span> <span class="nc">UsageError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="n">error</span> <span class="o">=</span> <span class="n">UsageError</span>
+
+
+<span class="k">class</span> <span class="nc">CoerceParameter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Utility class that can corce a parameter before storing it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="nb">coerce</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @param options: parent Options object</span>
+<span class="sd">        @param coerce: callable used to coerce the value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coerce</span> <span class="o">=</span> <span class="nb">coerce</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">coerce</span><span class="p">,</span> <span class="s">&#39;coerceDoc&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameterName</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        When called in dispatch, do the coerce for C{value} and save the</span>
+<span class="sd">        returned value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;Parameter &#39;</span><span class="si">%s</span><span class="s">&#39; requires an argument.&quot;</span>
+                             <span class="o">%</span> <span class="p">(</span><span class="n">parameterName</span><span class="p">,))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">coerce</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;Parameter type enforcement failed: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">e</span><span class="p">,))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">opts</span><span class="p">[</span><span class="n">parameterName</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+
+<span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An option list parser class</span>
+
+<span class="sd">    C{optFlags} and C{optParameters} are lists of available parameters</span>
+<span class="sd">    which your program can handle. The difference between the two</span>
+<span class="sd">    is the &#39;flags&#39; have an on(1) or off(0) state (off by default)</span>
+<span class="sd">    whereas &#39;parameters&#39; have an assigned value, with an optional</span>
+<span class="sd">    default. (Compare &#39;--verbose&#39; and &#39;--verbosity=2&#39;)</span>
+
+<span class="sd">    optFlags is assigned a list of lists. Each list represents</span>
+<span class="sd">    a flag parameter, as so::</span>
+
+<span class="sd">       optFlags = [[&#39;verbose&#39;, &#39;v&#39;, &#39;Makes it tell you what it doing.&#39;],</span>
+<span class="sd">                   [&#39;quiet&#39;, &#39;q&#39;, &#39;Be vewy vewy quiet.&#39;]]</span>
+
+<span class="sd">    As you can see, the first item is the long option name</span>
+<span class="sd">    (prefixed with &#39;--&#39; on the command line), followed by the</span>
+<span class="sd">    short option name (prefixed with &#39;-&#39;), and the description.</span>
+<span class="sd">    The description is used for the built-in handling of the</span>
+<span class="sd">    --help switch, which prints a usage summary.</span>
+
+<span class="sd">    C{optParameters} is much the same, except the list also contains</span>
+<span class="sd">    a default value::</span>
+
+<span class="sd">       optParameters = [[&#39;outfile&#39;, &#39;O&#39;, &#39;outfile.log&#39;, &#39;Description...&#39;]]</span>
+
+<span class="sd">    A coerce function can also be specified as the last element: it will be</span>
+<span class="sd">    called with the argument and should return the value that will be stored</span>
+<span class="sd">    for the option. This function can have a C{coerceDoc} attribute which</span>
+<span class="sd">    will be appended to the documentation of the option.</span>
+
+<span class="sd">    subCommands is a list of 4-tuples of (command name, command shortcut,</span>
+<span class="sd">    parser class, documentation).  If the first non-option argument found is</span>
+<span class="sd">    one of the given command names, an instance of the given parser class is</span>
+<span class="sd">    instantiated and given the remainder of the arguments to parse and</span>
+<span class="sd">    self.opts[command] is set to the command name.  For example::</span>
+
+<span class="sd">       subCommands = [</span>
+<span class="sd">            [&#39;inquisition&#39;, &#39;inquest&#39;, InquisitionOptions,</span>
+<span class="sd">                 &#39;Perform an inquisition&#39;],</span>
+<span class="sd">            [&#39;holyquest&#39;, &#39;quest&#39;, HolyQuestOptions,</span>
+<span class="sd">                 &#39;Embark upon a holy quest&#39;]</span>
+<span class="sd">        ]</span>
+
+<span class="sd">    In this case, C{&quot;&lt;program&gt; holyquest --horseback --for-grail&quot;} will cause</span>
+<span class="sd">    C{HolyQuestOptions} to be instantiated and asked to parse</span>
+<span class="sd">    C{[&#39;--horseback&#39;, &#39;--for-grail&#39;]}.  Currently, only the first sub-command</span>
+<span class="sd">    is parsed, and all options following it are passed to its parser.  If a</span>
+<span class="sd">    subcommand is found, the subCommand attribute is set to its name and the</span>
+<span class="sd">    subOptions attribute is set to the Option instance that parses the</span>
+<span class="sd">    remaining options. If a subcommand is not given to parseOptions,</span>
+<span class="sd">    the subCommand attribute will be None. You can also mark one of</span>
+<span class="sd">    the subCommands to be the default::</span>
+
+<span class="sd">       defaultSubCommand = &#39;holyquest&#39;</span>
+
+<span class="sd">    In this case, the subCommand attribute will never be None, and</span>
+<span class="sd">    the subOptions attribute will always be set.</span>
+
+<span class="sd">    If you want to handle your own options, define a method named</span>
+<span class="sd">    C{opt_paramname} that takes C{(self, option)} as arguments. C{option}</span>
+<span class="sd">    will be whatever immediately follows the parameter on the</span>
+<span class="sd">    command line. Options fully supports the mapping interface, so you</span>
+<span class="sd">    can do things like C{&#39;self[&quot;option&quot;] = val&#39;} in these methods.</span>
+
+<span class="sd">    Shell tab-completion is supported by this class, for zsh only at present.</span>
+<span class="sd">    Zsh ships with a stub file (&quot;completion function&quot;) which, for Twisted</span>
+<span class="sd">    commands, performs tab-completion on-the-fly using the support provided</span>
+<span class="sd">    by this class. The stub file lives in our tree at</span>
+<span class="sd">    C{twisted/python/twisted-completion.zsh}, and in the Zsh tree at</span>
+<span class="sd">    C{Completion/Unix/Command/_twisted}.</span>
+
+<span class="sd">    Tab-completion is based upon the contents of the optFlags and optParameters</span>
+<span class="sd">    lists. And, optionally, additional metadata may be provided by assigning a</span>
+<span class="sd">    special attribute, C{compData}, which should be an instance of</span>
+<span class="sd">    C{Completions}. See that class for details of what can and should be</span>
+<span class="sd">    included - and see the howto for additional help using these features -</span>
+<span class="sd">    including how third-parties may take advantage of tab-completion for their</span>
+<span class="sd">    own commands.</span>
+
+<span class="sd">    Advanced functionality is covered in the howto documentation,</span>
+<span class="sd">    available at</span>
+<span class="sd">    U{http://twistedmatrix.com/projects/core/documentation/howto/options.html},</span>
+<span class="sd">    or doc/core/howto/options.xhtml in your Twisted directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">subCommand</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">defaultSubCommand</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">completionData</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_shellCompFile</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="c"># file to use if shell completion is requested</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Options</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">opts</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c"># These are strings/lists we will pass to getopt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shortOpt</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">docs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+        <span class="n">collectors</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gather_flags</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gather_parameters</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_gather_handlers</span><span class="p">,</span>
+            <span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">collectors</span><span class="p">:</span>
+            <span class="p">(</span><span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span><span class="p">,</span> <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">)</span> <span class="o">=</span> <span class="n">c</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">longOpt</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shortOpt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shortOpt</span> <span class="o">+</span> <span class="n">shortOpt</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">synonyms</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dispatch</span><span class="p">)</span>
+
+
+    <span class="n">__hash__</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="n">__hash__</span>
+
+
+    <span class="k">def</span> <span class="nf">opt_help</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display this help and exit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__str__</span><span class="p">())</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">opt_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display Twisted version and exit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span> <span class="nn">twisted</span> <span class="kn">import</span> <span class="n">copyright</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;Twisted version:&quot;</span><span class="p">,</span> <span class="n">copyright</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c">#opt_h = opt_help # this conflicted with existing &#39;host&#39; options.</span>
+
+    <span class="k">def</span> <span class="nf">parseOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The guts of the command-line parser.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">options</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c"># we really do need to place the shell completion check here, because</span>
+        <span class="c"># if we used an opt_shell_completion method then it would be possible</span>
+        <span class="c"># for other opt_* methods to be run first, and they could possibly</span>
+        <span class="c"># raise validation errors which would result in error output on the</span>
+        <span class="c"># terminal of the user performing shell completion. Validation errors</span>
+        <span class="c"># would occur quite frequently, in fact, because users often initiate</span>
+        <span class="c"># tab-completion while they are editing an unfinished command-line.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">options</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">options</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&quot;--_shell-completion&quot;</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">_shellcomp</span>
+            <span class="n">cmdName</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">_shellcomp</span><span class="o">.</span><span class="n">shellComplete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cmdName</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">_shellCompFile</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">opts</span><span class="p">,</span> <span class="n">args</span> <span class="o">=</span> <span class="n">getopt</span><span class="o">.</span><span class="n">getopt</span><span class="p">(</span><span class="n">options</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">shortOpt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">getopt</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">opts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">opt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+            <span class="n">optMangled</span> <span class="o">=</span> <span class="n">opt</span>
+            <span class="k">if</span> <span class="n">optMangled</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span><span class="p">:</span>
+                <span class="n">optMangled</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;-&quot;</span><span class="p">,</span> <span class="s">&quot;_&quot;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">optMangled</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;No such option &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opt</span><span class="p">,))</span>
+
+            <span class="n">optMangled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span><span class="p">[</span><span class="n">optMangled</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">[</span><span class="n">optMangled</span><span class="p">],</span> <span class="n">CoerceParameter</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">[</span><span class="n">optMangled</span><span class="p">]</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">optMangled</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="p">[</span><span class="n">optMangled</span><span class="p">](</span><span class="n">optMangled</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;subCommands&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">args</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaultSubCommand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">defaultSubCommand</span><span class="p">]</span>
+            <span class="n">sub</span><span class="p">,</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">short</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subCommands</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sub</span> <span class="o">==</span> <span class="n">cmd</span> <span class="ow">or</span> <span class="n">sub</span> <span class="o">==</span> <span class="n">short</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">subCommand</span> <span class="o">=</span> <span class="n">cmd</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">subOptions</span> <span class="o">=</span> <span class="n">parser</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">subOptions</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">subOptions</span><span class="o">.</span><span class="n">parseOptions</span><span class="p">(</span><span class="n">rest</span><span class="p">)</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;Unknown command: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">sub</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parseArgs</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;Wrong number of arguments.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">postOptions</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">postOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        I am called after the options are parsed.</span>
+
+<span class="sd">        Override this method in your subclass to do something after</span>
+<span class="sd">        the options have been parsed and assigned, like validate that</span>
+<span class="sd">        all options are sane.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">parseArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        I am called with any leftover arguments which were not options.</span>
+
+<span class="sd">        Override me to do something with the remaining arguments on</span>
+<span class="sd">        the command line, those which were not flags or options. e.g.</span>
+<span class="sd">        interpret them as a list of files to operate on.</span>
+
+<span class="sd">        Note that if there more arguments on the command line</span>
+<span class="sd">        than this method accepts, parseArgs will blow up with</span>
+<span class="sd">        a getopt.error.  This means if you don&#39;t override me,</span>
+<span class="sd">        parseArgs will blow up if I am passed any arguments at</span>
+<span class="sd">        all!</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">_generic_flag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flagName</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;Flag &#39;</span><span class="si">%s</span><span class="s">&#39; takes no argument.&quot;</span>
+                             <span class="s">&quot; Not even </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">flagName</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="p">[</span><span class="n">flagName</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">_gather_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gather up boolean (flag) options.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span> <span class="o">=</span> <span class="p">[],</span> <span class="s">&#39;&#39;</span>
+        <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+
+        <span class="n">flags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">reflect</span><span class="o">.</span><span class="n">accumulateClassList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="s">&#39;optFlags&#39;</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">flag</span> <span class="ow">in</span> <span class="n">flags</span><span class="p">:</span>
+            <span class="nb">long</span><span class="p">,</span> <span class="n">short</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">padTo</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">flag</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">long</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;A flag cannot be without a name.&quot;</span><span class="p">)</span>
+
+            <span class="n">docs</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span>
+            <span class="n">settings</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="n">short</span><span class="p">:</span>
+                <span class="n">shortOpt</span> <span class="o">=</span> <span class="n">shortOpt</span> <span class="o">+</span> <span class="n">short</span>
+                <span class="n">synonyms</span><span class="p">[</span><span class="n">short</span><span class="p">]</span> <span class="o">=</span> <span class="nb">long</span>
+            <span class="n">longOpt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">long</span><span class="p">)</span>
+            <span class="n">synonyms</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="nb">long</span>
+            <span class="n">dispatch</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generic_flag</span>
+
+        <span class="k">return</span> <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span><span class="p">,</span> <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span>
+
+    <span class="k">def</span> <span class="nf">_gather_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gather options which take a value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span> <span class="o">=</span> <span class="p">[],</span> <span class="s">&#39;&#39;</span>
+        <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">reflect</span><span class="o">.</span><span class="n">accumulateClassList</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="s">&#39;optParameters&#39;</span><span class="p">,</span>
+                                    <span class="n">parameters</span><span class="p">)</span>
+
+        <span class="n">synonyms</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="nb">long</span><span class="p">,</span> <span class="n">short</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">doc</span><span class="p">,</span> <span class="n">paramType</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">padTo</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">parameter</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">long</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;A parameter cannot be without a name.&quot;</span><span class="p">)</span>
+
+            <span class="n">docs</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span>
+            <span class="n">settings</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="n">default</span>
+            <span class="k">if</span> <span class="n">short</span><span class="p">:</span>
+                <span class="n">shortOpt</span> <span class="o">=</span> <span class="n">shortOpt</span> <span class="o">+</span> <span class="n">short</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span>
+                <span class="n">synonyms</span><span class="p">[</span><span class="n">short</span><span class="p">]</span> <span class="o">=</span> <span class="nb">long</span>
+            <span class="n">longOpt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">long</span> <span class="o">+</span> <span class="s">&#39;=&#39;</span><span class="p">)</span>
+            <span class="n">synonyms</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="nb">long</span>
+            <span class="k">if</span> <span class="n">paramType</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">dispatch</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="n">CoerceParameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paramType</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dispatch</span><span class="p">[</span><span class="nb">long</span><span class="p">]</span> <span class="o">=</span> <span class="n">CoerceParameter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span><span class="p">,</span> <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span>
+
+
+    <span class="k">def</span> <span class="nf">_gather_handlers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Gather up options with their own handler methods.</span>
+
+<span class="sd">        This returns a tuple of many values.  Amongst those values is a</span>
+<span class="sd">        synonyms dictionary, mapping all of the possible aliases (C{str})</span>
+<span class="sd">        for an option to the longest spelling of that option&#39;s name</span>
+<span class="sd">        C({str}).</span>
+
+<span class="sd">        Another element is a dispatch dictionary, mapping each user-facing</span>
+<span class="sd">        option name (with - substituted for _) to a callable to handle that</span>
+<span class="sd">        option.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span> <span class="o">=</span> <span class="p">[],</span> <span class="s">&#39;&#39;</span>
+        <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
+
+        <span class="n">dct</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">reflect</span><span class="o">.</span><span class="n">addMethodNamesToDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">,</span> <span class="n">dct</span><span class="p">,</span> <span class="s">&quot;opt_&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;opt_&#39;</span><span class="o">+</span><span class="n">name</span><span class="p">)</span>
+
+            <span class="n">takesArg</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">flagFunction</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+            <span class="n">prettyName</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">)</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="s">&#39;__doc__&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+                <span class="c">## Only use the first line.</span>
+                <span class="c">#docs[name] = doc.split(&#39;\n&#39;)[0]</span>
+                <span class="n">docs</span><span class="p">[</span><span class="n">prettyName</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">docs</span><span class="p">[</span><span class="n">prettyName</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prettyName</span><span class="p">)</span>
+
+            <span class="n">synonyms</span><span class="p">[</span><span class="n">prettyName</span><span class="p">]</span> <span class="o">=</span> <span class="n">prettyName</span>
+
+            <span class="c"># A little slight-of-hand here makes dispatching much easier</span>
+            <span class="c"># in parseOptions, as it makes all option-methods have the</span>
+            <span class="c"># same signature.</span>
+            <span class="k">if</span> <span class="n">takesArg</span><span class="p">:</span>
+                <span class="n">fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">method</span><span class="p">:</span> <span class="n">m</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># XXX: This won&#39;t raise a TypeError if it&#39;s called</span>
+                <span class="c"># with a value when it shouldn&#39;t be.</span>
+                <span class="n">fn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="n">method</span><span class="p">:</span> <span class="n">m</span><span class="p">()</span>
+
+            <span class="n">dispatch</span><span class="p">[</span><span class="n">prettyName</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">shortOpt</span> <span class="o">=</span> <span class="n">shortOpt</span> <span class="o">+</span> <span class="n">name</span>
+                <span class="k">if</span> <span class="n">takesArg</span><span class="p">:</span>
+                    <span class="n">shortOpt</span> <span class="o">=</span> <span class="n">shortOpt</span> <span class="o">+</span> <span class="s">&#39;:&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">takesArg</span><span class="p">:</span>
+                    <span class="n">prettyName</span> <span class="o">=</span> <span class="n">prettyName</span> <span class="o">+</span> <span class="s">&#39;=&#39;</span>
+                <span class="n">longOpt</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">prettyName</span><span class="p">)</span>
+
+        <span class="n">reverse_dct</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c"># Map synonyms</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dct</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;opt_&#39;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">reverse_dct</span><span class="p">:</span>
+                <span class="n">reverse_dct</span><span class="p">[</span><span class="n">method</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">reverse_dct</span><span class="p">[</span><span class="n">method</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;-&#39;</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">names</span> <span class="ow">in</span> <span class="n">reverse_dct</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">longest</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+                <span class="n">synonyms</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">longest</span>
+
+        <span class="k">return</span> <span class="n">longOpt</span><span class="p">,</span> <span class="n">shortOpt</span><span class="p">,</span> <span class="n">docs</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">synonyms</span><span class="p">,</span> <span class="n">dispatch</span>
+
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getSynopsis</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getUsage</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getSynopsis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a string containing a description of these options and how to</span>
+<span class="sd">        pass them to the executed file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">default</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span> <span class="ow">and</span> <span class="s">&quot; [options]&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="s">&quot;Usage: </span><span class="si">%s%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                                       <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span> <span class="ow">and</span> <span class="s">&quot; [options]&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span> <span class="ow">and</span> <span class="s">&quot;[options]&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">synopsis</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&quot;synopsis&quot;</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+        <span class="n">synopsis</span> <span class="o">=</span> <span class="n">synopsis</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">synopsis</span> <span class="o">=</span> <span class="s">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">getSynopsis</span><span class="p">(),</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">subCommand</span><span class="p">,</span> <span class="n">synopsis</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">synopsis</span>
+
+    <span class="k">def</span> <span class="nf">getUsage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="c"># If subOptions exists by now, then there was probably an error while</span>
+        <span class="c"># parsing its options.</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;subOptions&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">subOptions</span><span class="o">.</span><span class="n">getUsage</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">width</span><span class="p">:</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;COLUMNS&#39;</span><span class="p">,</span> <span class="s">&#39;80&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&#39;subCommands&#39;</span><span class="p">):</span>
+            <span class="n">cmdDicts</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">short</span><span class="p">,</span> <span class="n">parser</span><span class="p">,</span> <span class="n">desc</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subCommands</span><span class="p">:</span>
+                <span class="n">cmdDicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="p">{</span><span class="s">&#39;long&#39;</span><span class="p">:</span> <span class="n">cmd</span><span class="p">,</span>
+                     <span class="s">&#39;short&#39;</span><span class="p">:</span> <span class="n">short</span><span class="p">,</span>
+                     <span class="s">&#39;doc&#39;</span><span class="p">:</span> <span class="n">desc</span><span class="p">,</span>
+                     <span class="s">&#39;optType&#39;</span><span class="p">:</span> <span class="s">&#39;command&#39;</span><span class="p">,</span>
+                     <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="bp">None</span>
+                    <span class="p">})</span>
+            <span class="n">chunks</span> <span class="o">=</span> <span class="n">docMakeChunks</span><span class="p">(</span><span class="n">cmdDicts</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+            <span class="n">commands</span> <span class="o">=</span> <span class="s">&#39;Commands:</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">commands</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="n">longToShort</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">synonyms</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">longname</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">!=</span> <span class="n">longname</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">longToShort</span><span class="p">[</span><span class="n">longname</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">longname</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">longToShort</span><span class="p">:</span>
+                    <span class="n">longToShort</span><span class="p">[</span><span class="n">longname</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">pass</span>
+
+        <span class="n">optDicts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">longOpt</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">opt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;=&#39;</span><span class="p">:</span>
+                <span class="n">optType</span> <span class="o">=</span> <span class="s">&#39;parameter&#39;</span>
+                <span class="n">opt</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">optType</span> <span class="o">=</span> <span class="s">&#39;flag&#39;</span>
+
+            <span class="n">optDicts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span><span class="s">&#39;long&#39;</span><span class="p">:</span> <span class="n">opt</span><span class="p">,</span>
+                 <span class="s">&#39;short&#39;</span><span class="p">:</span> <span class="n">longToShort</span><span class="p">[</span><span class="n">opt</span><span class="p">],</span>
+                 <span class="s">&#39;doc&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">docs</span><span class="p">[</span><span class="n">opt</span><span class="p">],</span>
+                 <span class="s">&#39;optType&#39;</span><span class="p">:</span> <span class="n">optType</span><span class="p">,</span>
+                 <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+                 <span class="s">&#39;dispatch&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dispatch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">opt</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+                 <span class="p">})</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&quot;longdesc&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">longdesc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">longdesc</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">__main__</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">__main__</span><span class="p">,</span> <span class="s">&#39;__doc__&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+                <span class="n">longdesc</span> <span class="o">=</span> <span class="n">__main__</span><span class="o">.</span><span class="n">__doc__</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">longdesc</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">longdesc</span><span class="p">:</span>
+            <span class="n">longdesc</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span>
+                        <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">longdesc</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                        <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">optDicts</span><span class="p">:</span>
+            <span class="n">chunks</span> <span class="o">=</span> <span class="n">docMakeChunks</span><span class="p">(</span><span class="n">optDicts</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Options:</span><span class="se">\n</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;Options: None</span><span class="se">\n</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="n">s</span> <span class="o">+</span> <span class="n">longdesc</span> <span class="o">+</span> <span class="n">commands</span>
+
+    <span class="c">#def __repr__(self):</span>
+    <span class="c">#    XXX: It&#39;d be cool if we could return a succinct representation</span>
+    <span class="c">#        of which flags and options are set here.</span>
+
+
+<span class="n">_ZSH</span> <span class="o">=</span> <span class="s">&#39;zsh&#39;</span>
+<span class="n">_BASH</span> <span class="o">=</span> <span class="s">&#39;bash&#39;</span>
+
+<span class="k">class</span> <span class="nc">Completer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A completion &quot;action&quot; - provides completion possibilities for a particular</span>
+<span class="sd">    command-line option. For example we might provide the user a fixed list of</span>
+<span class="sd">    choices, or files/dirs according to a glob.</span>
+
+<span class="sd">    This class produces no completion matches itself - see the various</span>
+<span class="sd">    subclasses for specific completion functionality.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_descr</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descr</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        @type descr: C{str}</span>
+<span class="sd">        @param descr: An optional descriptive string displayed above matches.</span>
+
+<span class="sd">        @type repeat: C{bool}</span>
+<span class="sd">        @param repeat: A flag, defaulting to False, indicating whether this</span>
+<span class="sd">            C{Completer} should repeat - that is, be used to complete more</span>
+<span class="sd">            than one command-line word. This may ONLY be set to True for</span>
+<span class="sd">            actions in the C{extraActions} keyword argument to C{Completions}.</span>
+<span class="sd">            And ONLY if it is the LAST (or only) action in the C{extraActions}</span>
+<span class="sd">            list.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">descr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_descr</span> <span class="o">=</span> <span class="n">descr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_repeat</span> <span class="o">=</span> <span class="n">repeat</span>
+
+
+    <span class="k">def</span> <span class="nf">_getRepeatFlag</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_repeat</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;*&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;&quot;</span>
+    <span class="n">_repeatFlag</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_getRepeatFlag</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descr</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">optName</span>
+
+
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch a fragment of shell code representing this action which is</span>
+<span class="sd">        suitable for use by the completion system in _shellcomp.py</span>
+
+<span class="sd">        @type optName: C{str}</span>
+<span class="sd">        @param optName: The long name of the option this action is being</span>
+<span class="sd">            used for.</span>
+
+<span class="sd">        @type shellType: C{str}</span>
+<span class="sd">        @param shellType: One of the supported shell constants e.g.</span>
+<span class="sd">            C{twisted.python.usage._ZSH}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                               <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteFiles</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Completes file names based on a glob pattern</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">globPattern</span><span class="o">=</span><span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">Completer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_globPattern</span> <span class="o">=</span> <span class="n">globPattern</span>
+
+
+    <span class="k">def</span> <span class="nf">_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_descr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_descr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_globPattern</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">optName</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_globPattern</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_files -g </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">),</span>
+                                               <span class="bp">self</span><span class="o">.</span><span class="n">_globPattern</span><span class="p">,)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteDirs</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Completes directory names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_directories&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteList</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Completes based on a fixed list of words</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">Completer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="n">items</span>
+
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:(</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">),</span>
+                                   <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">,))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteMultiList</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Completes multiple comma-separated items based on a fixed list of words</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">Completer</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_items</span> <span class="o">=</span> <span class="n">items</span>
+
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_values -s , &#39;</span><span class="si">%s</span><span class="s">&#39; </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">),</span>
+                                                   <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">),</span>
+                                                   <span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_items</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteUsernames</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complete usernames</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_users&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteGroups</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complete system group names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_descr</span> <span class="o">=</span> <span class="s">&#39;group&#39;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_groups&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteHostnames</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complete hostnames</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_hosts&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteUserAtHost</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A completion action which produces matches in any of these forms::</span>
+<span class="sd">        &lt;username&gt;</span>
+<span class="sd">        &lt;hostname&gt;</span>
+<span class="sd">        &lt;username&gt;@&lt;hostname&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_descr</span> <span class="o">=</span> <span class="s">&#39;host | user@host&#39;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="c"># Yes this looks insane but it does work. For bonus points</span>
+            <span class="c"># add code to grep &#39;Hostname&#39; lines from ~/.ssh/config</span>
+            <span class="k">return</span> <span class="p">(</span><span class="s">&#39;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:{_ssh;if compset -P &quot;*@&quot;; &#39;</span>
+                    <span class="s">&#39;then _wanted hosts expl &quot;remote host name&quot; _ssh_hosts &#39;</span>
+                    <span class="s">&#39;&amp;&amp; ret=0 elif compset -S &quot;@*&quot;; then _wanted users &#39;</span>
+                    <span class="s">&#39;expl &quot;login name&quot; _ssh_users -S &quot;&quot; &amp;&amp; ret=0 &#39;</span>
+                    <span class="s">&#39;else if (( $+opt_args[-l] )); then tmp=() &#39;</span>
+                    <span class="s">&#39;else tmp=( &quot;users:login name:_ssh_users -qS@&quot; ) fi; &#39;</span>
+                    <span class="s">&#39;_alternative &quot;hosts:remote host name:_ssh_hosts&quot; &quot;$tmp[@]&quot;&#39;</span>
+                    <span class="s">&#39; &amp;&amp; ret=0 fi}&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">)))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">CompleteNetInterfaces</span><span class="p">(</span><span class="n">Completer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Complete network interface names</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_shellCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optName</span><span class="p">,</span> <span class="n">shellType</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">shellType</span> <span class="o">==</span> <span class="n">_ZSH</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">:_net_interfaces&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repeatFlag</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="p">(</span><span class="n">optName</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s">&quot;Unknown shellType </span><span class="si">%r</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">shellType</span><span class="p">,))</span>
+
+
+
+<span class="k">class</span> <span class="nc">Completions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extra metadata for the shell tab-completion system.</span>
+
+<span class="sd">    @type descriptions: C{dict}</span>
+<span class="sd">    @ivar descriptions: ex. C{{&quot;foo&quot; : &quot;use this description for foo instead&quot;}}</span>
+<span class="sd">        A dict mapping long option names to alternate descriptions.  When this</span>
+<span class="sd">        variable is defined, the descriptions contained here will override</span>
+<span class="sd">        those descriptions provided in the optFlags and optParameters</span>
+<span class="sd">        variables.</span>
+
+<span class="sd">    @type multiUse: C{list}</span>
+<span class="sd">    @ivar multiUse: ex. C{ [&quot;foo&quot;, &quot;bar&quot;] }</span>
+<span class="sd">        An iterable containing those long option names which may appear on the</span>
+<span class="sd">        command line more than once. By default, options will only be completed</span>
+<span class="sd">        one time.</span>
+
+<span class="sd">    @type mutuallyExclusive: C{list} of C{tuple}</span>
+<span class="sd">    @ivar mutuallyExclusive: ex. C{ [(&quot;foo&quot;, &quot;bar&quot;), (&quot;bar&quot;, &quot;baz&quot;)] }</span>
+<span class="sd">        A sequence of sequences, with each sub-sequence containing those long</span>
+<span class="sd">        option names that are mutually exclusive. That is, those options that</span>
+<span class="sd">        cannot appear on the command line together.</span>
+
+<span class="sd">    @type optActions: C{dict}</span>
+<span class="sd">    @ivar optActions: A dict mapping long option names to shell &quot;actions&quot;.</span>
+<span class="sd">        These actions define what may be completed as the argument to the</span>
+<span class="sd">        given option. By default, all files/dirs will be completed if no</span>
+<span class="sd">        action is given. For example::</span>
+
+<span class="sd">            {&quot;foo&quot;    : CompleteFiles(&quot;*.py&quot;, descr=&quot;python files&quot;),</span>
+<span class="sd">             &quot;bar&quot;    : CompleteList([&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]),</span>
+<span class="sd">             &quot;colors&quot; : CompleteMultiList([&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;])}</span>
+
+<span class="sd">        Callables may instead be given for the values in this dict. The</span>
+<span class="sd">        callable should accept no arguments, and return a C{Completer}</span>
+<span class="sd">        instance used as the action in the same way as the literal actions in</span>
+<span class="sd">        the example above.</span>
+
+<span class="sd">        As you can see in the example above. The &quot;foo&quot; option will have files</span>
+<span class="sd">        that end in .py completed when the user presses Tab. The &quot;bar&quot;</span>
+<span class="sd">        option will have either of the strings &quot;one&quot;, &quot;two&quot;, or &quot;three&quot;</span>
+<span class="sd">        completed when the user presses Tab.</span>
+
+<span class="sd">        &quot;colors&quot; will allow multiple arguments to be completed, separated by</span>
+<span class="sd">        commas. The possible arguments are red, green, and blue. Examples::</span>
+
+<span class="sd">            my_command --foo some-file.foo --colors=red,green</span>
+<span class="sd">            my_command --colors=green</span>
+<span class="sd">            my_command --colors=green,blue</span>
+
+<span class="sd">        Descriptions for the actions may be given with the optional C{descr}</span>
+<span class="sd">        keyword argument. This is separate from the description of the option</span>
+<span class="sd">        itself.</span>
+
+<span class="sd">        Normally Zsh does not show these descriptions unless you have</span>
+<span class="sd">        &quot;verbose&quot; completion turned on. Turn on verbosity with this in your</span>
+<span class="sd">        ~/.zshrc::</span>
+
+<span class="sd">            zstyle &#39;:completion:*&#39; verbose yes</span>
+<span class="sd">            zstyle &#39;:completion:*:descriptions&#39; format &#39;%B%d%b&#39;</span>
+
+<span class="sd">    @type extraActions: C{list}</span>
+<span class="sd">    @ivar extraActions: Extra arguments are those arguments typically</span>
+<span class="sd">        appearing at the end of the command-line, which are not associated</span>
+<span class="sd">        with any particular named option. That is, the arguments that are</span>
+<span class="sd">        given to the parseArgs() method of your usage.Options subclass. For</span>
+<span class="sd">        example::</span>
+<span class="sd">            [CompleteFiles(descr=&quot;file to read from&quot;),</span>
+<span class="sd">             Completer(descr=&quot;book title&quot;)]</span>
+
+<span class="sd">        In the example above, the 1st non-option argument will be described as</span>
+<span class="sd">        &quot;file to read from&quot; and all file/dir names will be completed (*). The</span>
+<span class="sd">        2nd non-option argument will be described as &quot;book title&quot;, but no</span>
+<span class="sd">        actual completion matches will be produced.</span>
+
+<span class="sd">        See the various C{Completer} subclasses for other types of things which</span>
+<span class="sd">        may be tab-completed (users, groups, network interfaces, etc).</span>
+
+<span class="sd">        Also note the C{repeat=True} flag which may be passed to any of the</span>
+<span class="sd">        C{Completer} classes. This is set to allow the C{Completer} instance</span>
+<span class="sd">        to be re-used for subsequent command-line words. See the C{Completer}</span>
+<span class="sd">        docstring for details.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">descriptions</span><span class="o">=</span><span class="p">{},</span> <span class="n">multiUse</span><span class="o">=</span><span class="p">[],</span>
+                 <span class="n">mutuallyExclusive</span><span class="o">=</span><span class="p">[],</span> <span class="n">optActions</span><span class="o">=</span><span class="p">{},</span> <span class="n">extraActions</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">descriptions</span> <span class="o">=</span> <span class="n">descriptions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">multiUse</span> <span class="o">=</span> <span class="n">multiUse</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mutuallyExclusive</span> <span class="o">=</span> <span class="n">mutuallyExclusive</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optActions</span> <span class="o">=</span> <span class="n">optActions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extraActions</span> <span class="o">=</span> <span class="n">extraActions</span>
+
+
+
+<span class="k">def</span> <span class="nf">docMakeChunks</span><span class="p">(</span><span class="n">optList</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">80</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Makes doc chunks for option declarations.</span>
+
+<span class="sd">    Takes a list of dictionaries, each of which may have one or more</span>
+<span class="sd">    of the keys &#39;long&#39;, &#39;short&#39;, &#39;doc&#39;, &#39;default&#39;, &#39;optType&#39;.</span>
+
+<span class="sd">    Returns a list of strings.</span>
+<span class="sd">    The strings may be multiple lines,</span>
+<span class="sd">    all of them end with a newline.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># XXX: sanity check to make sure we have a sane combination of keys.</span>
+
+    <span class="n">maxOptLen</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">optList</span><span class="p">:</span>
+        <span class="n">optLen</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">optLen</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;optType&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;parameter&quot;</span><span class="p">:</span>
+                <span class="c"># these take up an extra character</span>
+                <span class="n">optLen</span> <span class="o">=</span> <span class="n">optLen</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">maxOptLen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">optLen</span><span class="p">,</span> <span class="n">maxOptLen</span><span class="p">)</span>
+
+    <span class="n">colWidth1</span> <span class="o">=</span> <span class="n">maxOptLen</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="s">&quot;  -s, --  &quot;</span><span class="p">)</span>
+    <span class="n">colWidth2</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">colWidth1</span>
+    <span class="c"># XXX - impose some sane minimum limit.</span>
+    <span class="c"># Then if we don&#39;t have enough room for the option and the doc</span>
+    <span class="c"># to share one line, they can take turns on alternating lines.</span>
+
+    <span class="n">colFiller1</span> <span class="o">=</span> <span class="s">&quot; &quot;</span> <span class="o">*</span> <span class="n">colWidth1</span>
+
+    <span class="n">optChunks</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">optList</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;short&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;short&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">seen</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+        <span class="n">optLines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">comma</span> <span class="o">=</span> <span class="s">&quot; &quot;</span>
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;short&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">short</span> <span class="o">=</span> <span class="s">&quot;-</span><span class="si">%c</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">opt</span><span class="p">[</span><span class="s">&#39;short&#39;</span><span class="p">],)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">short</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;long&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="nb">long</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s">&#39;long&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;optType&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;parameter&quot;</span><span class="p">:</span>
+                <span class="nb">long</span> <span class="o">=</span> <span class="nb">long</span> <span class="o">+</span> <span class="s">&#39;=&#39;</span>
+
+            <span class="nb">long</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%-*s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">maxOptLen</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">short</span><span class="p">:</span>
+                <span class="n">comma</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">long</span> <span class="o">=</span> <span class="s">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">maxOptLen</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="s">&#39;--&#39;</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;optType&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#39;command&#39;</span><span class="p">:</span>
+            <span class="n">column1</span> <span class="o">=</span> <span class="s">&#39;    </span><span class="si">%s</span><span class="s">      &#39;</span> <span class="o">%</span> <span class="nb">long</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column1</span> <span class="o">=</span> <span class="s">&quot;  </span><span class="si">%2s%c</span><span class="s"> --</span><span class="si">%s</span><span class="s">  &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">short</span><span class="p">,</span> <span class="n">comma</span><span class="p">,</span> <span class="nb">long</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;doc&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">):</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s">&#39;doc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;optType&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;parameter&quot;</span><span class="p">)</span> \
+           <span class="ow">and</span> <span class="ow">not</span> <span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;default&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">):</span>
+            <span class="n">doc</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> [default: </span><span class="si">%s</span><span class="s">]&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">opt</span><span class="p">[</span><span class="s">&#39;default&#39;</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;optType&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="o">==</span> <span class="s">&quot;parameter&quot;</span><span class="p">)</span> \
+           <span class="ow">and</span> <span class="n">opt</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;dispatch&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">opt</span><span class="p">[</span><span class="s">&#39;dispatch&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">CoerceParameter</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">doc</span><span class="p">:</span>
+                <span class="n">doc</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">. </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">doc</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+            <span class="n">column2_l</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">colWidth2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">column2_l</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;&#39;</span><span class="p">]</span>
+
+        <span class="n">optLines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">column1</span><span class="p">,</span> <span class="n">column2_l</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">column2_l</span><span class="p">:</span>
+            <span class="n">optLines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s%s</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">colFiller1</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+
+        <span class="n">optChunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">optLines</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">optChunks</span>
+
+
+
+<span class="k">def</span> <span class="nf">flagFunction</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine whether a function is an optional handler for a I{flag} or an</span>
+<span class="sd">    I{option}.</span>
+
+<span class="sd">    A I{flag} handler takes no additional arguments.  It is used to handle</span>
+<span class="sd">    command-line arguments like I{--nodaemon}.</span>
+
+<span class="sd">    An I{option} handler takes one argument.  It is used to handle command-line</span>
+<span class="sd">    arguments like I{--path=/foo/bar}.</span>
+
+<span class="sd">    @param method: The bound method object to inspect.</span>
+
+<span class="sd">    @param name: The name of the option for which the function is a handle.</span>
+<span class="sd">    @type name: L{str}</span>
+
+<span class="sd">    @raise UsageError: If the method takes more than one argument.</span>
+
+<span class="sd">    @return: If the method is a flag handler, return C{True}.  Otherwise return</span>
+<span class="sd">        C{False}.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reqArgs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getargspec</span><span class="p">(</span><span class="n">method</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reqArgs</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">UsageError</span><span class="p">(</span><span class="s">&#39;Invalid Option function for </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span>
+                         <span class="p">(</span><span class="n">name</span> <span class="ow">or</span> <span class="n">method</span><span class="o">.</span><span class="n">__name__</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">reqArgs</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+
+<span class="k">def</span> <span class="nf">portCoerce</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coerce a string value to an int port number, and checks the validity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">65535</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Port number not in range: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">value</span><span class="p">,))</span>
+    <span class="k">return</span> <span class="n">value</span>
+<span class="n">portCoerce</span><span class="o">.</span><span class="n">coerceDoc</span> <span class="o">=</span> <span class="s">&quot;Must be an int between 0 and 65535.&quot;</span>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

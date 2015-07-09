@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Details &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Details</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/tests/http_invalid_request_line.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="details">
+<h1>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h1>
+<p><em>Test Name</em>: HTTP Invalid Request Line</p>
+<p><em>Current version</em>: 0.1.3</p>
+<p><em>NetTest</em>: HTTP Invalid Request Line (<a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/manipulation/http_invalid_request_line.py">https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/manipulation/http_invalid_request_line.py</a>)</p>
+<p><em>Test Helper</em>: TCPEchoHelper (<a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/tcp_helpers.py">https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/tcp_helpers.py</a>)</p>
+<p><em>Test Type</em>: Traffic Manipulation</p>
+<p><em>Requires Root</em>: No</p>
+<p><em>WARNING</em>: This test is more dangerous to run than any other one and you
+should do it only if you know what you are doing.</p>
+</div>
+<div class="section" id="description">
+<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
+<p>The goal of this test is to do some very basic and not very noisy fuzzing
+on the HTTP request line. We generate a series of requests that are not
+valid HTTP requests.</p>
+<p>The remote backend runs a TCP echo server. If the response from the backend
+does not match with what we have sent then we say that tampering is occurring.</p>
+<p>The idea behind this is that certain transparent HTTP proxies may not be
+properly parsing the HTTP request line.</p>
+<p>Unless elsewhere stated &#8216;Xx&#8217;*N refers to N*2 random upper or lowercase ascii
+letters or numbers (&#8216;XxXx&#8217; will be 4).</p>
+<p>What we fuzz is the following:</p>
+<div class="section" id="test-random-invalid-method">
+<h2>test random invalid method<a class="headerlink" href="#test-random-invalid-method" title="Permalink to this headline">¶</a></h2>
+<p>This sends random 4 letter HTTP request method.</p>
+<p>The request on the wire will look like this:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>XxXxX / HTTP/1.1nr</dd>
+</dl>
+</div>
+<div class="section" id="test-random-invalid-field-count">
+<h2>test random invalid field count<a class="headerlink" href="#test-random-invalid-field-count" title="Permalink to this headline">¶</a></h2>
+<p>This generates a request that looks like this:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">XxXxX XxXxX XxXxX XxXxX</p>
+<p class="last">This may trigger some bugs in the HTTP parsers of transparent HTTP
+proxies.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="test-random-big-request-method">
+<h2>test random big request method<a class="headerlink" href="#test-random-big-request-method" title="Permalink to this headline">¶</a></h2>
+<p>This generates a request that looks like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Xx</span><span class="o">*</span><span class="mi">512</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-random-invalid-version-number">
+<h2>test random invalid version number<a class="headerlink" href="#test-random-invalid-version-number" title="Permalink to this headline">¶</a></h2>
+<p>This generates a request that looks like this:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd>GET / HTTP/XxX</dd>
+</dl>
+<p>This attempts to trigger bugs in the parsing of the HTTP version number, that
+is usually being split on the <cite>.</cite>.</p>
+</div>
+</div>
+<div class="section" id="how-to-run-the-test">
+<h1>How to run the test<a class="headerlink" href="#how-to-run-the-test" title="Permalink to this headline">¶</a></h1>
+<p><cite>ooniprobe nettests/manipulation/http_invalid_request_line.py -b &lt;address of backend&gt;</cite></p>
+<p><em>address of the backend</em> is the hostname or IP address of a backend that runs
+a TCP echo server on port 80.</p>
+</div>
+<div class="section" id="sample-report">
+<h1>Sample report<a class="headerlink" href="#sample-report" title="Permalink to this headline">¶</a></h1>
+<p>From running:</p>
+<p><cite>ooniprobe nettests/manipulation/http_invalid_request_line.py -b 127.0.0.1 -p 57002</cite></p>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for HTTP Invalid Request Line test
+# Thu Nov 29 16:41:15 2012
+###########################################
+---
+options:
+  collector: null
+  help: 0
+  logfile: null
+  pcapfile: null
+  reportfile: null
+  resume: 0
+  subargs: [-b, 127.0.0.1, -p, &#39;57002&#39;]
+  test: nettests/manipulation/http_invalid_request_line.py
+probe_asn: null
+probe_cc: null
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 0.0.7.1-alpha
+start_time: 1354200075.0
+test_name: HTTP Invalid Request Line
+test_version: 0.1.3
+...
+---
+input: null
+report:
+  received: [&quot;L3F6 / HTTP/1.1\n\r&quot;]
+  sent: [&quot;L3F6 / HTTP/1.1\n\r&quot;]
+  tampering: false
+test_name: test_random_invalid_method
+test_runtime: 5.011919021606445
+test_started: 1354203675.481258
+...
+---
+input: null
+report:
+  received: [&quot;GET / HTTP/Ayo\n\r&quot;]
+  sent: [&quot;GET / HTTP/Ayo\n\r&quot;]
+  tampering: false
+test_name: test_random_invalid_version_number
+test_runtime: 5.019288063049316
+test_started: 1354203675.48221
+...
+---
+input: null
+report:
+  received: [&quot;RZRcu OyLtu Jtu2T cs0ER\n\r&quot;]
+  sent: [&quot;RZRcu OyLtu Jtu2T cs0ER\n\r&quot;]
+  tampering: false
+test_name: test_random_invalid_field_count
+test_runtime: 5.022854804992676
+test_started: 1354203675.483127
+...
+---
+input: null
+report:
+  received: [&quot;iB2HrwJeB512y5CrAAaIpETZ5RMprmGO4RCex24Kmqkjguc2XsOrGXR3qJIERw1IX13uGWVs1kOd96Y0zsR4ufcktGFnP0gYakTq7GA63rNNOmlG9tNXABnBEHfkHYhrwdrewAKdqZ2lGls66NBY7fbL9xkOsHBjXq7TkvS8MOeTb74wcxKymp1NLOa8u7C8XP9qpafQtWBrC4dkEVjppjlFyetg1tu8zomDUCBx9y2tB411d8lw7WOSMfDiQWG327aVanxaOj9WgZ2u2eu0595UiJxZxMk1LYa96vHvmB1DrX0DoJUkUg2fcEOlia3pVoFfcpbd3TQ0GwEoewU3F48Qvpf2AuOIcPgrYa1XszLCyUoToygc5J6WgIH7f1phsEpmmZ6my9KChZdnazc7mNbCwLB3Z1wMwcoFW1XuDvAhTr8OYoY17360SYkAqEBhYh8uiD4xdIq0T0KJzsJW5wghjCMjRjFyfk3wyDXaPLp7vkeeqbA3FNFatFQlUCTIkqqqM3EjAojynvCDVyrThGlmsauS9Ejhc9TaDojeT3s8HZY3KIDHwCRvpGgpwFie2NyhzmwY2y4YFMcnGXT2jlwsVE1K2fZZ7yGbKqbciuh5Q32JNvQBdGy3N63PWyZIxWhfythHOVBE9GXAr99DqEXUeiRkfNer5aVRt87rDBuLx13IrbCE6runHdoZEq0iXs7IySfw5qqt00fExbaN9UlSDyxyYIrIymrSTSUWWprTqiezn1toQZpxEl53pv4ZnLx00CSMYxWTzMDNSHLpovdAI9A27ugY2uHmPETKHbaLsTzNRtNiZAS9WidDi0oAxdICB47dnJA2CXvBaXeq2nsRasgQ9qqNl0RbTC8vhXgIq8nZZQn0iehXsP5mPXshpALyfAhoLwiChRif8FODkKdAgciLviTvyadpecb6HqRVfM8rLzMPkuXT2I21yB7NVQQLraJOeDOTvmtsV2gw2I2ON8xKtHO78VQfo357yBryndTQTRTk9FPnijwcwusn\
+      \ / HTTP/1.1\n\r&quot;]
+  sent: [&quot;iB2HrwJeB512y5CrAAaIpETZ5RMprmGO4RCex24Kmqkjguc2XsOrGXR3qJIERw1IX13uGWVs1kOd96Y0zsR4ufcktGFnP0gYakTq7GA63rNNOmlG9tNXABnBEHfkHYhrwdrewAKdqZ2lGls66NBY7fbL9xkOsHBjXq7TkvS8MOeTb74wcxKymp1NLOa8u7C8XP9qpafQtWBrC4dkEVjppjlFyetg1tu8zomDUCBx9y2tB411d8lw7WOSMfDiQWG327aVanxaOj9WgZ2u2eu0595UiJxZxMk1LYa96vHvmB1DrX0DoJUkUg2fcEOlia3pVoFfcpbd3TQ0GwEoewU3F48Qvpf2AuOIcPgrYa1XszLCyUoToygc5J6WgIH7f1phsEpmmZ6my9KChZdnazc7mNbCwLB3Z1wMwcoFW1XuDvAhTr8OYoY17360SYkAqEBhYh8uiD4xdIq0T0KJzsJW5wghjCMjRjFyfk3wyDXaPLp7vkeeqbA3FNFatFQlUCTIkqqqM3EjAojynvCDVyrThGlmsauS9Ejhc9TaDojeT3s8HZY3KIDHwCRvpGgpwFie2NyhzmwY2y4YFMcnGXT2jlwsVE1K2fZZ7yGbKqbciuh5Q32JNvQBdGy3N63PWyZIxWhfythHOVBE9GXAr99DqEXUeiRkfNer5aVRt87rDBuLx13IrbCE6runHdoZEq0iXs7IySfw5qqt00fExbaN9UlSDyxyYIrIymrSTSUWWprTqiezn1toQZpxEl53pv4ZnLx00CSMYxWTzMDNSHLpovdAI9A27ugY2uHmPETKHbaLsTzNRtNiZAS9WidDi0oAxdICB47dnJA2CXvBaXeq2nsRasgQ9qqNl0RbTC8vhXgIq8nZZQn0iehXsP5mPXshpALyfAhoLwiChRif8FODkKdAgciLviTvyadpecb6HqRVfM8rLzMPkuXT2I21yB7NVQQLraJOeDOTvmtsV2gw2I2ON8xKtHO78VQfo357yBryndTQTRTk9FPnijwcwusn\
+      \ / HTTP/1.1\n\r&quot;]
+  tampering: false
+test_name: test_random_big_request_method
+test_runtime: 5.026142120361328
+test_started: 1354203675.484211
+...
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

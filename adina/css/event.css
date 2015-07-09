@@ -1,0 +1,106 @@
+nav.event-navbar {
+  margin-bottom: 2em;
+}
+
+.event-header {
+  width: 100%;
+  height: 604px;
+  margin-bottom: 150px;
+}
+
+.event-header .event-banner-left {
+  background-image: url("../event/adina15-banner-left-bg.jpg");
+  background-repeat: repeat-x;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  margin-top: 100px;
+}
+
+.event-header .event-banner-right {
+  margin-top: 100px;
+  background-image: url("../event/adina15-banner-right-bg.jpg");
+  background-repeat: repeat-x;
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+}
+
+
+.event-header .event-dates {
+  height: 100px;
+  margin-bottom: -100px;
+}
+
+.event-header .event-dates .event-dates-text {
+  text-align: center;
+  color: #4d86c6;
+  font-size: 1.15rem;
+  margin: 0 auto;
+}
+
+.event-header .event-dates .event-dates-text:before {
+  content: "► ";
+}
+
+.event-header .event-banner {
+  margin-top: 100px;
+}
+
+.event-content {
+  text-align: center;
+}
+
+.event-content h1 {
+  color: #e06b5a;
+  font-size: 2em;
+  margin-bottom: 2px;
+}
+
+.event-content h2 {
+  color: #a4d6f6;
+  font-size: 2em;
+  margin-top: 0px;
+}
+
+.event-content hr {
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.event-join {
+  text-align: center;
+}
+
+.event-join-button {
+  display: inline-block;
+  padding: 6px 50px;
+  margin-bottom: 0;
+  font-size: 2em;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #e06b5a;
+  color: white;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+
+.event-join-button:hover {
+
+  border: 2px solid black;
+}

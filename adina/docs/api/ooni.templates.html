@@ -1,0 +1,687 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Test Templates &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/>
+        <link rel="next" title="Architecture" href="../architecture.html"/>
+        <link rel="prev" title="Test Templates" href=""/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="ooni.html">Measurement Developer API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Test Templates</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/api/ooni.templates.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="test-templates">
+<h1>Test Templates<a class="headerlink" href="#test-templates" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ooni.templates.httpt">
+<span id="ooni-templates-httpt-module"></span><h2><a class="reference internal" href="#module-ooni.templates.httpt" title="ooni.templates.httpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.httpt</span></code></a> Module<a class="headerlink" href="#module-ooni.templates.httpt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.templates.httpt.HTTPTest">
+<em class="property">class </em><code class="descclassname">ooni.templates.httpt.</code><code class="descname">HTTPTest</code><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<p>A utility class for dealing with HTTP based testing. It provides methods to
+be overriden for dealing with HTTP based testing.
+The main functions to look at are processResponseBody and
+processResponseHeader that are invoked once the headers have been received
+and once the request body has been received.</p>
+<p>To perform requests over Tor you will have to use the special URL schema
+&#8220;shttp&#8221;. For example to request / on example.com you will have to do
+specify as URL &#8220;<a class="reference external" href="shttp://example.com/">shttp://example.com/</a>&#8221;.</p>
+<p>XXX all of this requires some refactoring.</p>
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.addToReport">
+<code class="descname">addToReport</code><span class="sig-paren">(</span><em>request</em>, <em>response=None</em>, <em>response_body=None</em>, <em>failure_string=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.addToReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.addToReport" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds to the report the specified request and response.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">request (dict): A dict describing the request that was made</p>
+<dl class="docutils">
+<dt>response (instance): An instance of</dt>
+<dd>:class:twisted.web.client.Response.
+Note: headers is our modified True Headers version.</dd>
+</dl>
+<p class="last">failure (instance): An instance of :class:twisted.internet.failure.Failure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.httpt.HTTPTest.baseParameters">
+<code class="descname">baseParameters</code><em class="property"> = [['socksproxy', 's', None, 'Specify a socks proxy to use for requests (ip:port)']]</em><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.baseParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.doRequest">
+<code class="descname">doRequest</code><span class="sig-paren">(</span><em>url</em>, <em>method='GET'</em>, <em>headers={}</em>, <em>body=None</em>, <em>headers_processor=None</em>, <em>body_processor=None</em>, <em>use_tor=False</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.doRequest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.doRequest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform an HTTP request with the specified method and headers.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>url (str): the full URL of the request. The scheme may be either</dt>
+<dd>http, https, or httpo for http over Tor Hidden Service.</dd>
+</dl>
+</div></blockquote>
+<p>Kwargs:</p>
+<blockquote>
+<div><p>method (str): the HTTP method name to use for the request</p>
+<p>headers (dict): the request headers to send</p>
+<p>body (str): the request body</p>
+<dl class="docutils">
+<dt>headers_processor <span class="classifier-delimiter">:</span> <span class="classifier">a function to be used for processing the HTTP</span></dt>
+<dd>header responses (defaults to self.processResponseHeaders).
+This function takes as argument the HTTP headers as a dict.</dd>
+<dt>body_processory: a function to be used for processing the HTTP</dt>
+<dd>response body (defaults to self.processResponseBody). This
+function takes the response body as an argument.</dd>
+<dt>use_tor (bool): specify if the HTTP request should be done over Tor</dt>
+<dd>or not.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.httpt.HTTPTest.followRedirects">
+<code class="descname">followRedirects</code><em class="property"> = False</em><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.followRedirects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.httpt.HTTPTest.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Test'</em><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.processInputs">
+<code class="descname">processInputs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.processInputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.processInputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.processRedirect">
+<code class="descname">processRedirect</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.processRedirect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.processRedirect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle a redirection via a 3XX HTTP status code.</p>
+<p>Here you may place logic that evaluates the destination that you are
+being redirected to. Matches against known censor redirects, etc.</p>
+<dl class="docutils">
+<dt>Note: if self.followRedirects is set to True, then this method will</dt>
+<dd>never be called.
+XXX perhaps we may want to hook _handleResponse in RedirectAgent to
+call processRedirect every time we get redirected.</dd>
+</dl>
+<p>Args:</p>
+<blockquote>
+<div>location (str): the url that we are being redirected to.</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.processResponseBody">
+<code class="descname">processResponseBody</code><span class="sig-paren">(</span><em>body</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.processResponseBody"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.processResponseBody" title="Permalink to this definition">¶</a></dt>
+<dd><p>Overwrite this method if you wish to interact with the response body of
+every request that is made.</p>
+<p>Args:</p>
+<blockquote>
+<div>body (str): The body of the HTTP response</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.processResponseHeaders">
+<code class="descname">processResponseHeaders</code><span class="sig-paren">(</span><em>headers</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.processResponseHeaders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.processResponseHeaders" title="Permalink to this definition">¶</a></dt>
+<dd><p>This should take care of dealing with the returned HTTP headers.</p>
+<p>Args:</p>
+<blockquote>
+<div>headers (dict): The returned header fields.</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.httpt.HTTPTest.randomizeUA">
+<code class="descname">randomizeUA</code><em class="property"> = False</em><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.randomizeUA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.httpt.HTTPTest.randomize_useragent">
+<code class="descname">randomize_useragent</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#HTTPTest.randomize_useragent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.randomize_useragent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.httpt.HTTPTest.version">
+<code class="descname">version</code><em class="property"> = '0.1.1'</em><a class="headerlink" href="#ooni.templates.httpt.HTTPTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="ooni.templates.httpt.InvalidSocksProxyOption">
+<em class="property">exception </em><code class="descclassname">ooni.templates.httpt.</code><code class="descname">InvalidSocksProxyOption</code><a class="reference internal" href="../_modules/ooni/templates/httpt.html#InvalidSocksProxyOption"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.InvalidSocksProxyOption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.templates.httpt.StreamListener">
+<em class="property">class </em><code class="descclassname">ooni.templates.httpt.</code><code class="descname">StreamListener</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#StreamListener"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.StreamListener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">txtorcon.interface.StreamListenerMixin</span></code></p>
+<dl class="method">
+<dt id="ooni.templates.httpt.StreamListener.stream_succeeded">
+<code class="descname">stream_succeeded</code><span class="sig-paren">(</span><em>stream</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/httpt.html#StreamListener.stream_succeeded"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.httpt.StreamListener.stream_succeeded" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.templates.scapyt">
+<span id="ooni-templates-scapyt-module"></span><h2><a class="reference internal" href="#module-ooni.templates.scapyt" title="ooni.templates.scapyt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.scapyt</span></code></a> Module<a class="headerlink" href="#module-ooni.templates.scapyt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.templates.scapyt.BaseScapyTest">
+<em class="property">class </em><code class="descclassname">ooni.templates.scapyt.</code><code class="descname">BaseScapyTest</code><a class="reference internal" href="../_modules/ooni/templates/scapyt.html#BaseScapyTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<p>The report of a test run with scapy looks like this:</p>
+<dl class="docutils">
+<dt>report:</dt>
+<dd><dl class="first docutils">
+<dt>sent_packets: [</dt>
+<dd>{
+&#8216;raw_packet&#8217;: BASE64Encoding of packet,
+&#8216;summary&#8217;: &#8216;IP / TCP 192.168.2.66:ftp_data &gt; 8.8.8.8:http S&#8217;
+}</dd>
+</dl>
+<p>]</p>
+<p class="last">answered_packets: []</p>
+</dd>
+</dl>
+<dl class="attribute">
+<dt id="ooni.templates.scapyt.BaseScapyTest.baseFlags">
+<code class="descname">baseFlags</code><em class="property"> = [['ipsrc', 's', 'Does *not* check if IP src and ICMP IP citation matches when processing answers'], ['seqack', 'k', 'Check if TCP sequence number and ACK match in the ICMP citation when processing answers'], ['ipid', 'i', 'Check if the IPID matches when processing answers']]</em><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.baseFlags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.scapyt.BaseScapyTest.finishedSendReceive">
+<code class="descname">finishedSendReceive</code><span class="sig-paren">(</span><em>packets</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/scapyt.html#BaseScapyTest.finishedSendReceive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.finishedSendReceive" title="Permalink to this definition">¶</a></dt>
+<dd><p>This gets called when all packets have been sent and received.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.scapyt.BaseScapyTest.name">
+<code class="descname">name</code><em class="property"> = 'Base Scapy Test'</em><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.scapyt.BaseScapyTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = True</em><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.scapyt.BaseScapyTest.send">
+<code class="descname">send</code><span class="sig-paren">(</span><em>packets</em>, <em>*arg</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/scapyt.html#BaseScapyTest.send"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around scapy.sendrecv.send for sending of packets at layer 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.scapyt.BaseScapyTest.sr">
+<code class="descname">sr</code><span class="sig-paren">(</span><em>packets</em>, <em>timeout=None</em>, <em>*arg</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/scapyt.html#BaseScapyTest.sr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.sr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper around scapy.sendrecv.sr for sending and receiving of packets
+at layer 3.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.scapyt.BaseScapyTest.sr1">
+<code class="descname">sr1</code><span class="sig-paren">(</span><em>packets</em>, <em>*arg</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/scapyt.html#BaseScapyTest.sr1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.sr1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.scapyt.BaseScapyTest.version">
+<code class="descname">version</code><em class="property"> = 0.1</em><a class="headerlink" href="#ooni.templates.scapyt.BaseScapyTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.scapyt.ScapyTest">
+<code class="descclassname">ooni.templates.scapyt.</code><code class="descname">ScapyTest</code><a class="headerlink" href="#ooni.templates.scapyt.ScapyTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">BaseScapyTest</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.templates.dnst">
+<span id="ooni-templates-dnst-module"></span><h2><a class="reference internal" href="#module-ooni.templates.dnst" title="ooni.templates.dnst"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.dnst</span></code></a> Module<a class="headerlink" href="#module-ooni.templates.dnst" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.templates.dnst.DNSTest">
+<em class="property">class </em><code class="descclassname">ooni.templates.dnst.</code><code class="descname">DNSTest</code><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.addToReport">
+<code class="descname">addToReport</code><span class="sig-paren">(</span><em>query</em>, <em>resolver=None</em>, <em>query_type=None</em>, <em>answers=None</em>, <em>name=None</em>, <em>addrs=None</em>, <em>failure=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.addToReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.addToReport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.dnsLookup">
+<code class="descname">dnsLookup</code><span class="sig-paren">(</span><em>hostname</em>, <em>dns_type</em>, <em>dns_server=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.dnsLookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.dnsLookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a DNS lookup and returns the response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hostname:</th><td class="field-body">is the hostname to perform the DNS lookup on</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dns_type:</th><td class="field-body">type of lookup &#8216;NS&#8217;/&#8217;A&#8217;/&#8217;SOA&#8217;</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Dns_server:</th><td class="field-body">is the dns_server that should be used for the lookup as a
+tuple of ip port (ex. (&#8220;127.0.0.1&#8221;, 53))</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.dnst.DNSTest.name">
+<code class="descname">name</code><em class="property"> = 'Base DNS Test'</em><a class="headerlink" href="#ooni.templates.dnst.DNSTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.performALookup">
+<code class="descname">performALookup</code><span class="sig-paren">(</span><em>hostname</em>, <em>dns_server=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.performALookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.performALookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an A lookup and returns an array containg all the dotted quad
+IP addresses in the response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hostname:</th><td class="field-body"><p class="first">is the hostname to perform the A lookup on</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dns_server:</th><td class="field-body"><p class="first">is the dns_server that should be used for the lookup as a
+tuple of ip port (ex. (&#8220;127.0.0.1&#8221;, 53))</p>
+<p class="last">if None, system dns settings will be used</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.performNSLookup">
+<code class="descname">performNSLookup</code><span class="sig-paren">(</span><em>hostname</em>, <em>dns_server=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.performNSLookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.performNSLookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a NS lookup and returns an array containg all nameservers in
+the response.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hostname:</th><td class="field-body"><p class="first">is the hostname to perform the NS lookup on</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dns_server:</th><td class="field-body"><p class="first">is the dns_server that should be used for the lookup as a
+tuple of ip port (ex. (&#8220;127.0.0.1&#8221;, 53))</p>
+<p class="last">if None, system dns settings will be used</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.performPTRLookup">
+<code class="descname">performPTRLookup</code><span class="sig-paren">(</span><em>address</em>, <em>dns_server=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.performPTRLookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.performPTRLookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does a reverse DNS lookup on the input ip address</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Address:</th><td class="field-body"><p class="first">the IP Address as a dotted quad to do a reverse lookup on.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dns_server:</th><td class="field-body"><p class="first">is the dns_server that should be used for the lookup as a
+tuple of ip port (ex. (&#8220;127.0.0.1&#8221;, 53))</p>
+<p class="last">if None, system dns settings will be used</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.dnst.DNSTest.performSOALookup">
+<code class="descname">performSOALookup</code><span class="sig-paren">(</span><em>hostname</em>, <em>dns_server=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#DNSTest.performSOALookup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.DNSTest.performSOALookup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a SOA lookup and returns the response (name,serial).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Hostname:</th><td class="field-body"><p class="first">is the hostname to perform the SOA lookup on</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Dns_server:</th><td class="field-body"><p class="first">is the dns_server that should be used for the lookup as a
+tuple of ip port (ex. (&#8220;127.0.0.1&#8221;, 53))</p>
+<p class="last">if None, system dns settings will be used</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.dnst.DNSTest.queryTimeout">
+<code class="descname">queryTimeout</code><em class="property"> = [1]</em><a class="headerlink" href="#ooni.templates.dnst.DNSTest.queryTimeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.dnst.DNSTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.templates.dnst.DNSTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.dnst.DNSTest.version">
+<code class="descname">version</code><em class="property"> = 0.1</em><a class="headerlink" href="#ooni.templates.dnst.DNSTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ooni.templates.dnst.connectionLost">
+<code class="descclassname">ooni.templates.dnst.</code><code class="descname">connectionLost</code><span class="sig-paren">(</span><em>self</em>, <em>reason=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#connectionLost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.connectionLost" title="Permalink to this definition">¶</a></dt>
+<dd><p>Taken from Twisted 13.1.0 to suppress log.msg printing.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ooni.templates.dnst.representAnswer">
+<code class="descclassname">ooni.templates.dnst.</code><code class="descname">representAnswer</code><span class="sig-paren">(</span><em>answer</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/dnst.html#representAnswer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.dnst.representAnswer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-ooni.templates.tcpt">
+<span id="ooni-templates-tcpt-module"></span><h2><a class="reference internal" href="#module-ooni.templates.tcpt" title="ooni.templates.tcpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.tcpt</span></code></a> Module<a class="headerlink" href="#module-ooni.templates.tcpt" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.templates.tcpt.TCPSender">
+<em class="property">class </em><code class="descclassname">ooni.templates.tcpt.</code><code class="descname">TCPSender</code><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPSender"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPSender" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.internet.protocol.Protocol</span></code></p>
+<dl class="method">
+<dt id="ooni.templates.tcpt.TCPSender.dataReceived">
+<code class="descname">dataReceived</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPSender.dataReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPSender.dataReceived" title="Permalink to this definition">¶</a></dt>
+<dd><p>We receive data until the total amount of data received reaches that
+which we have sent. At that point we append the received data to the
+report and we fire the callback of the test template sendPayload
+function.</p>
+<p>This is used in pair with a TCP Echo server.</p>
+<p>The reason why we put the data received inside of an array is that in
+future we may want to expand this to support state and do something
+similar to what daphne does, but without the mutation.</p>
+<p>XXX Actually daphne will probably be refactored to be a subclass of the
+TCP Test Template.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.tcpt.TCPSender.sendPayload">
+<code class="descname">sendPayload</code><span class="sig-paren">(</span><em>payload</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPSender.sendPayload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPSender.sendPayload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the payload to the wire and set the expected size of the payload
+we are to receive.</p>
+<p>Args:</p>
+<blockquote>
+<div>payload: the data to be sent on the wire.</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.templates.tcpt.TCPSenderFactory">
+<em class="property">class </em><code class="descclassname">ooni.templates.tcpt.</code><code class="descname">TCPSenderFactory</code><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPSenderFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPSenderFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.internet.protocol.Factory</span></code></p>
+<dl class="method">
+<dt id="ooni.templates.tcpt.TCPSenderFactory.buildProtocol">
+<code class="descname">buildProtocol</code><span class="sig-paren">(</span><em>addr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPSenderFactory.buildProtocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPSenderFactory.buildProtocol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.templates.tcpt.TCPTest">
+<em class="property">class </em><code class="descclassname">ooni.templates.tcpt.</code><code class="descname">TCPTest</code><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.address">
+<code class="descname">address</code><em class="property"> = None</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.address" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.name">
+<code class="descname">name</code><em class="property"> = 'Base TCP Test'</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.port">
+<code class="descname">port</code><em class="property"> = None</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.port" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.templates.tcpt.TCPTest.sendPayload">
+<code class="descname">sendPayload</code><span class="sig-paren">(</span><em>payload</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/templates/tcpt.html#TCPTest.sendPayload"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.sendPayload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.timeout">
+<code class="descname">timeout</code><em class="property"> = 5</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.templates.tcpt.TCPTest.version">
+<code class="descname">version</code><em class="property"> = '0.1'</em><a class="headerlink" href="#ooni.templates.tcpt.TCPTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../architecture.html" class="btn btn-neutral float-right" title="Architecture">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="" class="btn btn-neutral" title="Test Templates"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

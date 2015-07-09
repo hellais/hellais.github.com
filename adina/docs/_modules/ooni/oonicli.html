@@ -1,0 +1,535 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.oonicli &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Module code" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.oonicli</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.oonicli</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+<span class="kn">from</span> <span class="nn">twisted.python.util</span> <span class="kn">import</span> <span class="n">spewer</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span>
+
+<span class="kn">from</span> <span class="nn">ooni</span> <span class="kn">import</span> <span class="n">errors</span><span class="p">,</span> <span class="n">__version__</span>
+
+<span class="kn">from</span> <span class="nn">ooni.settings</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">ooni.director</span> <span class="kn">import</span> <span class="n">Director</span>
+<span class="kn">from</span> <span class="nn">ooni.deck</span> <span class="kn">import</span> <span class="n">Deck</span><span class="p">,</span> <span class="n">nettest_to_path</span>
+<span class="kn">from</span> <span class="nn">ooni.nettest</span> <span class="kn">import</span> <span class="n">NetTestLoader</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.utils.net</span> <span class="kn">import</span> <span class="n">hasRawSocketPermission</span>
+
+
+<div class="viewcode-block" id="Options"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.Options">[docs]</a><span class="k">class</span> <span class="nc">Options</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">synopsis</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;</span><span class="si">%s</span><span class="s"> [options] [path to test].py</span>
+<span class="s">    &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]),)</span>
+
+    <span class="n">longdesc</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;ooniprobe loads and executes a suite or a set of suites of&quot;</span>
+                <span class="s">&quot; network tests. These are loaded from modules, packages and&quot;</span>
+                <span class="s">&quot; files listed on the command line&quot;</span><span class="p">)</span>
+
+    <span class="n">optFlags</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&quot;help&quot;</span><span class="p">,</span> <span class="s">&quot;h&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;resume&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;no-collector&quot;</span><span class="p">,</span> <span class="s">&quot;n&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;no-geoip&quot;</span><span class="p">,</span> <span class="s">&quot;g&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;list&quot;</span><span class="p">,</span> <span class="s">&quot;s&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;printdeck&quot;</span><span class="p">,</span> <span class="s">&quot;p&quot;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&quot;verbose&quot;</span><span class="p">,</span> <span class="s">&quot;v&quot;</span><span class="p">]</span>
+                <span class="p">]</span>
+
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s">&quot;reportfile&quot;</span><span class="p">,</span> <span class="s">&quot;o&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;report file name&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;testdeck&quot;</span><span class="p">,</span> <span class="s">&quot;i&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+         <span class="s">&quot;Specify as input a test deck: a yaml file containing the tests to run and their arguments&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;collector&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+         <span class="s">&quot;Address of the collector of test results. This option should not be used, but you should always use a bouncer.&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;bouncer&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&#39;httpo://nkvphnp3p6agi5qq.onion&#39;</span><span class="p">,</span>
+         <span class="s">&quot;Address of the bouncer for test helpers. default: httpo://nkvphnp3p6agi5qq.onion&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;logfile&quot;</span><span class="p">,</span> <span class="s">&quot;l&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;log file name&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;pcapfile&quot;</span><span class="p">,</span> <span class="s">&quot;O&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;pcap file name&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;configfile&quot;</span><span class="p">,</span> <span class="s">&quot;f&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+         <span class="s">&quot;Specify a path to the ooniprobe configuration file&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;datadir&quot;</span><span class="p">,</span> <span class="s">&quot;d&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+         <span class="s">&quot;Specify a path to the ooniprobe data directory&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&quot;annotations&quot;</span><span class="p">,</span> <span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+         <span class="s">&quot;Annotate the report with a key:value[, key:value] format.&quot;</span><span class="p">]]</span>
+
+    <span class="n">compData</span> <span class="o">=</span> <span class="n">usage</span><span class="o">.</span><span class="n">Completions</span><span class="p">(</span>
+        <span class="n">extraActions</span><span class="o">=</span><span class="p">[</span><span class="n">usage</span><span class="o">.</span><span class="n">CompleteFiles</span><span class="p">(</span>
+            <span class="s">&quot;*.py&quot;</span><span class="p">,</span> <span class="n">descr</span><span class="o">=</span><span class="s">&quot;file | module | package | TestCase | testMethod&quot;</span><span class="p">,</span>
+            <span class="n">repeat</span><span class="o">=</span><span class="bp">True</span><span class="p">)],)</span>
+
+    <span class="n">tracer</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s">&#39;test&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Options.opt_spew"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.Options.opt_spew">[docs]</a>    <span class="k">def</span> <span class="nf">opt_spew</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print an insanely verbose log of everything that happens.  Useful</span>
+<span class="sd">        when debugging freezes or locks in complex code.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">settrace</span><span class="p">(</span><span class="n">spewer</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Options.opt_version"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.Options.opt_version">[docs]</a>    <span class="k">def</span> <span class="nf">opt_version</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Display the ooniprobe version and exit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;ooniprobe version:&quot;</span><span class="p">,</span> <span class="n">__version__</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Options.parseArgs"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.Options.parseArgs">[docs]</a>    <span class="k">def</span> <span class="nf">parseArgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">[</span><span class="s">&#39;testdeck&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">[</span><span class="s">&#39;list&#39;</span><span class="p">]:</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s">&#39;test_file&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="p">[</span><span class="s">&#39;subargs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">usage</span><span class="o">.</span><span class="n">UsageError</span><span class="p">(</span><span class="s">&quot;No test filename specified!&quot;</span><span class="p">)</span>
+
+</div></div>
+<div class="viewcode-block" id="parseOptions"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.parseOptions">[docs]</a><span class="k">def</span> <span class="nf">parseOptions</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;WARNING: running ooniprobe involves some risk that varies greatly&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;         from country to country. You should be aware of this when&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;         running the tool. Read more about this in the manpage or README.&quot;</span>
+    <span class="n">cmd_line_options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">cmd_line_options</span><span class="o">.</span><span class="n">getUsage</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">cmd_line_options</span><span class="o">.</span><span class="n">parseOptions</span><span class="p">()</span>
+    <span class="k">except</span> <span class="n">usage</span><span class="o">.</span><span class="n">UsageError</span> <span class="k">as</span> <span class="n">ue</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">cmd_line_options</span><span class="o">.</span><span class="n">getUsage</span><span class="p">()</span>
+        <span class="k">raise</span> <span class="ne">SystemExit</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s">: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ue</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cmd_line_options</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="runWithDirector"><a class="viewcode-back" href="../../api/ooni.html#ooni.oonicli.runWithDirector">[docs]</a><span class="k">def</span> <span class="nf">runWithDirector</span><span class="p">(</span><span class="n">logging</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">start_tor</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check_incoherences</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Instance the director, parse command line options and start an ooniprobe</span>
+<span class="sd">    test!</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">global_options</span> <span class="o">=</span> <span class="n">parseOptions</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">global_options</span> <span class="o">=</span> <span class="n">global_options</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">set_paths</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">initialize_ooni_home</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">read_config_file</span><span class="p">(</span><span class="n">check_incoherences</span><span class="o">=</span><span class="n">check_incoherences</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">ConfigFileIncoherent</span><span class="p">:</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;verbose&#39;</span><span class="p">]:</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">advanced</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">start_tor</span><span class="p">:</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">advanced</span><span class="o">.</span><span class="n">start_tor</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">logging</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="s">&#39;logfile&#39;</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">privacy</span><span class="o">.</span><span class="n">includepcap</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">hasRawSocketPermission</span><span class="p">():</span>
+            <span class="kn">from</span> <span class="nn">ooni.utils.txscapy</span> <span class="kn">import</span> <span class="n">ScapyFactory</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">scapyFactory</span> <span class="o">=</span> <span class="n">ScapyFactory</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">advanced</span><span class="o">.</span><span class="n">interface</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Insufficient Privileges to capture packets.&quot;</span>
+                    <span class="s">&quot; See ooniprobe.conf privacy.includepcap&quot;</span><span class="p">)</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">director</span> <span class="o">=</span> <span class="n">Director</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;list&#39;</span><span class="p">]:</span>
+        <span class="k">print</span> <span class="s">&quot;# Installed nettests&quot;</span>
+        <span class="k">for</span> <span class="n">net_test_id</span><span class="p">,</span> <span class="n">net_test</span> <span class="ow">in</span> <span class="n">director</span><span class="o">.</span><span class="n">getNetTests</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">print</span> <span class="s">&quot;* </span><span class="si">%s</span><span class="s"> (</span><span class="si">%s</span><span class="s">/</span><span class="si">%s</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">net_test</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span>
+                                    <span class="n">net_test</span><span class="p">[</span><span class="s">&#39;category&#39;</span><span class="p">],</span>
+                                    <span class="n">net_test</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">])</span>
+            <span class="k">print</span> <span class="s">&quot;  </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">net_test</span><span class="p">[</span><span class="s">&#39;description&#39;</span><span class="p">]</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;printdeck&#39;</span><span class="p">]:</span>
+        <span class="k">del</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;printdeck&#39;</span><span class="p">]</span>
+        <span class="k">print</span> <span class="s">&quot;# Copy and paste the lines below into a test deck to run the specified test with the specified arguments&quot;</span>
+        <span class="k">print</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_dump</span><span class="p">([{</span><span class="s">&#39;options&#39;</span><span class="p">:</span> <span class="n">global_options</span><span class="p">}])</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">global_options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;annotations&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">annotations</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">annotation</span> <span class="ow">in</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&quot;annotations&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;,&quot;</span><span class="p">):</span>
+            <span class="n">pair</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;:&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">key</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="n">annotations</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Invalid annotation: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">annotation</span><span class="p">)</span>
+                <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">global_options</span><span class="p">[</span><span class="s">&quot;annotations&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">annotations</span>
+
+    <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;no-collector&#39;</span><span class="p">]:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Not reporting using a collector&quot;</span><span class="p">)</span>
+        <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">start_tor</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">start_tor</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="n">deck</span> <span class="o">=</span> <span class="n">Deck</span><span class="p">(</span><span class="n">no_collector</span><span class="o">=</span><span class="n">global_options</span><span class="p">[</span><span class="s">&#39;no-collector&#39;</span><span class="p">])</span>
+    <span class="n">deck</span><span class="o">.</span><span class="n">bouncer</span> <span class="o">=</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;bouncer&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]:</span>
+        <span class="n">start_tor</span> <span class="o">|=</span> <span class="bp">True</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;testdeck&#39;</span><span class="p">]:</span>
+            <span class="n">deck</span><span class="o">.</span><span class="n">loadDeck</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="s">&#39;testdeck&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;No test deck detected&quot;</span><span class="p">)</span>
+            <span class="n">test_file</span> <span class="o">=</span> <span class="n">nettest_to_path</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="s">&#39;test_file&#39;</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">net_test_loader</span> <span class="o">=</span> <span class="n">NetTestLoader</span><span class="p">(</span><span class="n">global_options</span><span class="p">[</span><span class="s">&#39;subargs&#39;</span><span class="p">],</span>
+                                            <span class="n">test_file</span><span class="o">=</span><span class="n">test_file</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]:</span>
+                <span class="n">net_test_loader</span><span class="o">.</span><span class="n">collector</span> <span class="o">=</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]</span>
+            <span class="n">deck</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">net_test_loader</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">MissingRequiredOption</span> <span class="k">as</span> <span class="n">option_name</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&#39;Missing required option: &quot;</span><span class="si">%s</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">option_name</span><span class="p">)</span>
+        <span class="n">incomplete_net_test_loader</span> <span class="o">=</span> <span class="n">option_name</span><span class="o">.</span><span class="n">net_test_loader</span>
+        <span class="k">print</span> <span class="n">incomplete_net_test_loader</span><span class="o">.</span><span class="n">usageOptions</span><span class="p">()</span><span class="o">.</span><span class="n">getUsage</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">NetTestNotFound</span> <span class="k">as</span> <span class="n">path</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&#39;Requested NetTest file not found (</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">OONIUsageError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">e</span><span class="o">.</span><span class="n">net_test_loader</span><span class="o">.</span><span class="n">usageOptions</span><span class="p">()</span><span class="o">.</span><span class="n">getUsage</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">advanced</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">start_tor</span> <span class="o">|=</span> <span class="n">deck</span><span class="o">.</span><span class="n">requiresTor</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">director</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">start_tor</span><span class="o">=</span><span class="n">start_tor</span><span class="p">,</span>
+                       <span class="n">check_incoherences</span><span class="o">=</span><span class="n">check_incoherences</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setup_nettest</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">deck</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnableToLoadDeckInput</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">defer</span><span class="o">.</span><span class="n">failure</span><span class="o">.</span><span class="n">Failure</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">director_startup_handled_failures</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Could not start the director&quot;</span><span class="p">)</span>
+        <span class="n">failure</span><span class="o">.</span><span class="n">trap</span><span class="p">(</span><span class="n">errors</span><span class="o">.</span><span class="n">TorNotRunning</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">InvalidOONIBCollectorAddress</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">UnableToLoadDeckInput</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">CouldNotFindTestHelper</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">CouldNotFindTestCollector</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">ProbeIPUnknown</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">InvalidInputFile</span><span class="p">,</span>
+                     <span class="n">errors</span><span class="o">.</span><span class="n">ConfigFileIncoherent</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">TorNotRunning</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Tor does not appear to be running&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Reporting with the collector </span><span class="si">%s</span><span class="s"> is not possible&quot;</span> <span class="o">%</span>
+                    <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">])</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="s">&quot;Try with a different collector or disable collector reporting with -n&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">InvalidOONIBCollectorAddress</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Invalid format for oonib collector address.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="s">&quot;Should be in the format http://&lt;collector_address&gt;:&lt;port&gt;&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;for example: ooniprobe -c httpo://nkvphnp3p6agi5qq.onion&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">UnableToLoadDeckInput</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Unable to fetch the required inputs for the test deck.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="s">&quot;Please file a ticket on our issue tracker: https://github.com/thetorproject/ooni-probe/issues&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">CouldNotFindTestHelper</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Unable to obtain the required test helpers.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="s">&quot;Try with a different bouncer or check that Tor is running properly.&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">CouldNotFindTestCollector</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Could not find a valid collector.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span>
+                <span class="s">&quot;Try with a different bouncer, specify a collector with -c or disable reporting to a collector with -n.&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">ProbeIPUnknown</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Failed to lookup probe IP address.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Check your internet connection.&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">InvalidInputFile</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Invalid input file </span><span class="se">\&quot;</span><span class="si">%s</span><span class="se">\&quot;</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">failure</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">errors</span><span class="o">.</span><span class="n">ConfigFileIncoherent</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Incoherent config file&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">advanced</span><span class="o">.</span><span class="n">debug</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">director_startup_other_failures</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;An unhandled exception occurred while starting the director!&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+
+    <span class="c"># Wait until director has started up (including bootstrapping Tor)</span>
+    <span class="c"># before adding tests</span>
+    <span class="k">def</span> <span class="nf">post_director_start</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">net_test_loader</span> <span class="ow">in</span> <span class="n">deck</span><span class="o">.</span><span class="n">netTestLoaders</span><span class="p">:</span>
+            <span class="c"># Decks can specify different collectors</span>
+            <span class="c"># for each net test, so that each NetTest</span>
+            <span class="c"># may be paired with a test_helper and its collector</span>
+            <span class="c"># However, a user can override this behavior by</span>
+            <span class="c"># specifying a collector from the command-line (-c).</span>
+            <span class="c"># If a collector is not specified in the deck, or the</span>
+            <span class="c"># deck is a singleton, the default collector set in</span>
+            <span class="c"># ooniprobe.conf will be used</span>
+
+            <span class="n">collector</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;no-collector&#39;</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]:</span>
+                    <span class="n">collector</span> <span class="o">=</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="s">&#39;collector&#39;</span> <span class="ow">in</span> <span class="n">config</span><span class="o">.</span><span class="n">reports</span> \
+                        <span class="ow">and</span> <span class="n">config</span><span class="o">.</span><span class="n">reports</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]:</span>
+                    <span class="n">collector</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">reports</span><span class="p">[</span><span class="s">&#39;collector&#39;</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">net_test_loader</span><span class="o">.</span><span class="n">collector</span><span class="p">:</span>
+                    <span class="n">collector</span> <span class="o">=</span> <span class="n">net_test_loader</span><span class="o">.</span><span class="n">collector</span>
+
+            <span class="k">if</span> <span class="n">collector</span> <span class="ow">and</span> <span class="n">collector</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;httpo:&#39;</span><span class="p">)</span> \
+                    <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">tor_state</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">tor</span><span class="o">.</span><span class="n">socks_port</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="n">errors</span><span class="o">.</span><span class="n">TorNotRunning</span>
+
+            <span class="n">test_details</span> <span class="o">=</span> <span class="n">net_test_loader</span><span class="o">.</span><span class="n">testDetails</span>
+            <span class="n">test_details</span><span class="p">[</span><span class="s">&#39;annotations&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;annotations&#39;</span><span class="p">]</span>
+
+            <span class="n">director</span><span class="o">.</span><span class="n">startNetTest</span><span class="p">(</span><span class="n">net_test_loader</span><span class="p">,</span>
+                                  <span class="n">global_options</span><span class="p">[</span><span class="s">&#39;reportfile&#39;</span><span class="p">],</span>
+                                  <span class="n">collector</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">director</span><span class="o">.</span><span class="n">allTestsDone</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">():</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">setup_nettest</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">post_director_start</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">director_startup_handled_failures</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">director_startup_other_failures</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+    <span class="k">return</span> <span class="n">start</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

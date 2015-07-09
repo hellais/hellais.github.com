@@ -1,0 +1,3392 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Report on OONI: Open Observatory of Network Interference</title>
+    <link>http://hellais.github.com:1313/adina/categories/report/</link>
+    <description>Recent content in Report on OONI: Open Observatory of Network Interference</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://hellais.github.com:1313/adina/categories/report/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>EEEP and Greek Internet censorship</title>
+      <link>http://hellais.github.com:1313/adina/post/eeep-greek-censorship/</link>
+      <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://hellais.github.com:1313/adina/post/eeep-greek-censorship/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;Country:&lt;/strong&gt; Greece&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Probed ISPs:&lt;/strong&gt; Forthnet, Ote, Cyta, Wind, Vodafone, Cosmote, Wind mobile&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Blocking methods:&lt;/strong&gt; DPI, DNS Hijacking, HTTP proxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Measurement period:&lt;/strong&gt; June - July 2014&lt;/p&gt;
+
+&lt;p&gt;The newly formed Independent Administrative Authority&amp;rsquo;s Hellenic Gaming
+Commission acts as the public body responsible for the control and supervision
+of gambling services in Greece and published a blacklist of websites that are
+offering unlicensed gambling and betting services to Greek internet users.
+According to article 52, law No. &lt;sup&gt;4002&lt;/sup&gt;&amp;frasl;&lt;sub&gt;2011&lt;/sub&gt;, &lt;a href=&#34;http://nomoi.info/%CE%A6%CE%95%CE%9A-%CE%91-180-2011-%CF%83%CE%B5%CE%BB-44.html&#34;&gt;A180&lt;/a&gt; unlicensed
+gambling and betting websites without a license in Greece is a serious criminal
+offense applying as well for users (players), companies and ISPs.&lt;/p&gt;
+
+&lt;p&gt;Most Greek ISPs have not issued any public report that notifies their
+customers/users warning them about the content being blocked by the EEEP
+blacklist.
+Apart from that there is no documentation on how they have implemented the
+block/censorship, if they keep track of people trying to access these blocked
+websites, as the law orders, and so on.&lt;/p&gt;
+
+&lt;p&gt;In this technical report we have used the blacklist issued by the Hellenic
+Gaming Commission &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;EEEP&lt;/a&gt;, titled &amp;ldquo;List of sites providing
+gaming and betting services without authorisation in Greece&amp;rdquo;. The collection of
+the reports took place during June and July 2014.&lt;/p&gt;
+
+&lt;p&gt;The main test specifications used to probe the blacklist are:&lt;/p&gt;
+
+&lt;h2 id=&#34;http-requests-test:d0c495f4479395eff703b25df5d2e963&#34;&gt;&lt;a href=&#34;https://gitweb.torproject.org/ooni-probe.git/tree/ooni/nettests/blocking/http_requests.py&#34;&gt;HTTP Requests test&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This test performs an HTTP GET request from a specified URL list of potential blocked
+websites over the test network (censored network) and over Tor. It then compares
+the response headers and checks if the two responses (the one over Tor and the one
+over the censored network) match and if the proportion between the expected body
+length matches. In our test cases we have used a proportion with a tolerance
+factor of 80% between the two body lengths.&lt;/p&gt;
+
+&lt;p&gt;By default the HTTP User Agent is chosen at random and is different between the
+control request and the experiment request.&lt;/p&gt;
+
+&lt;p&gt;Since version 0.2.3 the User Agent is chosen at random, but is the same between
+the control request and the experiment request.&lt;/p&gt;
+
+&lt;p&gt;The user agent is chosen amongst this set of possible user agents:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7&amp;quot;,
+&amp;quot;Mozilla/5.0 (iPhone; U; CPU iPhone OS 3 1 2 like Mac OS X; en-us) AppleWebKit/528.18 (KHTML, like Gecko) Mobile/7D11&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2) Gecko/20100115 irefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 Firefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 6.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115 Firefox/3.6&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7&amp;quot;,
+&amp;quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.1.7) Gecko/20091221 Firefox/3.5.7 (.NET CLR 3.5.30729)&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;These user agents are taken from the &lt;a href=&#34;https://panopticlick.eff.org/browser-uniqueness.pdf&#34;&gt;&amp;ldquo;How Unique Is Your Web
+Browser?&amp;rdquo;&lt;/a&gt; paper as the
+browser user agents with largest anonymity set.&lt;/p&gt;
+
+&lt;h2 id=&#34;dns-consistency-test:d0c495f4479395eff703b25df5d2e963&#34;&gt;&lt;a href=&#34;https://gitweb.torproject.org/ooni-probe.git/tree/ooni/nettests/blocking/dns_consistency.py&#34;&gt;DNS consistency test&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;This test performs an A DNS query (via UDP) to the control resolver. The answer
+to such query is called the control answer. For each DNS resolver to be tested
+the test performs an A DNS query for the domain in question. This answer
+(experiment answer) is compared with the control answer. If the two have a
+common IPv4 address then the result for the given hostname and resolver
+combination is considered consistent (or not tampered) with the control
+resolver (tampering: False).
+If they do not have commonalities the test does a reverse lookup of the first
+IPv4 address in the control answer and the first IPv4 address in the experiment
+answer. If the two reverse lookups match (the PTR record points to the same
+hostname), then censorship is probably not happening (tampering:
+&amp;ldquo;reverse_match&amp;rdquo;).&lt;/p&gt;
+
+&lt;p&gt;In any other case the result is marked as: &lt;code&gt;tampering: True&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;probed-isps:d0c495f4479395eff703b25df5d2e963&#34;&gt;Probed ISPs&lt;/h1&gt;
+
+&lt;p&gt;Probed ISPs: &lt;code&gt;Forthnet, Ote, Cyta, Wind, Vodafone, Cosmote, Wind mobile&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;All of the tested ISPs employed &lt;a href=&#34;https://en.wikipedia.org/wiki/DNS_hijacking&#34;&gt;DNS hijacking&lt;/a&gt; with the exception of Vodafone
+that uses also &lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_packet_inspection&#34;&gt;Deep Packet Inspection&lt;/a&gt; to block the resources of the blacklist.&lt;/p&gt;
+
+&lt;h2 id=&#34;probed-isp-ooni-reports:d0c495f4479395eff703b25df5d2e963&#34;&gt;Probed ISP OONI reports&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Forthnet:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-30/20140730T221712Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-30/20140730T221712Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-23/20140623T125708Z-AS1241-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-23/20140623T125708Z-AS1241-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-25/20140625T222008Z-AS1241-dns_consistency-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-25/20140625T222008Z-AS1241-dns_consistency-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Ote:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-26/20140626T105437Z-AS6799-dns_consistency-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-26/20140626T105437Z-AS6799-dns_consistency-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-26/20140626T130619Z-AS6799-dns_consistency-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-26/20140626T130619Z-AS6799-dns_consistency-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-25/20140625T210158Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-25/20140625T210158Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-25/20140625T211147Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-25/20140625T211147Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cyta:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-06-23/20140623T165118Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-06-23/20140623T165118Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-30/20140730T224459Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-30/20140730T224459Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Wind:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;ooni_reports/wind-ooni-reports.tar.bz2&#34;&gt;Reports archive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Hol:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-24/20140724T164440Z-AS3329-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-24/20140724T164440Z-AS3329-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-24/20140724T160923Z-AS3329-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-24/20140724T160923Z-AS3329-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-24/20140724T161705Z-AS3329-dns_consistency-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-24/20140724T161705Z-AS3329-dns_consistency-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Cosmote:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-03/20140703T161600Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-03/20140703T161600Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Vodafone:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;ooni_reports/vodafone-ooni-reports.tar.bz2&#34;&gt;Reports archive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Wind mobile:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-04/20140704T025958Z-AS0-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-04/20140704T025958Z-AS0-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://api.ooni.io/reportFiles/2014-07-30/20140730T200818Z-AS15617-http_requests-v1-probe.yaml.gz&#34;&gt;http://api.ooni.io/reportFiles/2014-07-30/20140730T200818Z-AS15617-http_requests-v1-probe.yaml.gz&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;per-isp-analysis:d0c495f4479395eff703b25df5d2e963&#34;&gt;Per ISP analysis&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_blocking_per_isp.png&#34; alt=&#34;Blocking per ISP&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;forthnet:d0c495f4479395eff703b25df5d2e963&#34;&gt;Forthnet&lt;/h3&gt;
+
+&lt;p&gt;This ISP has blocked 96 entries (21.91%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;body_length_match: false
+body_proportion: 0.0
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {Cache-Control: null, Content-Type: null, Date: null,
+Expires: null,
+  Location: null, Pragma: null, Set-Cookie: null, Vary: null}
+headers_match: false
+input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (iPhone; U; CPU iPhone OS 3 1 2 like Mac OS X; en-us)
+        AppleWebKit/528.18
+          (KHTML, like Gecko) Mobile/7D11&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &#39;&#39;
+    code: 302
+    headers:
+    - - Connection
+      - [close]
+    - - Location
+      - [&#39;http://eeep.forthnetgroup.gr/&#39;]
+    - - Content-Length
+      - [&#39;0&#39;]
+    - - Server
+      - [BigIP]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Excerpt from DNS Consistency test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;control_resolver: 64.9.225.221:57004
+input: betguardian.me
+queries:
+- addrs: [109.68.33.64]
+  answers:
+  - [&amp;lt;RR name=betguardian.me type=A class=IN ttl=2407s auth=False&amp;gt;, &amp;lt;A
+    address=109.68.33.64
+      ttl=2407&amp;gt;]
+  query: &#39;[Query(&#39;&#39;betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id002 [64.9.225.221, 57004]
+- addrs: [62.1.46.55]
+  answers:
+  - [&amp;lt;RR name=betguardian.me type=A class=IN ttl=3600s auth=True&amp;gt;, &amp;lt;A
+    address=62.1.46.55
+      ttl=3600&amp;gt;]
+  query: &#39;[Query(&#39;&#39;betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id001 [192.168.122.1, 53]
+- addrs: [eeep.forthnet.gr]
+  answers:
+  - [&amp;lt;RR name=55.46.1.62.in-addr.arpa type=PTR class=IN ttl=86396s auth=False&amp;gt;,
+    &amp;lt;PTR
+      name=eeep.forthnet.gr ttl=86396&amp;gt;]
+  query: &#39;[Query(&#39;&#39;55.46.1.62.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id001
+- query: &#39;[Query(&#39;&#39;64.33.68.109.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id002
+tampering: {192.168.122.1: true}
+test_resolvers: [192.168.122.1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_forthnetgroup_gr.png&#34; alt=&#34;Forthnet EEEP Blocked website screenshot&#34; title=&#34;Forthnet EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;ote:d0c495f4479395eff703b25df5d2e963&#34;&gt;Ote&lt;/h3&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;body_length_match: false
+body_proportion: 0.13907389787503965
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {Accept-Ranges: null, Cache-Control: null, ETag: null,
+Expires: null,
+  Last-Modified: null, Pragma: null, Set-Cookie: null, Vary: null}
+headers_match: false
+input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; de; rv:1.9.2) Gecko/20100115
+        Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.0
+Transitional//EN\&amp;quot;&amp;gt;\r\
+      \n&amp;lt;HTML&amp;gt;\r\n&amp;lt;HEAD&amp;gt;\r\n &amp;lt;META content=\&amp;quot;IE=5.0000\&amp;quot;
+http-equiv=\&amp;quot;X-UA-Compatible\&amp;quot;\
+      &amp;gt;\r\n &amp;lt;TITLE&amp;gt;\u039C\u03AE
+      &amp;gt;\u0395\u03C0\u03B9\u03C4\u03C1\u03B5\u03C0\u03C4\u03AE\
+      \ \u03A0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7&amp;lt;/TITLE&amp;gt; \r\n&amp;lt;META
+http-equiv=\&amp;quot;\
+      Content-Type\&amp;quot; content=\&amp;quot;text/html; charset=iso-8859-7\&amp;quot;&amp;gt;\r\n&amp;lt;LINK
+href=\&amp;quot;files/styles.css\&amp;quot;\
+      \ rel=\&amp;quot;stylesheet\&amp;quot; type=\&amp;quot;text/css\&amp;quot;&amp;gt;\r\n&amp;lt;/HEAD&amp;gt; \r\n&amp;lt;BODY
+text=\&amp;quot;#000000\&amp;quot;\
+      \ topmargin=\&amp;quot;0\&amp;quot; leftmargin=\&amp;quot;0\&amp;quot; bgcolor=\&amp;quot;#eeeeee\&amp;quot; marginheight=&#39;0\&amp;quot;&#39;
+marginwidth=\&amp;quot;\
+      0\&amp;quot;&amp;gt;\r\n&amp;lt;TABLE width=\&amp;quot;100%\&amp;quot; height=\&amp;quot;100%\&amp;quot; border=\&amp;quot;0\&amp;quot;
+cellspacing=\&amp;quot;0\&amp;quot;\
+      \ cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n  &amp;lt;TBODY&amp;gt;\r\n  &amp;lt;TR&amp;gt;\r\n    &amp;lt;TD align=\&amp;quot;center\&amp;quot;
+valign=\&amp;quot;\
+      top\&amp;quot;&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\r\n      &amp;lt;TABLE width=\&amp;quot;700\&amp;quot; style=\&amp;quot;border: 2px solid
+rgb(202,\
+      \ 202, 202);\&amp;quot; \r\n      cellspacing=\&amp;quot;0\&amp;quot; cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n
+&amp;lt;TBODY&amp;gt;\r\
+      \n        &amp;lt;TR&amp;gt;\r\n          &amp;lt;TD&amp;gt;\r\n            &amp;lt;TABLE width=\&amp;quot;100%\&amp;quot;
+border=\&amp;quot;\
+      0\&amp;quot; cellspacing=\&amp;quot;0\&amp;quot; cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n              &amp;lt;TBODY&amp;gt;\r\n
+\
+      \        &amp;lt;TR&amp;gt;\r\n                &amp;lt;TD width=\&amp;quot;650\&amp;quot; height=\&amp;quot;70\&amp;quot;
+align=\&amp;quot;center\&amp;quot;\
+      \ background=\&amp;quot;files/BackHeader.gif\&amp;quot; valign=\&amp;quot;middle\&amp;quot; colspan=3&amp;gt;&amp;lt;FONT
+class=\&amp;quot;\
+      blueTitle\&amp;quot;&amp;gt;\u039C\u0397
+\u0395\u03A0\u0399\u03A4\u03A1\u0395\u03A0\u03A4\u0397\
+      \
+\u03A0\u03A1\u039F\u03A3\u0392\u0391\u03A3\u0397&amp;lt;/FONT&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;\r\n\
+      \              &amp;lt;TR&amp;gt;&amp;lt;/TR&amp;gt;\r\n              &amp;lt;TR&amp;gt;\r\n                &amp;lt;TD
+align=\&amp;quot;\
+      left\&amp;quot; background=\&amp;quot;files/BackLeft.jpg\&amp;quot; valign=\&amp;quot;bottom\&amp;quot;
+style=\&amp;quot;background-position:\
+      \ left bottom; background-repeat: no-repeat;\&amp;quot; bgcolor=\&amp;quot;#ffffff\&amp;quot;
+colspan=\&amp;quot;\
+      2\&amp;quot;&amp;gt;\r\n                  &amp;lt;CENTER&amp;gt;\r\n                  &amp;lt;TABLE&amp;gt;\r\n
+\
+      \            &amp;lt;TBODY&amp;gt;\r\n                    &amp;lt;TR&amp;gt;\r\n
+&amp;lt;TD&amp;gt;&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;lt;/TD&amp;gt;\r\
+      \n                      &amp;lt;TD&amp;gt;&amp;lt;FONT
+class=\&amp;quot;blue\&amp;quot;&amp;gt;\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u039C\u03B5\
+      \ \u03B2\u03AC\u03C3\u03B7 \u03B1\u03C0\u03CC\u03C6\u03B1\u03C3\u03B7
+\u03C4\
+      \u03B7\u03C2
+\u03B1\u03BD\u03B5\u03BE\u03AC\u03C1\u03C4\u03B7\u03C4\u03B7\u03C2\
+      \ \u03B4\u03B9\u03BF\u03B9\u03BA\u03B7\u03C4\u03B9\u03BA\u03AE\u03C2
+\u03B1\u03C1\
+      \u03C7\u03AE\u03C2 \&amp;quot;\u0395\u03C0\u03B9\u03C4\u03C1\u03BF\u03C0\u03AE
+\u0395\
+      \u03C0\u03BF\u03C0\u03C4\u03B5\u03AF\u03B1\u03C2 \u03BA\u03B1\u03B9
+\u0395\u03BB\
+      \u03AD\u03B3\u03C7\u03BF\u03C5
+\u03A0\u03B1\u03B9\u03B3\u03BD\u03AF\u03C9\u03BD\
+      \&amp;quot; (\u0395.\u0395.\u0395.\u03A0.), \u03BF
+\u03B9\u03C3\u03C4\u03CC\u03C4\u03BF\
+      \u03C0\u03BF\u03C2 \u03C0\u03BF\u03C5
+\u03B5\u03C0\u03B9\u03C7\u03B5\u03B9\u03C1\
+      \u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1
+\u03B5\u03C0\u03B9\u03C3\u03BA\u03B5\u03C6\
+      \u03B8\u03B5\u03AF\u03C4\u03B5 \u03AD\u03C7\u03B5\u03B9
+\u03B5\u03B3\u03B3\u03C1\
+      \u03B1\u03C6\u03B5\u03AF \u03C3\u03C4\u03BF\u03BD
+\u03BA\u03B1\u03C4\u03AC\u03BB\
+      \u03BF\u03B3\u03BF \u03B5\u03BA\u03B5\u03AF\u03BD\u03C9\u03BD
+\u03C0\u03BF\u03C5\
+      \ \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C1\u03BF\u03C5\u03BD
+\u03C5\u03C0\u03B7\
+      \u03C1\u03B5\u03C3\u03AF\u03B5\u03C2
+\u03C4\u03C5\u03C7\u03B5\u03C1\u03CE\u03BD\
+      \ \u03C0\u03B1\u03B9\u03B3\u03BD\u03AF\u03C9\u03BD \u03BA\u03B1\u03B9
+\u03C3\
+      \u03C4\u03BF\u03B9\u03C7\u03B7\u03BC\u03AC\u03C4\u03C9\u03BD
+\u03C7\u03C9\u03C1\
+      \u03AF\u03C2
+\u03AC\u03B4\u03B5\u03B9\u03B1.\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u039A\u03B1\u03C4\
+      \u03AC \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1, \u03BC\u03B5
+\u03B2\
+      \u03AC\u03C3\u03B7 \u03C4\u03B7\u03BD
+\u03BA\u03B5\u03AF\u03BC\u03B5\u03BD\u03B7\
+      \ \u03BD\u03BF\u03BC\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1, \u03B7
+\u03C0\u03C1\
+      \u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD
+\u03B9\u03C3\u03C4\
+      \u03CC\u03C4\u03BF\u03C0\u03BF \u03B1\u03C5\u03C4\u03CC
+\u03B4\u03B5\u03BD \u03B5\
+      \u03C0\u03B9\u03C4\u03C1\u03AD\u03C0\u03B5\u03C4\u03B1\u03B9.\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u0393\
+      \u03B9\u03B1
+\u03C0\u03B5\u03C1\u03B9\u03C3\u03C3\u03CC\u03C4\u03B5\u03C1\u03B5\
+  \u03C2 \u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2:
+&amp;lt;a\
+      \
+href=\&amp;quot;http://www.gamingcommission.gov.gr/index.php/el/\&amp;quot;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&amp;lt;/a&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\r\
+      \n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;/FONT&amp;gt;&amp;lt;/TD&amp;gt;\r\n
+&amp;lt;TD&amp;gt;&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;lt;/TD&amp;gt;\r\
+      \n
+\t\t&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/CENTER&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;\r\
+      \n&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;2631&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Apache/2.2.15 (CentOS)]
+    - - Last-Modified
+      - [&#39;Wed, 07 Aug 2013 11:24:33 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;81b85-a47-4e359c92631e1&amp;quot;&#39;]
+    - - Date
+      - [&#39;Wed, 04 Jun 2014 18:24:16 GMT&#39;]
+    - - Content-Type
+      - [text/html; charset=UTF-8]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Excerpt from DNS Consistency test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: www.betguardian.me
+queries:
+- addrs: [109.68.33.64]
+  answers:
+  - [&amp;lt;RR name=www.betguardian.me type=A class=IN ttl=14399s auth=False&amp;gt;, &amp;lt;A
+    address=109.68.33.64
+      ttl=14399&amp;gt;]
+  query: &#39;[Query(&#39;&#39;www.betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id002 [64.9.225.221, 57004]
+- addrs: [83.235.64.20]
+  answers:
+  - [&amp;lt;RR name=www.betguardian.me type=A class=IN ttl=1800s auth=True&amp;gt;, &amp;lt;A
+    address=83.235.64.20
+      ttl=1800&amp;gt;]
+  query: &#39;[Query(&#39;&#39;www.betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id001 [192.168.1.1, 53]
+- addrs: [eeep.otenet.gr]
+  answers:
+  - [&amp;lt;RR name=20.64.235.83.in-addr.arpa type=PTR class=IN ttl=86376s
+    auth=False&amp;gt;,
+    &amp;lt;PTR name=eeep.otenet.gr ttl=86376&amp;gt;]
+  query: &#39;[Query(&#39;&#39;20.64.235.83.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id001
+- failure: deferred_timeout_error
+  query: &#39;[Query(&#39;&#39;64.33.68.109.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id002
+- failure: deferred_timeout_error
+  query: &#39;[Query(&#39;&#39;www.betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: *id002
+- addrs: [109.68.33.64]
+  answers:
+  - [&amp;lt;RR name=www.betguardian.me type=A class=IN ttl=14395s auth=False&amp;gt;, &amp;lt;A
+    address=109.68.33.64
+      ttl=14395&amp;gt;]
+  query: &#39;[Query(&#39;&#39;www.betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: *id002
+- addrs: [83.235.64.20]
+  answers:
+  - [&amp;lt;RR name=www.betguardian.me type=A class=IN ttl=1793s auth=False&amp;gt;, &amp;lt;A
+    address=83.235.64.20
+      ttl=1793&amp;gt;]
+  query: &#39;[Query(&#39;&#39;www.betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id003 [192.168.1.1, 53]
+- addrs: [eeep.otenet.gr]
+  answers:
+  - [&amp;lt;RR name=20.64.235.83.in-addr.arpa type=PTR class=IN ttl=86368s
+    auth=False&amp;gt;,
+    &amp;lt;PTR name=eeep.otenet.gr ttl=86368&amp;gt;]
+  query: &#39;[Query(&#39;&#39;20.64.235.83.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id003
+- query: &#39;[Query(&#39;&#39;64.33.68.109.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id002
+tampering: {192.168.1.1: true}
+test_resolvers: [192.168.1.1]
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP has blocked 438 entries (100%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_otenet_gr.png&#34; alt=&#34;Ote EEEP Blocked website screenshot&#34; title=&#34;Ote EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;cyta:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cyta&lt;/h2&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7)
+        Gecko/20091221
+          Firefox/3.5.7&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.0
+Transitional//EN\&amp;quot;&amp;gt;\r\
+      \n&amp;lt;!-- saved from url=(0037)http://www.cyta.gr/misc/eeep_noaccess
+--&amp;gt;\r\n&amp;lt;!DOCTYPE\
+      \ html PUBLIC \&amp;quot;-//W3C//DTD XHTML 1.0 Strict//EN\&amp;quot;
+\&amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\&amp;quot;\
+      &amp;gt;\r\n&amp;lt;html\r\nlang=\&amp;quot;el\&amp;quot; xmlns=\&amp;quot;http://www.w3.org/1999/xhtml\&amp;quot;
+      &amp;gt;xmlns:fb=\&amp;quot;\
+      http://ogp.me/ns/fb#\&amp;quot;&amp;gt;\r\n&amp;lt;head&amp;gt;\r\n    &amp;lt;meta content=\&amp;quot;text/html;
+charset=utf-8\&amp;quot;\
+      \ http-equiv=\&amp;quot;content-type\&amp;quot;&amp;gt;\r\n    &amp;lt;meta content=\&amp;quot;IE=edge,chrome=1\&amp;quot;
+http-equiv=\&amp;quot;\
+      X-UA-Compatible\&amp;quot;&amp;gt;\r\n    &amp;lt;title&amp;gt;\u039C\u03B7
+\u03B4\u03C5\u03BD\u03B1\u03C4\
+      \u03AE \r\n\u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7&amp;lt;/title&amp;gt;\r\n
+&amp;lt;meta\
+      \ scheme=\&amp;quot;\&amp;quot; name=\&amp;quot;DESCRIPTION\&amp;quot; content=\&amp;quot;cyta\&amp;quot;&amp;gt;\r\n    &amp;lt;meta
+scheme=\&amp;quot;\&amp;quot;\
+      \ name=\&amp;quot;KEYWORDS\&amp;quot; content=\&amp;quot;cyta\&amp;quot;&amp;gt;\r\n    &amp;lt;meta name=\&amp;quot;viewport\&amp;quot;
+content=\&amp;quot;\
+      width=device-width,initial-scale=1\&amp;quot;&amp;gt;\r\n    &amp;lt;meta name=\&amp;quot;CODE_LANGUAGE\&amp;quot;
+content=\&amp;quot;\
+      C#\&amp;quot;&amp;gt;\r\n    &amp;lt;meta name=\&amp;quot;vs_defaultClientScript\&amp;quot;
+content=\&amp;quot;JavaScript\&amp;quot;&amp;gt;\r\
+      \n    &amp;lt;meta name=\&amp;quot;vs_targetSchema\&amp;quot;
+content=\&amp;quot;http://schemas.microsoft.com/intellisense/ie5\&amp;quot;\
+      &amp;gt;\r\n    &amp;lt;!-- CSS --&amp;gt;\r\n    &amp;lt;link rel=\&amp;quot;stylesheet\&amp;quot; type=\&amp;quot;text/css\&amp;quot;
+      &amp;gt;href=\&amp;quot;\
+      index_files/style.css\&amp;quot; media=\&amp;quot;all\&amp;quot;&amp;gt;\r\n    &amp;lt;link rel=\&amp;quot;Stylesheet\&amp;quot;
+type=\&amp;quot;\
+      text/css\&amp;quot; href=\&amp;quot;index_files/forms.css\&amp;quot; media=\&amp;quot;all\&amp;quot;&amp;gt;\r\n    &amp;lt;link
+rel=\&amp;quot;\
+      stylesheet\&amp;quot; type=\&amp;quot;text/css\&amp;quot; href=\&amp;quot;index_files/print.css\&amp;quot;
+media=\&amp;quot;print\&amp;quot;\
+      &amp;gt;\r\n    &amp;lt;!--[if lte IE 7]&amp;gt;&amp;lt;link rel=\&amp;quot;stylesheet\&amp;quot;
+      &amp;gt;href=\&amp;quot;/css/cyta/ie7.css\&amp;quot;\
+      \ type=\&amp;quot;text/css\&amp;quot; media=\&amp;quot;screen, projection\&amp;quot; /&amp;gt;&amp;lt;![endif]--&amp;gt;\r\n
+&amp;lt;!--\
+      \ Icon --&amp;gt;\r\n    &amp;lt;link rel=\&amp;quot;shortcut icon\&amp;quot; type=\&amp;quot;image/x-icon\&amp;quot;
+href=\&amp;quot;\
+      /img/cyta/favicon.ico\&amp;quot;&amp;gt;\r\n    &amp;lt;!-- Js --&amp;gt;\r\n    &amp;lt;link
+rel=\&amp;quot;stylesheet\&amp;quot;\
+      \ type=\&amp;quot;text/css\&amp;quot; href=\&amp;quot;index_files/VisitorIdentification.css\&amp;quot;&amp;gt;\r\n
+&amp;lt;meta\
+      \ name=\&amp;quot;GENERATOR\&amp;quot; content=\&amp;quot;MSHTML
+9.00.8112.16496\&amp;quot;&amp;gt;\r\n&amp;lt;/head&amp;gt;\r\n&amp;lt;body&amp;gt;\r\
+      \n    &amp;lt;form id=\&amp;quot;mainform\&amp;quot; method=\&amp;quot;post\&amp;quot; name=\&amp;quot;mainform\&amp;quot;
+action=\&amp;quot;eeep_noaccess\&amp;quot;\
+      &amp;gt;\r\n        &amp;lt;div class=\&amp;quot;wrapper\&amp;quot;&amp;gt;\r\n            &amp;lt;div style=\&amp;quot;padding:
+      &amp;gt;20px\
+      \ 0px 400px;\&amp;quot; class=\&amp;quot;errorpage\&amp;quot;&amp;gt;\r\n                &amp;lt;img
+src=\&amp;quot;index_files/eeep_noaccess.png\&amp;quot;\
+      &amp;gt;\r\n                &amp;lt;h3 style=\&amp;quot;margin-top: 50px;\&amp;quot;&amp;gt;\u0394\u03B5\u03BD
+      &amp;gt;\u03B5\
+      \u03AF\u03BD\u03B1\u03B9 \u03B4\u03C5\u03BD\u03B1\u03C4\u03AE \u03B7
+\u03C0\u03C1\
+      \u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD
+\u03B9\u03C3\u03C4\
+      \u03CC\u03C4\u03BF\u03C0\u03BF.&amp;lt;/h3&amp;gt;\r\n                &amp;lt;p
+style=\&amp;quot;font-size:\
+      \ 14px;\&amp;quot;&amp;gt;\r\n                    \u0397
+\u03B1\u03C0\u03B1\u03B3\u03CC\u03C1\
+      \u03B5\u03C5\u03C3\u03B7 \u03C4\u03B7\u03C2
+\u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\
+      \u03C3\u03B7\u03C2
+\u03B5\u03C0\u03B9\u03B2\u03AC\u03BB\u03BB\u03B5\u03C4\u03B1\
+      \u03B9 \u03B1\u03C0\u03CC \u03C4\u03BF \u03BD\u03CC\u03BC\u03BF
+\r\n4.002/2011\
+      \ \u03BA\u03B1\u03B9 \u03C4\u03B9\u03C2
+\u03B1\u03C0\u03BF\u03C6\u03AC\u03C3\
+      \u03B5\u03B9\u03C2 \u03C4\u03B7\u03C2
+\u0395\u03C0\u03B9\u03C4\u03C1\u03BF\u03C0\
+      \u03AE\u03C2 \u0395\u03C0\u03BF\u03C0\u03C4\u03B5\u03AF\u03B1\u03C2
+\u03BA\u03B1\
+      \u03B9 \u0395\u03BB\u03AD\u03B3\u03C7\u03BF\u03C5
+\u03A0\u03B1\u03B9\u03B3\u03BD\
+      \u03AF\u03C9\u03BD \r\n(\u0395.\u0395.\u0395.\u03A0.),
+\u03C4\u03C5\u03C7\u03CC\
+      \u03BD \u03C0\u03B1\u03C1\u03B1\u03B2\u03AF\u03B1\u03C3\u03B7
+\u03C4\u03C9\u03BD\
+      \ \u03BF\u03C0\u03BF\u03AF\u03C9\u03BD
+\u03B5\u03C0\u03B9\u03C3\u03CD\u03C1\u03B5\
+      \u03B9 \u03B1\u03C5\u03C3\u03C4\u03B7\u03C1\u03AD\u03C2
+\u03B4\u03B9\u03BF\u03B9\
+      \u03BA\u03B7\u03C4\u03B9\u03BA\u03AD\u03C2 \u03BA\u03B1\u03B9
+\r\n\u03C0\u03BF\
+      \u03B9\u03BD\u03B9\u03BA\u03AD\u03C2
+\u03BA\u03C5\u03C1\u03CE\u03C3\u03B5\u03B9\
+      \u03C2.\r\n                &amp;lt;/p&amp;gt;\r\n                &amp;lt;p style=\&amp;quot;font-size:
+14px;\&amp;quot;\
+      &amp;gt;\r\n                    \u0393\u03B9\u03B1
+      &amp;gt;\u03C0\u03B5\u03C1\u03B9\u03C3\u03C3\
+      \u03CC\u03C4\u03B5\u03C1\u03B5\u03C2
+\u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\
+      \u03C1\u03AF\u03B5\u03C2
+\u03B1\u03C0\u03B5\u03C5\u03B8\u03C5\u03BD\u03B8\u03B5\
+      \u03AF\u03C4\u03B5 \u03C3\u03C4\u03B7\u03BD
+\r\n\u03B9\u03C3\u03C4\u03BF\u03C3\
+      \u03B5\u03BB\u03AF\u03B4\u03B1 \u03C4\u03B7\u03C2
+\u0395.\u0395.\u0395.\u03A0\
+      .: &amp;lt;a href=\&amp;quot;http://www.gamingcommission.gov.gr/index.php/el/\&amp;quot;
+target=\&amp;quot;_blank\&amp;quot;\
+      &amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&amp;lt;/a&amp;gt;\r\n
+      &amp;gt;&amp;lt;/p&amp;gt;\r\
+      \n            &amp;lt;/div&amp;gt;\r\n        &amp;lt;/div&amp;gt;\r\n    &amp;lt;/form&amp;gt;\r\n    &amp;lt;script&amp;gt;\r\n
+\
+      \      (function (i, s, o, g, r, a, m) {\r\n
+i[&#39;GoogleAnalyticsObject&#39;]\
+      \ = r; i[r] = i[r] || function () {\r\n                (i[r].q = i[r].q
+|| []).push(arguments)\r\
+      \n            }, i[r].l = 1 * new Date(); a = s.createElement(o),\r\n
+\
+      \      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g;
+m.parentNode.insertBefore(a,\
+      \ m)\r\n        })(window, document, &#39;script&#39;,
+&#39;//www.google-analytics.com/analytics.js&#39;,\
+      \ &#39;ga&#39;);\r\n\r\n        ga(&#39;create&#39;, &#39;UA-43814796-1&#39;, &#39;cyta.gr&#39;);\r\n
+\
+\      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g;
+m.parentNode.insertBefore(a,\
+      \ m)\r\n        })(window, document, &#39;script&#39;,
+&#39;//www.google-analytics.com/analytics.js&#39;,\
+      \ &#39;ga&#39;);\r\n\r\n        ga(&#39;create&#39;, &#39;UA-43814796-1&#39;, &#39;cyta.gr&#39;);\r\n
+\
+      \  ga(&#39;send&#39;, &#39;pageview&#39;);\r\n    &amp;lt;/script&amp;gt;\r\n&amp;lt;/body&amp;gt;\r\n&amp;lt;/html&amp;gt;&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;3429&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Apache]
+    - - Last-Modified
+      - [&#39;Mon, 09 Sep 2013 12:44:47 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;40e99-d65-4e5f2c0d6edc0&amp;quot;&#39;]
+    - - Date
+      - [&#39;Mon, 23 Jun 2014 16:47:46 GMT&#39;]
+    - - Content-Type
+      - [text/html; charset=UTF-8]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP has blocked 357 entries (81.5%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_cyta_gr.png&#34; alt=&#34;Cyta EEEP Blocked website screenshot&#34; title=&#34;Cyta EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;At least 80 entries faulty responded with a 404 HTTP error&lt;/p&gt;
+
+&lt;p&gt;An example response of a URL that faulty responded with a 404 error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;agent: agent
+body_length_match: false
+body_proportion: 0.0
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {Content-Type: null, Location: null, Server: null}
+headers_match: false
+input: http://backgammon.betoto.com/backgammon.aspx
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115
+        Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://backgammon.betoto.com/backgammon.aspx
+  response:
+    body: &#39;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//IETF//DTD HTML 2.0//EN&amp;quot;&amp;gt;
+
+      &amp;lt;html&amp;gt;&amp;lt;head&amp;gt;
+
+      &amp;lt;title&amp;gt;404 Not Found&amp;lt;/title&amp;gt;
+
+      &amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;
+
+      &amp;lt;h1&amp;gt;Not Found&amp;lt;/h1&amp;gt;
+
+      &amp;lt;p&amp;gt;The requested URL /backgammon.aspx was not found on this server.&amp;lt;/p&amp;gt;
+
+      &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+
+      &#39;
+    code: 404
+    headers:
+    - - Date
+      - [&#39;Mon, 23 Jun 2014 16:47:46 GMT&#39;]
+    - - Content-Length
+      - [&#39;213&#39;]
+    - - Content-Type
+      - [text/html; charset=iso-8859-1]
+    - - Connection
+      - [close]
+    - - Server
+      - [Apache]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cyta introduces a Google Analytics user agent used to
+track users that are being redirected on their &lt;a href=&#34;http://www.cyta.gr/misc/eeep_noaccess&#34;&gt;blocking
+webpage&lt;/a&gt;. It is worth mentioning that
+Cyta uses a different user agent (UA) tag for user tracking purposes than on
+their &lt;a href=&#34;http://www.cyta.gr&#34;&gt;main website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;wind:d0c495f4479395eff703b25df5d2e963&#34;&gt;Wind&lt;/h3&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2)
+        Gecko/20100115
+          Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.01
+Transitional//EN\&amp;quot;\r\
+      \n\&amp;quot;http://www.w3.org/TR/html4/loose.dtd\&amp;quot;&amp;gt;\r\n&amp;lt;html&amp;gt;\r\n&amp;lt;head&amp;gt;\r\n&amp;lt;title&amp;gt;.:\
+      \ \u0391\u03C0\u03B1\u03B3\u03CC\u03C1\u03B5\u03C5\u03C3\u03B7
+\u03A0\u03C1\u03CC\
+      \u03C3\u03B2\u03B1\u03C3\u03B7\u03C2 :.&amp;lt;/title&amp;gt;\r\n&amp;lt;meta
+http-equiv=\&amp;quot;Content-Type\&amp;quot;\
+      \ content=\&amp;quot;text/html; charset=UTF-8\&amp;quot;&amp;gt;\r\n&amp;lt;style
+type=\&amp;quot;text/css\&amp;quot;&amp;gt;\r\n&amp;lt;!--\r\
+      \nbody
+{\r\n\tpadding:0px;\r\n\tmargin:0px;\r\n\tfont-family:Tahoma;\r\n\tfont-size:11pt;\r\
+      \n\tbackground-image:
+url(/img/wind_new_bg.jpg);\r\n\tbackground-repeat:repeat-x;\r\
+      \n\tbackground-position: center top; \r\n}\r\n\r\na
+{\r\n\tcolor:#02578E;\r\n\
+      \tcursor: pointer; cursor: hand;\r\n}\r\n\r\nTop
+{\r\n\tmargin:0;\r\n\theight:125px;\r\
+      \n\twidth:970px;\r\n\tmargin-bottom:20px;\r\n}\r\n\r\nLogo{\r\n\tfloat:left;\r\
+      \n\twidth:188px;\r\n}\r\n\r\n.style1 {\r\n\tfont-size:
+11pt;\r\n\tfont-weight:\
+      \ bold;\r\n}\r\n\r\n.style2 {color: #02578E}\r\n\r\n.main {\r\n\tmargin:
+30px\
+      \ 10px 10px 20px;\r\n\tpadding:10pt auto;\r\n\tline-spacing:
+110%;\r\n\tfont-size:\
+      \ 11pt;\r\n\ttext-align:
+justify;\r\n}\r\n\r\n.uline{\r\n\ttext-decoration:underline;\r\
+      \n\tfont-weight: bold;\r\n}\r\n--&amp;gt;\r\n&amp;lt;/style&amp;gt;\r\n&amp;lt;/head&amp;gt;\r\n&amp;lt;body
+class=\&amp;quot;\
+      body\&amp;quot;&amp;gt;\r\n\t&amp;lt;div class=\&amp;quot;Top\&amp;quot;&amp;gt;\r\n\t\t&amp;lt;div class=\&amp;quot;Logo\&amp;quot;&amp;gt;&amp;lt;img
+src=\&amp;quot;/img/wind_logo.jpg\&amp;quot;\
+      &amp;gt;&amp;lt;/div&amp;gt;\r\n\t&amp;lt;/div&amp;gt;\r\n\t&amp;lt;div class=\&amp;quot;main\&amp;quot;&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;&amp;lt;span
+      &amp;gt;class=\&amp;quot;style1\&amp;quot;\
+      &amp;gt;\u03A3\u03B7\u03BC\u03B1\u03BD\u03C4\u03B9\u03BA\u03AE
+      &amp;gt;\u03B5\u03BD\u03B7\u03BC\
+      \u03AD\u03C1\u03C9\u03C3\u03B7:&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;\u039C\u03B5
+\u03B2\u03AC\
+      \u03C3\u03B7 \u03C4\u03B7\u03BD 65/8/24.7.2013
+\u03B1\u03C0\u03CC\u03C6\u03B1\
+      \u03C3\u03B7 \u03C4\u03B7\u03C2
+&amp;lt;strong&amp;gt;\u0395\u03C0\u03B9\u03C4\u03C1\u03BF\
+      \u03C0\u03AE\u03C2 \u0395\u03C0\u03BF\u03C0\u03C4\u03B5\u03AF\u03B1\u03C2
+\u03BA\
+      \u03B1\u03B9 \u0395\u03BB\u03AD\u03B3\u03C7\u03BF\u03C5
+\u03A0\u03B1\u03B9\u03B3\
+      \u03BD\u03AF\u03C9\u03BD (\u0395.\u0395.\u0395.\u03A0.)&amp;lt;/strong&amp;gt;, \u03BF
+\u03B9\
+      \u03C3\u03C4\u03CC\u03C4\u03BF\u03C0\u03BF\u03C2 \u03C0\u03BF\u03C5
+\u03B5\u03C0\
+      \u03B9\u03C7\u03B5\u03B9\u03C1\u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1
+\u03B5\u03C0\
+      \u03B9\u03C3\u03BA\u03B5\u03C6\u03B8\u03B5\u03AF\u03C4\u03B5
+&amp;lt;strong&amp;gt;\u03C0\u03C1\
+      \u03BF\u03C3\u03C6\u03AD\u03C1\u03B5\u03B9
+\u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\
+      \u03AF\u03B5\u03C2 \u03C4\u03C5\u03C7\u03B5\u03C1\u03CE\u03BD
+\u03C0\u03B1\u03B9\
+      \u03B3\u03BD\u03AF\u03C9\u03BD \u03BA\u03B1\u03B9
+\u03C3\u03C4\u03BF\u03B9\u03C7\
+      \u03B7\u03BC\u03AC\u03C4\u03C9\u03BD &amp;lt;span
+class=&#39;uline&#39;&amp;gt;\u03C7\u03C9\u03C1\u03AF\
+      \u03C2 \u03AC\u03B4\u03B5\u03B9\u03B1&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;
+\u03C3\u03C4\u03B7\u03BD\
+      \
+\u0395\u03BB\u03BB\u03AC\u03B4\u03B1.&amp;lt;/p&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;\u039A\u03B1\u03C4\u03AC\
+      \ \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1, &amp;lt;strong&amp;gt;\u03B7
+\u03C0\u03C1\
+      \u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD
+\u03B9\u03C3\u03C4\
+      \u03CC\u03C4\u03BF\u03C0\u03BF \u03B1\u03C5\u03C4\u03CC
+\u03B4\u03B5\u03BD \u03B5\
+      \u03AF\u03BD\u03B1\u03B9
+\u03B5\u03C0\u03B9\u03C4\u03C1\u03B5\u03C0\u03C4\u03AE\
+      &amp;lt;/strong&amp;gt;, \u03CC\u03C0\u03C9\u03C2 \u03BA\u03B1\u03B9 \u03C3\u03B5
+\u03BA\u03AC\
+      \u03B8\u03B5 \u03B9\u03C3\u03C4\u03CC\u03C4\u03BF\u03C0\u03BF
+\u03C0\u03BF\u03C5\
+      \
+\u03C0\u03B5\u03C1\u03B9\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03C4\u03B1\
+      \u03B9 \u03C3\u03C4\u03BF\u03BD
+\u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03CC \u03BA\
+      \u03B1\u03C4\u03AC\u03BB\u03BF\u03B3\u03BF \u03C4\u03B7\u03C2
+\u0395.\u0395\
+      .\u0395.\u03A0.
+\u03A0\u03B5\u03C1\u03B9\u03C3\u03C3\u03CC\u03C4\u03B5\u03C1\
+      \u03B5\u03C2
+\u03BB\u03B5\u03C0\u03C4\u03BF\u03BC\u03AD\u03C1\u03B5\u03B9\u03B5\
+      \u03C2 \u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03AC \u03BC\u03B5
+\u03C4\u03B1\
+      \ \u03C0\u03B1\u03C1\u03B1\u03C0\u03AC\u03BD\u03C9
+\u03BA\u03B1\u03B8\u03CE\u03C2\
+      \ \u03BA\u03B1\u03B9 \u03C4\u03BF\u03BD \u03C0\u03BB\u03AE\u03C1\u03B7
+\u03BA\
+      \u03B1\u03C4\u03AC\u03BB\u03BF\u03B3\u03BF \u03C4\u03C9\u03BD
+\u03B1\u03C0\u03B1\
+      \u03B3\u03BF\u03C1\u03B5\u03C5\u03BC\u03AD\u03BD\u03C9\u03BD
+\u03B1\u03C0\u03CC\
+      \ \u03C4\u03B7\u03BD \u0395.\u0395.\u0395.\u03A0.
+\u03B9\u03C3\u03C4\u03BF\u03C4\
+      \u03CC\u03C0\u03C9\u03BD \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF\u03C4\u03B5
+\u03BD\
+      \u03B1 \u03B2\u03C1\u03B5\u03AF\u03C4\u03B5 \u03B5\u03B4\u03CE:  &amp;lt;a
+href=&#39;http://www.gamingcommission.gov.gr/index.php/el&#39;\
+      \
+target=&#39;_new&#39;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;\r\n\
+      \t\t\t&amp;lt;p&amp;gt;\u039C\u03B5
+\u03B5\u03BA\u03C4\u03AF\u03BC\u03B7\u03C3\u03B7,&amp;lt;br /&amp;gt;\r\
+      \n\t\t\tWIND
+\u0395\u03BB\u03BB\u03AC\u03C2\r\n\t\t\t&amp;lt;/p&amp;gt;\r\n\t&amp;lt;/div&amp;gt;\r\n&amp;lt;/body&amp;gt;\r\
+      \n&amp;lt;/html&amp;gt;\r\n&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;2395&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Tellas HTTP Server]
+    - - Last-Modified
+      - [&#39;Wed, 04 Sep 2013 06:55:41 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;1cf689-95b-4b277540&amp;quot;&#39;]
+    - - Date
+      - [&#39;Mon, 25 Aug 2014 11:42:53 GMT&#39;]
+    - - Content-Type
+      - [text/html]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP has blocked 325 entries (74.2%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind EEEP Blocked website screenshot&#34; title=&#34;Wind EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;At least 65 entries falsely responded with a 404 HTTP error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;agent: agent
+body_length_match: false
+body_proportion: 0.0
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {Content-Type: null, Date: null, Location: null}
+headers_match: false
+input: http://tatts.com/goldencasket
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2)
+        Gecko/20100115
+          Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://tatts.com/goldencasket
+  response:
+    body: &#39;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//IETF//DTD HTML 2.0//EN&amp;quot;&amp;gt;
+
+      &amp;lt;html&amp;gt;&amp;lt;head&amp;gt;
+
+      &amp;lt;title&amp;gt;404 Not Found&amp;lt;/title&amp;gt;
+
+      &amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;
+
+      &amp;lt;h1&amp;gt;Not Found&amp;lt;/h1&amp;gt;
+
+      &amp;lt;p&amp;gt;The requested URL /goldencasket was not found on this server.&amp;lt;/p&amp;gt;
+
+      &amp;lt;p&amp;gt;Additionally, a 404 Not Found
+
+      error was encountered while trying to use an ErrorDocument to handle the
+request.&amp;lt;/p&amp;gt;
+
+      &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+
+      &#39;
+    code: 404
+    headers:
+    - - Date
+      - [&#39;Mon, 25 Aug 2014 11:43:09 GMT&#39;]
+    - - Content-Length
+      - [&#39;329&#39;]
+    - - Content-Type
+      - [text/html; charset=iso-8859-1]
+    - - Connection
+      - [close]
+    - - Server
+      - [Tellas HTTP Server]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP uses Etag for tracking users which try to visit the blocked content.&lt;/p&gt;
+
+&lt;h3 id=&#34;hol:d0c495f4479395eff703b25df5d2e963&#34;&gt;HOL&lt;/h3&gt;
+
+&lt;p&gt;This ISP has blocked 438 entries (100%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7)
+        Gecko/20091221
+          Firefox/3.5.7&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &#39;&#39;
+    code: 301
+    headers:
+    - - Date
+      - [&#39;Thu, 24 Jul 2014 15:58:11 GMT&#39;]
+    - - Connection
+      - [close]
+    - - Content-Length
+      - [&#39;0&#39;]
+    - - Location
+      - [&#39;http://eeepnotice.hol.gr/&#39;]
+    - - Server
+      - [lighttpd/1.4.31]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Excerpt from DNS Consistency test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: betguardian.me
+queries:
+- addrs: [186.5.161.199]
+  answers:
+  - [&amp;lt;RR name=betguardian.me type=A class=IN ttl=14399s auth=False&amp;gt;, &amp;lt;A
+    address=186.5.161.199
+      ttl=14399&amp;gt;]
+  query: &#39;[Query(&#39;&#39;betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id002 [64.9.225.221, 57004]
+- addrs: [194.30.227.163]
+  answers:
+  - [&amp;lt;RR name=betguardian.me type=A class=IN ttl=3138s auth=False&amp;gt;, &amp;lt;A
+    address=194.30.227.163
+      ttl=3138&amp;gt;]
+  query: &#39;[Query(&#39;&#39;betguardian.me&#39;&#39;, 1, 1)]&#39;
+  query_type: A
+  resolver: &amp;amp;id001 [192.168.122.1, 53]
+- query: &#39;[Query(&#39;&#39;163.227.30.194.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id001
+- query: &#39;[Query(&#39;&#39;199.161.5.186.in-addr.arpa&#39;&#39;, 12, 1)]&#39;
+  query_type: PTR
+  resolver: *id002
+tampering: {192.168.122.1: reverse_match}
+test_resolvers: [192.168.122.1]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeepnotice_hol_gr.png&#34; alt=&#34;HOL EEEP Blocked website screenshot&#34; title=&#34;HOL EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;cosmote:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cosmote&lt;/h3&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (iPhone; U; CPU iPhone OS 3 1 2 like Mac OS X; en-us)
+        AppleWebKit/528.18
+          (KHTML, like Gecko) Mobile/7D11&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.0
+Transitional//EN\&amp;quot;&amp;gt;\r\
+      \n&amp;lt;HTML&amp;gt;\r\n&amp;lt;HEAD&amp;gt;\r\n &amp;lt;META content=\&amp;quot;IE=5.0000\&amp;quot;
+http-equiv=\&amp;quot;X-UA-Compatible\&amp;quot;\
+      &amp;gt;\r\n &amp;lt;TITLE&amp;gt;\u039C\u03AE
+      &amp;gt;\u0395\u03C0\u03B9\u03C4\u03C1\u03B5\u03C0\u03C4\u03AE\
+      \ \u03A0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7&amp;lt;/TITLE&amp;gt; \r\n&amp;lt;META
+http-equiv=\&amp;quot;\
+      Content-Type\&amp;quot; content=\&amp;quot;text/html; charset=iso-8859-7\&amp;quot;&amp;gt;\r\n&amp;lt;LINK
+href=\&amp;quot;files/styles.css\&amp;quot;\
+      \ rel=\&amp;quot;stylesheet\&amp;quot; type=\&amp;quot;text/css\&amp;quot;&amp;gt;\r\n&amp;lt;/HEAD&amp;gt; \r\n&amp;lt;BODY
+text=\&amp;quot;#000000\&amp;quot;\
+      \ topmargin=\&amp;quot;0\&amp;quot; leftmargin=\&amp;quot;0\&amp;quot; bgcolor=\&amp;quot;#eeeeee\&amp;quot; marginheight=&#39;0\&amp;quot;&#39;
+marginwidth=\&amp;quot;\
+      0\&amp;quot;&amp;gt;\r\n&amp;lt;TABLE width=\&amp;quot;100%\&amp;quot; height=\&amp;quot;100%\&amp;quot; border=\&amp;quot;0\&amp;quot;
+cellspacing=\&amp;quot;0\&amp;quot;\
+      \ cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n  &amp;lt;TBODY&amp;gt;\r\n  &amp;lt;TR&amp;gt;\r\n    &amp;lt;TD align=\&amp;quot;center\&amp;quot;
+valign=\&amp;quot;\
+      top\&amp;quot;&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\r\n      &amp;lt;TABLE width=\&amp;quot;700\&amp;quot; style=\&amp;quot;border: 2px solid
+rgb(202,\
+      \ 202, 202);\&amp;quot; \r\n      cellspacing=\&amp;quot;0\&amp;quot; cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n
+&amp;lt;TBODY&amp;gt;\r\
+      \n        &amp;lt;TR&amp;gt;\r\n          &amp;lt;TD&amp;gt;\r\n            &amp;lt;TABLE width=\&amp;quot;100%\&amp;quot;
+border=\&amp;quot;\
+      0\&amp;quot; cellspacing=\&amp;quot;0\&amp;quot; cellpadding=\&amp;quot;0\&amp;quot;&amp;gt;\r\n              &amp;lt;TBODY&amp;gt;\r\n
+\
+      \        &amp;lt;TR&amp;gt;\r\n                &amp;lt;TD width=\&amp;quot;650\&amp;quot; height=\&amp;quot;70\&amp;quot;
+align=\&amp;quot;center\&amp;quot;\
+      \ background=\&amp;quot;files/BackHeader.gif\&amp;quot; valign=\&amp;quot;middle\&amp;quot; colspan=3&amp;gt;&amp;lt;FONT
+class=\&amp;quot;\
+      blueTitle\&amp;quot;&amp;gt;\u039C\u0397
+\u0395\u03A0\u0399\u03A4\u03A1\u0395\u03A0\u03A4\u0397\
+      \
+\u03A0\u03A1\u039F\u03A3\u0392\u0391\u03A3\u0397&amp;lt;/FONT&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;\r\n\
+      \              &amp;lt;TR&amp;gt;&amp;lt;/TR&amp;gt;\r\n              &amp;lt;TR&amp;gt;\r\n                &amp;lt;TD
+align=\&amp;quot;\
+      left\&amp;quot; background=\&amp;quot;files/BackLeft.jpg\&amp;quot; valign=\&amp;quot;bottom\&amp;quot;
+style=\&amp;quot;background-position:\
+      \ left bottom; background-repeat: no-repeat;\&amp;quot; bgcolor=\&amp;quot;#ffffff\&amp;quot;
+colspan=\&amp;quot;\
+      2\&amp;quot;&amp;gt;\r\n                  &amp;lt;CENTER&amp;gt;\r\n                  &amp;lt;TABLE&amp;gt;\r\n
+\
+      \            &amp;lt;TBODY&amp;gt;\r\n                    &amp;lt;TR&amp;gt;\r\n
+&amp;lt;TD&amp;gt;&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;lt;/TD&amp;gt;\r\
+      \n                      &amp;lt;TD&amp;gt;&amp;lt;FONT
+class=\&amp;quot;blue\&amp;quot;&amp;gt;\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u039C\u03B5\
+      \ \u03B2\u03AC\u03C3\u03B7 \u03B1\u03C0\u03CC\u03C6\u03B1\u03C3\u03B7
+\u03C4\
+      \u03B7\u03C2
+\u03B1\u03BD\u03B5\u03BE\u03AC\u03C1\u03C4\u03B7\u03C4\u03B7\u03C2\
+      \ \u03B4\u03B9\u03BF\u03B9\u03BA\u03B7\u03C4\u03B9\u03BA\u03AE\u03C2
+\u03B1\u03C1\
+      \u03C7\u03AE\u03C2 \&amp;quot;\u0395\u03C0\u03B9\u03C4\u03C1\u03BF\u03C0\u03AE
+\u0395\
+      \u03C0\u03BF\u03C0\u03C4\u03B5\u03AF\u03B1\u03C2 \u03BA\u03B1\u03B9
+\u0395\u03BB\
+      \u03AD\u03B3\u03C7\u03BF\u03C5
+\u03A0\u03B1\u03B9\u03B3\u03BD\u03AF\u03C9\u03BD\
+      \&amp;quot; (\u0395.\u0395.\u0395.\u03A0.), \u03BF
+\u03B9\u03C3\u03C4\u03CC\u03C4\u03BF\
+      \u03C0\u03BF\u03C2 \u03C0\u03BF\u03C5
+\u03B5\u03C0\u03B9\u03C7\u03B5\u03B9\u03C1\
+      \u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1
+\u03B5\u03C0\u03B9\u03C3\u03BA\u03B5\u03C6\
+      \u03B8\u03B5\u03AF\u03C4\u03B5 \u03AD\u03C7\u03B5\u03B9
+\u03B5\u03B3\u03B3\u03C1\
+      \u03B1\u03C6\u03B5\u03AF \u03C3\u03C4\u03BF\u03BD
+\u03BA\u03B1\u03C4\u03AC\u03BB\
+      \u03BF\u03B3\u03BF \u03B5\u03BA\u03B5\u03AF\u03BD\u03C9\u03BD
+\u03C0\u03BF\u03C5\
+      \ \u03C0\u03C1\u03BF\u03C3\u03C6\u03AD\u03C1\u03BF\u03C5\u03BD
+\u03C5\u03C0\u03B7\
+      \u03C1\u03B5\u03C3\u03AF\u03B5\u03C2
+\u03C4\u03C5\u03C7\u03B5\u03C1\u03CE\u03BD\
+      \ \u03C0\u03B1\u03B9\u03B3\u03BD\u03AF\u03C9\u03BD \u03BA\u03B1\u03B9
+\u03C3\
+      \u03C4\u03BF\u03B9\u03C7\u03B7\u03BC\u03AC\u03C4\u03C9\u03BD
+\u03C7\u03C9\u03C1\
+      \u03AF\u03C2
+\u03AC\u03B4\u03B5\u03B9\u03B1.\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u039A\u03B1\u03C4\
+      \u03AC \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1, \u03BC\u03B5
+\u03B2\
+      \u03AC\u03C3\u03B7 \u03C4\u03B7\u03BD
+\u03BA\u03B5\u03AF\u03BC\u03B5\u03BD\u03B7\
+      \ \u03BD\u03BF\u03BC\u03BF\u03B8\u03B5\u03C3\u03AF\u03B1, \u03B7
+\u03C0\u03C1\
+      \u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD
+\u03B9\u03C3\u03C4\
+      \u03CC\u03C4\u03BF\u03C0\u03BF \u03B1\u03C5\u03C4\u03CC
+\u03B4\u03B5\u03BD \u03B5\
+      \u03C0\u03B9\u03C4\u03C1\u03AD\u03C0\u03B5\u03C4\u03B1\u03B9.\r\n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\u0393\
+      \u03B9\u03B1
+\u03C0\u03B5\u03C1\u03B9\u03C3\u03C3\u03CC\u03C4\u03B5\u03C1\u03B5\
+      \u03C2
+\u03C0\u03BB\u03B7\u03C1\u03BF\u03C6\u03BF\u03C1\u03AF\u03B5\u03C2: &amp;lt;a\
+      \
+href=\&amp;quot;http://www.gamingcommission.gov.gr/index.php/el/\&amp;quot;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&amp;lt;/a&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;\r\
+      \n\t\t\t&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;/FONT&amp;gt;&amp;lt;/TD&amp;gt;\r\n
+&amp;lt;TD&amp;gt;&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;amp;nbsp&amp;lt;/TD&amp;gt;\r\
+      \n
+\t\t&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/CENTER&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/TD&amp;gt;&amp;lt;/TR&amp;gt;&amp;lt;/TBODY&amp;gt;&amp;lt;/TABLE&amp;gt;&amp;lt;/BODY&amp;gt;&amp;lt;/HTML&amp;gt;\r\
+      \n&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;2631&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Apache/2.2.15 (CentOS)]
+    - - Last-Modified
+      - [&#39;Wed, 07 Aug 2013 11:24:33 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;81b85-a47-4e359c92631e1&amp;quot;&#39;]
+    - - Date
+      - [&#39;Thu, 03 Jul 2014 16:16:06 GMT&#39;]
+    - - Content-Type
+      - [text/html; charset=UTF-8]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP has blocked 438 entries (100%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_cosmote_gr.png&#34; alt=&#34;Cosmote EEEP Blocked website screenshot&#34; title=&#34;Cosmote EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;vodafone:d0c495f4479395eff703b25df5d2e963&#34;&gt;Vodafone&lt;/h3&gt;
+
+&lt;p&gt;This ISP has blocked 425 entries (97.03%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2)
+        Gecko/20100115
+          Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &#39;&#39;
+    code: 301
+    headers:
+    - - Date
+      - [&#39;Sun, 24 Aug 2014 17:33:56 GMT&#39;]
+    - - Connection
+      - [close]
+    - - Content-Length
+      - [&#39;0&#39;]
+    - - Location
+      - [&#39;http://1.2.3.50/ups/no_access_gambling.htm&#39;]
+    - - Server
+      - [WebProxy/6.0]
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.7)
+        Gecko/20091221
+          Firefox/3.5.7&#39;]
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_vodafone_gr.png&#34; alt=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; title=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This ISP uses DNS hijacking for 58 entries that EEEP has published either using
+HTTPS URLs on the blacklist or entries that not prefixed with &amp;lsquo;http://&amp;rsquo; For the
+rest of them it uses some kind of DPI/proxy, using Bluecoat&amp;rsquo;s WebProxy/6.0. If
+an HTTP URL does not exactly match the one published at the blacklist it is
+passed on to the original server, if it matches then the request gets
+redirected to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://1.2.3.50/ups/no_access_gambling.htm
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Another interesting case with this ISP is that for domains that it has filtered
+using DNS hijacking, subdomains of those do not even have an A record
+(dns_lookup_error). That means that some URLs on the blacklist that
+contain subdomains are not getting redirected to
+&amp;lsquo;&lt;a href=&#34;http://1.2.3.50/ups/no_access_gambling.htm&#39;&#34;&gt;http://1.2.3.50/ups/no_access_gambling.htm&#39;&lt;/a&gt;. They cannot be resolved
+and they are not accessible at all from clients.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -I rivernilecasino.net
+HTTP/1.1 302 Moved Temporarily
+Date: Sun, 31 Aug 2014 12:38:01 GMT
+Server: Microsoft-IIS/6.0
+X-Powered-By: ASP.NET
+X-AspNet-Version: 4.0.30319
+Location: http://www.vegaspartnerlounge.com/generic/informer.asp?Subgid=987228&amp;amp;Country=Greece&amp;amp;btag=rivernilecasino.net&amp;amp;btag2=16&amp;amp;btag3=&amp;amp;btag4=&amp;amp;btag5=
+Set-Cookie: RiverNileCasino=btag=rivernilecasino.net&amp;amp;btag2=16&amp;amp;btag3=&amp;amp;btag4=&amp;amp;btag5=; domain=rivernilecasino.net; expires=Mon, 01-Sep-2014 12:38:00 GMT; path=/; HttpOnly
+Cache-Control: private
+Content-Type: text/html; charset=utf-8
+Content-Length: 279
+Connection: keep-alive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By changing the URL to www.rivernilecasino.net (adding the www subdomain), the
+request also passes through to the legitimate server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -I www.rivernilecasino.net
+HTTP/1.1 302 Moved Temporarily
+Date: Sun, 31 Aug 2014 12:38:28 GMT
+Server: Microsoft-IIS/6.0
+X-Powered-By: ASP.NET
+X-AspNet-Version: 4.0.30319
+Location: http://www.vegaspartnerlounge.com/generic/informer.asp?Subgid=785274&amp;amp;Country=Greece&amp;amp;btag=www.rivernilecasino.net&amp;amp;btag2=16&amp;amp;btag3=&amp;amp;btag4=&amp;amp;btag5=
+Set-Cookie: RiverNileCasino=btag=www.rivernilecasino.net&amp;amp;btag2=16&amp;amp;btag3=&amp;amp;btag4=&amp;amp;btag5=; domain=rivernilecasino.net; expires=Mon, 01-Sep-2014 12:38:28 GMT; path=/; HttpOnly
+Cache-Control: private
+Content-Type: text/html; charset=utf-8
+Content-Length: 283
+Connection: keep-alive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finally using the same URL as the one published in the blacklist
+(www.rivernilecasino.net/index.asp), the request gets proxied via
+Vodafone ISP.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -I www.rivernilecasino.net/index.asp
+HTTP/1.1 301 Moved Permanently
+Server: WebProxy/6.0
+Date: Sun, 31 Aug 2014 12:39:01 GMT
+Content-Length: 0
+Location: http://1.2.3.50/ups/no_access_gambling.htm
+Connection: keep-alive
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;wind-mobile:d0c495f4479395eff703b25df5d2e963&#34;&gt;Wind mobile&lt;/h3&gt;
+
+&lt;p&gt;Excerpt from HTTP request test:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;input: http://betguardian.me/
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.7)
+        Gecko/20091221
+          Firefox/3.5.7&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://betguardian.me/
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.01
+Transitional//EN\&amp;quot;\r\
+      \n\&amp;quot;http://www.w3.org/TR/html4/loose.dtd\&amp;quot;&amp;gt;\r\n&amp;lt;html&amp;gt;\r\n&amp;lt;head&amp;gt;\r\n&amp;lt;title&amp;gt;.:\
+      \ \u0391\u03C0\u03B1\u03B3\u03CC\u03C1\u03B5\u03C5\u03C3\u03B7
+\u03A0\u03C1\u03CC\
+      \u03C3\u03B2\u03B1\u03C3\u03B7\u03C2 :.&amp;lt;/title&amp;gt;\r\n&amp;lt;meta
+http-equiv=\&amp;quot;Content-Type\&amp;quot;\
+      \ content=\&amp;quot;text/html; charset=UTF-8\&amp;quot;&amp;gt;\r\n&amp;lt;style
+type=\&amp;quot;text/css\&amp;quot;&amp;gt;\r\n&amp;lt;!--\r\
+      \nbody
+{\r\n\tpadding:0px;\r\n\tmargin:0px;\r\n\tfont-family:Tahoma;\r\n\tfont-size:11pt;\r\
+      \n\tbackground-image:
+url(/img/wind_new_bg.jpg);\r\n\tbackground-repeat:repeat-x;\r\
+      \n\tbackground-position: center top; \r\n}\r\n\r\na
+{\r\n\tcolor:#02578E;\r\n\
+      \tcursor: pointer; cursor: hand;\r\n}\r\n\r\nTop
+{\r\n\tmargin:0;\r\n\theight:125px;\r\
+      \n\twidth:970px;\r\n\tmargin-bottom:20px;\r\n}\r\n\r\nLogo{\r\n\tfloat:left;\r\
+      \n\twidth:188px;\r\n}\r\n\r\n.style1 {\r\n\tfont-size:
+11pt;\r\n\tfont-weight:\
+      \ bold;\r\n}\r\n\r\n.style2 {color: #02578E}\r\n\r\n.main {\r\n\tmargin:
+30px\
+      \ 10px 10px 20px;\r\n\tpadding:10pt auto;\r\n\tline-spacing:
+110%;\r\n\tfont-size:\
+      \ 11pt;\r\n\ttext-align:
+justify;\r\n}\r\n\r\n.uline{\r\n\ttext-decoration:underline;\r\
+      \n\tfont-weight: bold;\r\n}\r\n--&amp;gt;\r\n&amp;lt;/style&amp;gt;\r\n&amp;lt;/head&amp;gt;\r\n&amp;lt;body
+class=\&amp;quot;\
+      body\&amp;quot;&amp;gt;\r\n\t&amp;lt;div class=\&amp;quot;Top\&amp;quot;&amp;gt;\r\n\t\t&amp;lt;div class=\&amp;quot;Logo\&amp;quot;&amp;gt;&amp;lt;img
+src=\&amp;quot;/img/wind_logo.jpg\&amp;quot;\
+      &amp;gt;&amp;lt;/div&amp;gt;\r\n\t&amp;lt;/div&amp;gt;\r\n\t&amp;lt;div class=\&amp;quot;main\&amp;quot;&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;&amp;lt;span
+      &amp;gt;class=\&amp;quot;style1\&amp;quot;\
+      &amp;gt;\u03A3\u03B7\u03BC\u03B1\u03BD\u03C4\u03B9\u03BA\u03AE
+      &amp;gt;\u03B5\u03BD\u03B7\u03BC\
+      \u03AD\u03C1\u03C9\u03C3\u03B7:&amp;lt;/span&amp;gt;&amp;lt;/p&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;\u039C\u03B5
+\u03B2\u03AC\
+      \u03C3\u03B7 \u03C4\u03B7\u03BD 65/8/24.7.2013
+\u03B1\u03C0\u03CC\u03C6\u03B1\
+      \u03C3\u03B7 \u03C4\u03B7\u03C2
+&amp;lt;strong&amp;gt;\u0395\u03C0\u03B9\u03C4\u03C1\u03BF\
+      \u03C0\u03AE\u03C2 \u0395\u03C0\u03BF\u03C0\u03C4\u03B5\u03AF\u03B1\u03C2
+\u03BA\
+      \u03B1\u03B9 \u0395\u03BB\u03AD\u03B3\u03C7\u03BF\u03C5
+\u03A0\u03B1\u03B9\u03B3\
+      \u03BD\u03AF\u03C9\u03BD (\u0395.\u0395.\u0395.\u03A0.)&amp;lt;/strong&amp;gt;, \u03BF
+\u03B9\
+      \u03C3\u03C4\u03CC\u03C4\u03BF\u03C0\u03BF\u03C2 \u03C0\u03BF\u03C5
+\u03B5\u03C0\
+      \u03B9\u03C7\u03B5\u03B9\u03C1\u03B5\u03AF\u03C4\u03B5 \u03BD\u03B1
+\u03B5\u03C0\
+      \u03B9\u03C3\u03BA\u03B5\u03C6\u03B8\u03B5\u03AF\u03C4\u03B5
+&amp;lt;strong&amp;gt;\u03C0\u03C1\
+      \u03BF\u03C3\u03C6\u03AD\u03C1\u03B5\u03B9
+\u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\
+      \u03AF\u03B5\u03C2 \u03C4\u03C5\u03C7\u03B5\u03C1\u03CE\u03BD
+\u03C0\u03B1\u03B9\
+      \u03B3\u03BD\u03AF\u03C9\u03BD \u03BA\u03B1\u03B9
+\u03C3\u03C4\u03BF\u03B9\u03C7\
+      \u03B7\u03BC\u03AC\u03C4\u03C9\u03BD &amp;lt;span
+class=&#39;uline&#39;&amp;gt;\u03C7\u03C9\u03C1\u03AF\
+      \u03C2 \u03AC\u03B4\u03B5\u03B9\u03B1&amp;lt;/span&amp;gt;&amp;lt;/strong&amp;gt;
+\u03C3\u03C4\u03B7\u03BD\
+      \
+\u0395\u03BB\u03BB\u03AC\u03B4\u03B1.&amp;lt;/p&amp;gt;\r\n\t\t\t&amp;lt;p&amp;gt;\u039A\u03B1\u03C4\u03AC\
+      \ \u03C3\u03C5\u03BD\u03AD\u03C0\u03B5\u03B9\u03B1, &amp;lt;strong&amp;gt;\u03B7
+\u03C0\u03C1\
+      \u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03C4\u03BF\u03BD
+\u03B9\u03C3\u03C4\
+      \u03CC\u03C4\u03BF\u03C0\u03BF \u03B1\u03C5\u03C4\u03CC
+\u03B4\u03B5\u03BD \u03B5\
+      \u03AF\u03BD\u03B1\u03B9
+\u03B5\u03C0\u03B9\u03C4\u03C1\u03B5\u03C0\u03C4\u03AE\
+      &amp;lt;/strong&amp;gt;, \u03CC\u03C0\u03C9\u03C2 \u03BA\u03B1\u03B9 \u03C3\u03B5
+\u03BA\u03AC\
+      \u03B8\u03B5 \u03B9\u03C3\u03C4\u03CC\u03C4\u03BF\u03C0\u03BF
+\u03C0\u03BF\u03C5\
+      \
+\u03C0\u03B5\u03C1\u03B9\u03BB\u03B1\u03BC\u03B2\u03AC\u03BD\u03B5\u03C4\u03B1\
+      \u03B9 \u03C3\u03C4\u03BF\u03BD
+\u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03CC \u03BA\
+      \u03B1\u03C4\u03AC\u03BB\u03BF\u03B3\u03BF \u03C4\u03B7\u03C2
+\u0395.\u0395\
+      .\u0395.\u03A0.
+\u03A0\u03B5\u03C1\u03B9\u03C3\u03C3\u03CC\u03C4\u03B5\u03C1\
+      \u03B5\u03C2
+\u03BB\u03B5\u03C0\u03C4\u03BF\u03BC\u03AD\u03C1\u03B5\u03B9\u03B5\
+      \u03C2 \u03C3\u03C7\u03B5\u03C4\u03B9\u03BA\u03AC \u03BC\u03B5
+\u03C4\u03B1\
+      \ \u03C0\u03B1\u03C1\u03B1\u03C0\u03AC\u03BD\u03C9
+\u03BA\u03B1\u03B8\u03CE\u03C2\
+      \ \u03BA\u03B1\u03B9 \u03C4\u03BF\u03BD \u03C0\u03BB\u03AE\u03C1\u03B7
+\u03BA\
+      \u03B1\u03C4\u03AC\u03BB\u03BF\u03B3\u03BF \u03C4\u03C9\u03BD
+\u03B1\u03C0\u03B1\
+      \u03B3\u03BF\u03C1\u03B5\u03C5\u03BC\u03AD\u03BD\u03C9\u03BD
+\u03B1\u03C0\u03CC\
+      \ \u03C4\u03B7\u03BD \u0395.\u0395.\u0395.\u03A0.
+\u03B9\u03C3\u03C4\u03BF\u03C4\
+      \u03CC\u03C0\u03C9\u03BD \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF\u03C4\u03B5
+\u03BD\
+      \u03B1 \u03B2\u03C1\u03B5\u03AF\u03C4\u03B5 \u03B5\u03B4\u03CE:  &amp;lt;a
+href=&#39;http://www.gamingcommission.gov.gr/index.php/el&#39;\
+      \
+target=&#39;_new&#39;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;\r\n\
+      \t\t\t&amp;lt;p&amp;gt;\u039C\u03B5
+\u03B5\u03BA\u03C4\u03AF\u03BC\u03B7\u03C3\u03B7,&amp;lt;br /&amp;gt;\r\
+      \n\t\t\tWIND
+\u0395\u03BB\u03BB\u03AC\u03C2\r\n\t\t\t&amp;lt;/p&amp;gt;\r\n\t&amp;lt;/div&amp;gt;\r\n&amp;lt;/body&amp;gt;\r\
+      \n&amp;lt;/html&amp;gt;\r\n&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;2395&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Tellas HTTP Server]
+    - - Last-Modified
+      - [&#39;Wed, 04 Sep 2013 06:55:41 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;1cf689-95b-4b277540&amp;quot;&#39;]
+    - - Date
+      - [&#39;Fri, 04 Jul 2014 00:00:08 GMT&#39;]
+    - - Content-Type
+      - [text/html]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP has blocked 325 entries (74.2%) of the published &lt;a href=&#34;http://www.gamingcommission.gov.gr/images/Anakoinoseis/BlackList_EEEP_%2021022014.pdf&#34;&gt;blacklist&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind mobile EEEP Blocked website screenshot&#34; title=&#34;Wind mobile EEEP Blocked website screenshot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;At least 65 entries falsely responded with a 404 HTTP error.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2) Gecko/20100115
+        Firefox/3.6&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://tatts.com/nswlotteries
+  response:
+    body: &#39;&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//IETF//DTD HTML 2.0//EN&amp;quot;&amp;gt;
+
+      &amp;lt;html&amp;gt;&amp;lt;head&amp;gt;
+
+      &amp;lt;title&amp;gt;404 Not Found&amp;lt;/title&amp;gt;
+
+      &amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;
+
+      &amp;lt;h1&amp;gt;Not Found&amp;lt;/h1&amp;gt;
+
+      &amp;lt;p&amp;gt;The requested URL /nswlotteries was not found on this server.&amp;lt;/p&amp;gt;
+
+      &amp;lt;p&amp;gt;Additionally, a 404 Not Found
+
+      error was encountered while trying to use an ErrorDocument to handle the
+request.&amp;lt;/p&amp;gt;
+
+      &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+
+      &#39;
+    code: 404
+    headers:
+    - - Date
+      - [&#39;Fri, 04 Jul 2014 00:01:30 GMT&#39;]
+    - - Content-Length
+      - [&#39;329&#39;]
+    - - Content-Type
+      - [text/html; charset=iso-8859-1]
+    - - Connection
+      - [close]
+    - - Server
+      - [Tellas HTTP Server]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4 entries landing to the Wind support page: &amp;ldquo;landline services provided by Wind have been suspended&amp;rdquo;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;agent: agent
+body_length_match: false
+body_proportion: 0.0
+control_failure: null
+experiment_failure: null
+factor: 0.8
+headers_diff: !!set {Accept-Ranges: null, Content-Type: null, ETag: null,
+Last-Modified: null,
+  Location: null, Server: null}
+headers_match: false
+input: http://www.betoto.com
+requests:
+- request:
+    body: null
+    headers:
+    - - User-Agent
+      - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.7)
+        Gecko/20091221
+          Firefox/3.5.7&#39;]
+    method: GET
+    tor: {is_tor: false}
+    url: http://www.betoto.com
+  response:
+    body: &amp;quot;\uFEFF&amp;lt;!DOCTYPE HTML PUBLIC \&amp;quot;-//W3C//DTD HTML 4.01
+Transitional//EN\&amp;quot;\r\
+      \n\&amp;quot;http://www.w3.org/TR/html4/loose.dtd\&amp;quot;&amp;gt;\r\n&amp;lt;html&amp;gt;\r\n&amp;lt;head&amp;gt;\r\n&amp;lt;title&amp;gt;.:\
+      \ \u03A0\u03C1\u03BF\u03C3\u03C9\u03C1\u03B9\u03BD\u03AE
+\u03C6\u03C1\u03B1\u03B3\
+      \u03AE \u03C4\u03C9\u03BD
+\u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03B9\u03CE\u03BD\
+      \ \u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7\u03C2
+\u03C3\u03C4\u03BF\
+      \ Internet \u03BA\u03B1\u03B9
+\u03C3\u03C4\u03B1\u03B8\u03B5\u03C1\u03AE\u03C2\
+      \ \u03C4\u03B7\u03BB\u03B5\u03C6\u03C9\u03BD\u03AF\u03B1\u03C2
+:.&amp;lt;/title&amp;gt;\r\n\
+      &amp;lt;!-- &amp;lt;meta http-equiv=\&amp;quot;Content-Type\&amp;quot; content=\&amp;quot;text/html;
+charset=iso-8859-7\&amp;quot;\
+      &amp;gt; --&amp;gt;\r\n&amp;lt;meta http-equiv=\&amp;quot;Content-Type\&amp;quot; content=\&amp;quot;text/html;
+      &amp;gt; charset=UTF-8\&amp;quot;\
+      &amp;gt;\r\n&amp;lt;style type=\&amp;quot;text/css\&amp;quot;&amp;gt;\r\n&amp;lt;!--\r\n\r\n\r\nbody
+      &amp;gt;{\r\n\tpadding:0px;\r\
+      \n\tmargin:0px;\r\n\tfont-family:Tahoma;\r\n\tfont-size:11px;\r\n\tbackground-image:\
+      \
+url(/img/wind_new_bg.jpg);\r\n\tbackground-repeat:repeat-x;\r\n\tbackground-position:\
+      \ center top; \r\n\t\r\n}\r\na {\r\n\tcolor:#02578E;\r\n\tcursor:
+pointer; cursor:\
+      \ hand;\r\n\t}\r\n\t\r\n\r\nTop\r\n{\r\n\tmargin:0
+auto;\r\n\theight:125px;\r\
+      \n\twidth:970px;\r\n\tmargin-bottom:20px;\r\n}\r\nLogo{\r\n\tfloat:left;\r\n\
+      \twidth:188px;\r\n}\r\n.style1 {\r\n\tfont-size: 14px;\r\n\tfont-weight:
+bold;\r\
+      \n}\r\n.style2 {color: #02578E}\r\n\r\n\r\n\r\n--&amp;gt;\r\n&amp;lt;/style&amp;gt;\r\n&amp;lt;script
+type=\&amp;quot;\
+      text/javascript\&amp;quot;&amp;gt;  \r\ndocument.write(&#39;&amp;lt;style
+type=\&amp;quot;text\\/css\&amp;quot;&amp;gt;#toggle {\
+      \ display: none; }&amp;lt;\\/style&amp;gt;&#39;);  \r\n&amp;lt;/script&amp;gt;  \r\n&amp;lt;script
+type=\&amp;quot;text/javascript\&amp;quot;\
+      &amp;gt;  \r\nfunction switchMenu(obj) {  \r\n  var el =
+      &amp;gt;  document.getElementById(obj);\
+      \  \r\n  if ( el.style.display != \&amp;quot;none\&amp;quot; ) {  \r\n    el.style.display
+= &#39;none&#39;;\
+      \  \r\n  }  \r\n  else {  \r\n    el.style.display = &#39;block&#39;;  \r\n  }
+\r\n\
+      }  \r\nfunction hide() {  \r\n
+document.getElementById(\&amp;quot;toggle\&amp;quot;).style.display=&#39;none&#39;;\
+      \  \r\n  document.getElementById(\&amp;quot;toggle1\&amp;quot;).style.display=&#39;none&#39;; \r\n
+document.getElementById(\&amp;quot;\
+      toggle2\&amp;quot;).style.display=&#39;none&#39;; \r\n}
+\r\n&amp;lt;/script&amp;gt;\r\n\r\n&amp;lt;/head&amp;gt;\r\n\r\n\
+      &amp;lt;body class=\&amp;quot;body\&amp;quot; onload=\&amp;quot;hide();\&amp;quot;&amp;gt;\r\n\t\t&amp;lt;div
+class=\&amp;quot;Top\&amp;quot;&amp;gt;\r\n\t\t\t\
+      &amp;lt;div
+class=\&amp;quot;Logo\&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;&amp;amp;nbsp;\r\
+      \n\t\t\t&amp;lt;img
+src=\&amp;quot;/img/wind_logo.jpg\&amp;quot;&amp;gt;&amp;lt;/td&amp;gt;\r\n\t\t&amp;lt;/div&amp;gt;\r\n\t\t&amp;lt;/div&amp;gt;\r\n\
+      \t\t&amp;lt;table width=\&amp;quot;100%\&amp;quot;&amp;gt;\r\n\t\t\t\t&amp;lt;tr&amp;gt;\r\n\t\t\t\t\t&amp;lt;td
+width=\&amp;quot;15%\&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/td&amp;gt;\r\
+      \n\t\t\t\t\t&amp;lt;td width=\&amp;quot;76%\&amp;quot;&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;BR&amp;gt;&amp;lt;p&amp;gt;&amp;lt;span
+class=\&amp;quot;style1\&amp;quot;&amp;gt;\u03A3\u03B7\
+      \u03BC\u03B1\u03BD\u03C4\u03B9\u03BA\u03AE
+\u03B5\u03BD\u03B7\u03BC\u03AD\u03C1\
+      \u03C9\u03C3\u03B7:&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt;\r\n\t\t\t\t     &amp;lt;br&amp;gt;\r\n\u03A3\u03B1\u03C2
+\u03B5\
+      \u03BD\u03B7\u03BC\u03B5\u03C1\u03CE\u03BD\u03BF\u03C5\u03BC\u03B5
+\u03C0\u03C9\
+      \u03C2 &amp;lt;strong&amp;gt;\u03AD\u03C7\u03B5\u03B9
+\u03B5\u03BD\u03B5\u03C1\u03B3\u03BF\
+      \u03C0\u03BF\u03B9\u03B7\u03B8\u03B5\u03AF \u03B7
+\u03C0\u03C1\u03BF\u03C3\u03C9\
+      \u03C1\u03B9\u03BD\u03AE \u03C6\u03C1\u03B1\u03B3\u03AE
+\u03C4\u03C9\u03BD \u03C5\
+      \u03C0\u03B7\u03C1\u03B5\u03C3\u03B9\u03CE\u03BD
+\u03C0\u03C1\u03CC\u03C3\u03B2\
+      \u03B1\u03C3\u03B7\u03C2 \u03C3\u03C4\u03BF Internet \u03BA\u03B1\u03B9
+\u03C3\
+      \u03C4\u03B1\u03B8\u03B5\u03C1\u03AE\u03C2
+\u03C4\u03B7\u03BB\u03B5\u03C6\u03C9\
+      \u03BD\u03AF\u03B1\u03C2&amp;lt;/strong&amp;gt; \u03C0\u03BF\u03C5
+\u03BB\u03B1\u03BC\u03B2\
+      \u03AC\u03BD\u03B5\u03C4\u03B5 \u03B1\u03C0\u03CC \u03C4\u03B7 Wind.
+\u039F\
+      \ \u03BB\u03CC\u03B3\u03BF\u03C2 \u03C4\u03B7\u03C2
+\u03C6\u03C1\u03B1\u03B3\
+      \u03AE\u03C2 \u03BC\u03C0\u03BF\u03C1\u03B5\u03AF \u03BD\u03B1
+\u03B5\u03AF\u03BD\
+      \u03B1\u03B9:&amp;lt;/p&amp;gt;\r\n\t\t\t\t\t  &amp;lt;ol&amp;gt;\r\n\t\t\t\t\t
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;\u039B\u03B7\
+      \u03BE\u03B9\u03C0\u03C1\u03CC\u03B8\u03B5\u03C3\u03BC\u03B5\u03C2
+\u03BF\u03C6\
+      \u03B5\u03B9\u03BB\u03AD\u03C2&amp;lt;/strong&amp;gt; \u03AE\r\n\t\t\t\t\t
+&amp;lt;/li&amp;gt;\r\n\t\t\
+      \t            &amp;lt;li&amp;gt; &amp;lt;strong&amp;gt;\u03A7\u03C1\u03AE\u03C3\u03B7
+\u03C4\u03B7\u03C2\
+      \ \u03C5\u03C0\u03B7\u03C1\u03B5\u03C3\u03AF\u03B1\u03C2
+\u03C0\u03BF\u03C5\
+      \
+\u03B5\u03BD\u03B1\u03BD\u03C4\u03B9\u03CE\u03BD\u03B5\u03C4\u03B1\u03B9
+\u03BC\
+      \u03B5 \u03C4\u03BF\u03C5\u03C2 \u03CC\u03C1\u03BF\u03C5\u03C2
+\u03C7\u03C1\u03AE\
+      \u03C3\u03B7\u03C2&amp;lt;/strong&amp;gt;
+(\u03B1\u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE\
+      \ \u03BC\u03B1\u03B6\u03B9\u03BA\u03CE\u03BD mail -spam-,
+\u03B5\u03C0\u03B9\
+      \u03B8\u03AD\u03C3\u03B5\u03B9\u03C2 \u03C3\u03B5
+\u03C3\u03C5\u03BD\u03B4\u03B5\
+      \u03B4\u03B5\u03BC\u03AD\u03BD\u03BF\u03C5\u03C2
+\u03C7\u03C1\u03AE\u03C3\u03C4\
+      \u03B5\u03C2 -attacks- \u03BA\u03BB\u03C0)\r\n
+\r\n\
+      \t\t\t            &amp;lt;/li&amp;gt;\r\n\t\t\t\t\t  &amp;lt;/ol&amp;gt;\r\n
+\u03A3\
+      \u03C4\u03B7\u03BD \u03C0\u03B5\u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7
+\u03C4\
+      \u03C9\u03BD
+\u03BB\u03B7\u03BE\u03B9\u03C0\u03C1\u03CC\u03B8\u03B5\u03C3\u03BC\
+      \u03C9\u03BD \u03BF\u03C6\u03B5\u03B9\u03BB\u03CE\u03BD,
+\u03C0\u03B1\u03C1\u03B1\
+      \u03BA\u03B1\u03BB\u03BF\u03CD\u03BC\u03B5 \u03BD\u03B1
+\u03C0\u03C1\u03BF\u03C7\
+      \u03C9\u03C1\u03AE\u03C3\u03B5\u03C4\u03B5 \u03AC\u03BC\u03B5\u03C3\u03B1
+\u03C3\
+      \u03C4\u03B7\u03BD \u03B5\u03BE\u03CC\u03C6\u03BB\u03B7\u03C3\u03AE
+\u03C4\u03BF\
+      \u03C5\u03C2 \u03BC\u03B5 \u03AD\u03BD\u03B1\u03BD \u03B1\u03C0\u03CC
+\u03C4\
+      \u03BF\u03C5\u03C2
+\u03B4\u03B9\u03B1\u03B8\u03AD\u03C3\u03B9\u03BC\u03BF\u03C5\
+      \u03C2 \u03C4\u03C1\u03CC\u03C0\u03BF\u03C5\u03C2
+\u03C0\u03BB\u03B7\u03C1\u03C9\
+      \u03BC\u03AE\u03C2:\r\n                   \r\n&amp;lt;p&amp;gt;&amp;lt;a
+onclick=\&amp;quot;switchMenu(&#39;toggle&#39;);\&amp;quot;\
+      \ title=\&amp;quot;\u0394\u03B5\u03AF\u03C4\u03B5 \u03C4\u03BF\u03C5\u03C2
+\u03B4\u03B9\
+      \u03B1\u03B8\u03AD\u03C3\u03B9\u03BC\u03BF\u03C5\u03C2
+\u03C4\u03C1\u03CC\u03C0\
+      \u03BF\u03C5\u03C2 \u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE\u03C2\&amp;quot;
+onMouseOver=\&amp;quot;\
+      this.style.color = &#39;#C71B37&#39;\&amp;quot; onMouseOut=\&amp;quot;this.style.color =
+&#39;#02578E&#39;\&amp;quot;&amp;gt;\r\
+      \n&amp;lt;b&amp;gt;&amp;lt;u&amp;gt;[+]
+\xAB\u0394\u03B9\u03B1\u03B8\u03AD\u03C3\u03B9\u03BC\u03BF\u03B9\
+      \ \u03C4\u03C1\u03CC\u03C0\u03BF\u03B9
+\u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE\
+      \u03C2\xBB&amp;lt;/u&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\r\n&amp;lt;DIV id=\&amp;quot;toggle\&amp;quot;&amp;gt;\r\n&amp;lt;ol&amp;gt;
+\
+      \      \r\n\t&amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;\u0395\u03BE\u03CC\u03C6\u03BB\u03B7\
+      \u03C3\u03B7 \u03C3\u03B5
+\u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\u03B7\u03BC\u03B1\
+      \ Wind &amp;lt;u&amp;gt;(\u03C3\u03C5\u03C3\u03C4\u03AE\u03BD\u03B5\u03C4\u03B1\u03B9
+\u03B3\
+      \u03B9\u03B1 \u03B3\u03C1\u03AE\u03B3\u03BF\u03C1\u03B7
+\u03B5\u03BE\u03C5\u03C0\
+      \u03B7\u03C1\u03AD\u03C4\u03B7\u03C3\u03B7)&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;\
+      style2\&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;\u039C\u03AD\u03C3\u03C9
+\u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\
+      \u03B9\u03BA\u03CE\u03BD \u03BA\u03B1\u03C1\u03C4\u03CE\u03BD
+\u03BC\u03B5 \u03B5\
+      \u03C0\u03B9\u03C4\u03CC\u03C0\u03BF\u03C5
+\u03C7\u03C1\u03AD\u03C9\u03C3\u03B7\
+      \ \u03C3\u03B5 \u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\u03B7\u03BC\u03B1
+Wind&amp;lt;/strong&amp;gt;\
+      \ (Visa, Mastercard,
+\u0395\u03B8\u03BD\u03BF\u03BA\u03AC\u03C1\u03C4\u03B1\
+      , American Express, Eurocard \u03BA\u03B1\u03B9 Diners) \u03AE
+\u03BC\u03B5\
+      \ &amp;lt;strong&amp;gt;\u03AC\u03BC\u03B5\u03C3\u03B7
+\u03C7\u03C1\u03AD\u03C9\u03C3\u03B7\
+      &amp;lt;/strong&amp;gt; \u03C4\u03B7\u03C2
+\u03C0\u03B9\u03C3\u03C4\u03C9\u03C4\u03B9\u03BA\
+      \u03AE\u03C2 \u03C3\u03B1\u03C2 \u03BA\u03AC\u03C1\u03C4\u03B1\u03C2
+(Visa,\
+      \ Mastercard \u03BA\u03B1\u03B9 Diners),
+\u03BA\u03B1\u03BB\u03CE\u03BD\u03C4\
+      \u03B1\u03C2 \u03BC\u03B1\u03C2 \u03C3\u03C4\u03BF 1215
+\u03B1\u03C0\u03CC \u03BA\
+      \u03B9\u03BD\u03B7\u03C4\u03CC WIND \u03C7\u03C9\u03C1\u03AF\u03C2
+\u03C7\u03C1\
+      \u03AD\u03C9\u03C3\u03B7 \u03AE \u03C3\u03C4\u03BF 210-5100600
+(\u0394\u03B5\
+      \u03C5\u03C4\u03AD\u03C1\u03B1-\u03A0\u03B1\u03C1\u03B1\u03C3\u03BA\u03B5\u03C5\
+      \u03AE 08:00-17:00)&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;\u03A3\u03C4\u03B1&amp;lt;strong&amp;gt;\
+      \
+\u03C5\u03C0\u03BF\u03BA\u03B1\u03C4\u03B1\u03C3\u03C4\u03AE\u03BC\u03B1\u03C4\
+      \u03B1 \u03C4\u03C9\u03BD
+\u03C4\u03C1\u03B1\u03C0\u03B5\u03B6\u03CE\u03BD&amp;lt;/strong&amp;gt;:\
+      \ \u0395\u03B8\u03BD\u03B9\u03BA\u03AE, EFG Eurobank-Ergasias, Alpha
+Bank, T\
+      \ Bank, Marfin-\u0395\u03B3\u03BD\u03B1\u03C4\u03AF\u03B1,
+\u039A\u03CD\u03C0\
+      \u03C1\u03BF\u03C5, \u0391\u03B3\u03C1\u03BF\u03C4\u03B9\u03BA\u03AE,
+\u0395\
+      \u03BC\u03C0\u03BF\u03C1\u03B9\u03BA\u03AE, Probank \u03BA\u03B1\u03B9
+\u03A4\
+      \u03B1\u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B9\u03BA\u03CC
+\u03A4\u03B1\u03BC\
+      \u03B9\u03B5\u03C5\u03C4\u03AE\u03C1\u03B9\u03BF
+\u03C0\u03C1\u03BF\u03C3\u03BA\
+      \u03BF\u03BC\u03AF\u03B6\u03BF\u03BD\u03C4\u03B1\u03C2 \u03C4\u03BF
+\u03BB\u03BF\
+      \u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03CC
+\u03C3\u03B1\u03C2\r\n\t&amp;lt;li\
+      \ class=\&amp;quot;style2\&amp;quot;&amp;gt;\u03A3\u03C4\u03B1&amp;lt;strong&amp;gt;
+\u03C5\u03C0\u03BF\u03BA\u03B1\
+      \u03C4\u03B1\u03C3\u03C4\u03AE\u03BC\u03B1\u03C4\u03B1
+\u0395\u039B\u03A4\u0391\
+      &amp;lt;/strong&amp;gt;,
+\u03C0\u03C1\u03BF\u03C3\u03BA\u03BF\u03BC\u03AF\u03B6\u03BF\u03BD\
+      \u03C4\u03B1\u03C2 \u03C4\u03BF
+\u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\
+      \u03BC\u03CC \u03C3\u03B1\u03C2&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\
+      \u03C3\u03C9 &amp;lt;strong&amp;gt;web-banking&amp;lt;/strong&amp;gt; \u03C4\u03C9\u03BD
+\u03C4\u03C1\u03B1\
+      \u03C0\u03B5\u03B6\u03CE\u03BD \u0395\u03B8\u03BD\u03B9\u03BA\u03AE, EFG
+Eurobank-Ergasias,\
+      \ Alpha Bank, Marfin-\u0395\u03B3\u03BD\u03B1\u03C4\u03AF\u03B1,
+\u039A\u03CD\
+      \u03C0\u03C1\u03BF\u03C5,
+\u03A0\u03B5\u03B9\u03C1\u03B1\u03B9\u03CE\u03C2,\
+      \ \u0391\u03B3\u03C1\u03BF\u03C4\u03B9\u03BA\u03AE,
+\u0395\u03BC\u03C0\u03BF\
+      \u03C1\u03B9\u03BA\u03AE, HSBC \u03BA\u03B1\u03B9
+\u03A4\u03B1\u03C7\u03C5\u03B4\
+      \u03C1\u03BF\u03BC\u03B9\u03BA\u03CC
+\u03A4\u03B1\u03BC\u03B9\u03B5\u03C5\u03C4\
+      \u03AE\u03C1\u03B9\u03BF&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\u03C3\
+      \u03C9&amp;lt;strong&amp;gt; phone-banking&amp;lt;/strong&amp;gt; \u03C4\u03C9\u03BD
+\u03C4\u03C1\u03B1\u03C0\
+      \u03B5\u03B6\u03CE\u03BD EFG Eurobank-Ergasias, Alpha Bank,
+Marfin-\u0395\u03B3\
+      \u03BD\u03B1\u03C4\u03AF\u03B1, \u039A\u03CD\u03C0\u03C1\u03BF\u03C5,
+\u03A0\
+      \u03B5\u03B9\u03C1\u03B1\u03B9\u03CE\u03C2 \u03BA\u03B1\u03B9
+HSBC&amp;lt;/li&amp;gt;\r\n\
+      \    &amp;lt;li class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\u03C3\u03C9 \u03C4\u03C9\u03BD
+\u03B1\
+      \u03C5\u03C4\u03CC\u03BC\u03B1\u03C4\u03C9\u03BD
+\u03BC\u03B7\u03C7\u03B1\u03BD\
+      \u03B7\u03BC\u03AC\u03C4\u03C9\u03BD&amp;lt;strong&amp;gt; Easy Pay&amp;lt;/strong&amp;gt;
+\u03C4\u03B7\u03C2\
+      \ \u03A4\u03C1\u03AC\u03C0\u03B5\u03B6\u03B1\u03C2
+\u03A0\u03B5\u03B9\u03C1\u03B1\
+      \u03B9\u03CE\u03C2&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\u03C3\u03C9\
+      \ &amp;lt;strong&amp;gt;winbank&amp;lt;/strong&amp;gt; easypay \u03C4\u03B7\u03C2
+\u03A0\u03B5\u03B9\u03C1\
+      \u03B1\u03B9\u03CE\u03C2&amp;lt;/li&amp;gt;\r\n    &amp;lt;li
+class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\u03C3\
+      \u03C9 \u03C4\u03BF\u03C5&amp;lt;strong&amp;gt;
+\u03B4\u03B9\u03BA\u03C4\u03CD\u03BF\u03C5\
+      \ \u0391\u03A4\u039C&amp;lt;/strong&amp;gt; \u03C4\u03C9\u03BD
+\u03C4\u03C1\u03B1\u03C0\u03B5\
+      \u03B6\u03CE\u03BD \u0395\u03B8\u03BD\u03B9\u03BA\u03AE, Alpha Bank,
+\u0391\u03B3\
+      \u03C1\u03BF\u03C4\u03B9\u03BA\u03AE, Probank \u03BA\u03B1\u03B9
+\u03A4\u03B1\
+      \u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B9\u03BA\u03CC
+\u03A4\u03B1\u03BC\u03B9\
+      \u03B5\u03C5\u03C4\u03AE\u03C1\u03B9\u03BF, \u03BC\u03B5
+\u03C7\u03C1\u03AE\u03C3\
+      \u03B7 \u03C4\u03BF\u03C5 \u039A\u03C9\u03B4\u03B9\u03BA\u03BF\u03CD
+\u03A0\u03BB\
+      \u03B7\u03C1\u03C9\u03BC\u03AE\u03C2 \u0391\u03A4\u039C
+\u03C0\u03BF\u03C5 \u03B1\
+      \u03BD\u03B1\u03B3\u03C1\u03AC\u03C6\u03B5\u03C4\u03B1\u03B9
+\u03C3\u03C4\u03B7\
+      \u03BD \u03C0\u03C1\u03CE\u03C4\u03B7
+\u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03C4\
+      \u03BF\u03C5
+\u03BB\u03BF\u03B3\u03B1\u03C1\u03B9\u03B1\u03C3\u03BC\u03BF\u03CD\
+      &amp;lt;/li&amp;gt;\r\n    &amp;lt;li class=\&amp;quot;style2\&amp;quot;&amp;gt;\u039C\u03AD\u03C3\u03C9
+\u03C4\u03BF\u03C5\
+      &amp;lt;strong&amp;gt; \u0394\u03B9\u03BA\u03C4\u03CD\u03BF\u03C5
+\u0391\u03C5\u03C4\u03CC\
+      \u03BC\u03B1\u03C4\u03C9\u03BD \u039A\u03AD\u03BD\u03C4\u03C1\u03C9\u03BD
+\u03A0\
+      \u03BB\u03B7\u03C1\u03C9\u03BC\u03CE\u03BD&amp;lt;/strong&amp;gt; (APS)
+\u03C4\u03BF\u03C5\
+      \
+\u03A4\u03B1\u03C7\u03C5\u03B4\u03C1\u03BF\u03BC\u03B9\u03BA\u03BF\u03CD
+\u03A4\
+      \u03B1\u03BC\u03B9\u03B5\u03C5\u03C4\u03B7\u03C1\u03AF\u03BF\u03C5&amp;lt;/li&amp;gt;\r\n\
+      &amp;lt;/ol&amp;gt;\r\n\r\n&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\r\n\r\n  \r\n  \r\n&amp;lt;span
+class=\&amp;quot;style2\&amp;quot;&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;u&amp;gt;\u03A0\
+      \u03C1\u03BF\u03C3\u03BF\u03C7\u03AE:&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt; \u03A3\u03B5
+\u03C0\u03B5\
+      \u03C1\u03AF\u03C0\u03C4\u03C9\u03C3\u03B7 \u03C0\u03BF\u03C5
+&amp;lt;strong&amp;gt;\u03B4\
+      \u03B5\u03BD&amp;lt;/strong&amp;gt;
+\u03C0\u03C1\u03BF\u03C7\u03C9\u03C1\u03AE\u03C3\u03B5\
+      \u03C4\u03B5 \u03C3\u03B5
+\u03B5\u03BE\u03CC\u03C6\u03BB\u03B7\u03C3\u03B7 \u03C3\
+      \u03B5 \u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\u03B7\u03BC\u03B1 Wind,
+\u03C3\u03C5\
+      \u03C3\u03C4\u03AE\u03BD\u03B5\u03C4\u03B1\u03B9
+-\u03CE\u03C3\u03C4\u03B5 \u03BD\
+      \u03B1
+\u03B5\u03BE\u03C5\u03C0\u03B7\u03C1\u03B5\u03C4\u03B7\u03B8\u03B5\u03AF\
+      \u03C4\u03B5 \u03C4\u03B1\u03C7\u03CD\u03C4\u03B5\u03C1\u03B1- \u03B7
+\u03B1\
+      \u03C0\u03BF\u03C3\u03C4\u03BF\u03BB\u03AE \u03BC\u03B5 FAX
+\u03C3\u03C4\u03BF\
+      \ 211 120 1100 \u03AE \u03BC\u03B5 e-mail \u03C3\u03C4\u03BF
+CustomerCareFixed@wind.gr,\
+      \ \u03C4\u03B7\u03C2
+\u03B1\u03C0\u03CC\u03B4\u03B5\u03B9\u03BE\u03B7\u03C2\
+      \ \u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE\u03C2, \u03BC\u03B5
+\u03C4\u03B7\
+      \u03BD \u03AD\u03BD\u03B4\u03B5\u03B9\u03BE\u03B7
+\xAB\u0386\u03C1\u03C3\u03B7\
+      \ \u03A0\u03C1\u03BF\u03C3\u03C9\u03C1\u03B9\u03BD\u03AE\u03C2
+\u03A6\u03C1\u03B1\
+      \u03B3\u03AE\u03C2\xBB \u03BA\u03B1\u03B9
+\u03B1\u03BD\u03B1\u03B3\u03C1\u03AC\
+      \u03C6\u03BF\u03BD\u03C4\u03B1\u03C2 \u03C4\u03BF\u03BD
+\u03B1\u03C1\u03B9\u03B8\
+      \u03BC\u03CC \u03C4\u03B7\u03C2
+\u03C3\u03CD\u03BD\u03B4\u03B5\u03C3\u03AE\u03C2\
+      \ \u03C3\u03B1\u03C2 \u03AE \u03C4\u03BF\u03BD
+\u03BA\u03C9\u03B4\u03B9\u03BA\
+      \u03CC
+\u03C0\u03B5\u03BB\u03AC\u03C4\u03B7&amp;lt;/span&amp;gt;\r\n&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\r\n&amp;lt;/div&amp;gt;\r\n\
+      &amp;lt;p&amp;gt;\u039C\u03B5 \u03C4\u03B7\u03BD
+\u03B5\u03BE\u03CC\u03C6\u03BB\u03B7\u03C3\
+      \u03B7 \u03C4\u03C9\u03BD \u03BF\u03C6\u03B5\u03B9\u03BB\u03CE\u03BD,
+\u03B7\
+      \ Wind \u03B8\u03B1
+\u03C0\u03C1\u03BF\u03C7\u03C9\u03C1\u03AE\u03C3\u03B5\u03B9\
+      \ \u03C3\u03C4\u03B9\u03C2&amp;lt;strong&amp;gt;
+\u03B1\u03C0\u03B1\u03C1\u03B1\u03AF\u03C4\
+      \u03B7\u03C4\u03B5\u03C2
+\u03B5\u03BD\u03AD\u03C1\u03B3\u03B5\u03B9\u03B5\u03C2\
+      \ \u03B3\u03B9\u03B1 \u03C4\u03B7\u03BD \u03AC\u03C1\u03C3\u03B7
+\u03C4\u03B7\
+      \u03C2 \u03C6\u03C1\u03B1\u03B3\u03AE\u03C2&amp;lt;/strong&amp;gt;, \u03B5\u03BD\u03CE
+\u03B1\
+      \u03C0\u03CC \u03C4\u03B7\u03BD \u03C0\u03BB\u03B5\u03C5\u03C1\u03AC
+\u03C3\u03B1\
+      \u03C2 \u03B5\u03AF\u03BD\u03B1\u03B9
+\u03C0\u03B9\u03B8\u03B1\u03BD\u03CC \u03BD\
+      \u03B1 \u03C7\u03C1\u03B5\u03B9\u03AC\u03B6\u03B5\u03C4\u03B1\u03B9
+&amp;lt;strong&amp;gt;\u03B5\
+      \u03C0\u03B1\u03BD\u03B5\u03BA\u03BA\u03AF\u03BD\u03B7\u03C3\u03B7
+\u03C4\u03BF\
+      \u03C5 \u03B5\u03BE\u03BF\u03C0\u03BB\u03B9\u03C3\u03BC\u03BF\u03CD
+(router).&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;\r\
+      \n&amp;lt;p&amp;gt;\u0393\u03B9\u03B1 \u03AC\u03BC\u03B5\u03C3\u03B7
+\u03AC\u03C1\u03C3\u03B7\
+      \ \u03C4\u03B7\u03C2 \u03C6\u03C1\u03B1\u03B3\u03AE\u03C2&amp;amp;nbsp;
+&amp;lt;strong&amp;gt;\u03C3\
+      \u03C5\u03C3\u03C4\u03AE\u03BD\u03B5\u03C4\u03B1\u03B9 \u03B7
+\u03B5\u03BE\u03CC\
+      \u03C6\u03BB\u03B7\u03C3\u03B7 \u03C3\u03B5
+\u03BA\u03B1\u03C4\u03AC\u03C3\u03C4\
+      \u03B7\u03BC\u03B1 Wind &amp;lt;/strong&amp;gt;.  &amp;lt;/p&amp;gt;\r\n&amp;lt;p&amp;gt;\u039C\u03B5
+\u03B5\u03BA\u03C4\
+      \u03AF\u03BC\u03B7\u03C3\u03B7,\r\n&amp;lt;p&amp;gt;Wind
+\u0395\u03BB\u03BB\u03AC\u03C2\r\n\
+      \      &amp;lt;/li&amp;gt;\r\n\t&amp;lt;/ol&amp;gt;\r\n&amp;lt;/td&amp;gt;\r\n&amp;lt;td
+width=\&amp;quot;9%\&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/td&amp;gt;\r\n&amp;lt;/tr&amp;gt;\r\n\
+      \t\t\t\t\r\n\t\t\t\t&amp;lt;tr&amp;gt;\r\n\t\t\t\t\t&amp;lt;td
+width=\&amp;quot;15%\&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/td&amp;gt;\r\n\t\t\t\
+      \t\t&amp;lt;td width=\&amp;quot;76%\&amp;quot;&amp;gt;\r\n\t\t\t\t\t&amp;lt;a onclick=\&amp;quot;switchMenu(&#39;toggle2&#39;);\&amp;quot;
+title=\&amp;quot;\
+      English Version\&amp;quot; onMouseOver=\&amp;quot;this.style.color = &#39;#C71B37&#39;\&amp;quot;
+onMouseOut=\&amp;quot;\
+      this.style.color = &#39;#02578E&#39;\&amp;quot;&amp;gt;&amp;lt;b&amp;gt; &amp;lt;u&amp;gt;[+] English
+Version&amp;lt;/u&amp;gt;&amp;lt;/b&amp;gt;&amp;amp;nbsp;&amp;amp;nbsp;&amp;lt;img\
+      \ src=\&amp;quot;/img/flag_en.jpg\&amp;quot; width=\&amp;quot;18\&amp;quot; height=\&amp;quot;13\&amp;quot;&amp;gt;
+&amp;lt;/a&amp;gt;&amp;lt;p&amp;gt;\r\n\t\t\t\t\t\
+      \ &amp;lt;div id=\&amp;quot;toggle2\&amp;quot;&amp;gt; \r\n\t\t\t\t\t &amp;lt;p&amp;gt;&amp;lt;span class=\&amp;quot;style1\&amp;quot;&amp;gt;Important
+notice:&amp;lt;/span&amp;gt;&amp;lt;br&amp;gt;\r\
+      \n  \r\nYou are kindly informed that your &amp;lt;strong&amp;gt;landline services
+provided\
+      \ by Wind have been suspended &amp;lt;/strong&amp;gt; due to: &amp;lt;/p&amp;gt;\r\n\t\t\t\t\t
+&amp;lt;ol&amp;gt;\r\n\
+      \t\t\t\t\t    &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Non-payment&amp;lt;/strong&amp;gt; or&amp;lt;/li&amp;gt;\r\n\t\t\t
+\
+      \ &amp;lt;li&amp;gt; &amp;lt;strong&amp;gt;Violation of terms of use&amp;lt;/strong&amp;gt;\r\n
+\
+      \    \r\n\t\t\t            &amp;lt;/li&amp;gt;\r\n\t\t\t\t\t  &amp;lt;/ol&amp;gt;\r\n           In
+case\
+      \ of suspension due to non-payment please proceed as soon as possible to
+settlement\
+      \ with one of the available ways listed below:\r\n
+\r\n&amp;lt;p&amp;gt;&amp;lt;a\
+      \ onclick=\&amp;quot;switchMenu(&#39;toggle1&#39;);\&amp;quot; title=\&amp;quot;Make Click to view the Ways
+of\
+      \ Payment\&amp;quot; onMouseOver=\&amp;quot;this.style.color = &#39;#C71B37&#39;\&amp;quot;
+onMouseOut=\&amp;quot;this.style.color\
+      \ = &#39;#02578E&#39;\&amp;quot;&amp;gt;&amp;lt;b&amp;gt; &amp;lt;u&amp;gt;[+] &amp;amp;quot;Ways of
+Payment&amp;amp;quot;&amp;lt;/u&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/a&amp;gt;\r\n&amp;lt;DIV id=\&amp;quot;\
+      toggle1\&amp;quot; class=\&amp;quot;style2\&amp;quot;&amp;gt;\r\n&amp;lt;ol&amp;gt;
+\r\n\t&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Directly\
+      \ in any Wind Store &amp;lt;u&amp;gt;(recommended for quick service
+re-activation)&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;strong&amp;gt;&amp;lt;/strong&amp;gt;&amp;lt;/li&amp;gt;\r\
+      \n    &amp;lt;li&amp;gt; &amp;lt;strong&amp;gt;Using your credit card &amp;lt;/strong&amp;gt;, with &amp;lt;strong&amp;gt;direct
+charge\
+      \ in any Wind Store &amp;lt;/strong&amp;gt; (Visa, Mastercard, Ethnokarta, American
+Express,\
+      \ Eurocard and Diners) or &amp;lt;/li&amp;gt;\r\n    &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;In any branch of the
+following\
+      \ banks: &amp;lt;/strong&amp;gt;&amp;amp;nbsp;National bank of Greece, EFG Eurobank-Ergasias,
+Alpha\
+      \ Bank, T Bank, Marfin-Egnatia, Bank of Cyprus, ATEbank, Emporiki Bank,
+Probank\
+      \ and Hellenic Postbank bringing your bill &amp;lt;/li&amp;gt;\r\n    &amp;lt;li&amp;gt; &amp;lt;strong&amp;gt;any
+Hellenic\
+      \ Post branch (ELTA) &amp;lt;/strong&amp;gt;, bringing your bill &amp;lt;/li&amp;gt;\r\n
+&amp;lt;li&amp;gt;Through&amp;amp;nbsp;\
+      \ &amp;lt;strong&amp;gt;web banking &amp;lt;/strong&amp;gt;&amp;amp;nbsp;services of the following banks:
+National\
+      \ bank of Greece, EFG Eurobank-Ergasias, Alpha Bank, Marfin-Egnatia, Bank
+of\
+      \ Cyprus, Piraeus Bank, ATEbank, Emporiki Bank, HSBC and Hellenic
+Postbank &amp;lt;/li&amp;gt;\r\
+      \n    &amp;lt;li&amp;gt; Through&amp;amp;nbsp; &amp;lt;strong&amp;gt;phone-banking &amp;lt;/strong&amp;gt;&amp;amp;nbsp;services of
+the\
+      \ following banks: EFG Eurobank-Ergasias, Alpha Bank, Marfin-Egnatia,
+Bank of\
+      \ Cyprus, Piraeus Bank and HSBC &amp;lt;/li&amp;gt;\r\n    &amp;lt;li&amp;gt; Through&amp;amp;nbsp;
+&amp;lt;strong&amp;gt;Easy\
+      \ Pay &amp;lt;/strong&amp;gt;&amp;amp;nbsp;bill payment spots provided by Piraeus Bank
+&amp;lt;/li&amp;gt;\r\n \
+      \   &amp;lt;li&amp;gt;Through&amp;amp;nbsp; &amp;lt;strong&amp;gt;Winbank Easy Pay &amp;lt;/strong&amp;gt;&amp;amp;nbsp;service
+provided\
+      \ by Piraeus Bank&amp;lt;/li&amp;gt;\r\n    &amp;lt;li&amp;gt;Through
+&amp;lt;strong&amp;gt;&amp;amp;nbsp;\u0391\u03A4\u039C machines&amp;amp;nbsp;of\
+      \ &amp;lt;/strong&amp;gt;the following banks: National bank of Gre ece, Alpha B ank,
+ATEbank,\
+      \ Probank and Hellenic Postbank,using the ATM payment code mentioned on
+the\
+      \ first page of the bill &amp;lt;/li&amp;gt;\r\n    \r\n&amp;lt;/ol&amp;gt;\r\n  \r\n
+\r\n&amp;lt;strong&amp;gt;&amp;lt;u&amp;gt;Important\
+      \ notice:&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt; In case you do &amp;lt;strong&amp;gt;&amp;lt;u&amp;gt;not&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt; proceed
+to\
+      \ settlement through a Wind Store, it is highly recommended to submit
+through\
+      \ FAX to 211 120 1100 or e-mail to CustomerCareFixed@wind.gr, a copy of
+the\
+      \ receipt \u03C4\u03B7\u03C2
+\u03B1\u03C0\u03CC\u03B4\u03B5\u03B9\u03BE\u03B7\
+      \u03C2 \u03C0\u03BB\u03B7\u03C1\u03C9\u03BC\u03AE\u03C2, with the
+indication\
+      \ \&amp;quot;Service re-activation\&amp;quot;, referring your telephone number or the
+customer\
+      \ code&amp;lt;/div&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;\r\n\r\nUpon settlement, Wind will proceed to service
+re-activation,\
+      \ while &amp;lt;strong&amp;gt;restarting your router may be
+needed.&amp;lt;/strong&amp;gt;\r\n&amp;lt;p&amp;gt;\r\nFor\
+      \ quick service re-activation it is &amp;lt;strong&amp;gt;&amp;lt;u&amp;gt;recommended to pay through
+any\
+      \ Wind Store&amp;lt;/u&amp;gt;&amp;lt;/strong&amp;gt;.\r\n                            \r\n&amp;lt;p&amp;gt;Best
+regards,\r\
+      \n&amp;lt;p&amp;gt;Wind S.A\r\n      &amp;lt;/li&amp;gt;\r\n\t&amp;lt;/ol&amp;gt;&amp;lt;/div&amp;gt;\r\n&amp;lt;/td&amp;gt;\r\n&amp;lt;td
+width=\&amp;quot;9%\&amp;quot;&amp;gt;&amp;amp;nbsp;&amp;lt;/td&amp;gt;\r\
+      \n&amp;lt;/tr&amp;gt;\r\n\t\t&amp;lt;/table&amp;gt;\r\n&amp;lt;/body&amp;gt;\r\n&amp;lt;/html&amp;gt;\r\n&amp;quot;
+    code: 200
+    headers:
+    - - Content-Length
+      - [&#39;10873&#39;]
+    - - Accept-Ranges
+      - [bytes]
+    - - Server
+      - [Tellas HTTP Server]
+    - - Last-Modified
+      - [&#39;Fri, 05 Jul 2013 12:56:04 GMT&#39;]
+    - - Connection
+      - [close]
+    - - ETag
+      - [&#39;&amp;quot;1ce8b8-2a79-37aa6100&amp;quot;&#39;]
+    - - Date
+      - [&#39;Fri, 04 Jul 2014 00:02:07 GMT&#39;]
+    - - Content-Type
+      - [text/html]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This ISP uses Etag for tracking users which try to visit the blocked content.&lt;/p&gt;
+
+&lt;h2 id=&#34;failure-on-mail-delivery:d0c495f4479395eff703b25df5d2e963&#34;&gt;Failure on mail delivery&lt;/h2&gt;
+
+&lt;p&gt;Most ISPs have hijacked the DNS mail
+exchanger record(s) of the domain name of the EEEP blacklist. A MX record
+points to the appropriate mail server and specifies how email delivery
+should be routed for a domain name.&lt;/p&gt;
+
+&lt;p&gt;In our test cases the ISPs have not returned any answer when queried for MX
+record(s), deliberately or by mis-configuration for the domain entries included
+in the EEEP blacklist. During email delivery an SMTP client first would query
+the domain for a MX record and if that is not found it falls back to looking up
+for an A record (or AAAA record if IPV6 is available) and attempt to deliver
+email based on these records.&lt;/p&gt;
+
+&lt;p&gt;In our case the A records points to a spoofed A record pointing to a local
+server or proxy of the ISP (show A records from ISPs) any email delivery would
+fail and the user would realize this after hours or even days (according to the
+email SMTP configuration).This implies tremendous negative impacts as well as
+restricting fair markets and business regulations, i.e a user trying to
+communicate with any business (all of the censored websites are businesses)
+would find himself not being able to perform an email delivery.&lt;/p&gt;
+
+&lt;h3 id=&#34;dns-mx-records-responses:d0c495f4479395eff703b25df5d2e963&#34;&gt;DNS MX records responses:&lt;/h3&gt;
+
+&lt;p&gt;The correct MX records of the censored domain names in example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; MX 770.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 764
+;; flags: qr rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.           IN  MX
+
+;; ANSWER SECTION:
+770.com.        2473    IN  MX  20 alt1.aspmx.l.google.com.
+770.com.        2473    IN  MX  30 aspmx2.googlemail.com.
+770.com.        2473    IN  MX  20 alt2.aspmx.l.google.com.
+770.com.        2473    IN  MX  30 aspmx3.googlemail.com.
+770.com.        2473    IN  MX  10 aspmx.l.google.com.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; MX 880.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 17952
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;880.com.           IN  MX
+
+;; ANSWER SECTION:
+880.com.        2753    IN  MX  0 smtp.secureserver.net.
+880.com.        2753    IN  MX  10 mailstore1.secureserver.net.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The spoofed MX record responses of the ISPs.&lt;/p&gt;
+
+&lt;h4 id=&#34;forthnet-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Forthnet&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 19146
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.                       IN      MX
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;ote-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Ote&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 25114
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.                       IN      MX
+
+;; AUTHORITY SECTION:
+770.com.                86400   IN      SOA     localhost.
+hostmaster.localhost. 2014030701 10800 3600 1814400 86400
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;vodafone-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Vodafone&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.9.5-4-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; 888.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 50372
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;888.com.                       IN      MX
+
+;; AUTHORITY SECTION:
+888.com.                600     IN      SOA     ns0.panafonet.gr.
+root.iapetos.panafonet.gr. 2014180301 28800 7200 1209600 600
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;cosmote-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cosmote&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.9.5-4-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 64761
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;770.com.                       IN      MX
+
+;; AUTHORITY SECTION:
+770.com.                900     IN      SOA     nyma_grid_dns1.dcn.cosmote.gr.
+please_set_email.absolutely.nowhere. 4 10800 3600 2419200 900
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;cyta-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cyta&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.9.5-4-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 26529
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;770.com.                       IN      MX
+
+;; AUTHORITY SECTION:
+770.com.                86400   IN      SOA     770.com. root.770.com. 42 10800
+900 604800 86400
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;wind-mobile-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Wind mobile&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 8803
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.                       IN      MX
+
+;; AUTHORITY SECTION:
+770.com.                86400   IN      SOA     localhost. root.localhost.
+2013091901 14400 7200 604800 86400
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;dns-a-records-resposnes:d0c495f4479395eff703b25df5d2e963&#34;&gt;DNS A records resposnes&lt;/h3&gt;
+
+&lt;p&gt;The correct A records of the censored domain names in example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A 770.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 47376
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.           IN  A
+
+;; ANSWER SECTION:
+770.com.        285 IN  A   69.93.79.125
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A box24casino.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 61390
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;box24casino.com.       IN  A
+
+;; ANSWER SECTION:
+box24casino.com.    899 IN  A   46.28.204.122
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A acelivecasino.com @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 64017
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;acelivecasino.com.     IN  A
+
+;; ANSWER SECTION:
+acelivecasino.com.  1799    IN  A   198.135.249.123
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The spoofed A records entries of the ISPs:&lt;/p&gt;
+
+&lt;h4 id=&#34;forthnet-2:d0c495f4479395eff703b25df5d2e963&#34;&gt;Forthnet&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A 770.com
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 2445
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;770.com.                       IN      A
+
+;; ANSWER SECTION:
+770.com.                3600    IN      A       62.1.46.55
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;ote-2:d0c495f4479395eff703b25df5d2e963&#34;&gt;Ote&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A box24casino.com
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 60841
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;box24casino.com.               IN      A
+
+;; ANSWER SECTION:
+box24casino.com.        86191   IN      A       83.235.64.20
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;cyta-2:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cyta&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.9.5-4-Debian &amp;lt;&amp;lt;&amp;gt;&amp;gt; 770.com
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 59438
+;; flags: qr aa rd ad; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;770.com.                       IN      A
+
+;; ADDITIONAL SECTION:
+770.com.                86400   IN      A       78.87.2.91
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;wind-1:d0c495f4479395eff703b25df5d2e963&#34;&gt;Wind&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.8.4-rpz2+rl005.12-P1 &amp;lt;&amp;lt;&amp;gt;&amp;gt; A acelivecasino.com
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 21679
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;acelivecasino.com.             IN      A
+
+;; ANSWER SECTION:
+acelivecasino.com.      85963   IN      A       62.169.194.8
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;corollary:d0c495f4479395eff703b25df5d2e963&#34;&gt;Corollary&lt;/h1&gt;
+
+&lt;p&gt;Throughout our technical report we highlighted flaws in the implementation of
+betting websites&amp;rsquo; censorship. Nevertheless, we do not seek for a properly
+implemented censorship of any kind. Instead, our intention is to make visible
+all those problematics that arise when censorship is invoked as method to
+approach a social or public issue.&lt;/p&gt;
+
+&lt;p&gt;The problem with poorly implemented censorship, is censorship per se.&lt;/p&gt;
+
+&lt;p&gt;ISPs in Greece haven&amp;rsquo;t provided any kind of notification to their customers to
+inform them how the blocking took place, why this happened and if they can
+opt-out from the service. After all, they are paying for the full service.&lt;/p&gt;
+
+&lt;p&gt;Lack of transparency on behalf of the providers, permits them to block and
+censor arbitrary internet destinations according to their needs, thus following
+a blocking-at-will strategy. Internet destinations may be accessible or not,
+while users have no reasoning about it. That would lead to deliberate abuse of
+citizens&amp;rsquo; accessibility and view of the internet.&lt;/p&gt;
+
+&lt;h2 id=&#34;censorship-as-a-social-control-method:d0c495f4479395eff703b25df5d2e963&#34;&gt;Censorship as a social control method.&lt;/h2&gt;
+
+&lt;p&gt;Censorship is introduced as a top-down method to solve pathogenic social
+behaviours or phenomena. For example a state that censors a blog containing
+caricatures of god with the pretense of confronting blasphemy. Or a state
+that tries to protect public income by censoring betting companies&amp;rsquo; websites
+that do not intend to pay taxes.&lt;/p&gt;
+
+&lt;p&gt;The problem with a top-down method is that frequently the ideas, the needs,
+the culture of those on top -who actually take the decisions of what needs
+to be censored- present deviations from the ideas and needs of the social
+groups affected by the censorship.&lt;/p&gt;
+
+&lt;p&gt;Additionally pathogenic social behaviours appear to majorly differ between
+societies in different places of our planet or in different time points of
+human evolution. For example, in some epoch owning other human beings as slaves
+was socially acceptable.&lt;/p&gt;
+
+&lt;p&gt;But, as a case study, we assume there is a commonly acknowledged social pathology.
+Even then, censorship consists of imposition rather than education. Imposition
+will result in fearful humans who do not understand why some specific behaviour
+is banned, leading to more complex and problematic phenomena. On the other side,
+educating individuals and social groups based on consensus and reasoning results
+in free and healthy social relations.&lt;/p&gt;
+
+&lt;p&gt;We should also notice that censorship is bound to economic interests. Censorship
+of betting websites by EEEP should not treated independently of the monopoly of
+&amp;ldquo;ΟΠΑΠ&amp;rdquo; betting company that prevails in Greek territory. Spread of the internet led to
+a conflict of interest between &amp;ldquo;ΟΠΑΠ&amp;rdquo; which holds physical betting kiosks and the
+globalized market of the internet.&lt;/p&gt;
+
+&lt;p&gt;Censorship serving certain economic interests rises as a tool of manipulation of
+users&amp;rsquo; choices, manipulation of the market and suggests corruption is part of the
+public governance.&lt;/p&gt;
+
+&lt;h2 id=&#34;censorship-as-status-quo:d0c495f4479395eff703b25df5d2e963&#34;&gt;Censorship as status quo&lt;/h2&gt;
+
+&lt;p&gt;If online censorship is widespread and accepted with little opposition as a way
+to implement a broad range of public policy issues, it becomes far harder to
+argue for Internet freedom and net neutrality elsewhere. Governments and
+companies around the world use the same technologies to restrict access to
+online content and offer the same arguments about taste, decency and citizens
+safety &lt;a href=&#34;https://www.openrightsgroup.org/ourwork/reports/mobile-internet-censorship:-whats-happening-and-what-we-can-do-about-it&#34;&gt;ORG&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In most cases, as long as censorship is introduced -with some legitimate or not
+excuse- societies tend to accept the fact that censorship can exist and is justified.
+Any debate will be probably help over what is just to censor and what is not, and
+rarely censorship per se will be questioned.&lt;/p&gt;
+
+&lt;p&gt;This strategy is encountered in other politics sectors too, such as fees in public
+transport or health insurance, issues that are of tremendous importance for our
+societies and are a point of conflict in many countries worldwide.&lt;/p&gt;
+
+&lt;p&gt;As long as censorship is established, the set of entities that are being subjected
+to censorship tends to grow. More and more censorship will be used as a method to
+resolve problems or rather to enforce a certain type of approach to the problem.&lt;/p&gt;
+
+&lt;h2 id=&#34;censorship-s-side-effects:d0c495f4479395eff703b25df5d2e963&#34;&gt;Censorship&amp;rsquo;s side-effects&lt;/h2&gt;
+
+&lt;p&gt;Censorship of some betting sites in Greece was implemented as a way to forbid
+residents of Greece to bet on websites that do not intend to pay taxes i.e. the
+goal of the censors appears to be to prevent players from betting.&lt;/p&gt;
+
+&lt;p&gt;Censorship implementations includes some
+side-effects: users are not only forbidden to play on these websites, but they
+are also not being able to communicate (via email) with these companies. Censorship
+is thus not limited to a specific problem (tax evasion) but it&amp;rsquo;s totally destroying
+user&amp;rsquo;s experience and communication.&lt;/p&gt;
+
+&lt;p&gt;Disrupting users&amp;rsquo; communication with a certain entity can have various social implications
+or economic impact. Suppose a Greek resident would like to work as web developer to one
+of the blocked websites. Communicating with the owner company would be impossible.&lt;/p&gt;
+
+&lt;!-- # References --&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Zambia, a country under Deep Packet Inspection</title>
+      <link>http://hellais.github.com:1313/adina/post/zambia/</link>
+      <pubDate>Mon, 15 Jul 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://hellais.github.com:1313/adina/post/zambia/</guid>
+      <description>
+
+&lt;p&gt;&amp;ldquo;I do not have the details of the blocking of Zambianwatchdog.com, but I
+    would celebrate.&amp;rdquo;
+                          Guy Scott
+                          Zambian Vicepresident, Friday 28th June 2013&lt;/p&gt;
+
+&lt;p&gt;The following article is a guest blog post by Mr T. an independent researcher
+and provider of hosting to various grass roots organizations.&lt;/p&gt;
+
+&lt;p&gt;This article summarizes how we discovered that the grass roots online newspaper
+Zambianwatchdog.com was being blocked inside Zambia. This report provides
+technical evidence of the unlawful presence of Deep Packet Inspection in the
+country to monitor the Internet communications and stop users from browsing the
+website.&lt;/p&gt;
+
+&lt;h1 id=&#34;the-connection-was-reset:35837baaac9f2cd7270d225e40661177&#34;&gt;The connection was reset&lt;/h1&gt;
+
+&lt;p&gt;On Monday 24 June 15:30 GMT readers of the website Zambianwatchdog.com from
+inside Zambia were reporting error messages.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/connection-rst.jpg&#34; alt=&#34;Connection RST&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;As hosting providers of the website, we initially could not see a significant
+drop of active connections and we needed to have a close look into the access
+logs of the site. Examining the connection logs to find any pattern that could
+help us to determine the cause of the problem was not a straightforward task as
+we needed to examine several gigabytes of data. It is worth mentioning here
+that Zambian Watchdog ranks 8th overall biggest website in Zambia and probably
+the biggest site after the large portals Facebook, Google or Youtube.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/alexa-traffic-ranks.png&#34; alt=&#34;Alexa ranks&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Our first review of the logs revealed a clear increase of connections reporting
+status code 200 but with zero bytes were transmitted back to the client.&lt;/p&gt;
+
+&lt;p&gt;The server has large number of logs similar to this one:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;41.72.105.x - - [25/Jun/2013:05:03:58 +0000]  &amp;quot;GET / HTTP/1.1&amp;quot; 200 0 &amp;quot;-&amp;quot; &amp;quot;Mozilla/5.0 (Windows NT 6.1; rv:20.0) Gecko/20100101 Firefox/20.0&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The sample shows that IP address of this connection 41.72.105.x belongs to
+ZAMTEL, the status code of the connection is 200 and zero information was sent
+back to the client.&lt;/p&gt;
+
+&lt;p&gt;The status code 200 indicates that the client&amp;rsquo;s request was successfully
+received, understood, and accepted by the server but for some unknown reason no
+information was send back to the client.&lt;/p&gt;
+
+&lt;p&gt;In order to determine if this was a general problem of our servers we examined
+the last four weeks of connection logs to conclude that there was inexplicable
+increase of connections with status code 200 and zero bytes transmitted
+starting that day.&lt;/p&gt;
+
+&lt;p&gt;We also looked into which readers were affected by this behavior and we
+concluded that the majority of the connections reporting this problem were from
+operators inside Zambia with the exception of MTN.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/pie-chart.png&#34; alt=&#34;Pie chart&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Origin of the dropped connections to the webserver&lt;/p&gt;
+
+&lt;h1 id=&#34;who-is-breaking-the-connections:35837baaac9f2cd7270d225e40661177&#34;&gt;Who is breaking the connections?&lt;/h1&gt;
+
+&lt;p&gt;Four hours after we received the first reports of service outage inside Zambia
+we could narrow down the problem to what it was perceived in the server side as
+sudden termination of the connections.&lt;/p&gt;
+
+&lt;p&gt;Comparing the connection logs of different weeks we could determine that
+connections coming from at least these operators AS37146 realtime-as, AS37214
+MICROLINK, AS28698 UUNET Africa, AS37287 ZAIN-ZAMBIA and AS37154 ZAMTEL were
+suffering from some kind disruption.&lt;/p&gt;
+
+&lt;p&gt;In order to determine what kind of interference was taken place we proceed to
+capture the network traffic arriving to Zambian Watchdog&amp;rsquo;s server to look for
+any special patters that could help us to understand why most of the readers
+inside Zambia were experiencing connection drops with the exception of readers
+using MTN mobile network.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/wireshark.png&#34; alt=&#34;Wireshark&#34; /&gt;
+
+After reviewing dozen of different packet captures we saw a
+distinctive pattern&lt;/p&gt;
+
+&lt;p&gt;The readers seemed to be able to establish the initial connection with the
+webserver but as soon as they request any content of the website we received
+also a request to terminate such connection.&lt;/p&gt;
+
+&lt;p&gt;We proceed to examine our own generated connections from inside Zambia in real
+time and discovered that the undesired termination was taken place if the HTTP
+Header Host: www.zambianwatchdog.com was present in the request.&lt;/p&gt;
+
+&lt;p&gt;For example, we could see that a connection requesting the Breaking News
+section of the site from a Nokia phone, using Celtel 3G network was always
+quickly terminated after this request arrives to the server.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GET /category/breaking-news/ HTTP/1.1 
+Host: www.zambianwatchdog.com
+
+Accept: text/html,text/css,multipart/mixed,application/java-archive,
+application/java, application/x-java-archive, text/vnd.sun.j2me.app-descriptor,
+application/vnd.oma.drm.message, application/vnd.oma.drm.content,
+application/vnd.oma.dd+xml, application/vnd.oma.drm.rights+xml,
+application/vnd.oma.drm.rights+wbxml, application/x-nokia-widget, */* 
+
+Accept-Charset: iso-8859-1, utf-8; q=0.7, *; q=0.7 
+
+Accept-Encoding: gzip, deflate, x-gzip, identity; q=0.9 
+
+Accept-Language: en;q=1.0,fr;q=0.5,de;q=0.5,it;q=0.5 
+
+Referer: http://www.google.co.zm/search?q=wachdog+news&amp;amp;btnG=Search 
+
+User-Agent: Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaE63-1/500.21.009;
+Profile/MIDP-2.0 Configuration/CLDC-1.1 ) AppleWebKit/413 (KHTML, like Gecko)
+Safari/413 
+
+x-wap-profile: &amp;quot;http://nds1.nds.nokia.com/uaprof/NE63-1r100.xml&amp;quot; 
+
+X-Nokia-MusicShop-Version: 08.0825.9 
+
+X-Nokia-MusicShop-Bearer: GPRS/3G
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;dpi-or-not-dpi:35837baaac9f2cd7270d225e40661177&#34;&gt;DPI or not DPI?&lt;/h1&gt;
+
+&lt;p&gt;What it was left to determine if the filtering was looking into other aspects
+of the connection. In order to find out we run a few extra tests, requesting
+access to the webpage using other headers. We tested requests using the
+following headers&lt;/p&gt;
+
+&lt;p&gt;www.zambianwatchdog.COM&lt;/p&gt;
+
+&lt;p&gt;zambianwatchdog.com&lt;/p&gt;
+
+&lt;p&gt;Zambianwatchdog.cOm&lt;/p&gt;
+
+&lt;p&gt;wWw.zambianwatchdog.com&lt;/p&gt;
+
+&lt;p&gt;To our surprise we discovered that the “reset” of the connections was only
+talking place when we used the header www.zambianwatchdog.com and not when
+using any of the other combinations. After twelve hours we could confirm that
+malicious traffic was not generated by the readers but was actively injected
+into the network when a reader was requesting content from the website
+www.zambianwatchdog.com and that this behavior could only be explained by the
+presence of deep packet inspection (DPI) equipment inside Zambia.&lt;/p&gt;
+
+&lt;p&gt;Not until we technically verified and gathered forensic evidence of the
+blocking we adviced to the website owners to inform to the general public that
+such active interference was talking place and that the blocking was clearly
+targeted against the website.&lt;/p&gt;
+
+&lt;h1 id=&#34;getting-the-website-back-online:35837baaac9f2cd7270d225e40661177&#34;&gt;Getting the website back online&lt;/h1&gt;
+
+&lt;p&gt;To ensure the public visibility of the website inside Zambia and in order to
+look for a quick solution to put the website online, we tested the availability
+of the blocking technology to interfere with encrypted traffic. After testing
+the encypted (SSL) traffic was not suffering from such type of interference the
+decided to make the site available only via HTTPS.&lt;/p&gt;
+
+&lt;p&gt;To our surprise, several popular Word Press plugins of the website needed some
+tweaks so the full content was delivered encrypted to the readers.&lt;/p&gt;
+
+&lt;p&gt;We have also included the header&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Strict-Transport-Security &amp;quot;max-age=10886401; includeSubDomains&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;to ensure that the readers that have reached the website at least once via
+HTTPS will keep doing it so without the need to specify HTTPS in their future
+requests.&lt;/p&gt;
+
+&lt;h1 id=&#34;ooni-testing:35837baaac9f2cd7270d225e40661177&#34;&gt;OONI Testing&lt;/h1&gt;
+
+&lt;p&gt;Inspired by the work of our colleges of the Open Observatory of Network
+Interferece (OONI) we conducted another run of tests to determine if any of
+1000 top Alexa websites was blocking. The result of the testing is that we
+could not find any other website blocked with the exception of the Zambian
+Watchdog.&lt;/p&gt;
+
+&lt;h1 id=&#34;blocking-status:35837baaac9f2cd7270d225e40661177&#34;&gt;Blocking status&lt;/h1&gt;
+
+&lt;p&gt;Three weeks after we initially detected and fingerprinted the blocking, the
+filtering is still active. Unencrypted requests to the domain
+zambianwatchdog.com remain unblocked while connections using
+www.zambianwatchdog.com trigger a reset.&lt;/p&gt;
+
+&lt;p&gt;Our test software that runs inside Zambia still reports interference when using
+www.zambianwatchdog.com&lt;/p&gt;
+
+&lt;p&gt;Recv failure: Connection reset by peer&lt;/p&gt;
+
+&lt;p&gt;While such interference is not present when dropping the www.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.1 301 Moved Permanently 
+
+Server: nginx 
+
+Date: Sat, 13 Jul 2013 12:35:16 GMT 
+
+Content-Type: text/html 
+
+Content-Length: 178 
+
+Location: https://&#39;&#39;&#39;zambianwatchdog.com/&#39;&#39;&#39; 
+
+Strict-Transport-Security: max-age=10886401; includeSubDomains 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id=&#34;courage-is-contagious:35837baaac9f2cd7270d225e40661177&#34;&gt;Courage is contagious&lt;/h1&gt;
+
+&lt;p&gt;After we unveiled the blocking and network monitoring, Zambian Watchdog has
+received information from whistle blowers of the presence of such
+infrastructure.&lt;/p&gt;
+
+&lt;p&gt;The 4th of July, the Zambian website reports&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;They have also installed equipment a Lamya (1) in order to monitor people
+blogging on a site like yours and also blocking watchdog. This is also
+affecting all the other internet service providers who are using Zamtel as a
+currier and service provider. Also the CODEX (2) which interconnects all ISP is
+based at Lamya and this has given OP (3) access to all the ISP in Zambia.&amp;rdquo;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Lamya is the location of the &amp;ldquo;Zambia&amp;rdquo; Telecommunications Company&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;CODEX is the Zambian Internet exchange OP is the Office of the President&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further information about the case:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zambianwatchdog.com/corruption-worsens-at-zamtel-emails-phones-being-monitored-at-lamya-house/&#34;&gt;Corruption worsens at zamtel emails phones being-monitored at lamya house&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zambianwatchdog.com/zicta-suing-of-mobile-companies-aimed-at-mtn-for-refusing-to-block-zwd/&#34;&gt;Zicta suing of mobile companies aimed at mtn for refusing to block zwd&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zambianwatchdog.com/sata-orders-op-to-block-zwd-on-mtn-as-well/&#34;&gt;Sata orders op to block zwd on mtn as well&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zambianwatchdog.com/sata-signs-order-for-op-to-tap-phones-emails/&#34;&gt;Sata signs order for op to tap phones emails&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://zambianwatchdog.com/journalist-zyambo-out-of-jail-police-though-he-had-obituary-of-sata/&#34;&gt;Journalist zyambo out of jail police though he had obituary of sata&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;update-17th-july-2013-and-ssl-got-blocked:35837baaac9f2cd7270d225e40661177&#34;&gt;Update (17th July 2013): And SSL got blocked&amp;hellip;&lt;/h1&gt;
+
+&lt;p&gt;On Tuesday 16th of July 2013 (14:43 GMT) just a few hours after this article
+was released, the government has moved forward in their determination of
+blocking the site and started to block the SSL connections.  The Deep Packet
+Inspection gear seems to be monitoring the &amp;ldquo;Server Hello&amp;rdquo; message that is part
+of the SSL negotiation. This message contains the string zambianwatchdog.com
+before the SSL negotiation is completed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/SSL-reset.png&#34; alt=&#34;SSL Reset&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;In order to find out if the government is actively making changes, we deployed
+a new mirror server of the site in the domain &lt;a href=&#34;http://zwd.cums.in&#34;&gt;http://zwd.cums.in&lt;/a&gt;. After a few
+hours the domain has also been blocked and the filtering has been extended to
+the whole /24 network. By extending the filtering the Zambian government has
+also blocked hundreds of other organizations that are hosted in the same provider.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;41.72.122.69 - - [17/Jul/2013:14:17:16 +0000]  &amp;quot;-&amp;quot; 400 0 &amp;quot;-&amp;quot; &amp;quot;-&amp;quot; &amp;quot;---&amp;quot; &amp;quot;ZM&amp;quot; &amp;quot;-x-&amp;quot; &amp;quot;41.72.122.69&amp;quot; &amp;quot;-&amp;quot;
+41.72.122.69 - - [17/Jul/2013:14:17:16 +0000]  &amp;quot;-&amp;quot; 400 0 &amp;quot;-&amp;quot; &amp;quot;-&amp;quot; &amp;quot;---&amp;quot; &amp;quot;ZM&amp;quot; &amp;quot;-x-&amp;quot; &amp;quot;41.72.122.69&amp;quot; &amp;quot;-&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is an example of the logs in the server side. We can see that the attack
+they are conducting leads to 0 bytes being transmitted and an error code 400 is
+generated (Error 400 (Bad Request) takes place when the request to a SSL is
+malformed.).&lt;/p&gt;
+
+&lt;p&gt;More information is available here
+&lt;a href=&#34;https://zambianwatchdog.com/police-abduct-another-journalists-suspected-of-links-to-zwd-govt-blocks-zwd-futher/&#34;&gt;https://zambianwatchdog.com/police-abduct-another-journalists-suspected-of-links-to-zwd-govt-blocks-zwd-futher/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Tab-Tab, Come in! Bypassing Internet blocking to categorize DPI devices</title>
+      <link>http://hellais.github.com:1313/adina/post/tab-tab-come-in/</link>
+      <pubDate>Tue, 14 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://hellais.github.com:1313/adina/post/tab-tab-come-in/</guid>
+      <description>
+
+&lt;h1 id=&#34;motivation:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Motivation&lt;/h1&gt;
+
+&lt;p&gt;During the past two years, we have been following the technical developments in
+Internet filtering in Uzbekistan and Turkmenistan. Internet users were
+reporting that some websites were blocked, connections were reseted and in some
+cases users were redirected to another website.&lt;/p&gt;
+
+&lt;p&gt;Apart from our technical curiosity of how Internet filtering is implemented at
+large scale and how it can be circumvented, we are interested in providing
+technical facts of how blocking is taking place. The lack of technical
+information in this field has an interesting collateral effect in Internet
+users. Lack of information, help rumours to spread and consolidate the idea
+that governments have unlimited capabilities, that not only monitor all
+communications but that ultimately nothing can be done to stop their control.
+Understanding how Internet filtering is taking place is an important task as it
+allows to discover mechanisms to bypass it and fingerprint and ultimately
+expose the companies that provide technology and know-how to governments that
+want to surpress the free flow of information in the Net.&lt;/p&gt;
+
+&lt;h1 id=&#34;our-findings:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Our findings&lt;/h1&gt;
+
+&lt;p&gt;The general Internet blocking architecture in Turkmenistan and Uzbekistan takes
+places in two basic stages. The first stage is responsible to identify which
+web/HTTP sessions are trying to reach a blacklisted website. This first stage
+is hence responsible of matching if a certain user is trying to reach a website
+that is blacklisted. Once the positive matching has taken place, the blocking
+or filtering is implemented. We will refer to the first stage as &amp;ldquo;matching&amp;rdquo; and
+the second as &amp;ldquo;blocking&amp;rdquo;.&lt;/p&gt;
+
+&lt;h2 id=&#34;matching:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Matching&lt;/h2&gt;
+
+&lt;p&gt;During our technical investigation we found out that a key element in the
+matching stage is the &amp;ldquo;Host header&amp;rdquo; in a HTTP session. Once the initial
+handshake between user and the final webserver is established (TCP/IP
+handshake) the browser will send a HTTP packet with a content like:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GET / HTTP/1.1 Host: www.youtube.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This first packet tells to the webserver that we want to request the homepage
+of the website www.youtube.com&lt;/p&gt;
+
+&lt;p&gt;The Host header was introduced to be able to specify which domain we are
+requesting in the common scenario that a single IP address is serving different
+websites (think here in shared/virtual hosting). The Host header is optional in
+HTTP 1.0 but mandatory in HTTP 1.1. According the standards, the GET request
+line and the Host header must end with carriage return character followed by a
+line feed character &lt;code&gt;&amp;lt;CR&amp;gt;&amp;lt;LF&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Independently of which type of interception technology is used, matching takes
+place by observing the HTTP Host header field. There are some good technical
+reasons to implement the matching in this way. Filtering gear does not need to
+keep track of IP addresses, can operate in stealth mode as it does not need to
+perform any name resolution and inspecting packets for this header is as
+technically challenging as keeping track of the content of the full HTTP
+sessions.&lt;/p&gt;
+
+&lt;p&gt;This matching method is simple and even more effective with the current trend
+of webservers or websites to force users to use the correct domain name when
+requesting resources from the server.&lt;/p&gt;
+
+&lt;h2 id=&#34;filtering:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Filtering&lt;/h2&gt;
+
+&lt;p&gt;Once the matching is positive, blocking can take place if desired. We have
+identified three basic methods used to block a session. Reset, Proxying and
+Active Redirection.&lt;/p&gt;
+
+&lt;h3 id=&#34;reset:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Reset&lt;/h3&gt;
+
+&lt;p&gt;In the reset method, two RST packets will be send to both ends of the
+communication. By injecting these two packets between the communicating
+parties, both the Internet user/browser and the blacklisted webserver will be
+instructed to terminate the connection. This blocking method is present in
+Turkmenistan when we could effectively trigger RST traffic as a result of a
+domain name present in the Host Header.&lt;/p&gt;
+
+&lt;p&gt;To verify if the traffic between the browser and the blocked website was fully
+blocked, we decided to ignore RST packets in both ends of the communication.
+The result of the experiment is that it was possible to visit the blocked
+website and the interception gear was not implementing a full blocking of all
+traffic. Unfortunately ignoring all RST packets is not possible and makes this
+method to bypass the blocking unpractical.&lt;/p&gt;
+
+&lt;p&gt;There are some good technical reasons why filtering is implemented using RST
+packets. The filtering gear does not need to keep track of each of the sessions
+(stateless) and the blocking can take place without major changes in an
+existing network infrastructure. The fact that reset blocking limits itself to
+inject bogus traffic without modifying legitimate traffic facilitates its
+implementation and scalability.&lt;/p&gt;
+
+&lt;p&gt;An interesting collateral effect of RST blocking is passive redirection. Due to
+backward compatibility with HTTP/1.0, when browsers receive a RST packet that
+instruct them to close the connection, a new browser connection is initiated
+against the same website but this time without the Host header. When the
+browser receives the RST, it believes it is communicating to an old webserver
+that does not support HTTP/1.1 and hence initiates a HTTP/1.0 session. This
+session will not be &amp;ldquo;matched&amp;rdquo; by the interception gear and will not be blocked.
+The website receiving the HTTP/1.0 connection will then send a redirection to
+the default domain hosted at its IP address. For example, a HTTP/1.0 connection
+to youtube.com will respond with a redirection to google.com. The user might
+believe that the redirection is implemented by the filtering infrastructure
+when in fact is a collateral results of the RST traffic.&lt;/p&gt;
+
+&lt;h3 id=&#34;proxying:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Proxying&lt;/h3&gt;
+
+&lt;p&gt;The second mechanism to block the websites is by means of semi or fully
+transparent proxies. In both cases the HTTP proxy is placed between the users
+and the Internet. All outgoing web connections are intercepted by the proxy.
+Depending on the technology used, the proxy can hide its presence to the
+end-user (semi transparent), the webserver or both (fully transparent). The
+most common transparent proxy implementation is the semi-transparent; this
+implementation intercepts the HTTP requests from the users and places the
+outbound connection on the users&amp;rsquo; behalf but does not hide the web proxy IP
+address from the webserver i.e. the webserver can see that the connections do
+not come from the user directly but from the IP address of the proxy.&lt;/p&gt;
+
+&lt;p&gt;A fully transparent web proxy hides both from the user and the webserver that
+the sessions are intercepted. The webserver cannot determine if the connection
+comes directly from the end-user or the proxy itself. Semi-transparent proxies
+are commonly used in combination with caching to speed up connections while
+fully transparent proxies are typically implemented for surveillance.&lt;/p&gt;
+
+&lt;p&gt;The basic matching mechanism in any case is performed looking into the Host
+Header. Opposite to the RST blocking mechanism, the web proxy has full access
+to the data stream and can perform most complex string matching, for example:
+blocking certain articles or random pages based on keywords. The transparent
+webproxy can perform more complex filtering but requires the processing of all
+web requests in the infrastructure.&lt;/p&gt;
+
+&lt;p&gt;This blocking method is present in Uzbekistan and Turkmenistan where we
+could effectively identify proxy headers when requesting blocked websites.&lt;/p&gt;
+
+&lt;h3 id=&#34;active-redirection:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Active redirection&lt;/h3&gt;
+
+&lt;p&gt;In  the same way that a RST packets can be injected in the datastream to
+teardown a connection, we have seen another type of injected traffic towards
+the client. In this scenario the interception gear sends a HTTP  302
+redirection packet informing to the browser that the website has  been &amp;ldquo;Moved&amp;rdquo;
+to another location.&lt;/p&gt;
+
+&lt;p&gt;Instead of having a full web proxy implementation to perform the redirection,
+we could determine that this type of redirection is performed without the need
+of keep any session state. As in the case of the RST blocking, once the  Host
+header is found a packet with a redirection to www.msn.com is sent to the
+client.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;GET / HTTP/1.1
+User-Agent: TLT/2.6.4 (linux-gnu)
+Accept: */*
+Host: www.uznews.net
+Connection: Keep-Alive 
+
+HTTP/1.1 302 Found
+Location: http://www.msn.com/
+Content-Type: text/html; charset=utf-8
+Content-Length: 136
+Connection: close
+
+&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;Object moved&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt; &amp;lt;h2&amp;gt;Object moved to &amp;lt;a
+href=&#39;http://www.msn.com/&#39;&amp;gt;here&amp;lt;/a&amp;gt;.&amp;lt;/h2&amp;gt; &amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This redirection method is highly scalable and users are aware that blocking
+is talking place.&lt;/p&gt;
+
+&lt;h2 id=&#34;how-we-manage-to-bypass-the-blocking:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;How we manage to bypass the blocking?&lt;/h2&gt;
+
+&lt;p&gt;During our investigation we discovered that it is possible to bypass the
+filtering by tampering the Host header so the matching stage is not
+triggered.&lt;/p&gt;
+
+&lt;p&gt;The basic idea is to use the &lt;code&gt;\t&lt;/code&gt; (TAB) and &lt;code&gt;\n&lt;/code&gt; (linefeed) characters in the
+basic HTTP requests headers. We could test and verify that webservers
+sanitize the requests headers and appending a tab character at the end of the
+Host Header will not have an impact in the webserver side but will bypass the
+detection-matching phase of the blocking gear.&lt;/p&gt;
+
+&lt;p&gt;So instead of sending &lt;code&gt;Host: www.youtube.com\n&lt;/code&gt; our requests look like &lt;code&gt;Host:
+www.youtube.com\t\n&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also discovered that the Active Redirection Method could be bypassed by
+pre-pending a linefeed to the GET header. So instead of sending &lt;code&gt;GET /
+HTTP/1.1&lt;/code&gt;, our requests look like &lt;code&gt;\nGET / HTTP/1.1&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;ooni-testing:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;OONI Testing&lt;/h1&gt;
+
+&lt;p&gt;We ran from inside of TM and UZ a set of ooniprobe tests to collect some data
+on how the filtering was happening and confirm our hypothesis of censorship
+bypassing strategies.&lt;/p&gt;
+
+&lt;p&gt;Inside of Uzbekistan we ran the following tests:&lt;/p&gt;
+
+&lt;h3 id=&#34;http-header-field-manipulation:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Header Field Manipulation&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/TM/http_header_field_manipulation-2013-01-28T195727Z-AS20661.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/TM/http_header_field_manipulation-2013-01-28T195727Z-AS20661.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Through such test we were able to determine that no extra HTTP header were
+being appended to our outgoing requests. As we can see the response body
+contains the same headers that have been sent by the client.&lt;/p&gt;
+
+&lt;h3 id=&#34;http-invalid-request-line-test:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Invalid Request Line test&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/TM/http_invalid_request_line-2013-01-30T214938Z-AS20661.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/TM/http_invalid_request_line-2013-01-30T214938Z-AS20661.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Through such test we were able to determine that the DPI device does not
+misbehave when receiving an invalid request line. This leads us to believe that
+the device in question is not a bluecoat device since such devices usually
+crash on &amp;lsquo;test_random_invalid_version_number&amp;rsquo; and
+&amp;lsquo;test_random_invalid_field_count&amp;rsquo; as is shown in the measurements done in
+Myanmar (&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/MM/http_invalid_request_line-2012-12-06T162217Z-AS18399.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/MM/http_invalid_request_line-2012-12-06T162217Z-AS18399.yamloo&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h3 id=&#34;http-host-test:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Host test&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/TM/http_host-2013-01-30T224041Z-AS20661.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/TM/http_host-2013-01-30T224041Z-AS20661.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Through this test we were able to confirm that the above described filtering
+bypassing strategies do indeed work as is shown by
+&amp;lsquo;test_filtering_prepend_newline_to_method&amp;rsquo; and
+&amp;lsquo;test_filtering_add_tab_to_host&amp;rsquo;. We were also able to determine that filtering
+also occurs on subdomains of the target hostname as is shown by
+&amp;lsquo;test_filtering_of_subdomain&amp;rsquo;.  Notes: The &amp;lsquo;response_never_received&amp;rsquo; error code
+is due to a TCP RST.&lt;/p&gt;
+
+&lt;p&gt;Inside of Turkmenistan we ran the same tests and obtained very similar results:&lt;/p&gt;
+
+&lt;h3 id=&#34;http-header-field-manipulation-1:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Header Field Manipulation&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/UZ/http_header_field_manipulation-2013-01-29T222932Z-AS31203.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/UZ/http_header_field_manipulation-2013-01-29T222932Z-AS31203.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;http-invalid-request-line-test-1:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Invalid Request Line test&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/UZ/http_invalid_request_line-2013-02-02T183110Z-AS31203.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/UZ/http_invalid_request_line-2013-02-02T183110Z-AS31203.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;http-host-test-1:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;HTTP Host test&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://ooni.torproject.org/reports/0.1/UZ/http_host-2013-02-02T183406Z-AS31203.yamloo&#34;&gt;https://ooni.torproject.org/reports/0.1/UZ/http_host-2013-02-02T183406Z-AS31203.yamloo&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Also here censorship of subdomains is occurring, though the filtering strategy
+is to reply with a 302 redirect to &amp;lsquo;&lt;a href=&#34;http://www.msn.com&#39;&#34;&gt;http://www.msn.com&#39;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Such results are particularly interesting, because we are now able to test for
+these bypassing strategies in the future. If it&amp;rsquo;s possible to circumvent
+censorship by means of these two strategies we can infer that the DPI device we
+are facing could be similar to these.  If we continue doing this we will be
+developing a heuristic for categorizing DPI devices.&lt;/p&gt;
+
+&lt;p&gt;Something similar was done in the case of Bluecoat in Burma, where we
+discovered that by sending an invalid HTTP method in the Request Line would
+cause a bluecoat device to output an error message. The same thing happens to
+bluecoat, though with a different error message, when sending an invalid number
+of parts in the HTTP request line.&lt;/p&gt;
+
+&lt;h1 id=&#34;lessons-learned:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Lessons learned&lt;/h1&gt;
+
+&lt;p&gt;We learned that censorship software is not perfect and that sometimes it can be
+trivially bypassed. The fact that it can be bypassed is not of interest to who
+deploys such software, because they are mainly interested in affecting a large
+portion of their userbase and even if a select few is able to access restricted
+content it is generally not a problem.
+This means that they accept the fact that there is an imbalance in knowledge
+amongst their population and this strengthens social inequality.&lt;/p&gt;
+
+&lt;p&gt;What is of interest to the OONI project is the fact that by detecting such
+imperfections in filtering software we are able to classify the kind of product
+being used. The next time we will see a device that can be bypassed by append
+tab characters to the &lt;code&gt;Host&lt;/code&gt; header field we can infer that it may be the same
+used in UZ and TZ.&lt;/p&gt;
+
+&lt;p&gt;You can help us detect censorship by running ooni-probe. For more details see
+the &lt;a href=&#34;https://github.com/thetorproject/ooni-probe#ooniprobe---open-observatory-of-network-interference&#34;&gt;install guide&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Hadara Palestine</title>
+      <link>http://hellais.github.com:1313/adina/post/hadara-palestine/</link>
+      <pubDate>Mon, 23 Apr 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://hellais.github.com:1313/adina/post/hadara-palestine/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;ooni_test:&lt;/strong&gt; HTTP Host&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;country:&lt;/strong&gt; Palestine&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;provider:&lt;/strong&gt; Hadara, Paltel&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;product:&lt;/strong&gt; Squid&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;product_website:&lt;/strong&gt; &lt;a href=&#34;http://www.squid-cache.org/&#34;&gt;http://www.squid-cache.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;censorship method:&lt;/strong&gt; Transparent HTTP proxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;downloads:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/censored-sites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is the technical report on the politically motivated censorship going on
+in Bethlehem, West Bank.&lt;/p&gt;
+
+&lt;p&gt;These are the networks in question:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;inetnum:         82.205.96.0 - 82.205.103.255
+netname:         GZ-HOME-BR1
+descr:           GAZA BSA HOME
+country:         PS
+admin-c:         WK4085-RIPE
+tech-c:          HT1472-RIPE
+status:          ASSIGNED PA
+mnt-by:          Palnet-mnt
+source:          RIPE # Filtered
+
+inetnum:         212.106.88.0 - 212.106.95.255
+netname:         RA-HM-ASR-02
+descr:           Hadara Ramallah BSA
+country:         PS
+admin-c:         WK4085-RIPE
+tech-c:          HT1472-RIPE
+status:          Assigned PA
+mnt-by:          Palnet-MNT
+source:          RIPE # Filtered
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The technique being used to restrict access to content is a transparent HTTP
+proxy. What this does is intercept every HTTP request being made and process it
+internally. If the content is cached it will serve the cached version of the
+content. If the content is to be blocked it will serve a blocked page.&lt;/p&gt;
+
+&lt;p&gt;We developed a test that opens a connection on port 80 towards a known
+unrestricted host. Keep in mind that it&amp;rsquo;s irrelevant to what destination the
+connection is opened because the transparent HTTP proxy will intercept all HTTP
+requests, meaning that all clients are in reality always only speaking to the proxy.
+Once we have a connection open we do HTTP GET requests with a changed Host header field.
+If the result is the block page then the content is restricted.&lt;/p&gt;
+
+&lt;p&gt;We have identified two different block pages that were interchanged at a
+certain point during our tests:&lt;/p&gt;
+
+&lt;h3 id=&#34;first-block-page:b0dbb69a6dab18418418d2a3a0b9d948&#34;&gt;First block page&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.0 403 Forbidden
+Server: squid
+Date: Wed, 11 Apr 2012 05:47:10 GMT
+Content-Type: text/html
+Content-Length: 21
+Connection: close
+
+Sorry, Access Denied
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;second-block-page:b0dbb69a6dab18418418d2a3a0b9d948&#34;&gt;Second block page&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;HTTP/1.0 403 Forbidden
+Server: squid
+Date: Sun, 22 Apr 2012 20:55:34 GMT
+Content-Type: text/html
+Content-Length: 2205
+Connection: close
+
+&amp;lt;!DOCTYPE HTML PUBLIC &amp;quot;-//W3C//DTD HTML 4.01 Transitional//EN&amp;quot; &amp;quot;http://www.w3.org/TR/html4/loose.dtd&amp;quot;&amp;gt;
+&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta http-equiv=&amp;quot;Content-type&amp;quot; content=&amp;quot;text/html; charset=iso-8859-1&amp;quot;&amp;gt;
+        &amp;lt;title&amp;gt;ERROR: The requested URL could not be retrieved&amp;lt;/title&amp;gt;
+        &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+            #logo {
+                margin: 0 auto;
+                display: block;
+            }
+            hr {
+                height: 1px;
+                border: none;
+                background: gray;
+                margin: 1em 0;
+            }
+            h1 {
+                padding: 0;
+                font-size: 1.5em;
+                margin: 0;
+            }
+            h2 {
+                padding: 0;
+                font-size: 1.2em;
+                margin: 0 0 1em 0;
+            }
+            body {
+                font-family: sans-serif;
+                padding: 1em 0;
+            }
+            #content {
+                margin: 0 auto;
+                max-width: 800px;
+                border: 1px solid gray;
+                background: #eee;
+                padding: 1em 2em;
+                -moz-border-radius: 16px;
+            }
+        &amp;lt;/style&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt;
+
+        &amp;lt;h1&amp;gt;ERROR&amp;lt;/h1&amp;gt;
+        &amp;lt;h2&amp;gt;The requested URL could not be retrieved&amp;lt;/h2&amp;gt;
+        &amp;lt;hr/&amp;gt;
+
+&amp;lt;P&amp;gt;
+While trying to retrieve the URL:
+&amp;lt;A HREF=&amp;quot;http://fateh-voice.ps/&amp;quot;&amp;gt;http://fateh-voice.ps/&amp;lt;/A&amp;gt;
+&amp;lt;P&amp;gt;
+The following error was encountered:
+&amp;lt;UL&amp;gt;
+&amp;lt;LI&amp;gt;
+&amp;lt;STRONG&amp;gt;
+Access Denied.
+&amp;lt;/STRONG&amp;gt;
+&amp;lt;P&amp;gt;
+Access control configuration prevents your request from
+being allowed at this time.  Please contact your service provider if
+you feel this is incorrect.
+&amp;lt;/UL&amp;gt;
+&amp;lt;P&amp;gt;Your cache administrator is &amp;lt;A HREF=&amp;quot;mailto:webmaster&amp;quot;&amp;gt;webmaster&amp;lt;/A&amp;gt;.
+        &amp;lt;/div&amp;gt;
+    &amp;lt;!--
+  -- Unfortunately, Microsoft has added a clever new
+  -- feature to Internet Explorer.  If the text in
+  -- an errors message is too small, specifically
+  -- less than 512 bytes, Internet Explorer returns
+  -- its own error message.  Yes, you can turn that
+  -- off, but *surprise* its pretty tricky to find
+  -- buried as a switch called smart error
+  -- messages  That means, of course, that many of
+  -- Resins error messages are censored by default.
+  -- And, of course, youll be shocked to learn that
+  -- IIS always returns error messages that are long
+  -- enough to make Internet Explorer happy.  The
+  -- workaround is pretty simple: pad the error
+  -- message with a big comment to push it over the
+  -- five hundred and twelve byte minimum.  Of course,
+  -- thats exactly what youre reading right now.
+//--&amp;gt;
+&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;From the response headers of a blocked page we are able to learn that the
+software being used is Squid.&lt;/p&gt;
+
+&lt;p&gt;We scanned more than 1 million hostnames and only detected censorship on 8 of
+these.
+The full scan results are available in an unredacted from &lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;At a certain point we decided to go for a high level of parallelism and not
+care about timeout errors. This is because the transparent HTTP proxy is
+intercepting our request and making them for us. This means that if a
+certain hostname is to be blocked it will reply with the block page
+instantenously without processing it. If the site is in the blocklist a
+connection attempt to it will never timeout.&lt;/p&gt;
+
+&lt;p&gt;What this means, though, is that sites blocked with some more sophisticated
+techniques would not have been detected. Though by seeing the kind of setup
+that was deployed in this case we find it unlikely that access to content
+would be restricted with some more advanced setup and that they would be
+using a mix between squid transparent HTTP proxy censorship and other.&lt;/p&gt;
+
+&lt;p&gt;The sites whose access is being restricted access to are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;pal-home.net&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;kofiapress.com&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;amad.ps&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;inlightpress.com&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;fpnp.net&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;fateh-voice.ps&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;karamapress.com&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;milad.ps&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/palhome.png&#34; alt=&#34;http://pal-home.net&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://pal-home.net&#34;&gt;http://pal-home.net&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/milad.png&#34; alt=&#34;http://milad.ps&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://milad.ps&#34;&gt;http://milad.ps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/karamapress.png&#34; alt=&#34;http://karamapress.com&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://karamapress.com&#34;&gt;http://karamapress.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/inlightpress.png&#34; alt=&#34;http://inlightpress.com&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://inlightpress.com&#34;&gt;http://inlightpress.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/fpnp.png&#34; alt=&#34;http://fpnp.net&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://fpnp.net&#34;&gt;http://fpnp.net&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/fateh-voice.png&#34; alt=&#34;http://fateh-voice.ps&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://fateh-voice.ps&#34;&gt;http://fateh-voice.ps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/amad.png&#34; alt=&#34;http://amad.ps&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://amad.ps&#34;&gt;http://amad.ps&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For more details on the political implications check see the &lt;a href=&#34;http://www.maannews.net/eng/ViewDetails.aspx?ID=478726&#34;&gt;article by George
+Hale on Ma&amp;rsquo;An News&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>T-Mobile USA Web Guard</title>
+      <link>http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/</link>
+      <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
+      
+      <guid>http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/</guid>
+      <description>
+
+&lt;p&gt;&lt;strong&gt;ooni_test:&lt;/strong&gt; HTTP Host&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;country:&lt;/strong&gt; United States&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;provider:&lt;/strong&gt; T-Mobile USA&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;product:&lt;/strong&gt; Web Guard&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;product_website:&lt;/strong&gt; &lt;a href=&#34;http://support.t-mobile.com/docs/DOC-2144&#34;&gt;http://support.t-mobile.com/docs/DOC-2144&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;censorship_method:&lt;/strong&gt; Transparent HTTP proxy&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;downloads:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites-categorized.txt&#34;&gt;Categories of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;T-Mobile USA offers a &amp;ldquo;feature&amp;rdquo; to restrict access to certain
+kinds of content. This is called Web Guard. Supposedly Web Guard
+is supposed to inhibit access to content that falls under the
+following categories: Alcohol, Mature Content, Violence,
+Drugs, Pornography,  Weapons, Gambling, Suicide, Guns, Hate,
+Tobacco, Ammunition.&lt;/p&gt;
+
+&lt;p&gt;By developing an OONI-probe test we were able to extract part of
+the list of censored content and discovered that sites that do
+not fall under these categories were also censored.
+This feature is enabled by default on all prepaid accounts and
+although it can be disabled by customers who wish to do so
+(if over 18 years of age), it is not clearly stated in the
+error page how to do so. This means that T-Mobile USA customers may
+be drawn into the Filternet without knowing how to get out.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-is-the-censorship-performed:5e16e4edcdf1b5c1f1e992db091a3309&#34;&gt;How is the censorship performed?&lt;/h3&gt;
+
+&lt;p&gt;The technique being used by T-Mobile USA to restrict access to certain content
+involves deploying a transprent HTTP proxy. This proxy intercepts every HTTP
+packet going through the network and checks it&amp;rsquo;s Host header field to see if
+it on the censored list. If the site is to be blocked it injects a fake response
+warning the user of the block. What this means is that the block is only effective
+against unencrypted HTTP traffic, but does not work for encrypted HTTPs traffic.&lt;/p&gt;
+
+&lt;h3 id=&#34;some-sites-should-not-be-censored:5e16e4edcdf1b5c1f1e992db091a3309&#34;&gt;Some sites should not be censored&lt;/h3&gt;
+
+&lt;p&gt;While most of the censored sites are legitimately categorized, there are certain
+ones that do not fall under the categories of the block.
+Here is a list of sites that we found to be censored, but that we don&amp;rsquo;t believe
+belong to any of the following categories Alcohol, Mature Content, Violence,
+Drugs, Pornography, Weapons, Gambling, Suicide, Guns, Hate, Tobacco, Ammunition.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/torproject.org.png&#34; alt=&#34;The Tor Project is dedicated to proving anonymous secure communication&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://torproject.org&#34;&gt;The Tor Project is dedicated to proving anonymous secure communication&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/italian-censorship.png&#34; alt=&#34;This is one of the most interestingly blocked website. Italy practices DNS based censorship for website that are related to
+  online gambling. This is the block page is displayed when the IP address in the DNS response is spoofed. This is meta censorship! &#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://217.175.53.72/&#34;&gt;This is one of the most interestingly blocked website. Italy practices DNS based censorship for website that are related to
+  online gambling. This is the block page is displayed when the IP address in the DNS response is spoofed. This is meta censorship! &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/web.archive.org.png&#34; alt=&#34;The internet archive Way Back Machine. The Library of the Internet.&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://web.archive.org/&#34;&gt;The internet archive Way Back Machine. The Library of the Internet.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/newgrounds.com.png&#34; alt=&#34;Newgrounds is an American entertainment and social media website. &#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://newgrounds.com&#34;&gt;Newgrounds is an American entertainment and social media website. &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/wjunction.com.png&#34; alt=&#34;Webmaster Hangout&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://wjunction.com/&#34;&gt;Webmaster Hangout&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/logicalmedia.com.png&#34; alt=&#34;Logical Media is an Affiliate Network.&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://logicalmedia.com/&#34;&gt;Logical Media is an Affiliate Network.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/cosmopolitan.com.png&#34; alt=&#34;Cosmopolitan is an international magazine for women. &#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://cosmopolitan.com/&#34;&gt;Cosmopolitan is an international magazine for women. &lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/nullrefer.com.png&#34; alt=&#34;Hide Refer hides the visitors HTTP refer from being seen by other websites&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nullrefer.com/&#34;&gt;Hide Refer hides the visitors HTTP refer from being seen by other websites&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/sportscn.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sportscn.com/&#34;&gt;Chinese sports news website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/programme.tv.png&#34; alt=&#34;French TV guide website.&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://programme.tv/&#34;&gt;French TV guide website.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/nulled.cc.png&#34; alt=&#34;Russian programming forum&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://nulled.cc/&#34;&gt;Russian programming forum&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/ir-tci.org.png&#34; alt=&#34;Iranian Forum&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://ir-tci.org/&#34;&gt;Iranian Forum&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/zonebourse.com.png&#34; alt=&#34;French economics and financial news site&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://zonebourse.com/&#34;&gt;French economics and financial news site&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hackbase.com.png&#34; alt=&#34;Chinese computer security website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://hackbase.com/&#34;&gt;Chinese computer security website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/whatreallyhappened.com.png&#34; alt=&#34;9/11 conspiracy theory news site&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://whatreallyhappened.com/&#34;&gt;&lt;sup&gt;9&lt;/sup&gt;&amp;frasl;&lt;sub&gt;11&lt;/sub&gt; conspiracy theory news site&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/p.tl.png&#34; alt=&#34;Japanese URL shortening service&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://p.tl/&#34;&gt;Japanese URL shortening service&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/10minutesaperdre.fr.png&#34; alt=&#34;French funny news website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://10minutesaperdre.fr/&#34;&gt;French funny news website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/statsie.com.png&#34; alt=&#34;Website statistics collection site&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://statsie.com/&#34;&gt;Website statistics collection site&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/bbcprofit.com.png&#34; alt=&#34;Financial advice website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://bbcprofit.com/&#34;&gt;Financial advice website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/el-annuaire.com.png&#34; alt=&#34;French website index&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://el-annuaire.com/&#34;&gt;French website index&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/livesports.pl.png&#34; alt=&#34;Polish sports news website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://livesports.pl/&#34;&gt;Polish sports news website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/titan007.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://titan007.com/&#34;&gt;Chinese sports news website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/girlpower.it.png&#34; alt=&#34;Italian women advice website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://girlpower.it/&#34;&gt;Italian women advice website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/yusukebe.com.png&#34; alt=&#34;Japanese blog&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://yusukebe.com/&#34;&gt;Japanese blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/sougouwiki.com.png&#34; alt=&#34;Japanese wiki&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sougouwiki.com/&#34;&gt;Japanese wiki&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/wiki-live.com.png&#34; alt=&#34;Online Article directory&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://wiki-live.com/&#34;&gt;Online Article directory&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hltv.org.png&#34; alt=&#34;Sports news website&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://hltv.org/&#34;&gt;Sports news website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/elu24.ee.png&#34; alt=&#34;Estonian news portal&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://elu24.ee/&#34;&gt;Estonian news portal&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/pitsirikos.net.png&#34; alt=&#34;Greek political blog&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://pitsirikos.net/&#34;&gt;Greek political blog&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/kath.net.png&#34; alt=&#34;Religious news site&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://kath.net/&#34;&gt;Religious news site&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hackforums.net.png&#34; alt=&#34;Computer security Forum&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://hackforums.net/&#34;&gt;Computer security Forum&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/echartsinfrance.net.png&#34; alt=&#34;French pop music hit list&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.chartsinfrance.net/&#34;&gt;French pop music hit list&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;what-can-we-learn-from-this:5e16e4edcdf1b5c1f1e992db091a3309&#34;&gt;What can we learn from this?&lt;/h3&gt;
+
+&lt;p&gt;That if you are a Chinese sports fan or a French interested in economics under
+18 you will have a hard time going with T-Mobile in the US. There appears to be
+overall a tendency to blocking foreign sports news websites.&lt;/p&gt;
+
+&lt;p&gt;When I asked T-Mobile US about the matter this is what came out with the
+following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; Arturo Filastò @hellais
+@TMobileHelp Under what category does http://torproject.org fall under? I don&#39;t see any reason for it being blocked. @mikavienna @ioerror
+
+ T-Mobile USA @TMobileHelp
+Hi there. Here&#39;s more info about webguard. http://ow.ly/9JbxO Please let us know if we can help. ^CG
+
+ Arturo Filastò @hellais
+@TMobileHelp Why is web guard blocking http://torproject.org? It does not appear to belong to the filtered categories.
+
+ T-Mobile USA @TMobileHelp
+@hellais @MiKaVienna @ioerror http://torproject.org is not blocked. There must be a webguard on your line. Please contact us to resolve. ^CG
+
+ Arturo Filastò  @hellais
+Wonder what keywords it picket up in @torproject that fit in these categories: http://support.t-mobile.com/docs/DOC-2144#What_categories_will_be_completely_restricted_with_the_Web_Guard_feature
+
+ T-Mobile USA  @TMobileHelp
+My guess would be system picked up keywords there. Let us know if we can assist in turning webguard off. ^CG
+
+ Arturo Filastò  @hellais
+Also, doesn&#39;t t-mobile buy the list of censored sites from a third party? Or does it compile it itself?
+
+ T-Mobile USA @TMobileHelp
+My guess would be system picked up keywords there. Let us know if we can assist in turning webguard off. ^CG
+
+ Arturo Filastò @hellais
+My questions are: why is Web Guard enabled on my account and why sites such as http://torproject.org are filtered.
+
+ T-Mobile USA @TMobileHelp
+I don&#39;t have enough information to speculate further about the details. I CAN help you turn off webguard? ^CG
+
+ Arturo Filastò @hellais
+@TMobileHelp what leads TMobile to believe that a customer is interested in censorship? Is Web Guard activated on all prepaid accounts?
+
+ T-Mobile USA @TMobileHelp
+Must be because when your account was set up, we thought you wanted it. If you don&#39;t, please contact us: http://ow.ly/9JllQ ^CG
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So T-Mobile is basically interfering into what should be taught by
+parents to their children. Since most of prepaid customers are
+under 18 they reserve the right to decide what is right and wrong
+for them, even bypassing their parents.&lt;/p&gt;
+
+&lt;p&gt;If I were a parent I would be mad that T-Mobile US chooses for my
+what my child should watch and should not.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

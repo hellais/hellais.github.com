@@ -1,0 +1,438 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Details &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Details</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/tests/http_requests.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="details">
+<h1>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h1>
+<p><em>Test Name</em>: HTTP Requests</p>
+<p><em>Current version</em>: 0.1</p>
+<p><em>NetTest</em>: HTTP Requests (<a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/blocking/http_requests.py">https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/blocking/http_requests.py</a>)</p>
+<p><em>Test Helper</em>: None</p>
+<p><em>Test Type</em>: Content Blocking</p>
+<p><em>Requires Root</em>: No</p>
+</div>
+<div class="section" id="description">
+<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
+<p>This test perform a HTTP GET request for the / resource over the test network
+and over Tor. It then compares the two responses to see if the response bodies of the two requests match and if the
+proportion between the expected body length (the one over Tor) and the one over
+the control network match.</p>
+<p>If the proportion between the two body lengths is &lt;= a certain tolerance factor
+(by default set to 0.8), then we say that they do not match.</p>
+<p>The reason for doing so is that a lot of sites serve geolocalized content based
+on the location from which the request originated from.</p>
+</div>
+<div class="section" id="how-to-run-the-test">
+<h1>How to run the test<a class="headerlink" href="#how-to-run-the-test" title="Permalink to this headline">¶</a></h1>
+<p>To test a single site run:</p>
+<p><cite>ooniprobe blocking/http_requests -u http://&lt;test_site&gt;/</cite></p>
+<p>To test a set of sites from a list containing sites to test run:</p>
+<p><cite>ooniprobe blocking/http_requests -f &lt;input_file&gt;</cite></p>
+</div>
+<div class="section" id="sample-report">
+<h1>Sample report<a class="headerlink" href="#sample-report" title="Permalink to this headline">¶</a></h1>
+<p><cite>ooniprobe blocking/http_requests -f example_inputs/url_lists_file.txt</cite></p>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for HTTP Requests Test test
+# Thu Nov 29 13:20:06 2012
+###########################################
+---
+options:
+  collector: null
+  help: 0
+  logfile: null
+  pcapfile: null
+  reportfile: null
+  resume: 0
+  subargs: [-f, example_inputs/url_lists_file.txt]
+  test: nettests/blocking/http_requests.py
+probe_asn: null
+probe_cc: null
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 0.0.7.1-alpha
+start_time: 1354188006.0
+test_name: HTTP Requests Test
+test_version: &#39;0.1&#39;
+...
+---
+input: http://ooni.nu/test
+report:
+  agent: agent
+  body_length_match: false
+  body_proportion: 0.9732142857142857
+  factor: 0.8
+  requests:
+  - request:
+      body: null
+      headers:
+      - - User-Agent
+        - - &amp;id001 [Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1), &#39;Internet
+              Explorer 7, Windows Vista&#39;]
+      method: GET
+      url: http://ooni.nu/test
+    response:
+      body: &quot;\n&lt;html&gt;\n    &lt;head&gt;\n        &lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;\
+        0;URL=http://ooni.nu/test/\&quot;&gt;\n    &lt;/head&gt;\n    &lt;body bgcolor=\&quot;#FFFFFF\&quot;\
+        \ text=\&quot;#000000\&quot;&gt;\n    &lt;a href=\&quot;http://ooni.nu/test/\&quot;&gt;click here&lt;/a&gt;\n\
+        \    &lt;/body&gt;\n&lt;/html&gt;\n&quot;
+      code: 302
+      headers:
+      - - Content-Length
+        - [&#39;218&#39;]
+      - - Server
+        - [TwistedWeb/10.1.0]
+      - - Connection
+        - [close]
+      - - Location
+        - [&#39;http://ooni.nu/test/&#39;]
+      - - Date
+        - [&#39;Thu, 29 Nov 2012 12:20:25 GMT&#39;]
+      - - Content-Type
+        - [text/html]
+  - request:
+      body: null
+      headers:
+      - - User-Agent
+        - - *id001
+      method: GET
+      url: shttp://ooni.nu/test
+    response:
+      body: &quot;\n&lt;html&gt;\n    &lt;head&gt;\n        &lt;meta http-equiv=\&quot;refresh\&quot; content=\&quot;\
+        0;URL=http://ooni.nu:80/test/\&quot;&gt;\n    &lt;/head&gt;\n    &lt;body bgcolor=\&quot;#FFFFFF\&quot;\
+        \ text=\&quot;#000000\&quot;&gt;\n    &lt;a href=\&quot;http://ooni.nu:80/test/\&quot;&gt;click here&lt;/a&gt;\n\
+        \    &lt;/body&gt;\n&lt;/html&gt;\n&quot;
+      code: 302
+      headers:
+      - - Content-Length
+        - [&#39;224&#39;]
+      - - Server
+        - [TwistedWeb/10.1.0]
+      - - Connection
+        - [close]
+      - - Location
+        - [&#39;http://ooni.nu:80/test/&#39;]
+      - - Date
+        - [&#39;Thu, 29 Nov 2012 12:20:33 GMT&#39;]
+      - - Content-Type
+        - [text/html]
+  socksproxy: null
+test_name: test_get
+test_runtime: 9.357746124267578
+test_started: 1354191606.333243
+...
+---
+input: http://torproject.org/
+report:
+  agent: agent
+  body_length_match: false
+  body_proportion: 1.0
+  factor: 0.8
+  requests:
+  - request:
+      body: null
+      headers:
+      - - User-Agent
+        - - &amp;id001 [Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1), &#39;Internet
+              Explorer 7, Windows Vista&#39;]
+      method: GET
+      url: http://torproject.org/
+    response:
+      body: &#39;&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+
+        &lt;html&gt;&lt;head&gt;
+
+        &lt;title&gt;302 Found&lt;/title&gt;
+
+        &lt;/head&gt;&lt;body&gt;
+
+        &lt;h1&gt;Found&lt;/h1&gt;
+
+        &lt;p&gt;The document has moved &lt;a href=&quot;https://www.torproject.org/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;hr&gt;
+
+        &lt;address&gt;Apache Server at torproject.org Port 80&lt;/address&gt;
+
+        &lt;/body&gt;&lt;/html&gt;
+
+        &#39;
+      code: 302
+      headers:
+      - - Content-Length
+        - [&#39;275&#39;]
+      - - Vary
+        - [Accept-Encoding]
+      - - Server
+        - [Apache]
+      - - Connection
+        - [close]
+      - - Location
+        - [&#39;https://www.torproject.org/&#39;]
+      - - Date
+        - [&#39;Thu, 29 Nov 2012 12:20:08 GMT&#39;]
+      - - Content-Type
+        - [text/html; charset=iso-8859-1]
+  - request:
+      body: null
+      headers:
+      - - User-Agent
+        - - *id001
+      method: GET
+      url: shttp://torproject.org/
+    response:
+      body: &#39;&lt;!DOCTYPE HTML PUBLIC &quot;-//IETF//DTD HTML 2.0//EN&quot;&gt;
+
+        &lt;html&gt;&lt;head&gt;
+
+        &lt;title&gt;302 Found&lt;/title&gt;
+
+        &lt;/head&gt;&lt;body&gt;
+
+        &lt;h1&gt;Found&lt;/h1&gt;
+
+        &lt;p&gt;The document has moved &lt;a href=&quot;https://www.torproject.org/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+        &lt;hr&gt;
+
+        &lt;address&gt;Apache Server at torproject.org Port 80&lt;/address&gt;
+
+        &lt;/body&gt;&lt;/html&gt;
+
+        &#39;
+      code: 302
+      headers:
+      - - Content-Length
+        - [&#39;275&#39;]
+      - - Vary
+        - [Accept-Encoding]
+      - - Server
+        - [Apache]
+      - - Connection
+        - [close]
+      - - Location
+        - [&#39;https://www.torproject.org/&#39;]
+      - - Date
+        - [&#39;Thu, 29 Nov 2012 12:20:16 GMT&#39;]
+      - - Content-Type
+        - [text/html; charset=iso-8859-1]
+  socksproxy: null
+test_name: test_get
+test_runtime: 8.688138008117676
+test_started: 1354191607.287672
+...
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

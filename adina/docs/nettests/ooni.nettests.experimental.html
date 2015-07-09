@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests experimental Package &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/>
+        <link rel="up" title="Implemented NetTests" href="modules.html"/>
+        <link rel="next" title="ooni.nettests manipulation Package" href="ooni.nettests.manipulation.html"/>
+        <link rel="prev" title="ooni.nettests examples Package" href="ooni.nettests.examples.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Implemented NetTests</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Implemented NetTests</a> &raquo;</li>
+      
+    <li>ooni.nettests experimental Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/nettests/ooni.nettests.experimental.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ooni-nettests-experimental-package">
+<h1>ooni.nettests experimental Package<a class="headerlink" href="#ooni-nettests-experimental-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-ooni.nettests.experimental.chinatrigger">
+<span id="ooni-nettests-experimental-chinatrigger-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.chinatrigger" title="ooni.nettests.experimental.chinatrigger"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.chinatrigger</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.chinatrigger" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.chinatrigger.</code><code class="descname">ChinaTriggerTest</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<p>This test is a OONI based implementation of the C tool written
+by Philipp Winter to engage chinese probes in active scanning.</p>
+<p>Example of running it:
+ooniprobe chinatrigger -d 127.0.0.1 -p 8080</p>
+<dl class="staticmethod">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.mutate">
+<em class="property">static </em><code class="descname">mutate</code><span class="sig-paren">(</span><em>pkt</em>, <em>idx</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.mutate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.mutate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Slightly changed mutate function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.name">
+<code class="descname">name</code><em class="property"> = 'chinatrigger'</em><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['dst', 'port']</em><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_all_random_fields">
+<em class="property">static </em><code class="descname">set_all_random_fields</code><span class="sig-paren">(</span><em>pkt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.set_all_random_fields"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_all_random_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_field">
+<em class="property">static </em><code class="descname">set_random_field</code><span class="sig-paren">(</span><em>pkt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.set_random_field"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_field" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_servername">
+<em class="property">static </em><code class="descname">set_random_servername</code><span class="sig-paren">(</span><em>pkt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.set_random_servername"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_servername" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_time">
+<em class="property">static </em><code class="descname">set_random_time</code><span class="sig-paren">(</span><em>pkt</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.set_random_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.set_random_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.test_send_mutations">
+<code class="descname">test_send_mutations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#ChinaTriggerTest.test_send_mutations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.test_send_mutations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.timeout">
+<code class="descname">timeout</code><em class="property"> = 2</em><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.ChinaTriggerTest.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.experimental.chinatrigger.UsageOptions" title="ooni.nettests.experimental.chinatrigger.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.experimental.chinatrigger.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.chinatrigger.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/chinatrigger.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.chinatrigger.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['dst', 'd', None, 'Specify the target address'], ['port', 'p', None, 'Specify the target port']]</em><a class="headerlink" href="#ooni.nettests.experimental.chinatrigger.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ooni-nettests-experimental-domclass-collector-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.domclass_collector</span></code> Module<a class="headerlink" href="#ooni-nettests-experimental-domclass-collector-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ooni.nettests.experimental.http_keyword_filtering">
+<span id="ooni-nettests-experimental-http-keyword-filtering-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.http_keyword_filtering" title="ooni.nettests.experimental.http_keyword_filtering"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.http_keyword_filtering</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.http_keyword_filtering" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.http_keyword_filtering.</code><code class="descname">HTTPKeywordFiltering</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_keyword_filtering.html#HTTPKeywordFiltering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>This test involves performing HTTP requests containing to be tested for
+censorship keywords.</p>
+<p>It does not detect censorship on the client, but just logs the response from the 
+HTTP backend server.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'List of keywords to use for censorship testing']</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Keyword Filtering'</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['backend']</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.test_get">
+<code class="descname">test_get</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_keyword_filtering.html#HTTPKeywordFiltering.test_get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.test_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a HTTP GET request to the backend containing the keyword to be
+tested inside of the request body.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.test_post">
+<code class="descname">test_post</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_keyword_filtering.html#HTTPKeywordFiltering.test_post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.test_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a HTTP POST request to the backend containing the keyword to be
+tested inside of the request body.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.experimental.http_keyword_filtering.UsageOptions" title="ooni.nettests.experimental.http_keyword_filtering.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.version">
+<code class="descname">version</code><em class="property"> = '0.1.1'</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.HTTPKeywordFiltering.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.http_keyword_filtering.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_keyword_filtering.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_keyword_filtering.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', 'http://127.0.0.1:57001', 'URL of the test backend to use']]</em><a class="headerlink" href="#ooni.nettests.experimental.http_keyword_filtering.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.experimental.http_uk_mobile_networks">
+<span id="ooni-nettests-experimental-http-uk-mobile-networks-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.http_uk_mobile_networks" title="ooni.nettests.experimental.http_uk_mobile_networks"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.http_uk_mobile_networks</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.http_uk_mobile_networks" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.http_uk_mobile_networks.</code><code class="descname">HTTPUKMobileNetworksTest</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#HTTPUKMobileNetworksTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>This test was thought of by Open Rights Group and implemented with the
+purpose of detecting censorship in the UK.
+For more details on this test see:
+<a class="reference external" href="https://trac.torproject.org/projects/tor/ticket/6437">https://trac.torproject.org/projects/tor/ticket/6437</a>
+XXX port the knowledge from the trac ticket into this test docstring</p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.followRedirects">
+<code class="descname">followRedirects</code><em class="property"> = True</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.followRedirects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['urls', 'f', None, 'List of urls one per line to test for censorship']</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.name">
+<code class="descname">name</code><em class="property"> = 'HTTP UK mobile network redirect test'</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.processRedirect">
+<code class="descname">processRedirect</code><span class="sig-paren">(</span><em>location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#HTTPUKMobileNetworksTest.processRedirect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.processRedirect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['urls']</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testPattern">
+<code class="descname">testPattern</code><span class="sig-paren">(</span><em>value</em>, <em>pattern</em>, <em>type</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#HTTPUKMobileNetworksTest.testPattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testPattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testPatterns">
+<code class="descname">testPatterns</code><span class="sig-paren">(</span><em>patterns</em>, <em>location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#HTTPUKMobileNetworksTest.testPatterns"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testPatterns" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testRules">
+<code class="descname">testRules</code><span class="sig-paren">(</span><em>rules</em>, <em>location</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#HTTPUKMobileNetworksTest.testRules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.testRules" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.HTTPUKMobileNetworksTest.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions" title="ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.http_uk_mobile_networks.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/http_uk_mobile_networks.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<p>See <a class="reference external" href="https://github.com/hellais/ooni-inputs/processed/uk_mobile_networks_redirects.yaml">https://github.com/hellais/ooni-inputs/processed/uk_mobile_networks_redirects.yaml</a> 
+to see how the rules file should look like.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['rules', 'y', None, 'Specify the redirect rules file ']]</em><a class="headerlink" href="#ooni.nettests.experimental.http_uk_mobile_networks.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.experimental.keyword_filtering">
+<span id="ooni-nettests-experimental-keyword-filtering-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.keyword_filtering" title="ooni.nettests.experimental.keyword_filtering"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.keyword_filtering</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.keyword_filtering" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.keyword_filtering.</code><code class="descname">KeywordFiltering</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/keyword_filtering.html#KeywordFiltering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'List of keywords to use for censorship testing']</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.name">
+<code class="descname">name</code><em class="property"> = 'Keyword Filtering detection based on RST packets'</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = True</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.test_tcp_keyword_filtering">
+<code class="descname">test_tcp_keyword_filtering</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/keyword_filtering.html#KeywordFiltering.test_tcp_keyword_filtering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.test_tcp_keyword_filtering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Places the keyword to be tested in the payload of a TCP packet.
+XXX need to implement bisection method for enumerating keywords.</p>
+<blockquote>
+<div>though this should not be an issue since we are testing all 
+the keywords in parallel.</div></blockquote>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.experimental.keyword_filtering.UsageOptions" title="ooni.nettests.experimental.keyword_filtering.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.KeywordFiltering.version">
+<code class="descname">version</code><em class="property"> = '0.2'</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.KeywordFiltering.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.experimental.keyword_filtering.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.keyword_filtering.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/keyword_filtering.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.keyword_filtering.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', '127.0.0.1:57002', 'Test backend running TCP echo'], ['timeout', 't', 5, 'Timeout after which to give up waiting for RST packets']]</em><a class="headerlink" href="#ooni.nettests.experimental.keyword_filtering.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.experimental.parasitictraceroute">
+<span id="ooni-nettests-experimental-parasitictraceroute-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.parasitictraceroute" title="ooni.nettests.experimental.parasitictraceroute"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.parasitictraceroute</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.parasitictraceroute" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.parasitictraceroute.</code><code class="descname">ParasiticTracerouteTest</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/parasitictraceroute.html#ParasiticTracerouteTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a></p>
+<dl class="method">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.addToReport">
+<code class="descname">addToReport</code><span class="sig-paren">(</span><em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/parasitictraceroute.html#ParasiticTracerouteTest.addToReport"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.addToReport" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.description">
+<code class="descname">description</code><em class="property"> = 'Injects duplicate TCP packets with varying TTL values by sniffing traffic'</em><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.name">
+<code class="descname">name</code><em class="property"> = 'Parasitic Traceroute Test'</em><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.samplePeriod">
+<code class="descname">samplePeriod</code><em class="property"> = 40</em><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.samplePeriod" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/parasitictraceroute.html#ParasiticTracerouteTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.test_parasitic_traceroute">
+<code class="descname">test_parasitic_traceroute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/parasitictraceroute.html#ParasiticTracerouteTest.test_parasitic_traceroute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.test_parasitic_traceroute" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.version">
+<code class="descname">version</code><em class="property"> = '0.1'</em><a class="headerlink" href="#ooni.nettests.experimental.parasitictraceroute.ParasiticTracerouteTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.experimental.squid">
+<span id="ooni-nettests-experimental-squid-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.experimental.squid" title="ooni.nettests.experimental.squid"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.experimental.squid</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.experimental.squid" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.experimental.squid.SquidTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.experimental.squid.</code><code class="descname">SquidTest</code><a class="reference internal" href="../_modules/ooni/nettests/experimental/squid.html#SquidTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>This test aims at detecting the presence of a squid based transparent HTTP
+proxy. It also tries to detect the version number.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.inputs">
+<code class="descname">inputs</code><em class="property"> = ['http://google.com']</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.name">
+<code class="descname">name</code><em class="property"> = 'Squid test'</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['backend', 'b', 'http://ooni.nu/test/', 'Test backend to use']]</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.squid.SquidTest.test_cacheobject">
+<code class="descname">test_cacheobject</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/squid.html#SquidTest.test_cacheobject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.test_cacheobject" title="Permalink to this definition">¶</a></dt>
+<dd><p>This detects the presence of a squid transparent HTTP proxy by sending
+a request for cache_object://localhost/info.</p>
+<p>The response to this request will usually also contain the squid
+version number.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.squid.SquidTest.test_search_bad_request">
+<code class="descname">test_search_bad_request</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/squid.html#SquidTest.test_search_bad_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.test_search_bad_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to perform a request with a random invalid HTTP method.</p>
+<p>If we are being MITMed by a Transparent Squid HTTP proxy we will get
+back a response containing the X-Squid-Error header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.experimental.squid.SquidTest.test_squid_headers">
+<code class="descname">test_squid_headers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/experimental/squid.html#SquidTest.test_squid_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.test_squid_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Detects the presence of a squid transparent HTTP proxy based on the
+response headers it adds to the responses to requests.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.experimental.squid.SquidTest.version">
+<code class="descname">version</code><em class="property"> = '0.1'</em><a class="headerlink" href="#ooni.nettests.experimental.squid.SquidTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ooni.nettests.manipulation.html" class="btn btn-neutral float-right" title="ooni.nettests manipulation Package">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ooni.nettests.examples.html" class="btn btn-neutral" title="ooni.nettests examples Package"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

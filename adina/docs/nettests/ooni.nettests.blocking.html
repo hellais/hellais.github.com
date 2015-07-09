@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests blocking Package &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/>
+        <link rel="up" title="Implemented NetTests" href="modules.html"/>
+        <link rel="next" title="ooni.nettests examples Package" href="ooni.nettests.examples.html"/>
+        <link rel="prev" title="Implemented NetTests" href="modules.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Implemented NetTests</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="modules.html">Implemented NetTests</a> &raquo;</li>
+      
+    <li>ooni.nettests blocking Package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/nettests/ooni.nettests.blocking.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ooni-nettests-blocking-package">
+<h1>ooni.nettests blocking Package<a class="headerlink" href="#ooni-nettests-blocking-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ooni-nettests-blocking-dnsconsistency-module">
+<h2><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.blocking.dnsconsistency</span></code> Module<a class="headerlink" href="#ooni-nettests-blocking-dnsconsistency-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ooni.nettests.blocking.http_requests">
+<span id="ooni-nettests-blocking-http-requests-module"></span><h2><a class="reference internal" href="#module-ooni.nettests.blocking.http_requests" title="ooni.nettests.blocking.http_requests"><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.blocking.http_requests</span></code></a> Module<a class="headerlink" href="#module-ooni.nettests.blocking.http_requests" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.blocking.http_requests.</code><code class="descname">HTTPRequestsTest</code><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a></p>
+<p>Performs a two GET requests to the set of sites to be tested for
+censorship, one over a known good control channel (Tor), the other over the
+test network.</p>
+<p>We check to see if the response headers match and if the response body
+lengths match.</p>
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_body_lengths">
+<code class="descname">compare_body_lengths</code><span class="sig-paren">(</span><em>body_length_a</em>, <em>body_length_b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.compare_body_lengths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_body_lengths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_headers">
+<code class="descname">compare_headers</code><span class="sig-paren">(</span><em>headers_a</em>, <em>headers_b</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.compare_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.control_body_length">
+<code class="descname">control_body_length</code><em class="property"> = None</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.control_body_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.description">
+<code class="descname">description</code><em class="property"> = 'Performs a HTTP GET request over Tor and one over the local network and compares the two results.'</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.experiment_body_length">
+<code class="descname">experiment_body_length</code><em class="property"> = None</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.experiment_body_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'List of URLS to perform GET and POST requests to']</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.name">
+<code class="descname">name</code><em class="property"> = 'HTTP Requests'</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.postProcessor">
+<code class="descname">postProcessor</code><span class="sig-paren">(</span><em>measurements</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.postProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.postProcessor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = True</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.setUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for inputs.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_control">
+<code class="descname">test_get_control</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.test_get_control"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_control" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_experiment">
+<code class="descname">test_get_experiment</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#HTTPRequestsTest.test_get_experiment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_experiment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.usageOptions">
+<code class="descname">usageOptions</code><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.usageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#ooni.nettests.blocking.http_requests.UsageOptions" title="ooni.nettests.blocking.http_requests.UsageOptions"><code class="xref py py-class docutils literal"><span class="pre">UsageOptions</span></code></a></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.HTTPRequestsTest.version">
+<code class="descname">version</code><em class="property"> = '0.2.4'</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.HTTPRequestsTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.blocking.http_requests.UsageOptions">
+<em class="property">class </em><code class="descclassname">ooni.nettests.blocking.http_requests.</code><code class="descname">UsageOptions</code><a class="reference internal" href="../_modules/ooni/nettests/blocking/http_requests.html#UsageOptions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.http_requests.UsageOptions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.Options</span></code></p>
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.http_requests.UsageOptions.optParameters">
+<code class="descname">optParameters</code><em class="property"> = [['url', 'u', None, 'Specify a single URL to test.'], ['factor', 'f', 0.8, 'What factor should be used for triggering censorship (0.8 == 80%)']]</em><a class="headerlink" href="#ooni.nettests.blocking.http_requests.UsageOptions.optParameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ooni.nettests.blocking.tcp_connect">
+<span id="ooni-nettests-blocking-tcpconnect-module"></span><h2><code class="xref py py-mod docutils literal"><span class="pre">ooni.nettests.blocking.tcpconnect</span></code> Module<a class="headerlink" href="#module-ooni.nettests.blocking.tcp_connect" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest">
+<em class="property">class </em><code class="descclassname">ooni.nettests.blocking.tcp_connect.</code><code class="descname">TCPConnectTest</code><a class="reference internal" href="../_modules/ooni/nettests/blocking/tcp_connect.html#TCPConnectTest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../api/ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a></p>
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.author">
+<code class="descname">author</code><em class="property"> = 'Arturo Filast\xc3\xb2'</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.author" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.description">
+<code class="descname">description</code><em class="property"> = 'Performs a TCP connect scan of all the host port combinations given as input.'</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.inputFile">
+<code class="descname">inputFile</code><em class="property"> = ['file', 'f', None, 'File containing the IP:PORT combinations to be tested, one per line']</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.inputFile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.inputProcessor">
+<code class="descname">inputProcessor</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/tcp_connect.html#TCPConnectTest.inputProcessor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.inputProcessor" title="Permalink to this definition">¶</a></dt>
+<dd><p>This inputProcessor extracts name:port pairs from urls
+XXX: Does not support unusual port numbers</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.name">
+<code class="descname">name</code><em class="property"> = 'TCP Connect'</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiredOptions">
+<code class="descname">requiredOptions</code><em class="property"> = ['file']</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiredOptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiresRoot">
+<code class="descname">requiresRoot</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiresRoot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiresTor">
+<code class="descname">requiresTor</code><em class="property"> = False</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.requiresTor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.test_connect">
+<code class="descname">test_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/tcp_connect.html#TCPConnectTest.test_connect"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.test_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>This test performs a TCP connection to the remote host on the
+specified port.
+The report will contains the string &#8216;success&#8217; if the test has
+succeeded, or the reason for the failure if it has failed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPConnectTest.version">
+<code class="descname">version</code><em class="property"> = '0.1'</em><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPConnectTest.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPFactory">
+<em class="property">class </em><code class="descclassname">ooni.nettests.blocking.tcp_connect.</code><code class="descname">TCPFactory</code><a class="reference internal" href="../_modules/ooni/nettests/blocking/tcp_connect.html#TCPFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">twisted.internet.protocol.Factory</span></code></p>
+<dl class="method">
+<dt id="ooni.nettests.blocking.tcp_connect.TCPFactory.buildProtocol">
+<code class="descname">buildProtocol</code><span class="sig-paren">(</span><em>addr</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/ooni/nettests/blocking/tcp_connect.html#TCPFactory.buildProtocol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ooni.nettests.blocking.tcp_connect.TCPFactory.buildProtocol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ooni.nettests.examples.html" class="btn btn-neutral float-right" title="ooni.nettests examples Package">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Implemented NetTests"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

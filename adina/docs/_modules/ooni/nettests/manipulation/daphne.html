@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests.manipulation.daphne &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.nettests.manipulation.daphne</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.nettests.manipulation.daphne</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">endpoints</span><span class="p">,</span> <span class="n">reactor</span>
+
+<span class="kn">from</span> <span class="nn">ooni</span> <span class="kn">import</span> <span class="n">nettest</span>
+<span class="kn">from</span> <span class="nn">ooni.kit</span> <span class="kn">import</span> <span class="n">daphn3</span>
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+
+<div class="viewcode-block" id="Daphn3ClientProtocol"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientProtocol">[docs]</a><span class="k">class</span> <span class="nc">Daphn3ClientProtocol</span><span class="p">(</span><span class="n">daphn3</span><span class="o">.</span><span class="n">Daphn3Protocol</span><span class="p">):</span>
+<div class="viewcode-block" id="Daphn3ClientProtocol.nextStep"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientProtocol.nextStep">[docs]</a>    <span class="k">def</span> <span class="nf">nextStep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Moving on to next step in the state walk&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">current_data_received</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">steps</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Reached the end of the state machine&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Censorship fingerprint bisected!&quot;</span><span class="p">)</span>
+            <span class="n">step_idx</span><span class="p">,</span> <span class="n">mutation_idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">mutation</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;step_idx: </span><span class="si">%s</span><span class="s"> | mutation_id: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">step_idx</span><span class="p">,</span> <span class="n">mutation_idx</span><span class="p">))</span>
+            <span class="c">#self.transport.loseConnection()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;mutation_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mutation_idx</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;step_idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">step_idx</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">current_step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current_step_role</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">role</span><span class="p">:</span>
+            <span class="c"># We need to send more data because we are again responsible for</span>
+            <span class="c"># doing so.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sendPayload</span><span class="p">()</span>
+
+</div></div>
+<div class="viewcode-block" id="Daphn3ClientFactory"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientFactory">[docs]</a><span class="k">class</span> <span class="nc">Daphn3ClientFactory</span><span class="p">(</span><span class="n">protocol</span><span class="o">.</span><span class="n">ClientFactory</span><span class="p">):</span>
+    <span class="n">protocol</span> <span class="o">=</span> <span class="n">daphn3</span><span class="o">.</span><span class="n">Daphn3Protocol</span>
+    <span class="n">mutation</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="Daphn3ClientFactory.buildProtocol"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.buildProtocol">[docs]</a>    <span class="k">def</span> <span class="nf">buildProtocol</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="p">()</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">steps</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">factory</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">return</span> <span class="n">p</span>
+</div>
+<div class="viewcode-block" id="Daphn3ClientFactory.startedConnecting"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.startedConnecting">[docs]</a>    <span class="k">def</span> <span class="nf">startedConnecting</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connector</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Started connecting </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">connector</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Daphn3ClientFactory.clientConnectionFailed"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionFailed">[docs]</a>    <span class="k">def</span> <span class="nf">clientConnectionFailed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">connector</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;We failed connecting the the OONIB&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Cannot perform test. Perhaps it got blocked?&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Please report this to tor-assistants@torproject.org&quot;</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Daphn3ClientFactory.clientConnectionLost"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.Daphn3ClientFactory.clientConnectionLost">[docs]</a>    <span class="k">def</span> <span class="nf">clientConnectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">,</span> <span class="n">connector</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Daphn3 client connection lost&quot;</span><span class="p">)</span>
+        <span class="k">print</span> <span class="n">reason</span>
+</div></div>
+<div class="viewcode-block" id="daphn3Args"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.daphn3Args">[docs]</a><span class="k">class</span> <span class="nc">daphn3Args</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+                     <span class="p">[</span><span class="s">&#39;host&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s">&#39;Target Hostname&#39;</span><span class="p">],</span>
+                     <span class="p">[</span><span class="s">&#39;port&#39;</span><span class="p">,</span> <span class="s">&#39;p&#39;</span><span class="p">,</span> <span class="mi">57003</span><span class="p">,</span> <span class="s">&#39;Target port number&#39;</span><span class="p">]]</span>
+
+    <span class="n">optFlags</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;pcap&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;Specify that the input file is a pcap file&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s">&#39;yaml&#39;</span><span class="p">,</span> <span class="s">&#39;y&#39;</span><span class="p">,</span> <span class="s">&#39;Specify that the input file is a YAML file (default)&#39;</span><span class="p">]]</span>
+</div>
+<div class="viewcode-block" id="daphn3Test"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.daphn3Test">[docs]</a><span class="k">class</span> <span class="nc">daphn3Test</span><span class="p">(</span><span class="n">nettest</span><span class="o">.</span><span class="n">NetTestCase</span><span class="p">):</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Daphn3&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Bisects the censors fingerprint by mutating the given input packets.&quot;</span>
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">daphn3Args</span>
+    <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> 
+            <span class="s">&#39;Specify the pcap or YAML file to be used as input to the test&#39;</span><span class="p">]</span>
+
+    <span class="c">#requiredOptions = [&#39;file&#39;]</span>
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">requiresTor</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="daphn3Test.inputProcessor"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.daphn3Test.inputProcessor">[docs]</a>    <span class="k">def</span> <span class="nf">inputProcessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        step_idx is the step in the packet exchange</span>
+<span class="sd">        ex.</span>
+<span class="sd">        [.X.] are packets sent by a client or a server</span>
+
+<span class="sd">            client:  [.1.]        [.3.] [.4.]</span>
+<span class="sd">            server:         [.2.]             [.5.]</span>
+
+<span class="sd">        mutation_idx: is the sub index of the packet as in the byte of the</span>
+<span class="sd">        packet at the step_idx that is to be mutated</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;pcap&#39;</span><span class="p">]:</span>
+            <span class="n">daphn3Steps</span> <span class="o">=</span> <span class="n">daphn3</span><span class="o">.</span><span class="n">read_pcap</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">daphn3Steps</span> <span class="o">=</span> <span class="n">daphn3</span><span class="o">.</span><span class="n">read_yaml</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Loaded these steps </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">daphn3Steps</span><span class="p">)</span>
+        <span class="k">yield</span> <span class="n">daphn3Steps</span>
+</div>
+<div class="viewcode-block" id="daphn3Test.test_daphn3"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.daphne.daphn3Test.test_daphn3">[docs]</a>    <span class="k">def</span> <span class="nf">test_daphn3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">host</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;host&#39;</span><span class="p">]</span>
+        <span class="n">port</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;port&#39;</span><span class="p">])</span>
+
+        <span class="k">def</span> <span class="nf">failure</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Failed to connect&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;censored&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;mutation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;Error in connection, perhaps the backend is censored&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">def</span> <span class="nf">success</span><span class="p">(</span><span class="n">protocol</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Successfully connected&quot;</span><span class="p">)</span>
+            <span class="n">protocol</span><span class="o">.</span><span class="n">sendPayload</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">protocol</span><span class="o">.</span><span class="n">d</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Connecting to </span><span class="si">%s</span><span class="s">:</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+        <span class="n">endpoint</span> <span class="o">=</span> <span class="n">endpoints</span><span class="o">.</span><span class="n">TCP4ClientEndpoint</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="n">daphn3_factory</span> <span class="o">=</span> <span class="n">Daphn3ClientFactory</span><span class="p">()</span>
+        <span class="n">daphn3_factory</span><span class="o">.</span><span class="n">steps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span>
+        <span class="n">daphn3_factory</span><span class="o">.</span><span class="n">report</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">report</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">endpoint</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">daphn3_factory</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">success</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div></div></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

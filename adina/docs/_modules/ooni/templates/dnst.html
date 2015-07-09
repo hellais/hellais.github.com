@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.templates.dnst &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.templates.dnst</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.templates.dnst</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c"># :authors: Arturo Filastò</span>
+<span class="c"># :licence: see LICENSE</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">udp</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">base</span>
+<span class="kn">from</span> <span class="nn">twisted.internet.defer</span> <span class="kn">import</span> <span class="n">TimeoutError</span>
+<span class="kn">from</span> <span class="nn">twisted.names</span> <span class="kn">import</span> <span class="n">client</span><span class="p">,</span> <span class="n">dns</span>
+<span class="kn">from</span> <span class="nn">twisted.names.client</span> <span class="kn">import</span> <span class="n">Resolver</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.nettest</span> <span class="kn">import</span> <span class="n">NetTestCase</span>
+<span class="kn">from</span> <span class="nn">ooni.errors</span> <span class="kn">import</span> <span class="n">failureToString</span>
+
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="n">gaierror</span>
+
+<span class="n">dns</span><span class="o">.</span><span class="n">DNSDatagramProtocol</span><span class="o">.</span><span class="n">noisy</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">_bindSocket</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    _bindSocket taken from Twisted 13.1.0 to suppress logging.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">skt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createInternetSocket</span><span class="p">()</span>
+        <span class="n">skt</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">))</span>
+    <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">le</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">error</span><span class="o">.</span><span class="n">CannotListenError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">interface</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">le</span><span class="p">)</span>
+
+    <span class="c"># Make sure that if we listened on port 0, we update that to</span>
+    <span class="c"># reflect what the OS actually assigned us.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_realPortNumber</span> <span class="o">=</span> <span class="n">skt</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c"># Here we remove the logging.</span>
+    <span class="c"># log.msg(&quot;%s starting on %s&quot; % (</span>
+    <span class="c">#         self._getLogPrefix(self.protocol), self._realPortNumber))</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">connected</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="n">skt</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fileno</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">fileno</span>
+<span class="n">udp</span><span class="o">.</span><span class="n">Port</span><span class="o">.</span><span class="n">_bindSocket</span> <span class="o">=</span> <span class="n">_bindSocket</span>
+
+<div class="viewcode-block" id="connectionLost"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.connectionLost">[docs]</a><span class="k">def</span> <span class="nf">connectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Taken from Twisted 13.1.0 to suppress log.msg printing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c"># Here we remove the logging.</span>
+    <span class="c"># log.msg(&#39;(UDP Port %s Closed)&#39; % self._realPortNumber)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_realPortNumber</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">base</span><span class="o">.</span><span class="n">BasePort</span><span class="o">.</span><span class="n">connectionLost</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reason</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span><span class="o">.</span><span class="n">doStop</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket</span>
+    <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">fileno</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">&quot;d&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span></div>
+<span class="n">udp</span><span class="o">.</span><span class="n">Port</span><span class="o">.</span><span class="n">connectionLost</span> <span class="o">=</span> <span class="n">connectionLost</span>
+
+<div class="viewcode-block" id="representAnswer"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.representAnswer">[docs]</a><span class="k">def</span> <span class="nf">representAnswer</span><span class="p">(</span><span class="n">answer</span><span class="p">):</span>
+    <span class="c"># We store the resource record and the answer payload in a</span>
+    <span class="c"># tuple</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">answer</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">answer</span><span class="o">.</span><span class="n">payload</span><span class="p">))</span>
+</div>
+<div class="viewcode-block" id="DNSTest"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest">[docs]</a><span class="k">class</span> <span class="nc">DNSTest</span><span class="p">(</span><span class="n">NetTestCase</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Base DNS Test&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">queryTimeout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DNSTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_setUp</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;queries&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<div class="viewcode-block" id="DNSTest.performPTRLookup"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.performPTRLookup">[docs]</a>    <span class="k">def</span> <span class="nf">performPTRLookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">dns_server</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Does a reverse DNS lookup on the input ip address</span>
+
+<span class="sd">        :address: the IP Address as a dotted quad to do a reverse lookup on.</span>
+
+<span class="sd">        :dns_server: is the dns_server that should be used for the lookup as a</span>
+<span class="sd">                     tuple of ip port (ex. (&quot;127.0.0.1&quot;, 53))</span>
+
+<span class="sd">                     if None, system dns settings will be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ptr</span> <span class="o">=</span> <span class="s">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">address</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="s">&#39;.in-addr.arpa&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dnsLookup</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="s">&#39;PTR&#39;</span><span class="p">,</span> <span class="n">dns_server</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="DNSTest.performALookup"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.performALookup">[docs]</a>    <span class="k">def</span> <span class="nf">performALookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">dns_server</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs an A lookup and returns an array containg all the dotted quad</span>
+<span class="sd">        IP addresses in the response.</span>
+
+<span class="sd">        :hostname: is the hostname to perform the A lookup on</span>
+
+<span class="sd">        :dns_server: is the dns_server that should be used for the lookup as a</span>
+<span class="sd">                     tuple of ip port (ex. (&quot;127.0.0.1&quot;, 53))</span>
+
+<span class="sd">                     if None, system dns settings will be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dnsLookup</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="n">dns_server</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="DNSTest.performNSLookup"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.performNSLookup">[docs]</a>    <span class="k">def</span> <span class="nf">performNSLookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">dns_server</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a NS lookup and returns an array containg all nameservers in</span>
+<span class="sd">        the response.</span>
+
+<span class="sd">        :hostname: is the hostname to perform the NS lookup on</span>
+
+<span class="sd">        :dns_server: is the dns_server that should be used for the lookup as a</span>
+<span class="sd">                     tuple of ip port (ex. (&quot;127.0.0.1&quot;, 53))</span>
+
+<span class="sd">                     if None, system dns settings will be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dnsLookup</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="s">&#39;NS&#39;</span><span class="p">,</span> <span class="n">dns_server</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="DNSTest.performSOALookup"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.performSOALookup">[docs]</a>    <span class="k">def</span> <span class="nf">performSOALookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">dns_server</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a SOA lookup and returns the response (name,serial).</span>
+
+<span class="sd">        :hostname: is the hostname to perform the SOA lookup on</span>
+<span class="sd">        :dns_server: is the dns_server that should be used for the lookup as a</span>
+<span class="sd">                     tuple of ip port (ex. (&quot;127.0.0.1&quot;, 53))</span>
+
+<span class="sd">                     if None, system dns settings will be used</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dnsLookup</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span><span class="s">&#39;SOA&#39;</span><span class="p">,</span><span class="n">dns_server</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="DNSTest.dnsLookup"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.dnsLookup">[docs]</a>    <span class="k">def</span> <span class="nf">dnsLookup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">dns_type</span><span class="p">,</span> <span class="n">dns_server</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Performs a DNS lookup and returns the response.</span>
+
+<span class="sd">        :hostname: is the hostname to perform the DNS lookup on</span>
+<span class="sd">        :dns_type: type of lookup &#39;NS&#39;/&#39;A&#39;/&#39;SOA&#39;</span>
+<span class="sd">        :dns_server: is the dns_server that should be used for the lookup as a</span>
+<span class="sd">                     tuple of ip port (ex. (&quot;127.0.0.1&quot;, 53))</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">types</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;NS&#39;</span><span class="p">:</span><span class="n">dns</span><span class="o">.</span><span class="n">NS</span><span class="p">,</span><span class="s">&#39;A&#39;</span><span class="p">:</span><span class="n">dns</span><span class="o">.</span><span class="n">A</span><span class="p">,</span><span class="s">&#39;SOA&#39;</span><span class="p">:</span><span class="n">dns</span><span class="o">.</span><span class="n">SOA</span><span class="p">,</span><span class="s">&#39;PTR&#39;</span><span class="p">:</span><span class="n">dns</span><span class="o">.</span><span class="n">PTR</span><span class="p">}</span>
+        <span class="n">dnsType</span><span class="o">=</span><span class="n">types</span><span class="p">[</span><span class="n">dns_type</span><span class="p">]</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="p">[</span><span class="n">dns</span><span class="o">.</span><span class="n">Query</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="n">dnsType</span><span class="p">,</span> <span class="n">dns</span><span class="o">.</span><span class="n">IN</span><span class="p">)]</span>
+        <span class="k">def</span> <span class="nf">gotResponse</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">dns_type</span><span class="o">+</span><span class="s">&quot; Lookup successful&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+            <span class="n">addrs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">answers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">dns_server</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">answers</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">answer</span> <span class="ow">in</span> <span class="n">msg</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">type</span> <span class="ow">is</span> <span class="n">dnsType</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">dnsType</span> <span class="ow">is</span> <span class="n">dns</span><span class="o">.</span><span class="n">SOA</span><span class="p">:</span>
+                        <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="n">answer</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">answer</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">serial</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">dnsType</span> <span class="ow">in</span> <span class="p">[</span><span class="n">dns</span><span class="o">.</span><span class="n">NS</span><span class="p">,</span><span class="n">dns</span><span class="o">.</span><span class="n">PTR</span><span class="p">]:</span>
+                        <span class="n">addr</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">name</span>
+                    <span class="k">elif</span> <span class="n">dnsType</span> <span class="ow">is</span> <span class="n">dns</span><span class="o">.</span><span class="n">A</span><span class="p">:</span>
+                        <span class="n">addr</span> <span class="o">=</span> <span class="n">answer</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">dottedQuad</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">addr</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="n">addrs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+                <span class="n">answers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">representAnswer</span><span class="p">(</span><span class="n">answer</span><span class="p">))</span>
+
+            <span class="n">DNSTest</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="n">dns_server</span><span class="p">,</span> <span class="n">query_type</span><span class="o">=</span><span class="n">dns_type</span><span class="p">,</span>
+                        <span class="n">answers</span><span class="o">=</span><span class="n">answers</span><span class="p">,</span> <span class="n">addrs</span><span class="o">=</span><span class="n">addrs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">addrs</span>
+
+        <span class="k">def</span> <span class="nf">gotError</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+            <span class="n">failure</span><span class="o">.</span><span class="n">trap</span><span class="p">(</span><span class="n">gaierror</span><span class="p">,</span> <span class="n">TimeoutError</span><span class="p">)</span>
+            <span class="n">DNSTest</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="n">dns_server</span><span class="p">,</span> <span class="n">query_type</span><span class="o">=</span><span class="n">dns_type</span><span class="p">,</span>
+                        <span class="n">failure</span><span class="o">=</span><span class="n">failure</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">failure</span>
+
+        <span class="k">if</span> <span class="n">dns_server</span><span class="p">:</span>
+            <span class="n">resolver</span> <span class="o">=</span> <span class="n">Resolver</span><span class="p">(</span><span class="n">servers</span><span class="o">=</span><span class="p">[</span><span class="n">dns_server</span><span class="p">])</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">resolver</span><span class="o">.</span><span class="n">queryUDP</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">queryTimeout</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lookupFunction</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;NS&#39;</span><span class="p">:</span><span class="n">client</span><span class="o">.</span><span class="n">lookupNameservers</span><span class="p">,</span> <span class="s">&#39;SOA&#39;</span><span class="p">:</span><span class="n">client</span><span class="o">.</span><span class="n">lookupAuthority</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">:</span><span class="n">client</span><span class="o">.</span><span class="n">lookupAddress</span><span class="p">,</span> <span class="s">&#39;PTR&#39;</span><span class="p">:</span><span class="n">client</span><span class="o">.</span><span class="n">lookupPointer</span><span class="p">}</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">lookupFunction</span><span class="p">[</span><span class="n">dns_type</span><span class="p">](</span><span class="n">hostname</span><span class="p">)</span>
+
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">gotResponse</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">gotError</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+
+</div>
+<div class="viewcode-block" id="DNSTest.addToReport"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.dnst.DNSTest.addToReport">[docs]</a>    <span class="k">def</span> <span class="nf">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">resolver</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">query_type</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                    <span class="n">answers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">addrs</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">failure</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Adding </span><span class="si">%s</span><span class="s"> to report)&quot;</span> <span class="o">%</span> <span class="n">query</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">result</span><span class="p">[</span><span class="s">&#39;resolver&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolver</span>
+        <span class="n">result</span><span class="p">[</span><span class="s">&#39;query_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">query_type</span>
+        <span class="n">result</span><span class="p">[</span><span class="s">&#39;query&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">failure</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s">&#39;failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">failureToString</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">answers</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="s">&#39;answers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">answers</span>
+            <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+            <span class="k">if</span> <span class="n">addrs</span><span class="p">:</span>
+                <span class="n">result</span><span class="p">[</span><span class="s">&#39;addrs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">addrs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;queries&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

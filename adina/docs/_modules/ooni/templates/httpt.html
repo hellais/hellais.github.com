@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.templates.httpt &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../index.html"/>
+        <link rel="up" title="Module code" href="../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.templates.httpt</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.templates.httpt</h1><div class="highlight"><pre>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span>
+
+<span class="kn">from</span> <span class="nn">txtorcon.interface</span> <span class="kn">import</span> <span class="n">StreamListenerMixin</span>
+
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span>
+<span class="kn">from</span> <span class="nn">twisted.internet.endpoints</span> <span class="kn">import</span> <span class="n">TCP4ClientEndpoint</span>
+<span class="kn">from</span> <span class="nn">ooni.utils.trueheaders</span> <span class="kn">import</span> <span class="n">TrueHeadersAgent</span><span class="p">,</span> <span class="n">TrueHeadersSOCKS5Agent</span>
+
+<span class="kn">from</span> <span class="nn">ooni.nettest</span> <span class="kn">import</span> <span class="n">NetTestCase</span>
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.settings</span> <span class="kn">import</span> <span class="n">config</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils.net</span> <span class="kn">import</span> <span class="n">BodyReceiver</span><span class="p">,</span> <span class="n">StringProducer</span><span class="p">,</span> <span class="n">userAgents</span>
+<span class="kn">from</span> <span class="nn">ooni.utils.trueheaders</span> <span class="kn">import</span> <span class="n">TrueHeaders</span>
+<span class="kn">from</span> <span class="nn">ooni.errors</span> <span class="kn">import</span> <span class="n">handleAllFailures</span>
+
+
+<div class="viewcode-block" id="InvalidSocksProxyOption"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.InvalidSocksProxyOption">[docs]</a><span class="k">class</span> <span class="nc">InvalidSocksProxyOption</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="StreamListener"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.StreamListener">[docs]</a><span class="k">class</span> <span class="nc">StreamListener</span><span class="p">(</span><span class="n">StreamListenerMixin</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+
+<div class="viewcode-block" id="StreamListener.stream_succeeded"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.StreamListener.stream_succeeded">[docs]</a>    <span class="k">def</span> <span class="nf">stream_succeeded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
+        <span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">stream</span><span class="o">.</span><span class="n">target_host</span> <span class="o">==</span> <span class="n">host</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">][</span><span class="s">&#39;exit_ip&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ip</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">][</span><span class="s">&#39;exit_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">stream</span><span class="o">.</span><span class="n">circuit</span><span class="o">.</span><span class="n">path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">tor_state</span><span class="o">.</span><span class="n">stream_listeners</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Tor Exit ip detection failed&quot;</span><span class="p">)</span>
+</div></div>
+<div class="viewcode-block" id="HTTPTest"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest">[docs]</a><span class="k">class</span> <span class="nc">HTTPTest</span><span class="p">(</span><span class="n">NetTestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A utility class for dealing with HTTP based testing. It provides methods to</span>
+<span class="sd">    be overriden for dealing with HTTP based testing.</span>
+<span class="sd">    The main functions to look at are processResponseBody and</span>
+<span class="sd">    processResponseHeader that are invoked once the headers have been received</span>
+<span class="sd">    and once the request body has been received.</span>
+
+<span class="sd">    To perform requests over Tor you will have to use the special URL schema</span>
+<span class="sd">    &quot;shttp&quot;. For example to request / on example.com you will have to do</span>
+<span class="sd">    specify as URL &quot;shttp://example.com/&quot;.</span>
+
+<span class="sd">    XXX all of this requires some refactoring.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;HTTP Test&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1.1&quot;</span>
+
+    <span class="n">randomizeUA</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">followRedirects</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="n">baseParameters</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">,</span> <span class="s">&#39;s&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+        <span class="s">&#39;Specify a socks proxy to use for requests (ip:port)&#39;</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">_setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">HTTPTest</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_setUp</span><span class="p">()</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">OpenSSL</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Warning! pyOpenSSL is not installed. https websites will &quot;</span>
+                     <span class="s">&quot;not work&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">control_agent</span> <span class="o">=</span> <span class="n">TrueHeadersSOCKS5Agent</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span>
+                <span class="n">proxyEndpoint</span><span class="o">=</span><span class="n">TCP4ClientEndpoint</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span> <span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span>
+                    <span class="n">config</span><span class="o">.</span><span class="n">tor</span><span class="o">.</span><span class="n">socks_port</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">sockshost</span><span class="p">,</span> <span class="n">socksport</span> <span class="o">=</span> <span class="p">(</span><span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">sockshost</span><span class="p">,</span> <span class="n">socksport</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;:&#39;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">InvalidSocksProxyOption</span>
+            <span class="n">socksport</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">socksport</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent</span> <span class="o">=</span> <span class="n">TrueHeadersSOCKS5Agent</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span>
+                <span class="n">proxyEndpoint</span><span class="o">=</span><span class="n">TCP4ClientEndpoint</span><span class="p">(</span><span class="n">reactor</span><span class="p">,</span> <span class="n">sockshost</span><span class="p">,</span>
+                    <span class="n">socksport</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">agent</span> <span class="o">=</span> <span class="n">TrueHeadersAgent</span><span class="p">(</span><span class="n">reactor</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;agent&#39;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">followRedirects</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="kn">from</span> <span class="nn">twisted.web.client</span> <span class="kn">import</span> <span class="n">RedirectAgent</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">control_agent</span> <span class="o">=</span> <span class="n">RedirectAgent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">control_agent</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">agent</span> <span class="o">=</span> <span class="n">RedirectAgent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">agent</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;redirect&#39;</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Warning! You are running an old version of twisted&quot;</span>\
+                        <span class="s">&quot;(&lt;= 10.1). I will not be able to follow redirects.&quot;</span>\
+                        <span class="s">&quot;This may make the testing less precise.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">processInputs</span><span class="p">()</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Finished test setup&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="HTTPTest.randomize_useragent"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.randomize_useragent">[docs]</a>    <span class="k">def</span> <span class="nf">randomize_useragent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">user_agent</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">userAgents</span><span class="p">)</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;headers&#39;</span><span class="p">][</span><span class="s">&#39;User-Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">user_agent</span><span class="p">]</span>
+</div>
+<div class="viewcode-block" id="HTTPTest.processInputs"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processInputs">[docs]</a>    <span class="k">def</span> <span class="nf">processInputs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="HTTPTest.addToReport"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.addToReport">[docs]</a>    <span class="k">def</span> <span class="nf">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">response_body</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">failure_string</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Adds to the report the specified request and response.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            request (dict): A dict describing the request that was made</span>
+
+<span class="sd">            response (instance): An instance of</span>
+<span class="sd">                :class:twisted.web.client.Response.</span>
+<span class="sd">                Note: headers is our modified True Headers version.</span>
+
+<span class="sd">            failure (instance): An instance of :class:twisted.internet.failure.Failure</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Adding </span><span class="si">%s</span><span class="s"> to report&quot;</span> <span class="o">%</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">request_headers</span> <span class="o">=</span> <span class="n">TrueHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;headers&#39;</span><span class="p">])</span>
+        <span class="n">request_response</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;request&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">&#39;headers&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">request_headers</span><span class="o">.</span><span class="n">getAllRawHeaders</span><span class="p">()),</span>
+                <span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">],</span>
+                <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span>
+                <span class="s">&#39;method&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;method&#39;</span><span class="p">],</span>
+                <span class="s">&#39;tor&#39;</span><span class="p">:</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">request_response</span><span class="p">[</span><span class="s">&#39;response&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s">&#39;headers&#39;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">getAllRawHeaders</span><span class="p">()),</span>
+                <span class="s">&#39;body&#39;</span><span class="p">:</span> <span class="n">response_body</span><span class="p">,</span>
+                <span class="s">&#39;code&#39;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">code</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">failure_string</span><span class="p">:</span>
+            <span class="n">request_response</span><span class="p">[</span><span class="s">&#39;failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">failure_string</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;requests&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">request_response</span><span class="p">)</span>
+</div>
+    <span class="k">def</span> <span class="nf">_processResponseBody</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_body</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">body_processor</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Processing response body&quot;</span><span class="p">)</span>
+        <span class="n">HTTPTest</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">response_body</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">body_processor</span><span class="p">:</span>
+            <span class="n">body_processor</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processResponseBody</span><span class="p">(</span><span class="n">response_body</span><span class="p">)</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">response_body</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">def</span> <span class="nf">_processResponseBodyFail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failure</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="n">failure_string</span> <span class="o">=</span> <span class="n">handleAllFailures</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+        <span class="n">HTTPTest</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span>
+                             <span class="n">failure_string</span><span class="o">=</span><span class="n">failure_string</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+<div class="viewcode-block" id="HTTPTest.processResponseBody"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processResponseBody">[docs]</a>    <span class="k">def</span> <span class="nf">processResponseBody</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Overwrite this method if you wish to interact with the response body of</span>
+<span class="sd">        every request that is made.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            body (str): The body of the HTTP response</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="HTTPTest.processResponseHeaders"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processResponseHeaders">[docs]</a>    <span class="k">def</span> <span class="nf">processResponseHeaders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This should take care of dealing with the returned HTTP headers.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            headers (dict): The returned header fields.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="HTTPTest.processRedirect"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processRedirect">[docs]</a>    <span class="k">def</span> <span class="nf">processRedirect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle a redirection via a 3XX HTTP status code.</span>
+
+<span class="sd">        Here you may place logic that evaluates the destination that you are</span>
+<span class="sd">        being redirected to. Matches against known censor redirects, etc.</span>
+
+<span class="sd">        Note: if self.followRedirects is set to True, then this method will</span>
+<span class="sd">            never be called.</span>
+<span class="sd">            XXX perhaps we may want to hook _handleResponse in RedirectAgent to</span>
+<span class="sd">            call processRedirect every time we get redirected.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            location (str): the url that we are being redirected to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+    <span class="k">def</span> <span class="nf">_cbResponse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span>
+            <span class="n">headers_processor</span><span class="p">,</span> <span class="n">body_processor</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This callback is fired once we have gotten a response for our request.</span>
+<span class="sd">        If we are using a RedirectAgent then this will fire once we have</span>
+<span class="sd">        reached the end of the redirect chain.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            response (:twisted.web.iweb.IResponse:): a provider for getting our response</span>
+
+<span class="sd">            request (dict): the dict containing our response (XXX this should be dropped)</span>
+
+<span class="sd">            header_processor (func): a function to be called with argument a</span>
+<span class="sd">                dict containing the response headers. This will lead</span>
+<span class="sd">                self.headerProcessor to not be called.</span>
+
+<span class="sd">            body_processor (func): a function to be called with as argument the</span>
+<span class="sd">                body of the response. This will lead self.bodyProcessor to not</span>
+<span class="sd">                be called.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Got no response for request </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">request</span><span class="p">)</span>
+            <span class="n">HTTPTest</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Got response </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processRedirect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span><span class="s">&#39;Location&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c"># [!] We are passing to the headers_processor the headers dict and</span>
+        <span class="c"># not the Headers() object</span>
+        <span class="n">response_headers_dict</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">getAllRawHeaders</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">headers_processor</span><span class="p">:</span>
+            <span class="n">headers_processor</span><span class="p">(</span><span class="n">response_headers_dict</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">processResponseHeaders</span><span class="p">(</span><span class="n">response_headers_dict</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">content_length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">getRawHeaders</span><span class="p">(</span><span class="s">&#39;content-length&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">content_length</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">finished</span> <span class="o">=</span> <span class="n">defer</span><span class="o">.</span><span class="n">Deferred</span><span class="p">()</span>
+        <span class="n">response</span><span class="o">.</span><span class="n">deliverBody</span><span class="p">(</span><span class="n">BodyReceiver</span><span class="p">(</span><span class="n">finished</span><span class="p">,</span> <span class="n">content_length</span><span class="p">))</span>
+        <span class="n">finished</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_processResponseBody</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span>
+                <span class="n">response</span><span class="p">,</span> <span class="n">body_processor</span><span class="p">)</span>
+        <span class="n">finished</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_processResponseBodyFail</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span>
+                            <span class="n">response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">finished</span>
+
+<div class="viewcode-block" id="HTTPTest.doRequest"><a class="viewcode-back" href="../../../api/ooni.templates.html#ooni.templates.httpt.HTTPTest.doRequest">[docs]</a>    <span class="k">def</span> <span class="nf">doRequest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">,</span>
+                  <span class="n">headers</span><span class="o">=</span><span class="p">{},</span> <span class="n">body</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">headers_processor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                  <span class="n">body_processor</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">use_tor</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform an HTTP request with the specified method and headers.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            url (str): the full URL of the request. The scheme may be either</span>
+<span class="sd">                http, https, or httpo for http over Tor Hidden Service.</span>
+
+<span class="sd">        Kwargs:</span>
+
+<span class="sd">            method (str): the HTTP method name to use for the request</span>
+
+<span class="sd">            headers (dict): the request headers to send</span>
+
+<span class="sd">            body (str): the request body</span>
+
+<span class="sd">            headers_processor : a function to be used for processing the HTTP</span>
+<span class="sd">                header responses (defaults to self.processResponseHeaders).</span>
+<span class="sd">                This function takes as argument the HTTP headers as a dict.</span>
+
+<span class="sd">            body_processory: a function to be used for processing the HTTP</span>
+<span class="sd">                response body (defaults to self.processResponseBody). This</span>
+<span class="sd">                function takes the response body as an argument.</span>
+
+<span class="sd">            use_tor (bool): specify if the HTTP request should be done over Tor</span>
+<span class="sd">                or not.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># We prefix the URL with &#39;s&#39; to make the connection go over the</span>
+        <span class="c"># configured socks proxy</span>
+        <span class="k">if</span> <span class="n">use_tor</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Using Tor for the request to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">url</span><span class="p">)</span>
+            <span class="n">agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">control_agent</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">agent</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Using SOCKS proxy </span><span class="si">%s</span><span class="s"> for request&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;socksproxy&#39;</span><span class="p">]))</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Performing request </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">headers</span><span class="p">))</span>
+
+        <span class="n">request</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;method&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;headers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">headers</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">body</span>
+        <span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">use_tor</span><span class="p">:</span>
+            <span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">][</span><span class="s">&#39;is_tor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">][</span><span class="s">&#39;is_tor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">randomizeUA</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Randomizing user agent&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">randomize_useragent</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s">&#39;requests&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;requests&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c"># If we have a request body payload, set the request body to such</span>
+        <span class="c"># content</span>
+        <span class="k">if</span> <span class="n">body</span><span class="p">:</span>
+            <span class="n">body_producer</span> <span class="o">=</span> <span class="n">StringProducer</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;body&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">body_producer</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">headers</span> <span class="o">=</span> <span class="n">TrueHeaders</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;headers&#39;</span><span class="p">])</span>
+
+        <span class="k">def</span> <span class="nf">errback</span><span class="p">(</span><span class="n">failure</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;tor&#39;</span><span class="p">][</span><span class="s">&#39;is_tor&#39;</span><span class="p">]:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Error performing torified request: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Error performing request: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">])</span>
+            <span class="n">failure_string</span> <span class="o">=</span> <span class="n">handleAllFailures</span><span class="p">(</span><span class="n">failure</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addToReport</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">failure_string</span><span class="o">=</span><span class="n">failure_string</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">failure</span>
+
+        <span class="k">if</span> <span class="n">use_tor</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">tor_state</span>
+            <span class="k">if</span> <span class="n">state</span><span class="p">:</span>
+                <span class="n">state</span><span class="o">.</span><span class="n">add_stream_listener</span><span class="p">(</span><span class="n">StreamListener</span><span class="p">(</span><span class="n">request</span><span class="p">))</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">&#39;method&#39;</span><span class="p">],</span> <span class="n">request</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">],</span> <span class="n">headers</span><span class="p">,</span>
+                <span class="n">body_producer</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">errback</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cbResponse</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">headers_processor</span><span class="p">,</span>
+                <span class="n">body_processor</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

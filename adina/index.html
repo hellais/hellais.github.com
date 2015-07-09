@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <title>OONI: Open Observatory of Network Interference</title>
+	<link rel="stylesheet" href="http://hellais.github.com:1313/adina//css/master.css"/>
+	<link rel="stylesheet" href="http://hellais.github.com:1313/adina//css/event.css"/>
+	<link rel="stylesheet" href="http://hellais.github.com:1313/adina//css/fonts.css"/>
+  <link rel="stylesheet" href="http://hellais.github.com:1313/adina//css/highlight-default.min.css">
+  <link rel="icon" type="image/png" href="http://hellais.github.com:1313/adina//images/favicon.png"/>
+  <script src="http://hellais.github.com:1313/adina//js/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body class="homepage">
+
+ <a href="https://github.com/TheTorProject/ooni-probe">
+   <img style="position: absolute; top: 0; left: 0; border: 0;" src="http://hellais.github.com:1313/adina/images/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"/>
+ </a>
+ <div class="container">
+    <nav>
+      <div class="col-1"></div>
+      <div class="col-2">
+        <a href="/docs/">Docs</a>
+<a href="https://gitweb.torproject.org/ooni-probe.git">Code</a>
+<a href="https://ooni.torproject.org/reports/">Reports</a>
+<a href="https://github.com/thetorproject/ooni-probe#installation">Install</a>
+
+      </div>
+    </nav>
+
+    <header>
+      <div class="row">
+        <img class="col-1" class="logo" src="http://hellais.github.com:1313/adina/images/ooni-header-mascot.svg" width="200" height="200"/>
+        <div class="col-2">
+          <img class="wordmark" src="http://hellais.github.com:1313/adina/images/wordmark.svg" alt="OONI"/>
+          <h2>Open Observatory of Network Interference</h2>
+          <p>A free software, global observation network for detecting censorship,
+            surveillance and traffic manipulation on the internet</p>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <main>
+    <div class="how-it-works">
+      <div class="container">
+        <div class="row">
+          <div class="col-1">
+            <h2>How OONI Works</h2>
+          </div>
+          <div class="col-2"></div>
+        </div>
+        <img class="col-3" src="http://hellais.github.com:1313/adina/images/how-ooni-works.svg" width="680" height="280" />
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-2 pad-below">
+          <p>OONI scans TCP, DNS, HTTP and TLS connections for tampering. Some tests
+            work by requesting data over an unencrypted connection and comparing
+            against a known good value. Others check for DNS spoofing, keyword
+            filtering, transparent proxying and website block lists.</p>
+          <p class="cta"><a href="https://github.com/TheTorProject/ooni-spec">Testing methodology</a></p>
+          <p><strong>There are risks.</strong> Running a probe involves testing
+            connections to websites that may be banned and using tools to attempt
+            circumventing web censorship. It is not designed to protect the privacy
+            of those running probes. Measurements are published and can include IP
+            addresses or other identifying information.</p>
+          <p class="cta"><a href="https://github.com/TheTorProject/ooni-spec/blob/master/informed-consent/inform-users-long.md">More about the risks</a></p>
+        </div>
+      </div>
+
+      
+
+      <div class="row pad-below">
+        <div class="col-1">
+          <h2>Blog Posts</h2>
+        </div>
+        <div class="col-2 blog-summary">
+          <a href="post/eeep-greek-censorship">
+            <p class="title">EEEP and Greek Internet censorship</p>
+            <p class="byline">10 Jun 2015</p>
+          </a>
+          <a href="post/zambia">
+            <p class="title">Zambia, a country under Deep Packet Inspection</p>
+            <p class="byline">15 Jul 2013</p>
+          </a>
+          <a href="post/tab-tab-come-in">
+            <p class="title">Tab-Tab, Come in! Bypassing Internet blocking to categorize DPI devices</p>
+            <p class="byline">14 May 2013</p>
+          </a>
+          <a href="post/hadara-palestine">
+            <p class="title">Hadara Palestine</p>
+            <p class="byline">23 Apr 2012</p>
+          </a>
+          <a href="post/t-mobile-usa-web-guard">
+            <p class="title">T-Mobile USA Web Guard</p>
+            <p class="byline">21 Mar 2012</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-1">
+          <h2>Getting Involved</h2>
+        </div>
+        <div class="col-2">
+          <p>Join us in IRC <a href="ircs://irc.oftc.net:6697/#ooni">#ooni on OFTC</a>
+            or on the <a href="https://lists.torproject.org/cgi-bin/mailman/listinfo/ooni-dev">mailing list</a>
+            to discuss the project, what you've learned from measurements and ways
+            you can help out.</p>
+          <p><a href="https://gitweb.torproject.org/ooni-probe.git">Source code</a>
+            is available (<a href="https://github.com/TheTorProject/ooni-probe">GitHub mirror</a>).
+            Issues and future plans for OONI can be <a href="https://trac.torproject.org/projects/tor/query?status=accepted&status=assigned&status=needs_information&status=needs_review&status=needs_revision&status=new&status=reopened&component=Ooni&order=priority">found in Trac</a>.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div class="col-3">
+        <h2>Friends and Sponsors</h2>
+        <div class="row sponsors">
+          <a href="https://www.openrightsgroup.org">
+            <img src="http://hellais.github.com:1313/adina/sponsors/open-rights-group-logo.png" alt="Open Rights Group" width="154" height="57"/>
+          </a>
+          <a href="https://greenhost.net">
+            <img src="http://hellais.github.com:1313/adina/sponsors/greenhost-logo.png" alt="Greenhost" width="183" height="57"/>
+          </a>
+          <a href="https://www.bytemark.co.uk">
+            <img src="http://hellais.github.com:1313/adina/sponsors/bytemark-logo.png" alt="Bytemark" class="bytemark" width="240" height="30"/>
+          </a>
+        </div>
+        <div class="row sponsors">
+          <a href="https://www.measurementlab.net/">
+            <img src="http://hellais.github.com:1313/adina/sponsors/mlab-logo.png" alt="MLAB" class="mlab" width="183" height="63"/>
+          </a>
+          <a href="https://www.google.com/">
+            <img src="http://hellais.github.com:1313/adina/sponsors/google-logo.png" alt="Google" class="google" width="183" height="63"/>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

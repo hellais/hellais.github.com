@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests.manipulation.captiveportal &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.nettests.manipulation.captiveportal</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.nettests.manipulation.captiveportal</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c"># captiveportal</span>
+<span class="c"># *************</span>
+<span class="c">#</span>
+<span class="c"># This test is a collection of tests to detect the presence of a</span>
+<span class="c"># captive portal. Code is taken, in part, from the old ooni-probe,</span>
+<span class="c"># which was written by Jacob Appelbaum and Arturo Filastò.</span>
+<span class="c">#</span>
+<span class="c"># This module performs multiple tests that match specific vendor captive</span>
+<span class="c"># portal tests. This is a basic internet captive portal filter tester written</span>
+<span class="c"># for RECon 2011.</span>
+<span class="c">#</span>
+<span class="c"># Read the following URLs to understand the captive portal detection process</span>
+<span class="c"># for various vendors:</span>
+<span class="c">#</span>
+<span class="c"># http://technet.microsoft.com/en-us/library/cc766017%28WS.10%29.aspx</span>
+<span class="c"># http://blog.superuser.com/2011/05/16/windows-7-network-awareness/</span>
+<span class="c"># http://isc.sans.org/diary.html?storyid=10312&amp;</span>
+<span class="c"># http://src.chromium.org/viewvc/chrome?view=rev&amp;revision=74608</span>
+<span class="c"># http://code.google.com/p/chromium-os/issues/detail?3281ttp,</span>
+<span class="c"># http://crbug.com/52489</span>
+<span class="c"># http://crbug.com/71736</span>
+<span class="c"># https://bugzilla.mozilla.org/show_bug.cgi?id=562917</span>
+<span class="c"># https://bugzilla.mozilla.org/show_bug.cgi?id=603505</span>
+<span class="c"># http://lists.w3.org/Archives/Public/ietf-http-wg/2011JanMar/0086.html</span>
+<span class="c"># http://tools.ietf.org/html/draft-nottingham-http-portal-02</span>
+<span class="c">#</span>
+<span class="c"># :authors: Jacob Appelbaum, Arturo Filastò, Isis Lovecruft</span>
+<span class="c"># :license: see LICENSE for more details</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">urlparse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+
+<span class="kn">from</span> <span class="nn">twisted.names</span> <span class="kn">import</span> <span class="n">error</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span>
+
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">httpt</span><span class="p">,</span> <span class="n">dnst</span>
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">net</span>
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+
+<span class="n">__plugoo__</span> <span class="o">=</span> <span class="s">&quot;captiveportal&quot;</span>
+<span class="n">__desc__</span> <span class="o">=</span> <span class="s">&quot;Captive portal detection test&quot;</span>
+
+
+<div class="viewcode-block" id="UsageOptions"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.UsageOptions">[docs]</a><span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;asset&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;Asset file&#39;</span><span class="p">],</span>
+                     <span class="p">[</span><span class="s">&#39;experiment-url&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;http://google.com/&#39;</span><span class="p">,</span> <span class="s">&#39;Experiment URL&#39;</span><span class="p">],</span>
+                     <span class="p">[</span><span class="s">&#39;user-agent&#39;</span><span class="p">,</span> <span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">userAgents</span><span class="p">),</span>
+                      <span class="s">&#39;User agent for HTTP requests&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+</div>
+<div class="viewcode-block" id="CaptivePortal"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal">[docs]</a><span class="k">class</span> <span class="nc">CaptivePortal</span><span class="p">(</span><span class="n">httpt</span><span class="o">.</span><span class="n">HTTPTest</span><span class="p">,</span> <span class="n">dnst</span><span class="o">.</span><span class="n">DNSTest</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compares content and status codes of HTTP responses, and attempts</span>
+<span class="sd">    to determine if content has been altered.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;captiveportal&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Captive Portal Test&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s">&#39;0.3&#39;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&quot;Isis Lovecruft&quot;</span>
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">requiresTor</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.http_fetch"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_fetch">[docs]</a>    <span class="k">def</span> <span class="nf">http_fetch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{}):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parses an HTTP url, fetches it, and returns a response</span>
+<span class="sd">        object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">geturl</span><span class="p">()</span>
+        <span class="c">#XXX: HTTP Error 302: The HTTP server returned a redirect error that</span>
+        <span class="c">#would lead to an infinite loop.  The last 30x error message was: Found</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">doRequest</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;HTTPError&quot;</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.http_content_match_fuzzy_opt"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_content_match_fuzzy_opt">[docs]</a>    <span class="k">def</span> <span class="nf">http_content_match_fuzzy_opt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experimental_url</span><span class="p">,</span> <span class="n">control_result</span><span class="p">,</span>
+                                     <span class="n">headers</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">fuzzy</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Makes an HTTP request on port 80 for experimental_url, then</span>
+<span class="sd">        compares the response_content of experimental_url with the</span>
+<span class="sd">        control_result. Optionally, if the fuzzy parameter is set to</span>
+<span class="sd">        True, the response_content is compared with a regex of the</span>
+<span class="sd">        control_result. If the response_content from the</span>
+<span class="sd">        experimental_url and the control_result match, returns True</span>
+<span class="sd">        with the HTTP status code and headers; False, status code, and</span>
+<span class="sd">        headers if otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">headers</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">default_ua</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_options</span><span class="p">[</span><span class="s">&#39;user-agent&#39;</span><span class="p">]</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">default_ua</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_fetch</span><span class="p">(</span><span class="n">experimental_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+        <span class="n">response_headers</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span>
+
+        <span class="n">response_content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="bp">None</span>
+        <span class="n">response_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">code</span> <span class="k">if</span> <span class="n">response</span> <span class="k">else</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">response_content</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;HTTP connection appears to have failed.&quot;</span><span class="p">)</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">fuzzy</span><span class="p">:</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">control_result</span><span class="p">)</span>
+            <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Fuzzy HTTP content comparison for experiment URL&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">experimental_url</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;does not match!&quot;</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="n">response_code</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;and the expected control result yielded a match.&quot;</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">response_code</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">response_content</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="n">control_result</span><span class="p">):</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;HTTP content comparison of experiment URL&quot;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">experimental_url</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;and the expected control result do not match.&quot;</span><span class="p">)</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="n">response_code</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="n">response_code</span><span class="p">,</span> <span class="n">response_headers</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CaptivePortal.http_status_code_match"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_match">[docs]</a>    <span class="k">def</span> <span class="nf">http_status_code_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment_code</span><span class="p">,</span> <span class="n">control_code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compare two HTTP status codes, returns True if they match.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">experiment_code</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">control_code</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CaptivePortal.http_status_code_no_match"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.http_status_code_no_match">[docs]</a>    <span class="k">def</span> <span class="nf">http_status_code_no_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment_code</span><span class="p">,</span> <span class="n">control_code</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compare two HTTP status codes, returns True if they do not match.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">experiment_code</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">int</span><span class="p">(</span><span class="n">control_code</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.dns_resolve"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve">[docs]</a>    <span class="k">def</span> <span class="nf">dns_resolve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">nameserver</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolves hostname(s) though nameserver to corresponding</span>
+<span class="sd">        address(es). hostname may be either a single hostname string,</span>
+<span class="sd">        or a list of strings. If nameserver is not given, use local</span>
+<span class="sd">        DNS resolver, and if that fails try using 8.8.8.8.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">hostname</span> <span class="o">=</span> <span class="p">[</span><span class="n">hostname</span><span class="p">]</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">hn</span> <span class="ow">in</span> <span class="n">hostname</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">answer</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">performALookup</span><span class="p">(</span><span class="n">hn</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+                    <span class="n">answer</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">performALookup</span><span class="p">(</span><span class="n">hn</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;8.8.8.8&#39;</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">error</span><span class="o">.</span><span class="n">DNSNameError</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;DNS resolution for </span><span class="si">%s</span><span class="s"> returned NXDOMAIN&quot;</span> <span class="o">%</span> <span class="n">hn</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;NXDOMAIN&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;DNS Resolution failed&quot;</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">answer</span><span class="p">:</span>
+                    <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">addr</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                    <span class="n">response</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+        <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.dns_resolve_match"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.dns_resolve_match">[docs]</a>    <span class="k">def</span> <span class="nf">dns_resolve_match</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment_hostname</span><span class="p">,</span> <span class="n">control_address</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolve experiment_hostname, and check to see that it returns</span>
+<span class="sd">        an experiment_address which matches the control_address.  If</span>
+<span class="sd">        they match, returns True and experiment_address; otherwise</span>
+<span class="sd">        returns False and experiment_address.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">experiment_address</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">dns_resolve</span><span class="p">(</span><span class="n">experiment_hostname</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">experiment_address</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;dns_resolve() for </span><span class="si">%s</span><span class="s"> failed&quot;</span> <span class="o">%</span> <span class="n">experiment_hostname</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span> <span class="n">experiment_address</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">experiment_address</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">([</span><span class="n">control_address</span><span class="p">]))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">experiment_address</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;DNS comparison of control &#39;</span><span class="si">%s</span><span class="s">&#39; does not&quot;</span> <span class="o">%</span> <span class="n">control_address</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;match experiment response &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">experiment_address</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">experiment_address</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.get_auth_nameservers"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_auth_nameservers">[docs]</a>    <span class="k">def</span> <span class="nf">get_auth_nameservers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Many CPs set a nameserver to be used. Let&#39;s query that</span>
+<span class="sd">        nameserver for the authoritative nameservers of hostname.</span>
+
+<span class="sd">        The equivalent of:</span>
+<span class="sd">        $ dig +short NS ooni.nu</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">auth_nameservers</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">performNSLookup</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+        <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">auth_nameservers</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CaptivePortal.hostname_to_0x20"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.hostname_to_0x20">[docs]</a>    <span class="k">def</span> <span class="nf">hostname_to_0x20</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        MaKEs yOur HOsTnaME lOoK LiKE THis.</span>
+
+<span class="sd">        For more information, see:</span>
+<span class="sd">        D. Dagon, et. al. &quot;Increased DNS Forgery Resistance</span>
+<span class="sd">        Through 0x20-Bit Encoding&quot;. Proc. CSS, 2008.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">hostname_0x20</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">hostname</span><span class="p">:</span>
+            <span class="n">l33t</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s">&#39;caps&#39;</span><span class="p">,</span> <span class="s">&#39;nocaps&#39;</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">l33t</span> <span class="o">==</span> <span class="s">&#39;caps&#39;</span><span class="p">:</span>
+                <span class="n">hostname_0x20</span> <span class="o">+=</span> <span class="n">char</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">hostname_0x20</span> <span class="o">+=</span> <span class="n">char</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">hostname_0x20</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.check_0x20_to_auth_ns"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.check_0x20_to_auth_ns">[docs]</a>    <span class="k">def</span> <span class="nf">check_0x20_to_auth_ns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Resolve a 0x20 DNS request for hostname over hostname&#39;s</span>
+<span class="sd">        authoritative nameserver(s), and check to make sure that</span>
+<span class="sd">        the capitalization in the 0x20 request matches that of the</span>
+<span class="sd">        response. Also, check the serial numbers of the SOA (Start</span>
+<span class="sd">        of Authority) records on the authoritative nameservers to</span>
+<span class="sd">        make sure that they match.</span>
+
+<span class="sd">        If sample_size is given, a random sample equal to that number</span>
+<span class="sd">        of authoritative nameservers will be queried; default is 5.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Testing random capitalization of DNS queries...&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Testing that Start of Authority serial numbers match...&quot;</span><span class="p">)</span>
+
+        <span class="n">auth_nameservers</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_auth_nameservers</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sample_size</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">sample_size</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">dns_resolve</span><span class="p">(</span><span class="n">auth_nameservers</span><span class="p">)</span>
+        <span class="n">resolved_auth_ns</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">sample_size</span><span class="p">)</span>
+
+        <span class="n">querynames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">answernames</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">serials</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c"># Even when gevent monkey patching is on, the requests here</span>
+        <span class="c"># are sent without being 0x20&#39;d, so we need to 0x20 them.</span>
+        <span class="n">hostname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hostname_to_0x20</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">auth_ns</span> <span class="ow">in</span> <span class="n">resolved_auth_ns</span><span class="p">:</span>
+            <span class="n">querynames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hostname</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">answer</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">performSOALookup</span><span class="p">(</span><span class="n">hostname</span><span class="p">,</span> <span class="p">(</span><span class="n">auth_ns</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">soa</span> <span class="ow">in</span> <span class="n">answer</span><span class="p">:</span>
+                <span class="n">answernames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">soa</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">serials</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">soa</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">querynames</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">answernames</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Capitalization in DNS queries and responses match.&quot;</span><span class="p">)</span>
+            <span class="n">name_match</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The random capitalization &#39;</span><span class="si">%s</span><span class="s">&#39; used in&quot;</span> <span class="o">%</span> <span class="n">hostname</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;DNS queries to that hostname&#39;s authoritative&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;nameservers does not match the capitalization in&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;the response.&quot;</span><span class="p">)</span>
+            <span class="n">name_match</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">serials</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Start of Authority serial numbers all match.&quot;</span><span class="p">)</span>
+            <span class="n">serial_match</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Some SOA serial numbers did not match the rest!&quot;</span><span class="p">)</span>
+            <span class="n">serial_match</span> <span class="o">=</span> <span class="bp">False</span>
+
+        <span class="k">if</span> <span class="n">name_match</span> <span class="ow">and</span> <span class="n">serial_match</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Your DNS queries do not appear to be tampered.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name_match</span> <span class="ow">or</span> <span class="n">serial_match</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Something is tampering with your DNS queries.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">name_match</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">serial_match</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Your DNS queries are definitely being tampered with.&quot;</span><span class="p">)</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;result&#39;</span><span class="p">:</span> <span class="n">name_match</span> <span class="ow">and</span> <span class="n">serial_match</span><span class="p">,</span>
+            <span class="s">&#39;name_match&#39;</span><span class="p">:</span> <span class="n">name_match</span><span class="p">,</span>
+            <span class="s">&#39;serial_match&#39;</span><span class="p">:</span> <span class="n">serial_match</span><span class="p">,</span>
+            <span class="s">&#39;querynames&#39;</span><span class="p">:</span> <span class="n">querynames</span><span class="p">,</span>
+            <span class="s">&#39;answernames&#39;</span><span class="p">:</span> <span class="n">answernames</span><span class="p">,</span>
+            <span class="s">&#39;SOA_serials&#39;</span><span class="p">:</span> <span class="n">serials</span>
+        <span class="p">}</span>
+        <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="CaptivePortal.get_random_url_safe_string"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_url_safe_string">[docs]</a>    <span class="k">def</span> <span class="nf">get_random_url_safe_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a random url-safe string of specified length, where</span>
+<span class="sd">        0 &lt; length &lt;= 256. The returned string will always start with</span>
+<span class="sd">        an alphabetic character.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">256</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mi">256</span>
+
+        <span class="n">random_string</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">while</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">random_string</span> <span class="o">+=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">lowercase</span><span class="p">)</span>
+            <span class="n">length</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="k">return</span> <span class="n">random_string</span>
+</div>
+<div class="viewcode-block" id="CaptivePortal.get_random_hostname"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.get_random_hostname">[docs]</a>    <span class="k">def</span> <span class="nf">get_random_hostname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a random hostname with SLD of specified length. If</span>
+<span class="sd">        length is unspecified, length=32 is used.</span>
+
+<span class="sd">        These *should* all resolve to NXDOMAIN. If they actually</span>
+<span class="sd">        resolve to a box that isn&#39;t part of a captive portal that</span>
+<span class="sd">        would be rather interesting.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="mi">32</span>
+
+        <span class="n">random_sld</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_random_url_safe_string</span><span class="p">(</span><span class="n">length</span><span class="p">)</span>
+        <span class="n">tld_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;.com&#39;</span><span class="p">,</span> <span class="s">&#39;.net&#39;</span><span class="p">,</span> <span class="s">&#39;.org&#39;</span><span class="p">,</span> <span class="s">&#39;.info&#39;</span><span class="p">,</span> <span class="s">&#39;.test&#39;</span><span class="p">,</span> <span class="s">&#39;.invalid&#39;</span><span class="p">]</span>
+        <span class="n">random_tld</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">tld_list</span><span class="p">)</span>
+        <span class="n">random_hostname</span> <span class="o">=</span> <span class="n">random_sld</span> <span class="o">+</span> <span class="n">random_tld</span>
+        <span class="k">return</span> <span class="n">random_hostname</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.compare_random_hostnames"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.compare_random_hostnames">[docs]</a>    <span class="k">def</span> <span class="nf">compare_random_hostnames</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hostname_count</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">hostname_length</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get hostname_count number of random hostnames with SLD length</span>
+<span class="sd">        of hostname_length, and then attempt DNS resolution. If no</span>
+<span class="sd">        arguments are given, default to three hostnames of 32 bytes</span>
+<span class="sd">        each. These random hostnames *should* resolve to NXDOMAIN,</span>
+<span class="sd">        except in the case where a user is presented with a captive</span>
+<span class="sd">        portal and remains unauthenticated, in which case the captive</span>
+<span class="sd">        portal may return the address of the authentication page.</span>
+
+<span class="sd">        If the cardinality of the intersection of the set of resolved</span>
+<span class="sd">        random hostnames and the single element control set</span>
+<span class="sd">        ([&#39;NXDOMAIN&#39;]) are equal to one, then DNS properly resolved.</span>
+
+<span class="sd">        Returns true if only NXDOMAINs were returned, otherwise returns</span>
+<span class="sd">        False with the relative complement of the control set in the</span>
+<span class="sd">        response set.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">hostname_count</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">hostname_count</span> <span class="o">=</span> <span class="mi">3</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Generating random hostnames...&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Resolving DNS for </span><span class="si">%d</span><span class="s"> random hostnames...&quot;</span> <span class="o">%</span> <span class="n">hostname_count</span><span class="p">)</span>
+
+        <span class="n">control</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;NXDOMAIN&#39;</span><span class="p">]</span>
+        <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">hostname_count</span><span class="p">):</span>
+            <span class="n">random_hostname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_random_hostname</span><span class="p">(</span><span class="n">hostname_length</span><span class="p">)</span>
+            <span class="n">response_match</span><span class="p">,</span> <span class="n">response_address</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">dns_resolve_match</span><span class="p">(</span><span class="n">random_hostname</span><span class="p">,</span>
+                                                                            <span class="n">control</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">address</span> <span class="ow">in</span> <span class="n">response_address</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">response_match</span> <span class="ow">is</span> <span class="bp">False</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Strangely, DNS resolution of the random hostname&quot;</span><span class="p">)</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;</span><span class="si">%s</span><span class="s"> actually points to </span><span class="si">%s</span><span class="s">&quot;</span>
+                            <span class="o">%</span> <span class="p">(</span><span class="n">random_hostname</span><span class="p">,</span> <span class="n">response_address</span><span class="p">))</span>
+                    <span class="n">responses</span> <span class="o">=</span> <span class="n">responses</span> <span class="o">+</span> <span class="p">[</span><span class="n">address</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">responses</span> <span class="o">=</span> <span class="n">responses</span> <span class="o">+</span> <span class="p">[</span><span class="n">address</span><span class="p">]</span>
+
+        <span class="n">intersection</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+        <span class="n">relative_complement</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">control</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">responses</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;All </span><span class="si">%d</span><span class="s"> random hostnames properly resolved to NXDOMAIN.&quot;</span>
+                    <span class="o">%</span> <span class="n">hostname_count</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="n">relative_complement</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Something odd happened. Some random hostnames correctly&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;resolved to NXDOMAIN, but several others resolved to&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;to the following addresses: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">relative_complement</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">relative_complement</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">intersection</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;All random hostnames resolved to the IP address &quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;, which is indicative of a captive portal.&quot;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">relative_complement</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Apparently, pigs are flying on your network, &#39;cause a&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;bunch of hostnames made from 32-byte random strings&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;just magically resolved to a bunch of random addresses.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;That is definitely highly improbable. In fact, my napkin&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;tells me that the probability of just one of those&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;hostnames resolving to an address is 1.68e-59, making&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;it nearly twice as unlikely as an MD5 hash collision.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;Either someone is seriously messing with your network,&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;or else you are witnessing the impossible. </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">r</span><span class="p">)</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">relative_complement</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.google_dns_cp_test"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.google_dns_cp_test">[docs]</a>    <span class="k">def</span> <span class="nf">google_dns_cp_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Google Chrome resolves three 10-byte random hostnames.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">subtest</span> <span class="o">=</span> <span class="s">&quot;Google Chrome DNS-based&quot;</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running the Google Chrome DNS-based captive portal test...&quot;</span><span class="p">)</span>
+
+        <span class="n">gmatch</span><span class="p">,</span> <span class="n">google_dns_result</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">compare_random_hostnames</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;result&#39;</span><span class="p">:</span> <span class="n">gmatch</span><span class="p">,</span>
+            <span class="s">&#39;addresses&#39;</span><span class="p">:</span> <span class="n">google_dns_result</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">gmatch</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Google Chrome DNS-based captive portal test did not&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;detect a captive portal.&quot;</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Google Chrome DNS-based captive portal test believes&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;you are in a captive portal, or else something very&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;odd is happening with your DNS.&quot;</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.ms_dns_cp_test"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.ms_dns_cp_test">[docs]</a>    <span class="k">def</span> <span class="nf">ms_dns_cp_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Microsoft &quot;phones home&quot; to a server which will always resolve</span>
+<span class="sd">        to the same address.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">subtest</span> <span class="o">=</span> <span class="s">&quot;Microsoft NCSI DNS-based&quot;</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running the Microsoft NCSI DNS-based captive portal&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;test...&quot;</span><span class="p">)</span>
+
+        <span class="n">msmatch</span><span class="p">,</span> <span class="n">ms_dns_result</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">dns_resolve_match</span><span class="p">(</span><span class="s">&quot;dns.msftncsi.com&quot;</span><span class="p">,</span>
+                                                              <span class="s">&quot;131.107.255.255&quot;</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">&#39;result&#39;</span><span class="p">:</span> <span class="n">msmatch</span><span class="p">,</span>
+            <span class="s">&#39;address&#39;</span><span class="p">:</span> <span class="n">ms_dns_result</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">msmatch</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Microsoft NCSI DNS-based captive portal test did not&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;detect a captive portal.&quot;</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ms_dns_result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Microsoft NCSI DNS-based captive portal test &quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;believes you are in a captive portal.&quot;</span><span class="p">)</span>
+            <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">ms_dns_result</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.run_vendor_dns_tests"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_dns_tests">[docs]</a>    <span class="k">def</span> <span class="nf">run_vendor_dns_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run the vendor DNS tests.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">report</span><span class="p">[</span><span class="s">&#39;google_dns_cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">google_dns_cp_test</span><span class="p">()</span>
+        <span class="n">report</span><span class="p">[</span><span class="s">&#39;ms_dns_cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">ms_dns_cp_test</span><span class="p">()</span>
+        <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.run_vendor_tests"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.run_vendor_tests">[docs]</a>    <span class="k">def</span> <span class="nf">run_vendor_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        These are several vendor tests used to detect the presence of</span>
+<span class="sd">        a captive portal. Each test compares HTTP status code and</span>
+<span class="sd">        content to the control results and has its own User-Agent</span>
+<span class="sd">        string, in order to emulate the test as it would occur on the</span>
+<span class="sd">        device it was intended for. Vendor tests are defined in the</span>
+<span class="sd">        format:</span>
+<span class="sd">        [exp_url, ctrl_result, ctrl_code, ua, test_name]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">vendor_tests</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;http://www.apple.com/library/test/success.html&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Success&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;200&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Apple HTTP Captive Portal&#39;</span><span class="p">],</span>
+                        <span class="p">[</span><span class="s">&#39;http://tools.ietf.org/html/draft-nottingham-http-portal-02&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;428 Network Authentication Required&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;428&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Mozilla/5.0 (Windows NT 6.1; rv:5.0) Gecko/20100101 Firefox/5.0&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;W3 Captive Portal&#39;</span><span class="p">],</span>
+                        <span class="p">[</span><span class="s">&#39;http://www.msftncsi.com/ncsi.txt&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Microsoft NCSI&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;200&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;Microsoft NCSI&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;MS HTTP Captive Portal&#39;</span><span class="p">,</span> <span class="p">]]</span>
+
+        <span class="n">cm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_content_match_fuzzy_opt</span>
+        <span class="n">sm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_status_code_match</span>
+        <span class="n">snm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_status_code_no_match</span>
+
+        <span class="nd">@defer.inlineCallbacks</span>
+        <span class="k">def</span> <span class="nf">compare_content</span><span class="p">(</span><span class="n">status_func</span><span class="p">,</span> <span class="n">fuzzy</span><span class="p">,</span> <span class="n">experiment_url</span><span class="p">,</span> <span class="n">control_result</span><span class="p">,</span>
+                            <span class="n">control_code</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">test_name</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running the </span><span class="si">%s</span><span class="s"> test...&quot;</span> <span class="o">%</span> <span class="n">test_name</span><span class="p">)</span>
+
+            <span class="n">content_match</span><span class="p">,</span> <span class="n">experiment_code</span><span class="p">,</span> <span class="n">experiment_headers</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">cm</span><span class="p">(</span><span class="n">experiment_url</span><span class="p">,</span>
+                                                                          <span class="n">control_result</span><span class="p">,</span>
+                                                                          <span class="n">headers</span><span class="p">,</span> <span class="n">fuzzy</span><span class="p">)</span>
+            <span class="n">status_match</span> <span class="o">=</span> <span class="n">status_func</span><span class="p">(</span><span class="n">experiment_code</span><span class="p">,</span> <span class="n">control_code</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">status_match</span> <span class="ow">and</span> <span class="n">content_match</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The </span><span class="si">%s</span><span class="s"> test was unable to detect&quot;</span> <span class="o">%</span> <span class="n">test_name</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;a captive portal.&quot;</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The </span><span class="si">%s</span><span class="s"> test shows that your network&quot;</span> <span class="o">%</span> <span class="n">test_name</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;is filtered.&quot;</span><span class="p">)</span>
+                <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">vt</span> <span class="ow">in</span> <span class="n">vendor_tests</span><span class="p">:</span>
+            <span class="n">report</span> <span class="o">=</span> <span class="p">{}</span>
+
+            <span class="n">experiment_url</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">control_result</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">control_code</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+            <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="n">vt</span><span class="p">[</span><span class="mi">3</span><span class="p">]}</span>
+            <span class="n">test_name</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+            <span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="n">experiment_url</span><span class="p">,</span> <span class="n">control_result</span><span class="p">,</span> <span class="n">control_code</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">test_name</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">test_name</span> <span class="o">==</span> <span class="s">&quot;MS HTTP Captive Portal&quot;</span><span class="p">:</span>
+                <span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">compare_content</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">test_name</span> <span class="o">==</span> <span class="s">&quot;Apple HTTP Captive Portal&quot;</span><span class="p">:</span>
+                <span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">compare_content</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">test_name</span> <span class="o">==</span> <span class="s">&quot;W3 Captive Portal&quot;</span><span class="p">:</span>
+                <span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">compare_content</span><span class="p">(</span><span class="n">snm</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">err</span><span class="p">(</span><span class="s">&quot;Ooni is trying to run an undefined CP vendor test.&quot;</span><span class="p">)</span>
+
+            <span class="n">report</span><span class="p">[</span><span class="s">&#39;URL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">experiment_url</span>
+            <span class="n">report</span><span class="p">[</span><span class="s">&#39;http_status_summary&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">control_result</span>
+            <span class="n">report</span><span class="p">[</span><span class="s">&#39;http_status_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">control_code</span>
+            <span class="n">report</span><span class="p">[</span><span class="s">&#39;User_Agent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">test_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">report</span>
+
+        <span class="n">defer</span><span class="o">.</span><span class="n">returnValue</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.control"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.control">[docs]</a>    <span class="k">def</span> <span class="nf">control</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">experiment_result</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compares the content and status code of the HTTP response for</span>
+<span class="sd">        experiment_url with the control_result and control_code</span>
+<span class="sd">        respectively. If the status codes match, but the experimental</span>
+<span class="sd">        content and control_result do not match, fuzzy matching is enabled</span>
+<span class="sd">        to determine if the control_result is at least included somewhere</span>
+<span class="sd">        in the experimental content. Returns True if matches are found,</span>
+<span class="sd">        and False if otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># XXX put this back to being parametrized</span>
+        <span class="c">#experiment_url = self.local_options[&#39;experiment-url&#39;]</span>
+        <span class="n">experiment_url</span> <span class="o">=</span> <span class="s">&#39;http://google.com/&#39;</span>
+        <span class="n">control_result</span> <span class="o">=</span> <span class="s">&#39;XX&#39;</span>
+        <span class="n">control_code</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">ua</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_options</span><span class="p">[</span><span class="s">&#39;user-agent&#39;</span><span class="p">]</span>
+
+        <span class="n">cm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_content_match_fuzzy_opt</span>
+        <span class="n">sm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_status_code_match</span>
+        <span class="n">snm</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">http_status_code_no_match</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running test for &#39;</span><span class="si">%s</span><span class="s">&#39;...&quot;</span> <span class="o">%</span> <span class="n">experiment_url</span><span class="p">)</span>
+        <span class="n">content_match</span><span class="p">,</span> <span class="n">experiment_code</span><span class="p">,</span> <span class="n">experiment_headers</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">cm</span><span class="p">(</span><span class="n">experiment_url</span><span class="p">,</span>
+                                                                      <span class="n">control_result</span><span class="p">)</span>
+        <span class="n">status_match</span> <span class="o">=</span> <span class="n">sm</span><span class="p">(</span><span class="n">experiment_code</span><span class="p">,</span> <span class="n">control_code</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status_match</span> <span class="ow">and</span> <span class="n">content_match</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The test for &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">experiment_url</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;was unable to detect a captive portal.&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">elif</span> <span class="n">status_match</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">content_match</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Retrying &#39;</span><span class="si">%s</span><span class="s">&#39; with fuzzy match enabled.&quot;</span>
+                    <span class="o">%</span> <span class="n">experiment_url</span><span class="p">)</span>
+            <span class="n">fuzzy_match</span><span class="p">,</span> <span class="n">experiment_code</span><span class="p">,</span> <span class="n">experiment_headers</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">cm</span><span class="p">(</span><span class="n">experiment_url</span><span class="p">,</span>
+                                                                        <span class="n">control_result</span><span class="p">,</span>
+                                                                        <span class="n">fuzzy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fuzzy_match</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Found modified content on &#39;</span><span class="si">%s</span><span class="s">&#39;,&quot;</span> <span class="o">%</span> <span class="n">experiment_url</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;which could indicate a captive portal.&quot;</span><span class="p">)</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The content comparison test for &quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span> <span class="n">experiment_url</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;shows that your HTTP traffic is filtered.&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;result&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+</div>
+    <span class="nd">@defer.inlineCallbacks</span>
+<div class="viewcode-block" id="CaptivePortal.test_captive_portal"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.manipulation.html#ooni.nettests.manipulation.captiveportal.CaptivePortal.test_captive_portal">[docs]</a>    <span class="k">def</span> <span class="nf">test_captive_portal</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Runs the CaptivePortal(Test).</span>
+
+<span class="sd">        CONFIG OPTIONS</span>
+
+<span class="sd">        If &quot;do_captive_portal_vendor_tests&quot; is set to &quot;true&quot;, then vendor</span>
+<span class="sd">        specific captive portal HTTP-based tests will be run.</span>
+
+<span class="sd">        If &quot;do_captive_portal_dns_tests&quot; is set to &quot;true&quot;, then vendor</span>
+<span class="sd">        specific captive portal DNS-based tests will be run.</span>
+
+<span class="sd">        If &quot;check_dns_requests&quot; is set to &quot;true&quot;, then Ooni-probe will</span>
+<span class="sd">        attempt to check that your DNS requests are not being tampered with</span>
+<span class="sd">        by a captive portal.</span>
+
+<span class="sd">        If &quot;captive_portal&quot; = &quot;yourfilename.txt&quot;, then user-specified tests</span>
+<span class="sd">        will be run.</span>
+
+<span class="sd">        Any combination of the above tests can be run.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running vendor tests...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;vendor_tests&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_vendor_tests</span><span class="p">()</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Running vendor DNS-based tests...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;vendor_dns_tests&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_vendor_dns_tests</span><span class="p">()</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Checking that DNS requests are not being tampered...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;check0x20&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_0x20_to_auth_ns</span><span class="p">(</span><span class="s">&#39;ooni.nu&#39;</span><span class="p">)</span>
+
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Captive portal test finished!&quot;</span><span class="p">)</span>
+</pre></div></div></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

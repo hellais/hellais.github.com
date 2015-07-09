@@ -1,0 +1,733 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Writing OONI tests &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="index.html"/>
+        <link rel="next" title="Reports" href="reports.html"/>
+        <link rel="prev" title="Tutorial" href="tutorial.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Writing OONI tests</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/writing_tests.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="writing-ooni-tests">
+<h1>Writing OONI tests<a class="headerlink" href="#writing-ooni-tests" title="Permalink to this headline">¶</a></h1>
+<p>The OONI testing API is heavily influenced and partially based on the python
+<code class="xref py py-mod docutils literal"><span class="pre">unittest</span></code> module and <code class="xref py py-mod docutils literal"><span class="pre">twisted.trial</span></code>.</p>
+<div class="section" id="test-cases">
+<h2>Test Cases<a class="headerlink" href="#test-cases" title="Permalink to this headline">¶</a></h2>
+<p>The atom of OONI Testing is called a Test Case. A test case class may contain
+multiple Test Methods.</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ooni.nettest.</code><code class="descname">NetTestCase</code><a class="reference internal" href="_modules/ooni/nettest.html#NetTestCase"><span class="viewcode-link">[source]</span></a></dt>
+<dd><p>This is the base of the OONI nettest universe. When you write a nettest
+you will subclass this object.</p>
+<ul>
+<li><p class="first">inputs: can be set to a static set of inputs. All the tests (the methods
+starting with the &#8220;test&#8221; prefix) will be run once per input. At every
+run the _input_ attribute of the TestCase instance will be set to the
+value of the current iteration over inputs.  Any python iterable object
+can be set to inputs.</p>
+</li>
+<li><p class="first">inputFile: attribute should be set to an array containing the command
+line argument that should be used as the input file. Such array looks
+like this:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">[&quot;commandlinearg&quot;,</span> <span class="pre">&quot;c&quot;,</span> <span class="pre">&quot;default</span> <span class="pre">value&quot;</span> <span class="pre">&quot;The</span> <span class="pre">description&quot;]</span></code></p>
+</div></blockquote>
+<p>The second value of such arrray is the shorthand for the command line
+arg. The user will then be able to specify inputs to the test via:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">ooniprobe</span> <span class="pre">mytest.py</span> <span class="pre">--commandlinearg</span> <span class="pre">path/to/file.txt</span></code></p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">ooniprobe</span> <span class="pre">mytest.py</span> <span class="pre">-c</span> <span class="pre">path/to/file.txt</span></code></p>
+</div></blockquote>
+</li>
+<li><p class="first">inputProcessor: should be set to a function that takes as argument a
+filename and it will return the input to be passed to the test
+instance.</p>
+</li>
+<li><p class="first">name: should be set to the name of the test.</p>
+</li>
+<li><p class="first">author: should contain the name and contact details for the test author.
+The format for such string is as follows:</p>
+<blockquote>
+<div><p><code class="docutils literal"><span class="pre">The</span> <span class="pre">Name</span> <span class="pre">&lt;email&#64;example.com&gt;</span></code></p>
+</div></blockquote>
+</li>
+<li><p class="first">version: is the version string of the test.</p>
+</li>
+<li><p class="first">requiresRoot: set to True if the test must be run as root.</p>
+</li>
+<li><dl class="first docutils">
+<dt>usageOptions: a subclass of twisted.python.usage.Options for processing</dt>
+<dd><p class="first last">of command line arguments</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">localOptions: contains the parsed command line arguments.</p>
+</li>
+</ul>
+<p>Quirks:
+Every class that is prefixed with test <em>must</em> return a
+twisted.internet.defer.Deferred.</p>
+</dd></dl>
+
+<p>If the test you plan to write is not listed on the <a class="reference external" href="https://trac.torproject.org/projects/tor/wiki/doc/OONI/Tests">Tor OONI trac page</a>, you should
+add it to the list and then add a description about it following the <a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/plain/docs/source/tests/template.rst">test
+template</a>.</p>
+<p>Tests are driven by inputs. For every input a new test instance is created,
+internally the _setUp method is called that is defined inside of test
+templates, then the setUp method that is overwritable by users.</p>
+<p>Gotchas:
+<strong>never</strong> call reactor.start of reactor.stop inside of your test method and all
+will be good.</p>
+</div>
+<div class="section" id="inputs">
+<h2>Inputs<a class="headerlink" href="#inputs" title="Permalink to this headline">¶</a></h2>
+<p>Inputs are what is given as input to every iteration of the Test Case.
+If you have 100 inputs, then every test case will be run 100 times.</p>
+<p>To configure a static set of inputs you should define the
+<a class="reference internal" href="api/ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a> attribute <code class="docutils literal"><span class="pre">inputs</span></code>. The test will be
+run <code class="docutils literal"><span class="pre">len(inputs)</span></code> times. Any iterable object is a valid <code class="docutils literal"><span class="pre">inputs</span></code>
+attribute.</p>
+<p>If you would like to have inputs be determined from a user specified input
+file, then you must set the <code class="docutils literal"><span class="pre">inputFile</span></code> attribute. This is an array that
+specifies what command line option may be used to control this value.</p>
+<p>By default the <code class="docutils literal"><span class="pre">inputProcessor</span></code> is set to read the file line by line and
+strip newline characters. To change this behavior you must set the
+<code class="docutils literal"><span class="pre">inputProcessor</span></code> attribute to a function that takes as argument a file
+descriptor and yield the next item. The default <code class="docutils literal"><span class="pre">inputProcessor</span></code> looks like
+this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">lineByLine</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">fp</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">fp</span><span class="o">.</span><span class="n">xreadlines</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">fp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For example, if you wanted to modify inputProcessor to read enteries from a CSV file, you could use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">inputProcessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvFile</span><span class="p">:</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">DictReader</span><span class="p">(</span><span class="n">csvFile</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">entry</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setup-and-command-line-passing">
+<h2>Setup and command line passing<a class="headerlink" href="#setup-and-command-line-passing" title="Permalink to this headline">¶</a></h2>
+<p>Tests may define the <cite>setUp</cite> method that will be called every time the
+Test Case object is instantiated, in here you may place some common logic
+to all your Test Methods that should be run before any testing occurs.</p>
+<p>Command line arguments can be parsed thanks to the twisted
+<code class="xref py py-class docutils literal"><span class="pre">twisted.python.usage.UsageOptions</span></code> class.</p>
+<p>You will have to subclass this and define the NetTestCase attribute
+usageOptions to point to a subclass of this.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+  <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;backend&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;http://127.0.0.1:57001&#39;</span><span class="p">,</span>
+                      <span class="s">&#39;URL of the test backend to use&#39;</span><span class="p">]</span>
+                  <span class="p">]</span>
+
+<span class="k">class</span> <span class="nc">MyTestCase</span><span class="p">(</span><span class="n">nettest</span><span class="o">.</span><span class="n">NetTestCase</span><span class="p">):</span>
+  <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+
+  <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&quot;Some foo file&quot;</span><span class="p">]</span>
+  <span class="n">requiredOptions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">test_my_test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;backend&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>You will then be able to access the parsed command line arguments via the
+class attribute localOptions.</p>
+<p>The <cite>requiredOptions</cite> attributes specifies an array of parameters that are
+required for the test to run properly.</p>
+<p><cite>inputFile</cite> is a special class attribute that will be used for processing
+of the inputFile. The filename that is read here will be given to the
+<a class="reference internal" href="api/ooni.html#ooni.nettest.NetTestCase.inputProcessor" title="ooni.nettest.NetTestCase.inputProcessor"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase.inputProcessor</span></code></a> method that will yield, by
+default, one line of the file at a time.</p>
+</div>
+<div class="section" id="test-methods">
+<h2>Test Methods<a class="headerlink" href="#test-methods" title="Permalink to this headline">¶</a></h2>
+<p>These shall be defined inside of your <a class="reference internal" href="api/ooni.html#ooni.nettest.NetTestCase" title="ooni.nettest.NetTestCase"><code class="xref py py-class docutils literal"><span class="pre">ooni.nettest.NetTestCase</span></code></a>
+subclass.  These will be class methods.</p>
+<p>All class methods that are prefixed with test_ shall be run. Functions
+that are relevant to your test should be all lowercase separated by
+underscore.</p>
+<p>To add data to the test report you may write directly to the report object
+like so:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_my_function</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">do_something</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;something&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+</pre></div>
+</div>
+<p>OONI will then handle the writing of the data to the final test report.</p>
+<p>To access the current input you can use the <code class="docutils literal"><span class="pre">input</span></code> attribute, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">test_with_input</span><span class="p">():</span>
+    <span class="n">do_something_with_input</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will at each iteration over the list of inputs do something with the
+input.</p>
+</div>
+<div class="section" id="test-templates">
+<h2>Test Templates<a class="headerlink" href="#test-templates" title="Permalink to this headline">¶</a></h2>
+<p>Test templates assist you in writing tests. They already contain all the
+common functionality that is useful to running a test of that type. They
+also take care of writing the data they collect that is relevant to the
+test run to the report file.</p>
+<p>Currently implemented test templates are <a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.scapyt" title="ooni.templates.scapyt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.scapyt</span></code></a> for
+tests based on Scapy, <a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.tcpt" title="ooni.templates.tcpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.tcpt</span></code></a> for tests based on TCP,
+<a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.httpt" title="ooni.templates.httpt"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.httpt</span></code></a> for tests based on HTTP, and
+<a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.dnst" title="ooni.templates.dnst"><code class="xref py py-mod docutils literal"><span class="pre">ooni.templates.dnst</span></code></a> for tests based on DNS.</p>
+<div class="section" id="scapy-based-tests">
+<h3>Scapy based tests<a class="headerlink" href="#scapy-based-tests" title="Permalink to this headline">¶</a></h3>
+<p>Scapy based tests will be a subclass of <a class="reference internal" href="api/ooni.templates.html#ooni.templates.scapyt.BaseScapyTest" title="ooni.templates.scapyt.BaseScapyTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.scapyt.BaseScapyTest</span></code></a>.</p>
+<p>It provides a wrapper around the scapy send and receive function that will
+write the sent and received packets to the report with sanitization of the
+src and destination IP addresses.</p>
+<p>It has the same syntax as the Scapy sr function, except that it will
+return a deferred.</p>
+<p>To implement a simple ICMP ping based on this function you can do like so
+(Taken from <code class="xref py py-class docutils literal"><span class="pre">nettest.examples.example_scapyt.ExampleICMPPingScapy</span></code>)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+
+<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="n">IP</span><span class="p">,</span> <span class="n">ICMP</span>
+
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">scapyt</span>
+
+<span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;target&#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s">&quot;Specify the target to ping&quot;</span><span class="p">]]</span>
+
+<span class="k">class</span> <span class="nc">ExampleICMPPingScapy</span><span class="p">(</span><span class="n">scapyt</span><span class="o">.</span><span class="n">BaseScapyTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Example ICMP Ping Test&quot;</span>
+
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+
+    <span class="k">def</span> <span class="nf">test_icmp_ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">finished</span><span class="p">(</span><span class="n">packets</span><span class="p">):</span>
+            <span class="k">print</span> <span class="n">packets</span>
+            <span class="n">answered</span><span class="p">,</span> <span class="n">unanswered</span> <span class="o">=</span> <span class="n">packets</span>
+            <span class="k">for</span> <span class="n">snd</span><span class="p">,</span> <span class="n">rcv</span> <span class="ow">in</span> <span class="n">answered</span><span class="p">:</span>
+                <span class="n">rcv</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">packets</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;target&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">ICMP</span><span class="p">()</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">(</span><span class="n">packets</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">finished</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>The arguments taken by self.sr() are exactly the same as the scapy send and
+receive function, the only difference is that instead of using the regular
+scapy super socket it uses our twisted driven wrapper around it.</p>
+<p>Alternatively this test can also be written using the
+<code class="xref py py-func docutils literal"><span class="pre">twisted.defer.inlineCallbacks()</span></code> decorator, that makes it look more similar to
+regular sequential code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span>
+<span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">defer</span>
+
+<span class="kn">from</span> <span class="nn">scapy.all</span> <span class="kn">import</span> <span class="n">IP</span><span class="p">,</span> <span class="n">ICMP</span>
+
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">scapyt</span>
+
+<span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[[</span><span class="s">&#39;target&#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">,</span> <span class="s">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="s">&quot;Specify the target to ping&quot;</span><span class="p">]]</span>
+
+<span class="k">class</span> <span class="nc">ExampleICMPPingScapyYield</span><span class="p">(</span><span class="n">scapyt</span><span class="o">.</span><span class="n">BaseScapyTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Example ICMP Ping Test&quot;</span>
+
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+
+    <span class="nd">@defer.inlineCallbacks</span>
+    <span class="k">def</span> <span class="nf">test_icmp_ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">packets</span> <span class="o">=</span> <span class="n">IP</span><span class="p">(</span><span class="n">dst</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;target&#39;</span><span class="p">])</span><span class="o">/</span><span class="n">ICMP</span><span class="p">()</span>
+        <span class="n">answered</span><span class="p">,</span> <span class="n">unanswered</span> <span class="o">=</span> <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">sr</span><span class="p">(</span><span class="n">packets</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">snd</span><span class="p">,</span> <span class="n">rcv</span> <span class="ow">in</span> <span class="n">answered</span><span class="p">:</span>
+            <span class="n">rcv</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="report-format">
+<h4>Report Format<a class="headerlink" href="#report-format" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for Example ICMP Ping Test test
+# Thu Nov 22 18:20:43 2012
+###########################################
+---
+{probe_asn: null, probe_cc: null, probe_ip: 127.0.0.1, software_name: ooniprobe, software_version: 0.0.7.1-alpha,
+  start_time: 1353601243.0, test_name: Example ICMP Ping Test, test_version: 0.1}
+...
+---
+input: null
+report:
+  answer_flags: [ipsrc]
+  answered_packets:
+  - - raw_packet: !!binary |
+        RQAAHAEdAAAuAbjKCAgICH8AAAEAAAAAAAAAAA==
+      summary: IP / ICMP 8.8.8.8 &gt; 127.0.0.1 echo-reply 0
+  sent_packets:
+  - - raw_packet: !!binary |
+        RQAAHAABAABAAevPfwAAAQgICAgIAPf/AAAAAA==
+      summary: IP / ICMP 127.0.0.1 &gt; 8.8.8.8 echo-request 0
+test_name: test_icmp_ping
+test_started: 1353604843.553605
+...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="tcp-based-tests">
+<h3>TCP based tests<a class="headerlink" href="#tcp-based-tests" title="Permalink to this headline">¶</a></h3>
+<p>TCP based tests will subclass <a class="reference internal" href="api/ooni.templates.html#ooni.templates.tcpt.TCPTest" title="ooni.templates.tcpt.TCPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.tcpt.TCPTest</span></code></a>.</p>
+<p>This test template facilitates the sending of TCP payloads to the wire and
+recording the response.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">twisted.internet.error</span> <span class="kn">import</span> <span class="n">ConnectionRefusedError</span>
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">tcpt</span>
+
+<span class="k">class</span> <span class="nc">ExampleTCPT</span><span class="p">(</span><span class="n">tcpt</span><span class="o">.</span><span class="n">TCPTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">got_response</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;Got this data </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">response</span>
+
+        <span class="k">def</span> <span class="nf">connection_failed</span><span class="p">(</span><span class="n">failure</span><span class="p">):</span>
+            <span class="n">failure</span><span class="o">.</span><span class="n">trap</span><span class="p">(</span><span class="n">ConnectionRefusedError</span><span class="p">)</span>
+            <span class="k">print</span> <span class="s">&quot;Connection Refused&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="s">&quot;127.0.0.1&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">57002</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="s">&quot;Hello World!</span><span class="se">\n\r</span><span class="s">&quot;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sendPayload</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addErrback</span><span class="p">(</span><span class="n">connection_failed</span><span class="p">)</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">got_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>The possible failures for a TCP connection are:</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">twisted.internet.error.NoRouteError</span></code> that corresponds to errno.ENETUNREACH</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">twisted.internet.error.ConnectionRefusedError</span></code> that corresponds to
+errno.ECONNREFUSED</p>
+<p><code class="xref py py-class docutils literal"><span class="pre">twisted.internet.error.TCPTimedOutError</span></code> that corresponds to errno.ETIMEDOUT</p>
+<div class="section" id="id1">
+<h4>Report format<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>The basic report of a TCP test looks like the following (this is an report
+generated by running the above example against a TCP echo server).</p>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for Base TCP Test test
+# Thu Nov 22 18:18:28 2012
+###########################################
+---
+{probe_asn: null, probe_cc: null, probe_ip: 127.0.0.1, software_name: ooniprobe, software_version: 0.0.7.1-alpha,
+  start_time: 1353601108.0, test_name: Base TCP Test, test_version: &#39;0.1&#39;}
+...
+---
+input: null
+report:
+  errors: []
+  received: [&quot;Hello World!\n\r&quot;]
+  sent: [&quot;Hello World!\n\r&quot;]
+test_name: test_hello_world
+test_started: 1353604708.705081
+...
+</pre></div>
+</div>
+<p>TODO finish this with more details</p>
+</div>
+</div>
+<div class="section" id="http-based-tests">
+<h3>HTTP based tests<a class="headerlink" href="#http-based-tests" title="Permalink to this headline">¶</a></h3>
+<p>HTTP based tests will be a subclass of  <a class="reference internal" href="api/ooni.templates.html#ooni.templates.httpt.HTTPTest" title="ooni.templates.httpt.HTTPTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest</span></code></a>.</p>
+<p>It provides methods <a class="reference internal" href="api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processResponseBody" title="ooni.templates.httpt.HTTPTest.processResponseBody"><code class="xref py py-func docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest.processResponseBody()</span></code></a> and
+<a class="reference internal" href="api/ooni.templates.html#ooni.templates.httpt.HTTPTest.processResponseHeaders" title="ooni.templates.httpt.HTTPTest.processResponseHeaders"><code class="xref py py-func docutils literal"><span class="pre">ooni.templates.httpt.HTTPTest.processResponseHeaders()</span></code></a> for interacting with the
+response body and headers respectively.</p>
+<p>For example, to implement a HTTP test that returns the sha256 hash of the
+response body (based on <code class="xref py py-mod docutils literal"><span class="pre">nettests.examples.example_httpt</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">httpt</span>
+<span class="kn">from</span> <span class="nn">hashlib</span> <span class="kn">import</span> <span class="n">sha256</span>
+
+<span class="k">class</span> <span class="nc">SHA256HTTPBodyTest</span><span class="p">(</span><span class="n">httpt</span><span class="o">.</span><span class="n">HTTPTest</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;ChecksumHTTPBodyTest&quot;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&quot;Aaron Gibson&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+    <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;url file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+            <span class="s">&#39;List of URLS to perform GET requests to&#39;</span><span class="p">]</span>
+    <span class="n">requiredOptions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;url file&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">test_http</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doRequest</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;No input specified&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">processResponseBody</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
+        <span class="n">body_sha256sum</span> <span class="o">=</span> <span class="n">sha256</span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;checksum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">body_sha256sum</span>
+</pre></div>
+</div>
+<div class="section" id="id2">
+<h4>Report format<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for ChecksumHTTPBodyTest test
+# Thu Dec  6 17:31:57 2012
+###########################################
+---
+options:
+  collector: null
+  help: 0
+  logfile: null
+  pcapfile: null
+  reportfile: null
+  resume: 0
+  subargs: [-f, hosts]
+  test: nettests/examples/example_http_checksum.py
+probe_asn: null
+probe_cc: null
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 0.0.7.1-alpha
+start_time: 1354786317.0
+test_name: ChecksumHTTPBodyTest
+test_version: 0.1
+...
+---
+input: http://www.google.com
+report:
+  agent: agent
+  checksum: d630fa2efd547d3656e349e96ff7af5496889dad959e8e29212af1ff843e7aa1
+  requests:
+  - request:
+      body: null
+      headers:
+      - - User-Agent
+        - - [Opera/9.00 (Windows NT 5.1; U; en), &#39;Opera 9.0, Windows XP&#39;]
+      method: GET
+      url: http://www.google.com
+    response:
+      body: &#39;&lt;!doctype html&gt;&lt;html ... snip ...  &lt;/html&gt;&#39;
+      code: 200
+      headers:
+      - - X-XSS-Protection
+        - [1; mode=block]
+      - - Set-Cookie
+        - [&#39;PREF=ID=fada4216eb3684f9:FF=0:TM=1354800717:LM=1354800717:S=IT-2GCkNAocyXlVa;
+            expires=Sat, 06-Dec-2014 13:31:57 GMT; path=/; domain=.google.com&#39;, &#39;NID=66=KWaLbNQumuGuYf0HrWlGm54u9l-DKJwhFCMQXfhQPZM-qniRhmF6QRGXUKXb_8CIUuCOHnyoC5oAX5jWNrsfk-LLJLW530UiMp6hemTtDMh_e6GSiEB4GR3yOP_E0TCN;
+            expires=Fri, 07-Jun-2013 13:31:57 GMT; path=/; domain=.google.com; HttpOnly&#39;]
+      - - Expires
+        - [&#39;-1&#39;]
+      - - Server
+        - [gws]
+      - - Connection
+        - [close]
+      - - Cache-Control
+        - [&#39;private, max-age=0&#39;]
+      - - Date
+        - [&#39;Thu, 06 Dec 2012 13:31:57 GMT&#39;]
+      - - P3P
+        - [&#39;CP=&quot;This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;answer=151657
+            for more info.&quot;&#39;]
+      - - Content-Type
+        - [text/html; charset=UTF-8]
+      - - X-Frame-Options
+        - [SAMEORIGIN]
+  socksproxy: null
+test_name: test_http
+test_runtime: 0.08298492431640625
+test_started: 1354800717.478403
+...
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="dns-based-tests">
+<h3>DNS based tests<a class="headerlink" href="#dns-based-tests" title="Permalink to this headline">¶</a></h3>
+<p>DNS based tests will be a subclass of <a class="reference internal" href="api/ooni.templates.html#ooni.templates.dnst.DNSTest" title="ooni.templates.dnst.DNSTest"><code class="xref py py-class docutils literal"><span class="pre">ooni.templates.dnst.DNSTest</span></code></a>.</p>
+<p>It provides methods <a class="reference internal" href="api/ooni.templates.html#ooni.templates.dnst.DNSTest.performPTRLookup" title="ooni.templates.dnst.DNSTest.performPTRLookup"><code class="xref py py-func docutils literal"><span class="pre">ooni.templates.dnst.DNSTest.performPTRLookup()</span></code></a>
+and <a class="reference internal" href="api/ooni.templates.html#ooni.templates.dnst.DNSTest.performALookup" title="ooni.templates.dnst.DNSTest.performALookup"><code class="xref py py-func docutils literal"><span class="pre">ooni.templates.dnst.DNSTest.performALookup()</span></code></a></p>
+<p>For example (taken from <code class="xref py py-mod docutils literal"><span class="pre">nettests.examples.example_dnst</span></code>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">ooni.templates.dnst</span> <span class="kn">import</span> <span class="n">DNSTest</span>
+
+<span class="k">class</span> <span class="nc">ExampleDNSTest</span><span class="p">(</span><span class="n">DNSTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_a_lookup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">gotResult</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="c"># Result is an array containing all the A record lookup results</span>
+            <span class="k">print</span> <span class="n">result</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">performALookup</span><span class="p">(</span><span class="s">&#39;torproject.org&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;8.8.8.8&#39;</span><span class="p">,</span> <span class="mi">53</span><span class="p">))</span>
+        <span class="n">d</span><span class="o">.</span><span class="n">addCallback</span><span class="p">(</span><span class="n">gotResult</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">d</span>
+</pre></div>
+</div>
+<div class="section" id="id3">
+<h4>Report format<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for Base DNS Test test
+# Thu Dec  6 17:42:51 2012
+###########################################
+---
+options:
+  collector: null
+  help: 0
+  logfile: null
+  pcapfile: null
+  reportfile: null
+  resume: 0
+  subargs: []
+  test: nettests/examples/example_dnst.py
+probe_asn: null
+probe_cc: null
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 0.0.7.1-alpha
+start_time: 1354786971.0
+test_name: Base DNS Test
+test_version: 0.1
+...
+---
+input: null
+report:
+  queries:
+  - addrs: [82.195.75.101, 86.59.30.40, 38.229.72.14, 38.229.72.16]
+    answers:
+    - [&lt;RR name=torproject.org type=A class=IN ttl=782s auth=False&gt;, &lt;A address=82.195.75.101
+        ttl=782&gt;]
+    - [&lt;RR name=torproject.org type=A class=IN ttl=782s auth=False&gt;, &lt;A address=86.59.30.40
+        ttl=782&gt;]
+    - [&lt;RR name=torproject.org type=A class=IN ttl=782s auth=False&gt;, &lt;A address=38.229.72.14
+        ttl=782&gt;]
+    - [&lt;RR name=torproject.org type=A class=IN ttl=782s auth=False&gt;, &lt;A address=38.229.72.16
+        ttl=782&gt;]
+    query: &#39;[Query(&#39;&#39;torproject.org&#39;&#39;, 1, 1)]&#39;
+    query_type: A
+    resolver: [8.8.8.8, 53]
+test_name: test_a_lookup
+test_runtime: 0.028924942016601562
+test_started: 1354801371.980114
+...
+</pre></div>
+</div>
+<p>For a more complex example, see: <code class="xref py py-mod docutils literal"><span class="pre">nettests.blocking.dnsconsistency</span></code></p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="reports.html" class="btn btn-neutral float-right" title="Reports">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="tutorial.html" class="btn btn-neutral" title="Tutorial"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

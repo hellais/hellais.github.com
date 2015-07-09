@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Details &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Details</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="../_sources/tests/http_header_field_manipulation.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="details">
+<h1>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h1>
+<p><em>Test Name</em>: HTTP Header Field Manipulation</p>
+<p><em>Current version</em>: 0.1.3</p>
+<p><em>NetTest</em>: HTTPHeaderFieldManipulation (<a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/manipulation/http_header_field_manipulation.py">https://gitweb.torproject.org/ooni-probe.git/blob/HEAD:/ooni/nettests/manipulation/http_header_field_manipulation.py</a>)</p>
+<p><em>Test Helper</em>: HTTP Return JSON Headers (<a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/http_helpers.py">https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/http_helpers.py</a>)</p>
+<p><em>Test Type</em>: Traffic Manipulation</p>
+<p><em>Requires Root</em>: No</p>
+</div>
+<div class="section" id="description">
+<h1>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h1>
+<p>It performes HTTP requests with request headers that vary capitalization
+towards a HTTPReturnJSONHeaders test helper backend. If we detect that the
+headers the backend received don&#8217;t matche the ones we have sent then we have
+detected tampering.</p>
+</div>
+<div class="section" id="how-to-run-the-test">
+<h1>How to run the test<a class="headerlink" href="#how-to-run-the-test" title="Permalink to this headline">¶</a></h1>
+<p><cite>ooniprobe nettests/manipulation/http_header_field_manipulation.py -b &lt;address of backend&gt; [-h &lt;headers&gt;]</cite>
+<cite>address of backend</cite> is the IP:PORT of the SimpleHTTPChannel backend.</p>
+</div>
+<div class="section" id="sample-report">
+<h1>Sample report<a class="headerlink" href="#sample-report" title="Permalink to this headline">¶</a></h1>
+<p>From running:
+<cite>ooniprobe nettests/manipulation/http_header_field_manipulation.py</cite>
+If no backend is specified, the default backend is 127.0.0.1:57001, where you will need to have oonib listening.</p>
+<div class="highlight-python"><div class="highlight"><pre>###########################################
+# OONI Probe Report for HTTP Header Field Manipulation test
+# Thu Dec  6 19:22:00 2012
+###########################################
+---
+options:
+  collector: null
+  help: 0
+  logfile: null
+  pcapfile: null
+  reportfile: null
+  resume: 0
+  subargs: []
+  test: nettests/manipulation/http_header_field_manipulation.py
+probe_asn: null
+probe_cc: null
+probe_ip: 127.0.0.1
+software_name: ooniprobe
+software_version: 0.0.7.1-alpha
+start_time: 1354792920.0
+test_name: HTTP Header Field Manipulation
+test_version: 0.1.3
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - Accept-Language
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - Accept-Encoding
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - Accept
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - User-Agent
+        - [&#39;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.6) Gecko/20070725
+            Firefox/2.0.0.6&#39;]
+      - - Accept-Charset
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - Host
+        - [cDMxQx4pPcCnNC5.com]
+      method: PUT
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;Accept-Language&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;Accept-Encoding&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;Host&quot;: [&quot;cDMxQx4pPcCnNC5.com&quot;], &quot;Accept&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;User-Agent&quot;: [&quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.6)
+        Gecko/20070725 Firefox/2.0.0.6&quot;], &quot;Accept-Charset&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        &quot;Connection&quot;: [&quot;close&quot;]}, &quot;request_line&quot;: &quot;PUT / HTTP/1.1&quot;, &quot;request_headers&quot;:
+        [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Accept-Language&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;Accept-Encoding&quot;,
+        &quot;gzip,deflate,sdch&quot;], [&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;User-Agent&quot;, &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.8.1.6)
+        Gecko/20070725 Firefox/2.0.0.6&quot;], [&quot;Accept-Charset&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        [&quot;Host&quot;, &quot;cDMxQx4pPcCnNC5.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_put
+test_runtime: 0.023853063583374023
+test_started: 1354807320.864641
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - aCcept-LANguage
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - acCEPt-ENcODING
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - AccEPT
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - usER-AGenT
+        - [Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)]
+      - - aCcEpt-ChARseT
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - hosT
+        - [Vw0mRN7DmC0IFU0.com]
+      method: Get
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;aCcept-LANguage&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;acCEPt-ENcODING&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;hosT&quot;: [&quot;Vw0mRN7DmC0IFU0.com&quot;], &quot;AccEPT&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;usER-AGenT&quot;: [&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR
+        1.1.4322)&quot;], &quot;aCcEpt-ChARseT&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;], &quot;Connection&quot;:
+        [&quot;close&quot;]}, &quot;request_line&quot;: &quot;Get / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;,
+        &quot;close&quot;], [&quot;aCcept-LANguage&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;acCEPt-ENcODING&quot;, &quot;gzip,deflate,sdch&quot;],
+        [&quot;AccEPT&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;usER-AGenT&quot;, &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR
+        1.1.4322)&quot;], [&quot;aCcEpt-ChARseT&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;], [&quot;hosT&quot;,
+        &quot;Vw0mRN7DmC0IFU0.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_get_random_capitalization
+test_runtime: 0.035381078720092773
+test_started: 1354807320.866462
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - ACcEPt-lANGuAgE
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - AcCePT-EnCodiNg
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - acCept
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - USEr-Agent
+        - [Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera 8.0]
+      - - AccepT-cHARsEt
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - HOst
+        - [1numISAjBIEifu1.com]
+      method: pOst
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;ACcEPt-lANGuAgE&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;AcCePT-EnCodiNg&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;HOst&quot;: [&quot;1numISAjBIEifu1.com&quot;], &quot;acCept&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;USEr-Agent&quot;: [&quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera
+        8.0&quot;], &quot;AccepT-cHARsEt&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;], &quot;Connection&quot;:
+        [&quot;close&quot;]}, &quot;request_line&quot;: &quot;pOst / HTTP/1.1&quot;, &quot;request_headers&quot;: [[&quot;Connection&quot;,
+        &quot;close&quot;], [&quot;ACcEPt-lANGuAgE&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;AcCePT-EnCodiNg&quot;, &quot;gzip,deflate,sdch&quot;],
+        [&quot;acCept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;USEr-Agent&quot;, &quot;Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; en) Opera
+        8.0&quot;], [&quot;AccepT-cHARsEt&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;], [&quot;HOst&quot;, &quot;1numISAjBIEifu1.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_post_random_capitalization
+test_runtime: 0.046284914016723633
+test_started: 1354807320.868329
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - Accept-Language
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - Accept-Encoding
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - Accept
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - User-Agent
+        - [Opera/9.00 (Windows NT 5.1; U; en)]
+      - - Accept-Charset
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - Host
+        - [9ogjh0OCzT1arR8.com]
+      method: POST
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;Accept-Language&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;Accept-Encoding&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;Host&quot;: [&quot;9ogjh0OCzT1arR8.com&quot;], &quot;Accept&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;User-Agent&quot;: [&quot;Opera/9.00 (Windows NT 5.1; U; en)&quot;], &quot;Accept-Charset&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        &quot;Connection&quot;: [&quot;close&quot;]}, &quot;request_line&quot;: &quot;POST / HTTP/1.1&quot;, &quot;request_headers&quot;:
+        [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Accept-Language&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;Accept-Encoding&quot;,
+        &quot;gzip,deflate,sdch&quot;], [&quot;Accept&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;User-Agent&quot;, &quot;Opera/9.00 (Windows NT 5.1; U; en)&quot;], [&quot;Accept-Charset&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        [&quot;Host&quot;, &quot;9ogjh0OCzT1arR8.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_post
+test_runtime: 0.058208942413330078
+test_started: 1354807320.870338
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - Accept-laNguagE
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - aCcEpt-EnCODIng
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - acCePt
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - uSer-AGeNT
+        - [Opera/9.00 (Windows NT 5.1; U; en)]
+      - - aCcept-CHArSET
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - HosT
+        - [Upd9yWpA0TMhUua.com]
+      method: GET
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;Accept-laNguagE&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;aCcEpt-EnCODIng&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;HosT&quot;: [&quot;Upd9yWpA0TMhUua.com&quot;], &quot;acCePt&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;uSer-AGeNT&quot;: [&quot;Opera/9.00 (Windows NT 5.1; U; en)&quot;], &quot;aCcept-CHArSET&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        &quot;Connection&quot;: [&quot;close&quot;]}, &quot;request_line&quot;: &quot;GET / HTTP/1.1&quot;, &quot;request_headers&quot;:
+        [[&quot;Connection&quot;, &quot;close&quot;], [&quot;Accept-laNguagE&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;aCcEpt-EnCODIng&quot;,
+        &quot;gzip,deflate,sdch&quot;], [&quot;acCePt&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;uSer-AGeNT&quot;, &quot;Opera/9.00 (Windows NT 5.1; U; en)&quot;], [&quot;aCcept-CHArSET&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        [&quot;HosT&quot;, &quot;Upd9yWpA0TMhUua.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_get
+test_runtime: 0.068952083587646484
+test_started: 1354807320.872004
+...
+---
+input: null
+report:
+  agent: agent
+  requests:
+  - request:
+      body: null
+      headers:
+      - - accEpt-lANGuAGE
+        - [&#39;en-US,en;q=0.8&#39;]
+      - - acCePt-encodINg
+        - [&#39;gzip,deflate,sdch&#39;]
+      - - aCCepT
+        - [&#39;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#39;]
+      - - uSer-AGent
+        - [Opera/9.20 (Windows NT 6.0; U; en)]
+      - - ACcepT-cHarSEt
+        - [&#39;ISO-8859-1,utf-8;q=0.7,*;q=0.3&#39;]
+      - - HOsT
+        - [UTqJhv92syxk0nj.com]
+      method: pUt
+      url: http://127.0.0.1:57001
+    response:
+      body: &#39;{&quot;headers_dict&quot;: {&quot;accEpt-lANGuAGE&quot;: [&quot;en-US,en;q=0.8&quot;], &quot;acCePt-encodINg&quot;:
+        [&quot;gzip,deflate,sdch&quot;], &quot;HOsT&quot;: [&quot;UTqJhv92syxk0nj.com&quot;], &quot;aCCepT&quot;: [&quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        &quot;uSer-AGent&quot;: [&quot;Opera/9.20 (Windows NT 6.0; U; en)&quot;], &quot;ACcepT-cHarSEt&quot;: [&quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        &quot;Connection&quot;: [&quot;close&quot;]}, &quot;request_line&quot;: &quot;pUt / HTTP/1.1&quot;, &quot;request_headers&quot;:
+        [[&quot;Connection&quot;, &quot;close&quot;], [&quot;accEpt-lANGuAGE&quot;, &quot;en-US,en;q=0.8&quot;], [&quot;acCePt-encodINg&quot;,
+        &quot;gzip,deflate,sdch&quot;], [&quot;aCCepT&quot;, &quot;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&quot;],
+        [&quot;uSer-AGent&quot;, &quot;Opera/9.20 (Windows NT 6.0; U; en)&quot;], [&quot;ACcepT-cHarSEt&quot;, &quot;ISO-8859-1,utf-8;q=0.7,*;q=0.3&quot;],
+        [&quot;HOsT&quot;, &quot;UTqJhv92syxk0nj.com&quot;]]}&#39;
+      code: 200
+      headers: []
+  socksproxy: null
+  tampering:
+    header_field_name: false
+    header_field_number: false
+    header_field_value: false
+    header_name_capitalization: false
+    header_name_diff: []
+    request_line_capitalization: false
+    total: false
+test_name: test_put_random_capitalization
+test_runtime: 0.080827951431274414
+test_started: 1354807320.8738551
+...
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

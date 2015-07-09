@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OONI: Open Observatory of Network Interference &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="#"/>
+        <link rel="next" title="Tutorial" href="tutorial.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="#" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="#">Docs</a> &raquo;</li>
+      
+    <li>OONI: Open Observatory of Network Interference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="ooni-open-observatory-of-network-interference">
+<h1>OONI: Open Observatory of Network Interference<a class="headerlink" href="#ooni-open-observatory-of-network-interference" title="Permalink to this headline">¶</a></h1>
+<p>OONI, the Open Observatory of Network Interference, is a global observation
+network which aims is to collect high quality data using open methodologies,
+using Free and Open Source Software (FL/OSS) to share observations and data
+about the various types, methods, and amounts of network tampering in the
+world.</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&#8220;The Net interprets censorship as damage and routes around it.&#8221;</dt>
+<dd><ul class="first last simple">
+<li>John Gilmore; TIME magazine (6 December 1993)</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<div class="section" id="ooniprobe">
+<h2>ooniprobe<a class="headerlink" href="#ooniprobe" title="Permalink to this headline">¶</a></h2>
+<p>ooniprobe is the first program that users run to probe their network and to
+collect data for the OONI project. Are you interested in testing your network
+for signs of surveillance and censorship? Do you want to collect data to share
+with others, so that you and others may better understand your network? If so,
+please read this document and we hope ooniprobe will help you to gather
+network data that will assist you with your endeavors!</p>
+<p>ooniprobe allows the user to select what test should be run and what backend
+should be used for storing the test report and/or assisting them in the running
+of the test.</p>
+<p>ooniprobe tests are divided into two categories: <strong>Traffic Manipulation</strong> and
+<strong>Content Blocking</strong>.</p>
+<p><strong>Traffic Manipulation</strong> tests aim to detect the presence of some sort of
+tampering with the internet traffic between the probe and a remote test helper
+backend. As such they usually require the selection of a oonib backend
+component for running the test.</p>
+<p><strong>Content Blocking</strong> are aimed at enumerating the kind of content that is
+blocked from the probes network point of view. As such they usually require to
+have specified an input list for running the test.</p>
+</div>
+<div class="section" id="read-this-before-running-ooniprobe">
+<h2>Read this before running ooniprobe!<a class="headerlink" href="#read-this-before-running-ooniprobe" title="Permalink to this headline">¶</a></h2>
+<p>Running ooniprobe is a potentially risky activity. This greatly depends on the
+jurisdiction in which you are in and which test you are running. It is
+technically possible for a person observing your internet connection to be
+aware of the fact that you are running ooniprobe. This means that if running
+network measurement tests is something considered to be illegal in your country
+then you could be spotted.</p>
+<p>Futhermore, ooniprobe takes no precautions to protect the install target machine
+from forensics analysis.  If the fact that you have installed or used ooni
+probe is a liability for you, please be aware of this risk.</p>
+</div>
+</div>
+<div class="section" id="ooni-in-5-minutes">
+<h1>OONI in 5 minutes<a class="headerlink" href="#ooni-in-5-minutes" title="Permalink to this headline">¶</a></h1>
+<p>On debian testing or unstable:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install ooniprobe
+</pre></div>
+</div>
+<p>If you are running debian stable you can get it from backports via:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo sh -c &#39;echo &quot;deb http://http.debian.net/debian wheezy-backports main&quot; &gt;&gt; /etc/apt/sources.list&#39;
+sudo apt-get update &amp;&amp; sudo apt-get install ooniprobe
+</pre></div>
+</div>
+<p>On unix systems:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo pip install ooniprobe
+</pre></div>
+</div>
+<p>To install it from the current master run:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo pip install https://github.com/TheTorProject/ooni-probe/archive/master.zip
+</pre></div>
+</div>
+<p>Then run:</p>
+<div class="highlight-python"><div class="highlight"><pre>mkdir my_decks
+sudo ooniresources --update-inputs --update-geoip
+oonideckgen -o my_decks/
+</pre></div>
+</div>
+<p><strong>BUG</strong> Note:
+ooniprobe version 1.2.2 when installed from the debian repository will not
+properly create the ooni home folder and if you run into an error in accessing
+<cite>~/.ooni/</cite> run:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe -n blocking/http_requests -u http://google.com/
+</pre></div>
+</div>
+<p>This should generate the home and allow you to run oonideckgen.</p>
+<p>The output from the last command will tell you how to run ooniprobe to perform
+the measurement.</p>
+<p>If you would like to contribute measurements to OONI daily you can also add
+this to your crontab:</p>
+<div class="highlight-python"><div class="highlight"><pre>@daily ooniprobe $THE_OONI_COMMAND
+</pre></div>
+</div>
+<p>Run this command to automatically update your crontab:</p>
+<div class="highlight-python"><div class="highlight"><pre>(crontab -l 2&gt;/dev/null; echo &quot;@daily ooniprobe $THE_OONI_COMMAND&quot;) | crontab -
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="debian-based-systems">
+<h2>Debian based systems<a class="headerlink" href="#debian-based-systems" title="Permalink to this headline">¶</a></h2>
+<p>If you are running Debian testing or Debian unstable you can install ooniprobe
+simply with:</p>
+<div class="highlight-python"><div class="highlight"><pre>apt-get install ooniprobe
+</pre></div>
+</div>
+<p>If you are running Debian stable you can get it from backports via:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo sh -c &#39;echo &quot;deb http://http.debian.net/debian wheezy-backports main&quot; &gt;&gt; /etc/apt/sources.list&#39;
+sudo apt-get update &amp;&amp; sudo apt-get install ooniprobe
+</pre></div>
+</div>
+<p>If you are running Ubuntu 14.04 LTS you can install it from the PPA
+(<a class="reference external" href="https://launchpad.net/~irl/+archive/ubuntu/ooni/">https://launchpad.net/~irl/+archive/ubuntu/ooni/</a>):</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo add-apt-repository ppa:irl/ooni
+sudo apt-get update &amp;&amp; sudo apt-get install ooniprobe
+</pre></div>
+</div>
+<p>You will be warned that the packages are unauthenticated. This is due to the
+PPA not being signed and is normal behaviour. If you would prefer to verify the
+integrity of the package, use our private Debian repository below.</p>
+</div>
+<div class="section" id="mac-os-x">
+<h2>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h2>
+<p>You can install ooniprobe on OSX if you have installed homebrew (<a class="reference external" href="http://mxcl.github.io/homebrew">http://mxcl.github.io/homebrew</a>) with:</p>
+<div class="highlight-python"><div class="highlight"><pre>brew install ooniprobe
+</pre></div>
+</div>
+</div>
+<div class="section" id="unix-systems-with-pip">
+<h2>Unix systems (with pip)<a class="headerlink" href="#unix-systems-with-pip" title="Permalink to this headline">¶</a></h2>
+<p>Make sure you have installed the following depedencies:</p>
+<blockquote>
+<div><ul class="simple">
+<li>build-essential</li>
+<li>python (&gt;=2.7)</li>
+<li>python-dev</li>
+<li>pip</li>
+<li>libgeoip-dev</li>
+<li>libdumbnet-dev</li>
+<li>libpcap-dev</li>
+<li>libssl-dev</li>
+<li>libffi-dev</li>
+<li>tor (&gt;=0.2.5.1 to run all the tor related tests)</li>
+</ul>
+</div></blockquote>
+<p>Then you should be able to install ooniprobe by running:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo pip install ooniprobe
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-platforms-with-vagrant">
+<h2>Other platforms (with Vagrant)<a class="headerlink" href="#other-platforms-with-vagrant" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Install Vagrant (<a class="reference external" href="https://www.vagrantup.com/downloads.html">https://www.vagrantup.com/downloads.html</a>) and Install Virtualbox (<a class="reference external" href="https://www.virtualbox.org/wiki/Downloads">https://www.virtualbox.org/wiki/Downloads</a>)</li>
+<li>On OSX:</li>
+</ol>
+<p>If you don&#8217;t have it install homebrew <a class="reference external" href="http://mxcl.github.io/homebrew/">http://mxcl.github.io/homebrew/</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre>brew install git
+</pre></div>
+</div>
+<p>On debian/ubuntu:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install git
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p class="first">Open a Terminal and run:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://git.torproject.org/ooni-probe.git
+cd ooni-probe/
+vagrant up
+</pre></div>
+</div>
+</li>
+<li><p class="first">Login to the box with:</p>
+<div class="highlight-python"><div class="highlight"><pre>vagrant ssh
+</pre></div>
+</div>
+</li>
+</ol>
+<p>ooniprobe will be installed in <code class="docutils literal"><span class="pre">/ooni</span></code>.</p>
+<ol class="arabic" start="5">
+<li><p class="first">You can run tests with:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe blocking/http_requests -f /ooni/example_inputs/alexa-top-1k.txt
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="using-ooniprobe">
+<h1>Using ooniprobe<a class="headerlink" href="#using-ooniprobe" title="Permalink to this headline">¶</a></h1>
+<p><strong>Net test</strong> is a set of measurements to assess what kind of internet censorship is occurring.</p>
+<p><strong>Decks</strong> are collections of ooniprobe nettests with some associated inputs.</p>
+<p><strong>Collector</strong> is a service used to report the results of measurements.</p>
+<p><strong>Test helper</strong> is a service used by a probe for successfully performing its measurements.</p>
+<p><strong>Bouncer</strong> is a service used to discover the addresses of test helpers and collectors.</p>
+<div class="section" id="configuring-ooniprobe">
+<h2>Configuring ooniprobe<a class="headerlink" href="#configuring-ooniprobe" title="Permalink to this headline">¶</a></h2>
+<p>You may edit the configuration for ooniprobe by editing the configuration file
+found inside of <code class="docutils literal"><span class="pre">~/.ooni/ooniprobe.conf</span></code>.</p>
+<p>By default ooniprobe will not include personal identifying information in the
+test result, nor create a pcap file. This behavior can be personalized.</p>
+</div>
+<div class="section" id="updating-resources">
+<h2>Updating resources<a class="headerlink" href="#updating-resources" title="Permalink to this headline">¶</a></h2>
+<p>To generate decks you will have to update the input resources of ooniprobe.</p>
+<p>This can be done with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniresources</span> <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">inputs</span>
+</pre></div>
+</div>
+<p>If you get a permission error, you may have to run the command as root or
+change the ooniprobe data directory inside of <cite>ooniprobe.conf</cite>.</p>
+<p>On some platforms, for example debian contrib, you will not get all the geoip
+related files needed. In that case it is possible to manually download them
+with <code class="docutils literal"><span class="pre">ooniresources</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniresources</span> <span class="o">--</span><span class="n">update</span><span class="o">-</span><span class="n">geoip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="generating-decks">
+<h2>Generating decks<a class="headerlink" href="#generating-decks" title="Permalink to this headline">¶</a></h2>
+<p>You can generate decks for your country thanks to the oonideckgen command.</p>
+<p>If you wish, for example, to generate a deck to be run in the country of Italy,
+you can do so (be sure to have updated the input resources first) by running:</p>
+<div class="highlight-python"><div class="highlight"><pre>oonideckgen --country-code IT --output ~/
+</pre></div>
+</div>
+<p>You will now have in your home a folder called <cite>deck-it</cite>, containing the ooni
+deck (ends with .deck) and the inputs.
+Note: that you should not move the <cite>deck-*</cite> directory once it has been
+generated as the paths to the inputs referenced by the test in the deck are
+absolute. If you want your deck to live in another directory you must
+regenerated it.</p>
+</div>
+<div class="section" id="running-decks">
+<h2>Running decks<a class="headerlink" href="#running-decks" title="Permalink to this headline">¶</a></h2>
+<p>You will find all the installed decks inside of <code class="docutils literal"><span class="pre">/usr/share/ooni/decks</span></code>.</p>
+<p>You may then run a deck by using the command line option <code class="docutils literal"><span class="pre">-i</span></code>:</p>
+<p>As root:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">mlab</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+<p>Or as a user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">mlab_no_root</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+<p>Or:</p>
+<p>As root:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">complete</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+<p>Or as a user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">complete_no_root</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+<p>The above tests will require around 20-30 minutes to complete depending on your network speed.</p>
+<p>If you would prefer to run some faster tests you should run:
+As root:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">fast</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+<p>Or as a user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">ooni</span><span class="o">/</span><span class="n">decks</span><span class="o">/</span><span class="n">fast_no_root</span><span class="o">.</span><span class="n">deck</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-net-tests">
+<h2>Running net tests<a class="headerlink" href="#running-net-tests" title="Permalink to this headline">¶</a></h2>
+<p>You may list all the installed stable net tests with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ooniprobe</span> <span class="o">-</span><span class="n">s</span>
+</pre></div>
+</div>
+<p>You may then run a nettest by specifying its name for example:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe manipulation/http_header_field_manipulation
+</pre></div>
+</div>
+<p>It is also possible to specify inputs to tests as URLs:</p>
+<div class="highlight-python"><div class="highlight"><pre>ooniprobe blocking/http_requests -f httpo://ihiderha53f36lsd.onion/input/37e60e13536f6afe47a830bfb6b371b5cf65da66d7ad65137344679b24fdccd1
+</pre></div>
+</div>
+<p>You can find the result of the test in your current working directory.</p>
+<p>By default the report result will be collected by the default ooni collector
+and the addresses of test helpers will be obtained from the default bouncer.</p>
+<p>You may also specify your own collector or bouncer with the options <code class="docutils literal"><span class="pre">-c</span></code> and
+<code class="docutils literal"><span class="pre">-b</span></code>.</p>
+</div>
+</div>
+<div class="section" id="bridges-and-obfsproxy-bridges">
+<h1>Bridges and obfsproxy bridges<a class="headerlink" href="#bridges-and-obfsproxy-bridges" title="Permalink to this headline">¶</a></h1>
+<p>ooniprobe submits reports to oonib report collectors through Tor to a hidden
+service endpoint. By default, ooniprobe uses the installed system Tor, but can
+also be configured to launch Tor (see the advanced.start_tor option in
+ooniprobe.conf), and ooniprobe supports bridges (and obfsproxy bridges, if
+obfsproxy is installed). The tor.bridges option in ooniprobe.conf sets the path
+to a file that should contain a set of &#8220;bridge&#8221; lines (of the same format as
+used in torrc, and as returned by <a class="reference external" href="https://bridges.torproject.org">https://bridges.torproject.org</a>). If obfsproxy
+bridges are to be used, the path to the obfsproxy binary must be configured.
+See option advanced.obfsproxy_binary, in ooniprobe.conf.</p>
+<div class="section" id="optional-install-obfsproxy">
+<h2>(Optional) Install obfsproxy<a class="headerlink" href="#optional-install-obfsproxy" title="Permalink to this headline">¶</a></h2>
+<p>Install the latest version of obfsproxy for your platform.</p>
+<p>Download Obfsproxy: <a class="reference external" href="https://www.torproject.org/projects/obfsproxy.html.en">https://www.torproject.org/projects/obfsproxy.html.en</a></p>
+</div>
+</div>
+<div class="section" id="setting-capabilities-on-your-virtualenv-python-binary">
+<h1>Setting capabilities on your virtualenv python binary<a class="headerlink" href="#setting-capabilities-on-your-virtualenv-python-binary" title="Permalink to this headline">¶</a></h1>
+<p>If your distributation supports capabilities you can avoid needing to run OONI as root:</p>
+<div class="highlight-python"><div class="highlight"><pre>setcap cap_net_admin,cap_net_raw+eip /path/to/your/virtualenv&#39;s/python
+</pre></div>
+</div>
+</div>
+<div class="section" id="reporting-bugs">
+<h1>Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h1>
+<p>You can report bugs and issues you find with ooni-probe on The Tor Projec issue
+tracker filing them under the &#8220;Ooni&#8221; component: <a class="reference external" href="https://trac.torproject.org/projects/tor/newticket?component=Ooni">https://trac.torproject.org/projects/tor/newticket?component=Ooni</a>.</p>
+<p>You can either register an account or use the group account &#8220;cypherpunks&#8221; with
+password &#8220;writecode&#8221;.</p>
+</div>
+<div class="section" id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
+<p>You can download the code for ooniprobe from the following git repository:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://git.torproject.org/ooni-probe.git
+</pre></div>
+</div>
+<p>It is also viewable on the web via: <a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git">https://gitweb.torproject.org/ooni-probe.git</a>.</p>
+<p>You should then submit patches for review as pull requests to this github repository:</p>
+<p><a class="reference external" href="https://github.com/TheTorProject/ooni-probe">https://github.com/TheTorProject/ooni-probe</a></p>
+<p>Read this article to learn how to create a pull request on github (<a class="reference external" href="https://help.github.com/articles/creating-a-pull-request">https://help.github.com/articles/creating-a-pull-request</a>).</p>
+<p>If you prefer not to use github (or don&#8217;t have an account), you may also submit
+patches as attachments to tickets.</p>
+<p>Be sure to format the patch (given that you are working on a feature branch
+that is different from master) with:</p>
+<div class="highlight-python"><div class="highlight"><pre>git format-patch master --stdout &gt; my_first_ooniprobe.patch
+</pre></div>
+</div>
+<div class="section" id="setting-up-development-environment">
+<h2>Setting up development environment<a class="headerlink" href="#setting-up-development-environment" title="Permalink to this headline">¶</a></h2>
+<p>On debian based systems this can be done with:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install libgeoip-dev python-virtualenv virtualenvwrapper
+mkvirtualenv ooniprobe
+python setup.py install
+pip install -r requirements-dev.txt
+</pre></div>
+</div>
+</div>
+<div class="section" id="core-ooniprobe-tests">
+<h2>Core ooniprobe Tests<a class="headerlink" href="#core-ooniprobe-tests" title="Permalink to this headline">¶</a></h2>
+<p>The source for <a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/blocking">Content blocking tests</a>
+and <a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/blocking">Traffic Manipulation tests</a>
+can be found in the nettests/blocking and nettests/manipulation directories
+respectively.</p>
+<div class="section" id="id1">
+<h3>Content Blocking Tests<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="tests/dnsconsistency.html">DNSConsistency</a></li>
+<li><a class="reference external" href="tests/http_requests.html">HTTP Requests</a></li>
+<li><a class="reference external" href="tests/tcpconnect.html">TCP Connect</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id2">
+<h3>Traffic Manipulation Tests<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="tests/http_invalid_request_line.html">HTTP Invalid Request Line:</a></li>
+<li><a class="reference external" href="tests/dnsspoof.html">DNS Spoof</a></li>
+<li><a class="reference external" href="tests/http_header_field_manipulation.html">HTTP Header Field Manipulation</a></li>
+<li><a class="reference external" href="tests/traceroute.html">Traceroute</a></li>
+<li><a class="reference external" href="tests/http_host.html">HTTP Host</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="other-tests">
+<h3>Other tests<a class="headerlink" href="#other-tests" title="Permalink to this headline">¶</a></h3>
+<p>We also have some other tests that are currently not fully supported or still
+being experimented with.</p>
+<p>You can find these in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/experimental">ooni/nettests/experimental</a></li>
+</ul>
+</div></blockquote>
+<p>Tests that don&#8217;t do a measurement but are useful for scanning can be found in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/scanning">ooni/nettests/scanning</a></li>
+</ul>
+</div></blockquote>
+<p>Tests that involve running third party tools may be found in:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/third_party">ooni/nettests/third_party</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="ooni-backend">
+<h2>ooni-backend<a class="headerlink" href="#ooni-backend" title="Permalink to this headline">¶</a></h2>
+<p>This is the server side component of ooniprobe. It will store that data
+collected from ooniprobes and it will run a series of Test Helpers that assist
+<a class="reference external" href="https://gitweb.torproject.org/ooni-probe.git/tree/HEAD:/ooni/nettests/blocking">Traffic Manipulation Tests</a> in performing their measurements.</p>
+<div class="section" id="test-helpers">
+<h3>Test Helpers<a class="headerlink" href="#test-helpers" title="Permalink to this headline">¶</a></h3>
+<p>The currently implemented test helpers are the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/ssl_helpers.py">SSL Test Helpers</a></li>
+<li><a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/http_helpers.py">HTTP Test Helpers</a></li>
+<li><a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/tcp_helpers.py">TCP Test Helpers</a></li>
+<li><a class="reference external" href="https://gitweb.torproject.org/oonib.git/blob/HEAD:/oonib/testhelpers/dns_helpers.py">DNS Test Helpers</a></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="threat-model">
+<h2>Threat Model<a class="headerlink" href="#threat-model" title="Permalink to this headline">¶</a></h2>
+<p>Our adversary is capable of doing country wide network surveillance and
+manipulation of network traffic.</p>
+<p>The goals of our adversary are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Restrict access to certain content, while not degrading overall quality of
+the network</li>
+<li>Monitor the network in a way that they are able to identify misuse of it in
+real time</li>
+</ul>
+</div></blockquote>
+<p>More specifc to the running of network filtering detection tests:</p>
+<ol class="arabic simple">
+<li>Detect actors performing censorship detection tests</li>
+<li>Fool people running such tests into believing that the network is
+unrestricted</li>
+</ol>
+<p><em>Note</em> that while 2) =&gt; 1) it is not true that 1) =&gt; 2) as the identification of
+such actors does not necessarily have to happen in real time.
+While our intention is to minimize the risk of users running OONI probe to be
+identified, this comes with a tradeoff in accuracy. It is therefore necessary in
+certain tests to trade-off fingerprintability in favour of tests accuracy.</p>
+<p>This is why we divide tests based on what risk the user running it can face,
+allowing the user to freely choose what threat model they wish to adere to.</p>
+</div>
+<div class="section" id="more-developer-documentation">
+<h2>More developer documentation<a class="headerlink" href="#more-developer-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial.html" class="btn btn-neutral float-right" title="Tutorial">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

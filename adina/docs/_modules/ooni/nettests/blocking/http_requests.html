@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ooni.nettests.blocking.http_requests &mdash; OONI: Open Observatory of Network Interference 1.3.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="OONI: Open Observatory of Network Interference 1.3.1 documentation" href="../../../../index.html"/>
+        <link rel="up" title="Module code" href="../../../index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../../../../index.html" class="fa fa-home"> OONI: Open Observatory of Network Interference</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-a-tcp-port-scanner">Writing a TCP port scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#creating-test">Creating test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#runninng-tests">Runninng Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../tutorial.html#reports">Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../writing_tests.html">Writing OONI tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-cases">Test Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#inputs">Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#setup-and-command-line-passing">Setup and command line passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-methods">Test Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../writing_tests.html#test-templates">Test Templates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html">Reports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../reports.html#report-format-version-changelog">Report format version changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../reports.html#version-0-1">version 0.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nettests/modules.html">Implemented NetTests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.blocking.html">ooni.nettests blocking Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.examples.html">ooni.nettests examples Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.experimental.html">ooni.nettests experimental Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.manipulation.html">ooni.nettests manipulation Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.scanning.html">ooni.nettests scanning Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../nettests/ooni.nettests.third_party.html">ooni.nettests third_party Package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.html">Measurement Developer API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.nettest"><code class="docutils literal"><span class="pre">nettest</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.settings"><code class="docutils literal"><span class="pre">settings</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.oonicli"><code class="docutils literal"><span class="pre">oonicli</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#module-ooni.reporter"><code class="docutils literal"><span class="pre">reporter</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.html#subpackages">Subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../api/ooni.templates.html">Test Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.httpt"><code class="docutils literal"><span class="pre">ooni.templates.httpt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.scapyt"><code class="docutils literal"><span class="pre">ooni.templates.scapyt</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.dnst"><code class="docutils literal"><span class="pre">ooni.templates.dnst</span></code> Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/ooni.templates.html#module-ooni.templates.tcpt"><code class="docutils literal"><span class="pre">ooni.templates.tcpt</span></code> Module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture.html">Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe">ooniprobe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#oonib">oonib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#an-ooniprobe-run">An ooniprobe run</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#ooniprobe-api">ooniprobe API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#towards-a-rpc-like-interface">Towards a RPC like interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#draft-api-specification">Draft API specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture.html#implementation-status">Implementation status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">OONI: Open Observatory of Network Interference</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+      
+    <li>ooni.nettests.blocking.http_requests</li>
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <h1>Source code for ooni.nettests.blocking.http_requests</h1><div class="highlight"><pre>
+<span class="c"># -*- encoding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c"># :authors: Arturo Filastò</span>
+<span class="c"># :licence: see LICENSE</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">usage</span><span class="p">,</span> <span class="n">failure</span>
+
+<span class="kn">from</span> <span class="nn">ooni.utils</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">ooni.utils.net</span> <span class="kn">import</span> <span class="n">userAgents</span>
+<span class="kn">from</span> <span class="nn">ooni.templates</span> <span class="kn">import</span> <span class="n">httpt</span>
+<span class="kn">from</span> <span class="nn">ooni.errors</span> <span class="kn">import</span> <span class="n">failureToString</span>
+
+
+<div class="viewcode-block" id="UsageOptions"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.UsageOptions">[docs]</a><span class="k">class</span> <span class="nc">UsageOptions</span><span class="p">(</span><span class="n">usage</span><span class="o">.</span><span class="n">Options</span><span class="p">):</span>
+    <span class="n">optParameters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">,</span> <span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s">&#39;Specify a single URL to test.&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s">&#39;factor&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span>
+         <span class="s">&#39;What factor should be used for triggering censorship (0.8 == 80%)&#39;</span><span class="p">]]</span>
+
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest">[docs]</a><span class="k">class</span> <span class="nc">HTTPRequestsTest</span><span class="p">(</span><span class="n">httpt</span><span class="o">.</span><span class="n">HTTPTest</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs a two GET requests to the set of sites to be tested for</span>
+<span class="sd">    censorship, one over a known good control channel (Tor), the other over the</span>
+<span class="sd">    test network.</span>
+
+<span class="sd">    We check to see if the response headers match and if the response body</span>
+<span class="sd">    lengths match.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&quot;HTTP Requests&quot;</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="s">&quot;Performs a HTTP GET request over Tor and one over the &quot;</span> \
+                  <span class="s">&quot;local network and compares the two results.&quot;</span>
+    <span class="n">author</span> <span class="o">=</span> <span class="s">&quot;Arturo Filastò&quot;</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.2.4&quot;</span>
+
+    <span class="n">usageOptions</span> <span class="o">=</span> <span class="n">UsageOptions</span>
+
+    <span class="n">inputFile</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;file&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+                 <span class="s">&#39;List of URLS to perform GET and POST requests to&#39;</span><span class="p">]</span>
+    <span class="n">requiresRoot</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">requiresTor</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="c"># These values are used for determining censorship based on response body</span>
+    <span class="c"># lengths</span>
+    <span class="n">control_body_length</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">experiment_body_length</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="HTTPRequestsTest.setUp"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check for inputs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;url&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s">&quot;No input specified&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">factor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">localOptions</span><span class="p">[</span><span class="s">&#39;factor&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;control_failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;experiment_failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;body_length_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;body_proportion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;factor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">userAgents</span><span class="p">)]}</span>
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest.compare_body_lengths"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_body_lengths">[docs]</a>    <span class="k">def</span> <span class="nf">compare_body_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">body_length_a</span><span class="p">,</span> <span class="n">body_length_b</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">body_length_b</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">body_length_a</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">body_length_b</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">body_length_a</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">body_length_b</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">body_length_a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rel</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">body_length_a</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">body_length_b</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">rel</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rel</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">rel</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;body_proportion&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">rel</span>
+        <span class="k">if</span> <span class="n">rel</span> <span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factor</span><span class="p">):</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The two body lengths appear to match&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;censorship is probably not happening&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;body_length_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;The two body lengths appear to not match&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;censorship could be happening&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;body_length_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest.compare_headers"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.compare_headers">[docs]</a>    <span class="k">def</span> <span class="nf">compare_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">headers_a</span><span class="p">,</span> <span class="n">headers_b</span><span class="p">):</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">headers_a</span><span class="o">.</span><span class="n">getDiff</span><span class="p">(</span><span class="n">headers_b</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">diff</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Headers appear to *not* match&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Headers appear to match&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">diff</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;headers_match&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest.test_get_experiment"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_experiment">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Performing GET request to </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doRequest</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">,</span>
+                              <span class="n">use_tor</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest.test_get_control"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.test_get_control">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_control</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">msg</span><span class="p">(</span><span class="s">&quot;Performing GET request to </span><span class="si">%s</span><span class="s"> over Tor&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">doRequest</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;GET&quot;</span><span class="p">,</span>
+                              <span class="n">use_tor</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="HTTPRequestsTest.postProcessor"><a class="viewcode-back" href="../../../../nettests/ooni.nettests.blocking.html#ooni.nettests.blocking.http_requests.HTTPRequestsTest.postProcessor">[docs]</a>    <span class="k">def</span> <span class="nf">postProcessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">measurements</span><span class="p">):</span>
+        <span class="n">experiment</span> <span class="o">=</span> <span class="n">control</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">status</span><span class="p">,</span> <span class="n">measurement</span> <span class="ow">in</span> <span class="n">measurements</span><span class="p">:</span>
+            <span class="n">net_test_method</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">netTestMethod</span><span class="o">.</span><span class="n">im_func</span><span class="o">.</span><span class="n">func_name</span>
+
+            <span class="k">if</span> <span class="n">net_test_method</span> <span class="o">==</span> <span class="s">&quot;test_get_experiment&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measurement</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">failure</span><span class="o">.</span><span class="n">Failure</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;experiment_failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">failureToString</span><span class="p">(</span>
+                        <span class="n">measurement</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">experiment</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">result</span>
+            <span class="k">elif</span> <span class="n">net_test_method</span> <span class="o">==</span> <span class="s">&quot;test_get_control&quot;</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">measurement</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="n">failure</span><span class="o">.</span><span class="n">Failure</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">report</span><span class="p">[</span><span class="s">&#39;control_failure&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">failureToString</span><span class="p">(</span>
+                        <span class="n">measurement</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">control</span> <span class="o">=</span> <span class="n">measurement</span><span class="o">.</span><span class="n">result</span>
+
+        <span class="k">if</span> <span class="n">experiment</span> <span class="ow">and</span> <span class="n">control</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="s">&#39;body&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="s">&#39;body&#39;</span><span class="p">)</span> \
+                    <span class="ow">and</span> <span class="n">experiment</span><span class="o">.</span><span class="n">body</span> <span class="ow">and</span> <span class="n">control</span><span class="o">.</span><span class="n">body</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">compare_body_lengths</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">control</span><span class="o">.</span><span class="n">body</span><span class="p">),</span>
+                                          <span class="nb">len</span><span class="p">(</span><span class="n">experiment</span><span class="o">.</span><span class="n">body</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">experiment</span><span class="p">,</span> <span class="s">&#39;headers&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">control</span><span class="p">,</span> <span class="s">&#39;headers&#39;</span><span class="p">)</span> \
+                    <span class="ow">and</span> <span class="n">experiment</span><span class="o">.</span><span class="n">headers</span> <span class="ow">and</span> <span class="n">control</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">compare_headers</span><span class="p">(</span><span class="n">control</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                                     <span class="n">experiment</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">report</span></div></div>
+</pre></div>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, The Tor Project.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'1.3.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
