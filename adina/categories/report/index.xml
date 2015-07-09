@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Report on OONI: Open Observatory of Network Interference</title>
-    <link>http://hellais.github.com:1313/adina/categories/report/</link>
+    <link>hellais.github.com/adina/categories/report/</link>
     <description>Recent content in Report on OONI: Open Observatory of Network Interference</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 10 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://hellais.github.com:1313/adina/categories/report/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="hellais.github.com/adina/categories/report/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>EEEP and Greek Internet censorship</title>
-      <link>http://hellais.github.com:1313/adina/post/eeep-greek-censorship/</link>
+      <link>/hellais.github.com/adina/post/eeep-greek-censorship/</link>
       <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://hellais.github.com:1313/adina/post/eeep-greek-censorship/</guid>
+      <guid>/hellais.github.com/adina/post/eeep-greek-censorship/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;Country:&lt;/strong&gt; Greece&lt;/p&gt;
@@ -160,7 +160,7 @@ that uses also &lt;a href=&#34;https://en.wikipedia.org/wiki/Deep_packet_inspect
 
 &lt;h2 id=&#34;per-isp-analysis:d0c495f4479395eff703b25df5d2e963&#34;&gt;Per ISP analysis&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_blocking_per_isp.png&#34; alt=&#34;Blocking per ISP&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_blocking_per_isp.png&#34; alt=&#34;Blocking per ISP&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;forthnet:d0c495f4479395eff703b25df5d2e963&#34;&gt;Forthnet&lt;/h3&gt;
@@ -242,7 +242,7 @@ test_resolvers: [192.168.122.1]
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_forthnetgroup_gr.png&#34; alt=&#34;Forthnet EEEP Blocked website screenshot&#34; title=&#34;Forthnet EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_forthnetgroup_gr.png&#34; alt=&#34;Forthnet EEEP Blocked website screenshot&#34; title=&#34;Forthnet EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;ote:d0c495f4479395eff703b25df5d2e963&#34;&gt;Ote&lt;/h3&gt;
@@ -464,7 +464,7 @@ test_resolvers: [192.168.1.1]
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_otenet_gr.png&#34; alt=&#34;Ote EEEP Blocked website screenshot&#34; title=&#34;Ote EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_otenet_gr.png&#34; alt=&#34;Ote EEEP Blocked website screenshot&#34; title=&#34;Ote EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h2 id=&#34;cyta:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cyta&lt;/h2&gt;
@@ -633,7 +633,7 @@ m.parentNode.insertBefore(a,\
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_cyta_gr.png&#34; alt=&#34;Cyta EEEP Blocked website screenshot&#34; title=&#34;Cyta EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_cyta_gr.png&#34; alt=&#34;Cyta EEEP Blocked website screenshot&#34; title=&#34;Cyta EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;At least 80 entries faulty responded with a 404 HTTP error&lt;/p&gt;
@@ -845,7 +845,7 @@ target=&#39;_new&#39;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&am
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind EEEP Blocked website screenshot&#34; title=&#34;Wind EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind EEEP Blocked website screenshot&#34; title=&#34;Wind EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;At least 65 entries falsely responded with a 404 HTTP error.&lt;/p&gt;
@@ -973,7 +973,7 @@ test_resolvers: [192.168.122.1]
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeepnotice_hol_gr.png&#34; alt=&#34;HOL EEEP Blocked website screenshot&#34; title=&#34;HOL EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeepnotice_hol_gr.png&#34; alt=&#34;HOL EEEP Blocked website screenshot&#34; title=&#34;HOL EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;cosmote:d0c495f4479395eff703b25df5d2e963&#34;&gt;Cosmote&lt;/h3&gt;
@@ -1119,7 +1119,7 @@ href=\&amp;quot;http://www.gamingcommission.gov.gr/index.php/el/\&amp;quot;&amp;
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_cosmote_gr.png&#34; alt=&#34;Cosmote EEEP Blocked website screenshot&#34; title=&#34;Cosmote EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_cosmote_gr.png&#34; alt=&#34;Cosmote EEEP Blocked website screenshot&#34; title=&#34;Cosmote EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;h3 id=&#34;vodafone:d0c495f4479395eff703b25df5d2e963&#34;&gt;Vodafone&lt;/h3&gt;
@@ -1166,7 +1166,7 @@ requests:
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_vodafone_gr.png&#34; alt=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; title=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_vodafone_gr.png&#34; alt=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; title=&#34;Vodafone mobile EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;This ISP uses DNS hijacking for 58 entries that EEEP has published either using
@@ -1380,7 +1380,7 @@ target=&#39;_new&#39;&amp;gt;http://www.gamingcommission.gov.gr/index.php/el/&am
 
 &lt;p&gt;A screenshot from the blocked website:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind mobile EEEP Blocked website screenshot&#34; title=&#34;Wind mobile EEEP Blocked website screenshot&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/eeep-greek-censorship/eeep_wind_gr.png&#34; alt=&#34;Wind mobile EEEP Blocked website screenshot&#34; title=&#34;Wind mobile EEEP Blocked website screenshot&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;At least 65 entries falsely responded with a 404 HTTP error.&lt;/p&gt;
@@ -2294,10 +2294,10 @@ of the blocked websites. Communicating with the owner company would be impossibl
     
     <item>
       <title>Zambia, a country under Deep Packet Inspection</title>
-      <link>http://hellais.github.com:1313/adina/post/zambia/</link>
+      <link>/hellais.github.com/adina/post/zambia/</link>
       <pubDate>Mon, 15 Jul 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://hellais.github.com:1313/adina/post/zambia/</guid>
+      <guid>/hellais.github.com/adina/post/zambia/</guid>
       <description>
 
 &lt;p&gt;&amp;ldquo;I do not have the details of the blocking of Zambianwatchdog.com, but I
@@ -2319,7 +2319,7 @@ website.&lt;/p&gt;
 &lt;p&gt;On Monday 24 June 15:30 GMT readers of the website Zambianwatchdog.com from
 inside Zambia were reporting error messages.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/connection-rst.jpg&#34; alt=&#34;Connection RST&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/zambia/connection-rst.jpg&#34; alt=&#34;Connection RST&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;As hosting providers of the website, we initially could not see a significant
@@ -2330,7 +2330,7 @@ we needed to examine several gigabytes of data. It is worth mentioning here
 that Zambian Watchdog ranks 8th overall biggest website in Zambia and probably
 the biggest site after the large portals Facebook, Google or Youtube.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/alexa-traffic-ranks.png&#34; alt=&#34;Alexa ranks&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/zambia/alexa-traffic-ranks.png&#34; alt=&#34;Alexa ranks&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Our first review of the logs revealed a clear increase of connections reporting
@@ -2358,7 +2358,7 @@ starting that day.&lt;/p&gt;
 concluded that the majority of the connections reporting this problem were from
 operators inside Zambia with the exception of MTN.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/pie-chart.png&#34; alt=&#34;Pie chart&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/zambia/pie-chart.png&#34; alt=&#34;Pie chart&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;Origin of the dropped connections to the webserver&lt;/p&gt;
@@ -2380,7 +2380,7 @@ any special patters that could help us to understand why most of the readers
 inside Zambia were experiencing connection drops with the exception of readers
 using MTN mobile network.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/wireshark.png&#34; alt=&#34;Wireshark&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/zambia/wireshark.png&#34; alt=&#34;Wireshark&#34; /&gt;
 
 After reviewing dozen of different packet captures we saw a
 distinctive pattern&lt;/p&gt;
@@ -2551,7 +2551,7 @@ Inspection gear seems to be monitoring the &amp;ldquo;Server Hello&amp;rdquo; me
 of the SSL negotiation. This message contains the string zambianwatchdog.com
 before the SSL negotiation is completed.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/zambia/SSL-reset.png&#34; alt=&#34;SSL Reset&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/zambia/SSL-reset.png&#34; alt=&#34;SSL Reset&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;In order to find out if the government is actively making changes, we deployed
@@ -2576,10 +2576,10 @@ malformed.).&lt;/p&gt;
     
     <item>
       <title>Tab-Tab, Come in! Bypassing Internet blocking to categorize DPI devices</title>
-      <link>http://hellais.github.com:1313/adina/post/tab-tab-come-in/</link>
+      <link>/hellais.github.com/adina/post/tab-tab-come-in/</link>
       <pubDate>Tue, 14 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://hellais.github.com:1313/adina/post/tab-tab-come-in/</guid>
+      <guid>/hellais.github.com/adina/post/tab-tab-come-in/</guid>
       <description>
 
 &lt;h1 id=&#34;motivation:a5b4590d88b489245f39120c3b9f8a5b&#34;&gt;Motivation&lt;/h1&gt;
@@ -2857,10 +2857,10 @@ the &lt;a href=&#34;https://github.com/thetorproject/ooni-probe#ooniprobe---open
     
     <item>
       <title>Hadara Palestine</title>
-      <link>http://hellais.github.com:1313/adina/post/hadara-palestine/</link>
+      <link>/hellais.github.com/adina/post/hadara-palestine/</link>
       <pubDate>Mon, 23 Apr 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://hellais.github.com:1313/adina/post/hadara-palestine/</guid>
+      <guid>/hellais.github.com/adina/post/hadara-palestine/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;ooni_test:&lt;/strong&gt; HTTP Host&lt;/p&gt;
@@ -2878,8 +2878,8 @@ the &lt;a href=&#34;https://github.com/thetorproject/ooni-probe#ooniprobe---open
 &lt;p&gt;&lt;strong&gt;downloads:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/censored-sites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hellais.github.com/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hellais.github.com/adina/post/hadara-palestine/censored-sites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;This is the technical report on the politically motivated censorship going on
@@ -3034,7 +3034,7 @@ software being used is Squid.&lt;/p&gt;
 
 &lt;p&gt;We scanned more than 1 million hostnames and only detected censorship on 8 of
 these.
-The full scan results are available in an unredacted from &lt;a href=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+The full scan results are available in an unredacted from &lt;a href=&#34;hellais.github.com/adina/post/hadara-palestine/hadara_palestine.yamlooni.tar.gz&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;At a certain point we decided to go for a high level of parallelism and not
 care about timeout errors. This is because the transparent HTTP proxy is
@@ -3069,37 +3069,37 @@ using a mix between squid transparent HTTP proxy censorship and other.&lt;/p&gt;
 &lt;li&gt;&lt;p&gt;milad.ps&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/palhome.png&#34; alt=&#34;http://pal-home.net&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/palhome.png&#34; alt=&#34;http://pal-home.net&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://pal-home.net&#34;&gt;http://pal-home.net&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/milad.png&#34; alt=&#34;http://milad.ps&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/milad.png&#34; alt=&#34;http://milad.ps&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://milad.ps&#34;&gt;http://milad.ps&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/karamapress.png&#34; alt=&#34;http://karamapress.com&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/karamapress.png&#34; alt=&#34;http://karamapress.com&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://karamapress.com&#34;&gt;http://karamapress.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/inlightpress.png&#34; alt=&#34;http://inlightpress.com&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/inlightpress.png&#34; alt=&#34;http://inlightpress.com&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://inlightpress.com&#34;&gt;http://inlightpress.com&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/fpnp.png&#34; alt=&#34;http://fpnp.net&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/fpnp.png&#34; alt=&#34;http://fpnp.net&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://fpnp.net&#34;&gt;http://fpnp.net&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/fateh-voice.png&#34; alt=&#34;http://fateh-voice.ps&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/fateh-voice.png&#34; alt=&#34;http://fateh-voice.ps&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://fateh-voice.ps&#34;&gt;http://fateh-voice.ps&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/hadara-palestine/screenshot/amad.png&#34; alt=&#34;http://amad.ps&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/hadara-palestine/screenshot/amad.png&#34; alt=&#34;http://amad.ps&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://amad.ps&#34;&gt;http://amad.ps&lt;/a&gt;&lt;/p&gt;
@@ -3111,10 +3111,10 @@ Hale on Ma&amp;rsquo;An News&lt;/a&gt;&lt;/p&gt;
     
     <item>
       <title>T-Mobile USA Web Guard</title>
-      <link>http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/</link>
+      <link>/hellais.github.com/adina/post/t-mobile-usa-web-guard/</link>
       <pubDate>Wed, 21 Mar 2012 00:00:00 +0000</pubDate>
       
-      <guid>http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/</guid>
+      <guid>/hellais.github.com/adina/post/t-mobile-usa-web-guard/</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;ooni_test:&lt;/strong&gt; HTTP Host&lt;/p&gt;
@@ -3132,9 +3132,9 @@ Hale on Ma&amp;rsquo;An News&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;downloads:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites-categorized.txt&#34;&gt;Categories of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/t-mobile-scan.yamlooni.tar.gz&#34;&gt;Full scan result&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites.txt&#34;&gt;List of censored sites&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/t-mobile-scan-blockedsites-categorized.txt&#34;&gt;Categories of censored sites&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;T-Mobile USA offers a &amp;ldquo;feature&amp;rdquo; to restrict access to certain
@@ -3170,164 +3170,164 @@ Here is a list of sites that we found to be censored, but that we don&amp;rsquo;
 belong to any of the following categories Alcohol, Mature Content, Violence,
 Drugs, Pornography, Weapons, Gambling, Suicide, Guns, Hate, Tobacco, Ammunition.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/torproject.org.png&#34; alt=&#34;The Tor Project is dedicated to proving anonymous secure communication&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/torproject.org.png&#34; alt=&#34;The Tor Project is dedicated to proving anonymous secure communication&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://torproject.org&#34;&gt;The Tor Project is dedicated to proving anonymous secure communication&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/italian-censorship.png&#34; alt=&#34;This is one of the most interestingly blocked website. Italy practices DNS based censorship for website that are related to
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/italian-censorship.png&#34; alt=&#34;This is one of the most interestingly blocked website. Italy practices DNS based censorship for website that are related to
   online gambling. This is the block page is displayed when the IP address in the DNS response is spoofed. This is meta censorship! &#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://217.175.53.72/&#34;&gt;This is one of the most interestingly blocked website. Italy practices DNS based censorship for website that are related to
   online gambling. This is the block page is displayed when the IP address in the DNS response is spoofed. This is meta censorship! &lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/web.archive.org.png&#34; alt=&#34;The internet archive Way Back Machine. The Library of the Internet.&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/web.archive.org.png&#34; alt=&#34;The internet archive Way Back Machine. The Library of the Internet.&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://web.archive.org/&#34;&gt;The internet archive Way Back Machine. The Library of the Internet.&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/newgrounds.com.png&#34; alt=&#34;Newgrounds is an American entertainment and social media website. &#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/newgrounds.com.png&#34; alt=&#34;Newgrounds is an American entertainment and social media website. &#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://newgrounds.com&#34;&gt;Newgrounds is an American entertainment and social media website. &lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/wjunction.com.png&#34; alt=&#34;Webmaster Hangout&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/wjunction.com.png&#34; alt=&#34;Webmaster Hangout&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wjunction.com/&#34;&gt;Webmaster Hangout&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/logicalmedia.com.png&#34; alt=&#34;Logical Media is an Affiliate Network.&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/logicalmedia.com.png&#34; alt=&#34;Logical Media is an Affiliate Network.&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://logicalmedia.com/&#34;&gt;Logical Media is an Affiliate Network.&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/cosmopolitan.com.png&#34; alt=&#34;Cosmopolitan is an international magazine for women. &#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/cosmopolitan.com.png&#34; alt=&#34;Cosmopolitan is an international magazine for women. &#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://cosmopolitan.com/&#34;&gt;Cosmopolitan is an international magazine for women. &lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/nullrefer.com.png&#34; alt=&#34;Hide Refer hides the visitors HTTP refer from being seen by other websites&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/nullrefer.com.png&#34; alt=&#34;Hide Refer hides the visitors HTTP refer from being seen by other websites&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://nullrefer.com/&#34;&gt;Hide Refer hides the visitors HTTP refer from being seen by other websites&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/sportscn.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/sportscn.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://sportscn.com/&#34;&gt;Chinese sports news website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/programme.tv.png&#34; alt=&#34;French TV guide website.&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/programme.tv.png&#34; alt=&#34;French TV guide website.&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://programme.tv/&#34;&gt;French TV guide website.&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/nulled.cc.png&#34; alt=&#34;Russian programming forum&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/nulled.cc.png&#34; alt=&#34;Russian programming forum&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://nulled.cc/&#34;&gt;Russian programming forum&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/ir-tci.org.png&#34; alt=&#34;Iranian Forum&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/ir-tci.org.png&#34; alt=&#34;Iranian Forum&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://ir-tci.org/&#34;&gt;Iranian Forum&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/zonebourse.com.png&#34; alt=&#34;French economics and financial news site&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/zonebourse.com.png&#34; alt=&#34;French economics and financial news site&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://zonebourse.com/&#34;&gt;French economics and financial news site&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hackbase.com.png&#34; alt=&#34;Chinese computer security website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/hackbase.com.png&#34; alt=&#34;Chinese computer security website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://hackbase.com/&#34;&gt;Chinese computer security website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/whatreallyhappened.com.png&#34; alt=&#34;9/11 conspiracy theory news site&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/whatreallyhappened.com.png&#34; alt=&#34;9/11 conspiracy theory news site&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://whatreallyhappened.com/&#34;&gt;&lt;sup&gt;9&lt;/sup&gt;&amp;frasl;&lt;sub&gt;11&lt;/sub&gt; conspiracy theory news site&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/p.tl.png&#34; alt=&#34;Japanese URL shortening service&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/p.tl.png&#34; alt=&#34;Japanese URL shortening service&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://p.tl/&#34;&gt;Japanese URL shortening service&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/10minutesaperdre.fr.png&#34; alt=&#34;French funny news website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/10minutesaperdre.fr.png&#34; alt=&#34;French funny news website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://10minutesaperdre.fr/&#34;&gt;French funny news website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/statsie.com.png&#34; alt=&#34;Website statistics collection site&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/statsie.com.png&#34; alt=&#34;Website statistics collection site&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://statsie.com/&#34;&gt;Website statistics collection site&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/bbcprofit.com.png&#34; alt=&#34;Financial advice website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/bbcprofit.com.png&#34; alt=&#34;Financial advice website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://bbcprofit.com/&#34;&gt;Financial advice website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/el-annuaire.com.png&#34; alt=&#34;French website index&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/el-annuaire.com.png&#34; alt=&#34;French website index&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://el-annuaire.com/&#34;&gt;French website index&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/livesports.pl.png&#34; alt=&#34;Polish sports news website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/livesports.pl.png&#34; alt=&#34;Polish sports news website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://livesports.pl/&#34;&gt;Polish sports news website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/titan007.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/titan007.com.png&#34; alt=&#34;Chinese sports news website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://titan007.com/&#34;&gt;Chinese sports news website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/girlpower.it.png&#34; alt=&#34;Italian women advice website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/girlpower.it.png&#34; alt=&#34;Italian women advice website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://girlpower.it/&#34;&gt;Italian women advice website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/yusukebe.com.png&#34; alt=&#34;Japanese blog&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/yusukebe.com.png&#34; alt=&#34;Japanese blog&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://yusukebe.com/&#34;&gt;Japanese blog&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/sougouwiki.com.png&#34; alt=&#34;Japanese wiki&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/sougouwiki.com.png&#34; alt=&#34;Japanese wiki&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://sougouwiki.com/&#34;&gt;Japanese wiki&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/wiki-live.com.png&#34; alt=&#34;Online Article directory&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/wiki-live.com.png&#34; alt=&#34;Online Article directory&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://wiki-live.com/&#34;&gt;Online Article directory&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hltv.org.png&#34; alt=&#34;Sports news website&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/hltv.org.png&#34; alt=&#34;Sports news website&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://hltv.org/&#34;&gt;Sports news website&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/elu24.ee.png&#34; alt=&#34;Estonian news portal&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/elu24.ee.png&#34; alt=&#34;Estonian news portal&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://elu24.ee/&#34;&gt;Estonian news portal&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/pitsirikos.net.png&#34; alt=&#34;Greek political blog&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/pitsirikos.net.png&#34; alt=&#34;Greek political blog&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://pitsirikos.net/&#34;&gt;Greek political blog&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/kath.net.png&#34; alt=&#34;Religious news site&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/kath.net.png&#34; alt=&#34;Religious news site&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://kath.net/&#34;&gt;Religious news site&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/hackforums.net.png&#34; alt=&#34;Computer security Forum&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/hackforums.net.png&#34; alt=&#34;Computer security Forum&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://hackforums.net/&#34;&gt;Computer security Forum&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://hellais.github.com:1313/adina/post/t-mobile-usa-web-guard/screenshot/echartsinfrance.net.png&#34; alt=&#34;French pop music hit list&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;hellais.github.com/adina/post/t-mobile-usa-web-guard/screenshot/echartsinfrance.net.png&#34; alt=&#34;French pop music hit list&#34; /&gt;
 &lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.chartsinfrance.net/&#34;&gt;French pop music hit list&lt;/a&gt;&lt;/p&gt;
