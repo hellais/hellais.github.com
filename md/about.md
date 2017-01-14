@@ -2,21 +2,39 @@
 
 I am a free software developer interested in the world.
 
-## What I'm up to
+Over the last years I have been building tools to support digital rights,
+improve our understanding of how the internet works (or how it doesn't work at
+times), tell secrets safely and to have privacy online.
 
-I have done a wide variety of different things over the years here is a summary of them.
-
-### GlobaLeaks
-
-Developed free software for allowing people to setup a whistleblowing website.
-
-[GlobaLeaks](http://globaleaks.org/)
+## Projects
 
 ### OONI
 
-The [Open Observatory of network intereference](https://ooni.torproject.org/) a measurement instrument for detecting internet censorship.
+In 2011 I co-founded a project with the aim of understanding network interference, including internet censorship. The Open Observatory of Network Interference (https://ooni.torproject.org/), known as OONI, was born and I have since been leading its development.
 
-I also published [a paper on the topic at FOCI 2013](https://www.usenix.org/conference/foci12/ooni-open-observatory-network-interference).
+OONI is a free software project that enables anyone around the world to test their network and to collect data examining various forms of internet censorship, including the following:
+
+* Blocking of websites;
+* Blocking of the Tor network;
+* Blocking of instant messaging apps;
+* Presence of “middle boxes” that could be responsible for censorship and/or surveillance.
+
+Hundreds of users around the world run ooniprobe daily and millions of network measurements have been collected (and published) from more than 100 countries.
+
+OONI has a large community of volunteers who contribute to the project through software development, deployment, and advocacy around the world.
+
+One of OONI’s research papers can be found [here](https://www.usenix.org/conference/foci12/ooni-open-observatory-network-interference).
+
+### GlobaLeaks
+
+In 2012 I co-founded the Hermes Centre for Digital Human Rights and have since served as its Vice President.
+
+GlobaLeaks, a core project under the Hermes Centre, is the first open source whistleblowing platform that enables groups and individuals to report on corruption, human rights violations, and other injustices in a secure way.
+
+I worked as the core developer of GlobaLeaks for several years and helped it reach large audiences worldwide.
+
+[GlobaLeaks](http://globaleaks.org/)
+
 
 ### Radio 3 Scienza
 
@@ -28,5 +46,3 @@ Conductor in a radio show talking about cyberspace.
 * [Un voto un bit](http://www.radio3.rai.it/dl/radio3/programmi/puntata/ContentItem-95d156a8-78db-4325-be17-e1a79ad852a4.html)
 * [Il caro estinto](http://www.radio3.rai.it/dl/radio3/programmi/puntata/ContentItem-c65dafad-b104-4112-8b56-5a079284171e.html)
 * [E-spiazioni](http://www.radio3.rai.it/dl/radio3/programmi/puntata/ContentItem-fb10c6fe-1108-4e0a-99ba-3bc84544ab05.html)
-
-

@@ -2,17 +2,18 @@
 
 ## Jabber
 
-art [at] jabber.co.nz
+hellais [at] jabber [dot] ccc [dot] de
 
-Fingerprint: 4B4997FB 1EF87C66 1F2286EB 21E565D8 6C6A5FEA
+Fingerprint: CF4F73B1 F108B842 A953E711 217FBFC2 F858B5D1
 
 ## Email
 
-      pub   4096R/150FE210 2011-10-23 [expires: 2014-05-04]
-      Key fingerprint = 46E5 EF37 DE26 4EA6 8DCF  53EA E3A2 1297 150F E210
-      uid                  Arturo Filastò <art@torproject.org>
-      uid                  Arturo Filastò <arturo.filasto@logioshermes.org>
-      uid                  Arturo Filastò <arturo@filasto.net>
-      uid                  Arturo Filastò <art@fuffa.org>
-      uid                  Arturo Filastò <art@globaleaks.org>
-      sub   4096R/F423B27C 2011-10-23 [expires: 2014-05-04]
+```
+pub   3072D/702287F4 2015-10-19 [expires: 2018-05-06]
+Key fingerprint = 67EF 3966 5099 86E9 6ACE  E84E 5D67 CD18 7022 87F4
+uid       [ultimate] Arturo Filastò <arturo@filasto.net>
+uid       [ultimate] Arturo Filastò <art@fuffa.org>
+uid       [ultimate] Arturo Filastò <art@torproject.org>
+uid       [ultimate] Arturo Filastò <arturo@openobservatory.org>
+sub   2752g/C58FC4EE 2015-10-19 [expires: 2018-05-06]
+```
