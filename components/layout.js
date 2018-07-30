@@ -1,3 +1,5 @@
+import Head from 'next/head'
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { ThemeProvider, injectGlobal } from 'styled-components'
@@ -39,6 +41,10 @@ export default class Layout extends React.Component {
     const { children, disableFooter = false } = this.props
     return (
       <ThemeProvider theme={theme}>
+        <Head>
+          <title>Arturo Filastò</title>
+          <meta name="description" content="Free software developer for OONI @ The Tor Project. Interested in the world and the people that populate it.">
+        </Head>
         <Container>
           { children }
         </Container>
