@@ -41,13 +41,15 @@ export default class Layout extends React.Component {
     const { children, disableFooter = false } = this.props
     return (
       <ThemeProvider theme={theme}>
+        <div>
         <Head>
           <title>Arturo Filastò</title>
-          <meta name="description" content="Free software developer for OONI @ The Tor Project. Interested in the world and the people that populate it.">
+          <meta name="description" content="Free software developer for OONI @ The Tor Project. Interested in the world and the people that populate it." />
         </Head>
         <Container>
           { children }
         </Container>
+        </div>
       </ThemeProvider>
     )
   }
